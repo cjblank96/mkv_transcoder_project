@@ -1,8 +1,9 @@
 # worker.py
 
-import time
-import socket
+import logging
 import os
+import socket
+import time
 from mkv_transcoder.job_queue import JobQueue
 from mkv_transcoder.transcoder import Transcoder
 from mkv_transcoder import config
@@ -17,20 +18,18 @@ def main():
         if job:
             print(f"Claimed job: {job['input_path']}")
             
-            # Create a unique temporary directory for this job to avoid conflicts
-            job_basename = os.path.splitext(os.path.basename(job['input_path']))[0]
-            temp_dir = os.path.join(config.TEMP_DIR_BASE, f"{job_basename}_{int(time.time())}")
-            os.makedirs(temp_dir, exist_ok=True)
-
-            transcoder = None  # Ensure transcoder is defined before the try block
+            transcoder = Transcoder(job_id=job['id'], input_path=job['input_path'])
             try:
-                transcoder = Transcoder(job, temp_dir)
-                final_output_path = transcoder.run_pipeline()
-                job_queue.update_job_status(job['input_path'], 'done', final_output_path)
-                print(f"Finished job: {job['input_path']}")
+                success = transcoder.transcode()
+                if success:
+                    job_queue.update_job_status(job['id'], 'done', transcoder.final_output_file)
+                    logging.info(f"Worker {worker_id} completed job {job['id']}.")
+                else:
+                    job_queue.update_job_status(job['id'], 'failed')
+                    logging.error(f"Worker {worker_id} failed job {job['id']}. See transcoder log for details.")
             except Exception as e:
-                print(f"Failed job: {job['input_path']}. Error: {e}")
-                job_queue.update_job_status(job['input_path'], 'failed')
+                logging.error(f"Worker {worker_id} CRASHED on job {job['id']}: {e}", exc_info=True)
+                job_queue.update_job_status(job['id'], 'failed')
             finally:
                 # Always clean up the temporary directory
                 if transcoder:
