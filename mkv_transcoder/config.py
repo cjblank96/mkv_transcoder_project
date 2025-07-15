@@ -11,18 +11,18 @@ UNRAID_PASSWORD = os.getenv("UNRAID_PASSWORD", "C8Z0FHrh*@f5!q*eyu#f")
 UNRAID_HOST = os.getenv("UNRAID_HOST", "10.50.50.218")
 UNRAID_SHARE_NAME = os.getenv("UNRAID_SHARE_NAME", "UNRAID_SHARE")
 
-# This path format should work for systems that can resolve UNC paths.
-# On Linux/macOS, you may need to mount the share first and provide the mount point path.
-UNRAID_BASE_PATH = f"//{UNRAID_HOST}/{UNRAID_SHARE_NAME}"
+# Base path for the mounted Unraid share on the Linux VMs.
+# This should be the location where '//{UNRAID_HOST}/{UNRAID_SHARE_NAME}' is mounted.
+UNRAID_MOUNT_PATH = os.getenv("UNRAID_MOUNT_PATH", "/mnt/unraid")
 
 # --- Directory Configuration ---
 
 # Shared directory for job queue and logs on the local machine or a shared mount
 SHARED_DIR = os.getenv("MKV_SHARED_DIR", os.path.join(PROJECT_ROOT, "shared_data"))
 
-# Directories for video files on the Unraid share
-VIDEO_LANDING_POINT = os.path.join(UNRAID_BASE_PATH, "landing_point/Video")
-TEST_FILE_PATH = os.path.join(UNRAID_BASE_PATH, "landing_point/Test/test_file_dune.mkv")
+# Directories for video files on the Unraid share, accessed via the mount point
+VIDEO_LANDING_POINT = os.path.join(UNRAID_MOUNT_PATH, "landing_point/Video")
+TEST_FILE_PATH = os.path.join(UNRAID_MOUNT_PATH, "landing_point/Test/test_file_dune.mkv")
 
 # --- Job Queue and Worker Settings ---
 
