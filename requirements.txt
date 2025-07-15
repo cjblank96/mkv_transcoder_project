@@ -1,0 +1,8 @@
+# This project does not have any external Python package dependencies to install via pip.
+
+# The required dependencies are system-level command-line tools.
+# Please see the README.md for instructions on how to install:
+# - ffmpeg
+# - mkvtoolnix (for mkvmerge)
+# - dovi_tool
+

@@ -1,0 +1,16 @@
+2025-07-14 13:25:05,933 - INFO - Starting transcoding for /Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/movies/Dune_t00.mkv
+2025-07-14 13:25:05,934 - INFO - Step 1: Extracting HEVC stream...
+2025-07-14 13:25:05,934 - INFO - Executing: ffmpeg -hide_banner -loglevel error -i /Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/movies/Dune_t00.mkv -map 0:v:0 -c copy /Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/temp/Dune_t00/Dune_t00_p7.hevc
+2025-07-14 13:25:05,935 - ERROR - Pipeline failed for /Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/movies/Dune_t00.mkv. Error: [Errno 2] No such file or directory: 'ffmpeg -hide_banner -loglevel error -i /Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/movies/Dune_t00.mkv -map 0:v:0 -c copy /Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/temp/Dune_t00/Dune_t00_p7.hevc'
+2025-07-14 13:37:29,276 - INFO - Starting transcoding for /Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/movies/Dune_t00.mkv
+2025-07-14 13:37:29,276 - INFO - Step 1: Extracting HEVC stream...
+2025-07-14 13:37:29,276 - INFO - Executing: ffmpeg -hide_banner -loglevel error -i /Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/movies/Dune_t00.mkv -map 0:v:0 -c copy /Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/temp/Dune_t00/Dune_t00_p7.hevc
+2025-07-14 13:37:35,034 - ERROR - Error running command: ffmpeg -hide_banner -loglevel error -i /Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/movies/Dune_t00.mkv -map 0:v:0 -c copy /Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/temp/Dune_t00/Dune_t00_p7.hevc
+2025-07-14 13:37:35,034 - ERROR - Return Code: 183
+2025-07-14 13:37:35,035 - ERROR - Stdout: 
+2025-07-14 13:37:35,035 - ERROR - Stderr: [matroska,webm @ 0x148e26b70] EBML header parsing failed
+[in#0 @ 0x148e26920] Error opening input: Invalid data found when processing input
+Error opening input file /Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/movies/Dune_t00.mkv.
+Error opening input files: Invalid data found when processing input
+
+2025-07-14 13:37:35,035 - ERROR - Pipeline failed for /Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/movies/Dune_t00.mkv. Error: Command failed: ffmpeg -hide_banner -loglevel error -i /Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/movies/Dune_t00.mkv -map 0:v:0 -c copy /Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/temp/Dune_t00/Dune_t00_p7.hevc

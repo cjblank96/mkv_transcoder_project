@@ -1,0 +1,10 @@
+[
+  {
+    "input_path": "/Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/movies/Dune_t00.mkv",
+    "status": "failed",
+    "assigned_to": "BlankensMacBook.localdomain",
+    "output_path": null,
+    "log_path": "/Users/clay.blankenship/Documents/mkv_transcoder_project/shared_data/logs/Dune_t00.log",
+    "updated_at": "2025-07-14T19:37:35.035631Z"
+  }
+]
