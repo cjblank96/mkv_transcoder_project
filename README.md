@@ -4,7 +4,7 @@ This project provides a distributed pipeline for transcoding 4K Blu-ray MKV file
 
 ## Architecture
 
--   **Orchestrator/Scanner**: A machine that runs the `scanner.py` script. It scans the media library on the Unraid fileshare for `.mkv` files and adds them to a central job queue.
+-   **Scanner Role**: One of the VMs takes on the role of the scanner by running the `scanner.py` script. This scans the media library on the Unraid fileshare for `.mkv` files and adds them to the central job queue. This only needs to be run once to populate the queue, or whenever you add new media.
 -   **Unraid Fileshare**: A central storage location (e.g., a NAS VM) that hosts the original media, the final transcoded files, and the shared project data (job queue, logs).
 -   **Transcoder VMs**: Multiple worker VMs (Ubuntu 22.04) that pull jobs from the queue, perform the heavy lifting of transcoding, and save the final output back to the fileshare.
 
@@ -70,7 +70,7 @@ All configuration is handled in `mkv_transcoder/config.py`. You can either edit 
 
 ### Step 1: Scan for Media and Populate the Queue
 
-On your orchestrator machine, run the `scanner.py` script. This will connect to the Unraid share, find `.mkv` files, and add them to `job_queue.json`.
+On one of your worker VMs, run the `scanner.py` script. This will connect to the Unraid share, find `.mkv` files, and add them to `job_queue.json`.
 
 **For a test run with a single file:**
 
