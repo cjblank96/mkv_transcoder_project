@@ -66,16 +66,10 @@ class Transcoder:
             self.logger.error(f"Could not get total frames for {self.input_path}: {e}")
             return None
 
-    def _run_ffmpeg_with_progress(self, command, total_frames, stdin_file=None):
+    def _run_ffmpeg_with_progress(self, command, total_frames):
         print(f"\n- Re-encoding video with progress...")
-
-        stdin_handle = None
-        if stdin_file:
-            stdin_handle = open(stdin_file, 'rb')
-
         process = subprocess.Popen(
             command, 
-            stdin=stdin_handle,
             stdout=subprocess.PIPE, 
             stderr=subprocess.STDOUT, 
             universal_newlines=True, 
@@ -95,9 +89,6 @@ class Transcoder:
                 pbar.update(current_frame - pbar.n) # Update to the absolute frame number
         
         pbar.close()
-
-        if stdin_handle:
-            stdin_handle.close()
         process.wait()
         
         if process.returncode != 0:
@@ -110,54 +101,57 @@ class Transcoder:
 
     def transcode(self):
         print(f"\nStarting job {self.job_id} for: {os.path.basename(self.input_path)}")
-        # Step 1: Extract HEVC video stream
-        cmd1 = [
-            "ffmpeg", "-hide_banner", "-loglevel", "error", "-i", self.input_path, "-map", "0:v:0",
-            "-c:v", "copy", "-bsf:v", "hevc_mp4toannexb", "-y", self.hevc_file
-        ]
-        if not self._run_command(cmd1, "Extracting HEVC video stream"):
+
+        # Define paths for intermediate files
+        p7_hevc_file = os.path.join(self.persistent_temp_dir, "video_p7.hevc")
+        p81_hevc_file = os.path.join(self.persistent_temp_dir, "video_p81.hevc")
+        rpu_file = os.path.join(self.ram_temp_dir, "rpu.bin")
+        reencoded_hevc_file = os.path.join(self.persistent_temp_dir, "video_final.hevc")
+        final_video_with_rpu = os.path.join(self.persistent_temp_dir, "video_final_with_rpu.hevc")
+
+        # Step 1: Extract Profile 7 HEVC stream from original MKV
+        cmd1 = ["ffmpeg", "-i", self.input_path, "-map", "0:v:0", "-c", "copy", "-y", p7_hevc_file]
+        if not self._run_command(cmd1, "Extracting Profile 7 HEVC stream"):
             return False
 
-        # Step 2: Extract RPU with dovi_tool
-        cmd2 = ["dovi_tool", "-m", "2", "extract-rpu", "-i", self.hevc_file, "-o", self.rpu_file]
-        if not self._run_command(cmd2, "Extracting RPU for Dolby Vision"):
+        # Step 2: Convert Profile 7 to Profile 8.1
+        cmd2 = ["dovi_tool", "-m", "2", "convert", "--discard", "-i", p7_hevc_file, "-o", p81_hevc_file]
+        if not self._run_command(cmd2, "Converting P7 to P8.1"):
             return False
 
-        # Step 3: Get total frames for progress bar
+        # Step 3: Extract RPU from the new Profile 8.1 stream
+        cmd3 = ["dovi_tool", "extract-rpu", "-i", p81_hevc_file, "-o", rpu_file]
+        if not self._run_command(cmd3, "Extracting RPU from P8.1 stream"):
+            return False
+
+        # Step 4: Re-encode the Profile 8.1 video (long step with progress)
         total_frames = self._get_total_frames()
         if not total_frames:
             return False
-
-        # Step 4: Re-encode HEVC with RPU injection and progress bar
-        video_p8_hevc = os.path.join(self.persistent_temp_dir, "video_p8.hevc")
-        cmd3 = [
-            "ffmpeg", "-hide_banner", "-i", self.hevc_file, "-i", self.rpu_file,
-            "-map", "0:v:0", "-map", "1:d:0",
-            "-c:v", "libx265", "-crf", "18", "-preset", "medium",
-            "-x265-params", f"dhdr10-info=true:repeat-headers=true:aud=true:hrd=true:colorprim=bt2020:transfer=smpte2084:colormatrix=bt2020nc:master-display=G(13250,34500)B(7500,3000)R(34000,16000)WP(15635,16450)L(10000000,50):max-cll=1100,450:dolby-vision-profile=8.1:dolby-vision-rpu-file=-:dolby-vision-check=true",
-            "-y", video_p8_hevc
+        cmd4 = [
+            "ffmpeg", "-fflags", "+genpts", "-i", p81_hevc_file, "-an", "-sn", "-dn",
+            "-c:v", "libx265", "-preset", "medium", "-crf", "18", "-y", reencoded_hevc_file
         ]
-        if not self._run_ffmpeg_with_progress(cmd3, total_frames, stdin_file=self.rpu_file):
+        if not self._run_ffmpeg_with_progress(cmd4, total_frames):
             return False
 
-        # Step 5: Extract chapters
-        cmd4 = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-i", self.input_path, "-f", "ffmetadata", "-y", self.chapters_file]
-        if not self._run_command(cmd4, "Extracting chapters"):
+        # Step 5: Inject RPU into the re-encoded video
+        cmd5 = ["dovi_tool", "inject-rpu", "-i", reencoded_hevc_file, "--rpu-in", rpu_file, "-o", final_video_with_rpu]
+        if not self._run_command(cmd5, "Injecting RPU into final video"):
             return False
 
-        # Step 6: Remux final MKV
-        cmd5 = [
-            "mkvmerge", "-o", self.final_output_file,
-            "--track-name", "0:HEVC (DV Profile 8.1)", video_p8_hevc,
-            "--language", "1:en", "--track-name", "1:TrueHD 7.1 Atmos", "-a", "1", "-d", "-S", "-T", self.input_path,
-            "--language", "2:en", "--track-name", "2:SRT", "-s", "2", "-d", "-A", "-T", self.input_path,
-            "--chapter-language", "en", "--chapters", self.chapters_file
+        # Step 6: Remux final MKV using mkvmerge
+        # Note: This is a simplified mkvmerge command. A robust implementation would
+        # dynamically detect audio and subtitle tracks from the source.
+        cmd6 = [
+            "mkvmerge", "-o", self.final_output_file, "--language", "0:eng", final_video_with_rpu,
+            "--no-video", self.input_path
         ]
-        if not self._run_command(cmd5, "Remuxing final MKV file"):
+        if not self._run_command(cmd6, "Remuxing final MKV with mkvmerge"):
             return False
 
-        self.logger.info(f"Successfully transcoded {self.input_path} to {self.final_output_file}")
-        print(f"\nJob complete. Final file saved to: {self.final_output_file}")
+        print(f"\nJob {self.job_id} completed successfully.")
+        print(f"Final file located at: {self.final_output_file}")
         return True
 
     def cleanup(self):
