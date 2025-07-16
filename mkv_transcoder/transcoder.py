@@ -300,7 +300,7 @@ class Transcoder:
 
         # Step 6: Re-encode video
         cmd4 = ["ffmpeg", "-fflags", "+genpts", "-i", self.p8_video_path, "-an", "-sn", "-dn", "-c:v", "libx265", "-preset", "medium", "-crf", "18", "-threads", "9", "-x265-params", "pools=9", "-y", self.reencoded_video_path]
-        if not run_step('reencode_x265', 'Re-encoding to x265', self.reencoded_video_path, self._run_ffmpeg_with_progress, cmd4, self.total_frames, "Re-encoding to x265"):
+        if not run_step('reencode_x265', 'Re-encoding to x265', self.reencoded_video_path, self._run_ffmpeg_with_progress, cmd4, self.total_frames, self.frame_rate, "Re-encoding to x265"):
             return False
 
         # Step 7: Inject RPU into re-encoded video
