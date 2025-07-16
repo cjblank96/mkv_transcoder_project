@@ -66,21 +66,38 @@ class Transcoder:
             self.logger.error(f"Could not get total frames for {self.input_path}: {e}")
             return None
 
-    def _run_ffmpeg_with_progress(self, command, total_frames):
-        print(f"- Re-encoding video...")
-        process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, text=True, bufsize=1)
+    def _run_ffmpeg_with_progress(self, command, total_frames, stdin_file=None):
+        print(f"\n- Re-encoding video with progress...")
+
+        stdin_handle = None
+        if stdin_file:
+            stdin_handle = open(stdin_file, 'rb')
+
+        process = subprocess.Popen(
+            command, 
+            stdin=stdin_handle,
+            stdout=subprocess.PIPE, 
+            stderr=subprocess.STDOUT, 
+            universal_newlines=True, 
+            text=True,
+            errors='ignore' # Ignore potential decoding errors from ffmpeg progress
+        )
         
-        pbar = tqdm(total=total_frames, unit=' frames', ncols=80, bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}{postfix}]')
+        pbar = tqdm(total=total_frames, unit=' frames', ncols=80, bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]')
         
         frame_regex = re.compile(r"frame=\s*(\d+)")
 
         for line in iter(process.stdout.readline, ''):
+            self.logger.debug(f"ffmpeg: {line.strip()}")
             match = frame_regex.search(line)
             if match:
                 current_frame = int(match.group(1))
                 pbar.update(current_frame - pbar.n) # Update to the absolute frame number
         
         pbar.close()
+
+        if stdin_handle:
+            stdin_handle.close()
         process.wait()
         
         if process.returncode != 0:
@@ -117,10 +134,10 @@ class Transcoder:
             "ffmpeg", "-hide_banner", "-i", self.hevc_file, "-i", self.rpu_file,
             "-map", "0:v:0", "-map", "1:d:0",
             "-c:v", "libx265", "-crf", "18", "-preset", "medium",
-            "-x265-params", f"dhdr10-info=true:repeat-headers=true:aud=true:hrd=true:colorprim=bt2020:transfer=smpte2084:colormatrix=bt2020nc:master-display=G(13250,34500)B(7500,3000)R(34000,16000)WP(15635,16450)L(10000000,50):max-cll=1100,450:dolby-vision-profile=8.1:dolby-vision-rpu-file={self.rpu_file}:dolby-vision-check=true",
+            "-x265-params", f"dhdr10-info=true:repeat-headers=true:aud=true:hrd=true:colorprim=bt2020:transfer=smpte2084:colormatrix=bt2020nc:master-display=G(13250,34500)B(7500,3000)R(34000,16000)WP(15635,16450)L(10000000,50):max-cll=1100,450:dolby-vision-profile=8.1:dolby-vision-rpu-file=-:dolby-vision-check=true",
             "-y", video_p8_hevc
         ]
-        if not self._run_ffmpeg_with_progress(cmd3, total_frames):
+        if not self._run_ffmpeg_with_progress(cmd3, total_frames, stdin_file=self.rpu_file):
             return False
 
         # Step 5: Extract chapters

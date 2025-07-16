@@ -25,11 +25,13 @@ def main():
                     job_queue.update_job_status(job['id'], 'done', transcoder.final_output_file)
                     logging.info(f"Worker {worker_id} completed job {job['id']}.")
                 else:
-                    job_queue.update_job_status(job['id'], 'failed')
                     logging.error(f"Worker {worker_id} failed job {job['id']}. See transcoder log for details.")
+                    if not job_queue.update_job_status(job['id'], 'failed'):
+                        logging.warning(f"Could not update status for failed job {job['id']}.")
             except Exception as e:
                 logging.error(f"Worker {worker_id} CRASHED on job {job['id']}: {e}", exc_info=True)
-                job_queue.update_job_status(job['id'], 'failed')
+                if not job_queue.update_job_status(job['id'], 'failed'):
+                    logging.warning(f"Could not update status for crashed job {job['id']}.")
             finally:
                 # Always clean up the temporary directory
                 if transcoder:
