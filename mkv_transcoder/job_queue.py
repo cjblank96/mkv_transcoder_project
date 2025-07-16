@@ -62,7 +62,17 @@ class JobQueue:
                 'status': 'pending',
                 'worker_id': None,
                 'output_path': None,
-                'added_at': time.time()
+                'added_at': time.time(),
+                'steps': {
+                    'copy_source': 'pending',
+                    'extract_p7': 'pending',
+                    'convert_p8': 'pending',
+                    'extract_rpu': 'pending',
+                    'reencode_x265': 'pending',
+                    'inject_rpu': 'pending',
+                    'remux_final': 'pending',
+                    'move_final': 'pending'
+                }
             }
             queue['jobs'].append(new_job)
             return True
@@ -93,8 +103,51 @@ class JobQueue:
             return False
         return self._execute_with_lock(_update_job_op)
 
+    def update_job_step_status(self, job_id, step, status):
+        """Updates the status of a specific step within a job."""
+        def _update_step_op(queue):
+            for job in queue['jobs']:
+                if job.get('id') == job_id:
+                    if 'steps' in job and step in job['steps']:
+                        job['steps'][step] = status
+                        return True
+            return False
+        return self._execute_with_lock(_update_step_op)
+
     def get_all_file_paths(self):
         """Returns a set of all input_paths currently in the queue."""
         def _get_paths_op(queue):
             return {job.get('input_path') for job in queue.get('jobs', [])}
         return self._execute_with_lock(_get_paths_op)
+
+    def reset_job_progress(self, job_id, from_step_index):
+        """Resets the progress of a job from a specific step index."""
+        step_order = [
+            'copy_source',
+            'extract_p7',
+            'convert_p8',
+            'extract_rpu',
+            'reencode_x265',
+            'inject_rpu',
+            'remux_final',
+            'move_final'
+        ]
+
+        if not (1 <= from_step_index <= len(step_order)):
+            print(f"Error: Invalid step index {from_step_index}. Must be between 1 and {len(step_order)}.")
+            return False
+
+        def _reset_op(queue):
+            for job in queue['jobs']:
+                if job.get('id') == job_id:
+                    # Reset the status of the target step and all subsequent steps
+                    for i in range(from_step_index - 1, len(step_order)):
+                        step_name = step_order[i]
+                        if step_name in job.get('steps', {}):
+                            job['steps'][step_name] = 'pending'
+                    
+                    # Mark the job as 'failed' to ensure it gets re-processed
+                    job['status'] = 'failed'
+                    return True
+            return False
+        return self._execute_with_lock(_reset_op)

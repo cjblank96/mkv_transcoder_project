@@ -5,6 +5,7 @@ import socket
 import time
 import sys
 import os
+import argparse
 
 # Add project root to the Python path
 project_root = os.path.dirname(os.path.abspath(__file__))
@@ -17,9 +18,16 @@ from mkv_transcoder.transcoder import Transcoder
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def main():
+    parser = argparse.ArgumentParser(description="MKV Transcoder Worker")
+    parser.add_argument('--force-rerun', type=int, metavar='STEP_INDEX', help='Force the job to re-run starting from the specified step index (1-8).')
+    args = parser.parse_args()
+
     worker_id = socket.gethostname()
     job_queue = JobQueue()
     logging.info(f"Worker '{worker_id}' started. Polling for jobs...")
+
+    # This flag ensures we only apply the force-rerun logic once to the first job claimed.
+    rerun_flag_applied = False
 
     while True:
         job = job_queue.claim_next_available_job(worker_id)
@@ -29,9 +37,20 @@ def main():
             break # Exit the loop if no jobs are available
 
         logging.info(f"Worker '{worker_id}' claimed job {job['id']} for file: {job['input_path']}")
+
+        # If --force-rerun is used, reset the job progress before transcoding
+        if args.force_rerun and not rerun_flag_applied:
+            logging.warning(f"--force-rerun flag detected. Resetting job {job['id']} to start from step {args.force_rerun}.")
+            job_queue.reset_job_progress(job['id'], args.force_rerun)
+            # The job object is now stale, so we must refetch it to get the updated step statuses.
+            # We can re-claim it, which is safe because we already have it marked as 'running'.
+            job = job_queue.claim_next_available_job(worker_id)
+            rerun_flag_applied = True
+
         transcoder = None
+        success = False
         try:
-            transcoder = Transcoder(job_id=job['id'], input_path=job['input_path'])
+            transcoder = Transcoder(job=job, job_queue=job_queue)
             success = transcoder.transcode()
 
             if success:

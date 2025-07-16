@@ -10,26 +10,17 @@ from tqdm import tqdm
 from . import config
 
 class Transcoder:
-    def __init__(self, job_id, input_path):
-        self.job_id = job_id
-        self.original_input_path = input_path
-        self.base_filename = os.path.splitext(os.path.basename(input_path))[0]
+    def __init__(self, job, job_queue):
+        self.job = job
+        self.job_queue = job_queue
+        self.job_id = job['id']
+        self.original_input_path = job['input_path']
+        self.base_filename = os.path.splitext(os.path.basename(self.original_input_path))[0]
 
         self.job_staging_dir = os.path.join(config.STAGING_DIR, self.job_id)
         os.makedirs(self.job_staging_dir, exist_ok=True)
 
         self.local_source_path = os.path.join(self.job_staging_dir, os.path.basename(self.original_input_path))
-
-        for filename in os.listdir(self.job_staging_dir):
-            file_path = os.path.join(self.job_staging_dir, filename)
-            if file_path != self.local_source_path:
-                try:
-                    if os.path.isfile(file_path) or os.path.islink(file_path):
-                        os.unlink(file_path)
-                    elif os.path.isdir(file_path):
-                        shutil.rmtree(file_path)
-                except Exception as e:
-                    print(f'Failed to delete {file_path}. Reason: {e}')
 
         self.p7_video_path = os.path.join(self.job_staging_dir, 'video_p7.hevc')
         self.p8_video_path = os.path.join(self.job_staging_dir, 'video_p8.hevc')
@@ -253,50 +244,74 @@ class Transcoder:
 
     def transcode(self):
         print(f"\nStarting job {self.job_id} for: {os.path.basename(self.original_input_path)}")
-        try:
-            source_size = os.path.getsize(self.original_input_path)
-            if os.path.exists(self.local_source_path) and os.path.getsize(self.local_source_path) == source_size:
-                self.logger.info("Source file found in staging, skipping copy.")
-                print("- Source file found in staging. Skipping copy.")
-            else:
-                if not self._copy_with_progress(self.original_input_path, self.local_source_path, "Copying source file locally"):
-                    return False
-        except FileNotFoundError:
-            self.logger.error(f"Source file not found: {self.original_input_path}")
+
+        # This wrapper simplifies the check-run-update pattern for each step
+        def run_step(step_name, description, file_to_check, function, *args, **kwargs):
+            if self.job['steps'].get(step_name) == 'completed' and os.path.exists(file_to_check):
+                self.logger.info(f"Step '{step_name}' already completed. Skipping.")
+                print(f"- Skipping already completed step: {description}")
+                return True
+            
+            success = function(*args, **kwargs)
+            new_status = 'completed' if success else 'failed'
+            self.job_queue.update_job_step_status(self.job_id, step_name, new_status)
+            return success
+
+        # Step 1: Copy source file locally
+        if not run_step('copy_source', 'Copying source file locally', self.local_source_path, self._copy_source_file):
             return False
 
+        # Get metadata (this is required for subsequent steps)
         total_frames, frame_rate = self._get_video_metadata(self.local_source_path)
         if not total_frames or not frame_rate:
             return False
 
+        # Step 2: Extract P7 HEVC stream
         cmd1 = ["ffmpeg", "-i", self.local_source_path, "-map", "0:v:0", "-c", "copy", "-y", self.p7_video_path]
-        if not self._run_ffmpeg_copy_with_progress(cmd1, total_frames, frame_rate, "Extracting Profile 7 HEVC stream"):
+        if not run_step('extract_p7', 'Extracting Profile 7 HEVC stream', self.p7_video_path, self._run_ffmpeg_copy_with_progress, cmd1, total_frames, frame_rate, "Extracting Profile 7 HEVC stream"):
             return False
 
+        # Step 3: Convert P7 to P8.1
         cmd2 = ["dovi_tool", "-m", "2", "convert", "--discard", "-i", self.p7_video_path, "-o", self.p8_video_path]
-        if not self._run_dovi_tool_with_native_progress(cmd2, "Converting P7 to P8.1"):
+        if not run_step('convert_p8', 'Converting P7 to P8.1', self.p8_video_path, self._run_dovi_tool_with_native_progress, cmd2, "Converting P7 to P8.1"):
             return False
 
+        # Step 4: Extract RPU from P8.1 stream
         cmd3 = ["dovi_tool", "extract-rpu", "-i", self.p8_video_path, "-o", self.rpu_path]
-        if not self._run_dovi_tool_with_native_progress(cmd3, "Extracting RPU from P8.1 stream"):
+        if not run_step('extract_rpu', 'Extracting RPU from P8.1 stream', self.rpu_path, self._run_dovi_tool_with_native_progress, cmd3, "Extracting RPU from P8.1 stream"):
             return False
 
+        # Step 5: Re-encode video
         cmd4 = ["ffmpeg", "-fflags", "+genpts", "-i", self.p8_video_path, "-an", "-sn", "-dn", "-c:v", "libx265", "-preset", "medium", "-crf", "18", "-threads", "9", "-x265-params", "pools=9", "-y", self.reencoded_video_path]
-        if not self._run_ffmpeg_with_progress(cmd4, total_frames, "Re-encoding to x265"):
+        if not run_step('reencode_x265', 'Re-encoding to x265', self.reencoded_video_path, self._run_ffmpeg_with_progress, cmd4, total_frames, "Re-encoding to x265"):
             return False
 
+        # Step 6: Inject RPU into re-encoded video
         cmd5 = ["dovi_tool", "inject-rpu", "-i", self.reencoded_video_path, "--rpu-in", self.rpu_path, "-o", self.final_video_with_rpu_path]
-        if not self._run_dovi_tool_with_native_progress(cmd5, "Injecting RPU into re-encoded video"):
+        if not run_step('inject_rpu', 'Injecting RPU into re-encoded video', self.final_video_with_rpu_path, self._run_dovi_tool_with_native_progress, cmd5, "Injecting RPU into re-encoded video"):
             return False
 
+        # Step 7: Remux final MKV
         cmd6 = ["mkvmerge", "-o", self.local_output_path, "--language", "0:eng", self.final_video_with_rpu_path, "--no-video", self.local_source_path]
-        if not self._run_command(cmd6, "Remuxing final MKV"):
+        if not run_step('remux_final', 'Remuxing final MKV', self.local_output_path, self._run_command, cmd6, "Remuxing final MKV"):
             return False
 
-        if not self._move_final_file(self.local_output_path, self.output_path):
+        # Step 8: Move final file to destination
+        if not run_step('move_final', 'Moving final file to destination', self.output_path, self._move_final_file, self.local_output_path, self.output_path):
             return False
 
         print(f"\nSuccessfully transcoded {os.path.basename(self.original_input_path)} to {self.output_path}")
+        return True
+
+    def _copy_source_file(self):
+        try:
+            source_size = os.path.getsize(self.original_input_path)
+            # No need to check for existence here because the run_step wrapper does it
+            if not self._copy_with_progress(self.original_input_path, self.local_source_path, "Copying source file locally"):
+                return False
+        except FileNotFoundError:
+            self.logger.error(f"Source file not found: {self.original_input_path}")
+            return False
         return True
 
     def cleanup(self):
