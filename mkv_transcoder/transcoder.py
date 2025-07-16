@@ -14,11 +14,25 @@ class Transcoder:
         self.base_filename = os.path.splitext(os.path.basename(input_path))[0]
 
         # A single, unique staging directory for all this job's local files
-        self.job_staging_dir = os.path.join(config.STAGING_DIR, f"{self.base_filename}_{self.job_id}")
+        self.job_staging_dir = os.path.join(config.STAGING_DIR, self.job_id)
         os.makedirs(self.job_staging_dir, exist_ok=True)
 
-        # Define paths for all files, which will now be local to the staging directory
+        # Define the path for the local source file first, so we can preserve it
         self.local_source_path = os.path.join(self.job_staging_dir, os.path.basename(self.original_input_path))
+
+        # Clean up intermediate files from any previous failed run, preserving the source file
+        for filename in os.listdir(self.job_staging_dir):
+            file_path = os.path.join(self.job_staging_dir, filename)
+            if file_path != self.local_source_path:
+                try:
+                    if os.path.isfile(file_path) or os.path.islink(file_path):
+                        os.unlink(file_path)
+                    elif os.path.isdir(file_path):
+                        shutil.rmtree(file_path)
+                except Exception as e:
+                    print(f'Failed to delete {file_path}. Reason: {e}')
+
+        # Define paths for all other files, which will now be local to the staging directory
         self.p7_video_path = os.path.join(self.job_staging_dir, 'video_p7.hevc')
         self.p8_video_path = os.path.join(self.job_staging_dir, 'video_p8.hevc')
         self.rpu_path = os.path.join(self.job_staging_dir, 'rpu.bin')
@@ -33,7 +47,7 @@ class Transcoder:
         # Setup logging
         log_dir = os.path.join(config.LOG_DIR, 'transcoding_logs')
         os.makedirs(log_dir, exist_ok=True)
-        self.log_file = os.path.join(log_dir, f"{self.base_filename}_{self.job_id}.log")
+        self.log_file = os.path.join(log_dir, f"{self.job_id}.log")
         self.logger = self._setup_logger()
         self._log_initial_paths()
 
@@ -118,31 +132,33 @@ class Transcoder:
             return False
 
     def _get_total_frames(self, video_file):
-        self.logger.info(f"Getting total frame count from metadata for {video_file}...")
-        command = ["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=nb_frames", "-of", "default=nokey=1:noprint_wrappers=1", video_file]
-        self.logger.info(f"Executing command: {' '.join(command)}")
+        # Attempt 1: MakeMKV `NUMBER_OF_FRAMES` tag (fast)
+        self.logger.info(f"Attempt 1: Checking for 'NUMBER_OF_FRAMES' tag for {video_file}...")
+        command1 = ["ffprobe", "-v", "quiet", "-show_format", "-show_streams", video_file]
+        self.logger.info(f"Executing command: {' '.join(command1)}")
         try:
-            result = subprocess.run(command, capture_output=True, text=True, check=True)
-            output = result.stdout.strip()
-            if output.isdigit() and int(output) > 0:
-                total_frames = int(output)
-                self.logger.info(f"Successfully found {total_frames} frames from metadata.")
-                return total_frames
-            else:
-                self.logger.warning("nb_frames not found in metadata, falling back to counting frames.")
-                command = ["ffprobe", "-v", "error", "-select_streams", "v:0", "-count_frames", "-show_entries", "stream=nb_read_frames", "-of", "default=nokey=1:noprint_wrappers=1", video_file]
-                self.logger.info(f"Executing fallback command: {' '.join(command)}")
-                result = subprocess.run(command, capture_output=True, text=True, check=True)
-                total_frames = int(result.stdout.strip())
-                self.logger.info(f"Successfully counted {total_frames} frames.")
-                return total_frames
-        except subprocess.CalledProcessError as e:
-            self.logger.error(f"ffprobe command failed to get total frames for {video_file}.")
-            self.logger.error(f"Exit code: {e.returncode}")
-            self.logger.error(f"Stderr: {e.stderr}")
-            return None
-        except (ValueError, IndexError) as e:
-            self.logger.error(f"Failed to parse frame count from ffprobe output: {e}")
+            result = subprocess.run(command1, capture_output=True, text=True, check=True)
+            for line in result.stdout.splitlines():
+                if 'NUMBER_OF_FRAMES' in line:
+                    parts = line.split('=')
+                    if len(parts) == 2 and parts[1].isdigit():
+                        total_frames = int(parts[1])
+                        self.logger.info(f"Successfully found {total_frames} frames from 'NUMBER_OF_FRAMES' tag.")
+                        return total_frames
+        except (subprocess.CalledProcessError, ValueError, IndexError) as e:
+            self.logger.warning(f"'NUMBER_OF_FRAMES' not found or failed to parse: {e}")
+
+        # Attempt 2: Manual frame count (slow fallback)
+        self.logger.warning("Primary method failed. Falling back to manually counting frames.")
+        command2 = ["ffprobe", "-v", "error", "-select_streams", "v:0", "-count_frames", "-show_entries", "stream=nb_read_frames", "-of", "default=nokey=1:noprint_wrappers=1", video_file]
+        self.logger.info(f"Executing fallback command: {' '.join(command2)}")
+        try:
+            result = subprocess.run(command2, capture_output=True, text=True, check=True)
+            total_frames = int(result.stdout.strip())
+            self.logger.info(f"Successfully counted {total_frames} frames.")
+            return total_frames
+        except (subprocess.CalledProcessError, ValueError, IndexError) as e:
+            self.logger.error(f"Manual frame count failed for {video_file}: {e}")
             return None
 
     def _run_ffmpeg_with_progress(self, command, total_frames):
@@ -193,8 +209,17 @@ class Transcoder:
     def transcode(self):
         print(f"\nStarting job {self.job_id} for: {os.path.basename(self.original_input_path)}")
 
-        # Step 0: Copy source file to local staging directory
-        if not self._copy_with_progress(self.original_input_path, self.local_source_path, "Copying source file locally"):
+        # Step 0: Check if source file needs to be copied
+        try:
+            source_size = os.path.getsize(self.original_input_path)
+            if os.path.exists(self.local_source_path) and os.path.getsize(self.local_source_path) == source_size:
+                self.logger.info("Source file already exists in staging directory and appears valid. Skipping copy.")
+                print("- Source file found in staging. Skipping copy.")
+            else:
+                if not self._copy_with_progress(self.original_input_path, self.local_source_path, "Copying source file locally"):
+                    return False
+        except FileNotFoundError:
+            self.logger.error(f"Original source file not found at {self.original_input_path}")
             return False
 
         # Step 0.5: Get total frame count from local source file metadata

@@ -54,7 +54,8 @@ def main():
             # Re-raise the exception to ensure the worker process terminates
             raise
         finally:
-            if transcoder:
+            # Cleanup only on success to allow for faster retries of failed jobs
+            if transcoder and success:
                 transcoder.cleanup()
 
     logging.info(f"Worker '{worker_id}' finished all jobs and is now exiting.")
