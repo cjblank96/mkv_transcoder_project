@@ -41,10 +41,18 @@ def main():
                 logging.error(f"Job {job['id']} failed during transcoding.")
                 job_queue.update_job_status(job['id'], 'failed')
 
-        except Exception as e:
-            logging.error(f"A critical error occurred while processing job {job['id']}: {e}", exc_info=True)
+        except BaseException as e:
+            # Catching BaseException to handle KeyboardInterrupt and other critical errors
+            if isinstance(e, KeyboardInterrupt):
+                logging.warning(f"Keyboard interrupt received. Marking job {job['id']} as failed and exiting.")
+            else:
+                logging.error(f"A critical error occurred while processing job {job['id']}: {e}", exc_info=True)
+            
             if job:
                 job_queue.update_job_status(job['id'], 'failed')
+            
+            # Re-raise the exception to ensure the worker process terminates
+            raise
         finally:
             if transcoder:
                 transcoder.cleanup()
