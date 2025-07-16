@@ -76,6 +76,18 @@ class JobQueue:
             return {job.get('file_path') for job in queue.get('jobs', [])}
         return self._execute_with_lock(_get_paths_op)
 
+    def get_next_pending_job(self):
+        """Finds the next pending job, marks it as running, and returns it."""
+        def _get_and_update_op(queue):
+            for job in queue.get('jobs', []):
+                if job.get('status') == 'pending':
+                    job['status'] = 'running'
+                    # No need to assign worker_id here as the worker will do its work regardless
+                    # and update status upon completion or failure.
+                    return job
+            return None
+        return self._execute_with_lock(_get_and_update_op)
+
     def update_job_status(self, job_id, status, output_path=None):
         def _update_job_op(queue):
             for job in queue:
