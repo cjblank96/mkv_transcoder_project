@@ -234,39 +234,35 @@ class Transcoder:
         self.logger.info(f"Successfully completed: {description}")
         return True
 
-    def _run_dovi_tool_with_native_progress(self, command, description):
+    def _run_dovi_tool_with_progress(self, command, description):
         self.logger.info(f"Executing dovi_tool command: {' '.join(command)}")
         print(f"- {description}...")
-        master, slave = pty.openpty()
-        process = subprocess.Popen(command, stdout=slave, stderr=slave, close_fds=True, preexec_fn=os.setsid)
-        os.close(slave)
-        buffer = ""
         try:
-            while process.poll() is None:
-                r, _, _ = select.select([master], [], [], 0.1)
-                if r:
-                    try:
-                        output = os.read(master, 1024).decode(errors='ignore')
-                        if output:
-                            print(output, end='', flush=True)
-                            buffer += output
-                            while '\n' in buffer:
-                                line, buffer = buffer.split('\n', 1)
-                                self.logger.info(line.strip())
-                    except OSError:
-                        break
-            if buffer.strip():
-                self.logger.info(buffer.strip())
-        finally:
-            os.close(master)
+            # Using subprocess.run for simplicity and robust error capture
+            process = subprocess.run(command, capture_output=True, text=True, encoding='utf-8', check=False)
 
-        if process.returncode != 0:
-            self.logger.error(f"dovi_tool command failed with exit code {process.returncode}")
-            print(f"\n- {description} failed. Check logs for details.")
+            # Always log stdout for debugging, as dovi_tool might print useful info here
+            if process.stdout:
+                self.logger.debug(f"{description} stdout:\n{process.stdout}")
+
+            if process.returncode != 0:
+                self.logger.error(f"dovi_tool command failed: {' '.join(command)}")
+                self.logger.error(f"Exit code: {process.returncode}")
+                # Always log stderr on failure, this is critical for debugging
+                if process.stderr:
+                    self.logger.error(f"{description} stderr:\n{process.stderr}")
+                print(f"\n- {description} failed. Check logs for details.")
+                return False
+
+            print("  Done.                                ")
+            self.logger.info(f"dovi_tool command successful.")
+            return True
+
+        except Exception as e:
+            # Catch any other unexpected exceptions during process execution
+            self.logger.error(f"An unexpected error occurred while running dovi_tool: {' '.join(command)}", exc_info=True)
+            print(f"\n- {description} failed with an unexpected error. Check logs.")
             return False
-        self.logger.info(f"Successfully completed: {description}")
-        print()
-        return True
 
     def transcode(self):
         print(f"\nStarting job {self.job_id} for: {os.path.basename(self.original_input_path)}")
@@ -288,7 +284,6 @@ class Transcoder:
             return False
 
         # Step 2: Get video metadata
-        # A dummy file_to_check is used since this step doesn't produce a single file.
         if not run_step('get_metadata', 'Getting video metadata', self.log_file, self._get_video_metadata, self.local_source_path):
              return False
 
@@ -297,32 +292,32 @@ class Transcoder:
         if not run_step('extract_p7', 'Extracting Profile 7 HEVC stream', self.p7_video_path, self._run_ffmpeg_copy_with_progress, cmd1, self.total_frames, self.frame_rate, "Extracting Profile 7 HEVC stream"):
             return False
 
-        # Step 3: Convert P7 to P8.1
+        # Step 4: Convert P7 to P8.1
         cmd2 = ["dovi_tool", "-m", "2", "convert", "--discard", "-i", self.p7_video_path, "-o", self.p8_video_path]
-        if not run_step('convert_p8', 'Converting P7 to P8.1', self.p8_video_path, self._run_dovi_tool_with_native_progress, cmd2, "Converting P7 to P8.1"):
+        if not run_step('convert_p8', 'Converting P7 to P8.1', self.p8_video_path, self._run_dovi_tool_with_progress, cmd2, "Converting P7 to P8.1"):
             return False
 
-        # Step 4: Extract RPU from P8.1 stream
+        # Step 5: Extract RPU from P8.1 stream
         cmd3 = ["dovi_tool", "extract-rpu", "-i", self.p8_video_path, "-o", self.rpu_path]
-        if not run_step('extract_rpu', 'Extracting RPU from P8.1 stream', self.rpu_path, self._run_dovi_tool_with_native_progress, cmd3, "Extracting RPU from P8.1 stream"):
+        if not run_step('extract_rpu', 'Extracting RPU from P8.1 stream', self.rpu_path, self._run_dovi_tool_with_progress, cmd3, "Extracting RPU from P8.1 stream"):
             return False
 
-        # Step 5: Re-encode video
+        # Step 6: Re-encode video
         cmd4 = ["ffmpeg", "-fflags", "+genpts", "-i", self.p8_video_path, "-an", "-sn", "-dn", "-c:v", "libx265", "-preset", "medium", "-crf", "18", "-threads", "9", "-x265-params", "pools=9", "-y", self.reencoded_video_path]
         if not run_step('reencode_x265', 'Re-encoding to x265', self.reencoded_video_path, self._run_ffmpeg_with_progress, cmd4, self.total_frames, "Re-encoding to x265"):
             return False
 
-        # Step 6: Inject RPU into re-encoded video
+        # Step 7: Inject RPU into re-encoded video
         cmd5 = ["dovi_tool", "inject-rpu", "-i", self.reencoded_video_path, "--rpu-in", self.rpu_path, "-o", self.final_video_with_rpu_path]
-        if not run_step('inject_rpu', 'Injecting RPU into re-encoded video', self.final_video_with_rpu_path, self._run_dovi_tool_with_native_progress, cmd5, "Injecting RPU into re-encoded video"):
+        if not run_step('inject_rpu', 'Injecting RPU into re-encoded video', self.final_video_with_rpu_path, self._run_dovi_tool_with_progress, cmd5, "Injecting RPU into re-encoded video"):
             return False
 
-        # Step 7: Remux final MKV
+        # Step 8: Remux final MKV
         cmd6 = ["mkvmerge", "-o", self.local_output_path, "--language", "0:eng", self.final_video_with_rpu_path, "--no-video", self.local_source_path]
         if not run_step('remux_final', 'Remuxing final MKV', self.local_output_path, self._run_command, cmd6, "Remuxing final MKV"):
             return False
 
-        # Step 8: Move final file to destination
+        # Step 9: Move final file to destination
         if not run_step('move_final', 'Moving final file to destination', self.output_path, self._move_final_file, self.local_output_path, self.output_path):
             return False
 
