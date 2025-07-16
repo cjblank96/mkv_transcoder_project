@@ -22,7 +22,7 @@ def main():
     logging.info(f"Worker '{worker_id}' started. Polling for jobs...")
 
     while True:
-        job = job_queue.get_next_pending_job()
+        job = job_queue.claim_next_available_job(worker_id)
 
         if not job:
             logging.info("No pending jobs found in the queue. Worker is shutting down.")

@@ -68,12 +68,14 @@ class JobQueue:
             return True
         return self._execute_with_lock(_add_job_op)
 
-    def get_next_pending_job(self):
-        """Finds the next pending job, marks it as 'running', and returns it."""
+    def claim_next_available_job(self, worker_id):
+        """Finds the next pending or failed job, marks it as 'running', and returns it."""
         def _get_and_update_op(queue):
-            for job in queue['jobs']:
-                if job.get('status') == 'pending':
+            for job in sorted(queue['jobs'], key=lambda j: j['added_at']):
+                if job.get('status') in ['pending', 'failed']:
                     job['status'] = 'running'
+                    job['worker_id'] = worker_id
+                    job['claimed_at'] = time.time()
                     return job
             return None
         return self._execute_with_lock(_get_and_update_op)
