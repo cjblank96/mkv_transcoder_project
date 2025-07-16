@@ -27,6 +27,9 @@ class Transcoder:
         self.rpu_path = os.path.join(self.job_staging_dir, 'rpu.bin')
         self.reencoded_video_path = os.path.join(self.job_staging_dir, 'video_reencoded.hevc')
         self.final_video_with_rpu_path = os.path.join(self.job_staging_dir, 'video_final_with_rpu.hevc')
+
+        self.total_frames = None
+        self.frame_rate = None
         
         output_filename = f"{self.base_filename}_DV_P8.mkv"
         self.local_output_path = os.path.join(self.job_staging_dir, output_filename)
@@ -118,47 +121,66 @@ class Transcoder:
             print(f"- {step_name} failed. Check logs for details.")
             return False
 
-    def _get_video_metadata(self, video_file):
-        """Gets total frames and avg frame rate from video file."""
+    def _get_video_metadata(self, video_path):
+        """Gets video metadata using specific ffprobe commands and stores it in instance variables."""
+        self.logger.info(f"Attempting to get video metadata from {video_path}")
         total_frames = None
         frame_rate = None
-        self.logger.info(f"Attempting to get video metadata from {video_file}")
-        try:
-            command = ["ffprobe", "-v", "quiet", "-show_format", "-show_streams", video_file]
-            result = subprocess.run(command, capture_output=True, text=True, check=True)
-            frame_rate_str = None
-            for line in result.stdout.splitlines():
-                if 'NUMBER_OF_FRAMES' in line:
-                    parts = line.split('=')
-                    if len(parts) == 2 and parts[1].isdigit():
-                        total_frames = int(parts[1])
-                elif 'avg_frame_rate' in line:
-                    parts = line.split('=')
-                    if len(parts) == 2:
-                        frame_rate_str = parts[1]
-            if frame_rate_str:
-                num, den = frame_rate_str.split('/')
-                if float(den) != 0:
-                    frame_rate = float(num) / float(den)
-        except (subprocess.CalledProcessError, ValueError, IndexError, ZeroDivisionError) as e:
-            self.logger.warning(f"Could not get metadata via ffprobe tags: {e}")
 
-        if not total_frames:
-            self.logger.warning("Falling back to manually counting frames.")
+        # Method 1: Get avg_frame_rate
+        try:
+            command = ["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=avg_frame_rate", "-of", "default=noprint_wrappers=1:nokey=1", video_path]
+            result = subprocess.run(command, capture_output=True, text=True, check=True)
+            output = result.stdout.strip()
+            if '/' in output:
+                num, den = map(int, output.split('/'))
+                frame_rate = num / den
+                self.logger.info(f"Successfully got frame rate: {frame_rate:.3f} fps.")
+        except (subprocess.CalledProcessError, ValueError, IndexError) as e:
+            self.logger.warning(f"Could not get avg_frame_rate. Error: {e}")
+            if isinstance(e, subprocess.CalledProcessError):
+                self.logger.warning(f"ffprobe (frame rate) stdout: {e.stdout}")
+                self.logger.warning(f"ffprobe (frame rate) stderr: {e.stderr}")
+
+        # Method 2: Get frame count from tags
+        for tag in ["NUMBER_OF_FRAMES-eng", "NUMBER_OF_FRAMES"]:
             try:
-                command = ["ffprobe", "-v", "error", "-select_streams", "v:0", "-count_frames", "-show_entries", "stream=nb_read_frames", "-of", "default=nokey=1:noprint_wrappers=1", video_file]
+                command = ["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", f"stream_tags={tag}", "-of", "default=noprint_wrappers=1:nokey=1", video_path]
                 result = subprocess.run(command, capture_output=True, text=True, check=True)
-                total_frames = int(result.stdout.strip())
-            except (subprocess.CalledProcessError, ValueError) as e:
-                self.logger.error(f"Manual frame count failed: {e}")
-                return None, None
+                output = result.stdout.strip()
+                if output.isdigit():
+                    total_frames = int(output)
+                    self.logger.info(f"Successfully got frame count from tag '{tag}': {total_frames} frames.")
+                    break # Exit loop on success
+            except (subprocess.CalledProcessError, ValueError, IndexError) as e:
+                self.logger.warning(f"Could not get frame count from tag '{tag}'. Error: {e}")
+                if isinstance(e, subprocess.CalledProcessError):
+                    self.logger.warning(f"ffprobe (tag: {tag}) stdout: {e.stdout}")
+                    self.logger.warning(f"ffprobe (tag: {tag}) stderr: {e.stderr}")
+        
+        # Method 3: Fallback to counting frames manually if tags fail
+        if not total_frames:
+            self.logger.warning("Frame count tags failed. Falling back to manual frame counting.")
+            try:
+                command = ["ffprobe", "-v", "error", "-select_streams", "v:0", "-count_frames", "-show_entries", "stream=nb_read_frames", "-of", "default=noprint_wrappers=1:nokey=1", video_path]
+                result = subprocess.run(command, capture_output=True, text=True, check=True)
+                output = result.stdout.strip()
+                if output.isdigit():
+                    total_frames = int(output)
+                    self.logger.info(f"Successfully counted frames manually: {total_frames} frames.")
+            except (subprocess.CalledProcessError, ValueError, IndexError) as e:
+                self.logger.error(f"Manual frame count failed. Error: {e}")
+                if isinstance(e, subprocess.CalledProcessError):
+                    self.logger.error(f"ffprobe (manual count) stdout: {e.stdout}")
+                    self.logger.error(f"ffprobe (manual count) stderr: {e.stderr}")
 
         if total_frames and frame_rate:
-            self.logger.info(f"Found {total_frames} frames at {frame_rate:.3f} fps.")
-            return total_frames, frame_rate
+            self.total_frames = total_frames
+            self.frame_rate = frame_rate
+            return True
         else:
-            self.logger.error("Failed to determine total frames or frame rate.")
-            return None, None
+            self.logger.error("Failed to determine total frames or frame rate after all methods.")
+            return False
 
     def _run_ffmpeg_with_progress(self, command, total_frames, description):
         self.logger.info(f"Executing ffmpeg command: {' '.join(command)}")
@@ -261,14 +283,14 @@ class Transcoder:
         if not run_step('copy_source', 'Copying source file locally', self.local_source_path, self._copy_source_file):
             return False
 
-        # Get metadata (this is required for subsequent steps)
-        total_frames, frame_rate = self._get_video_metadata(self.local_source_path)
-        if not total_frames or not frame_rate:
-            return False
+        # Step 2: Get video metadata
+        # A dummy file_to_check is used since this step doesn't produce a single file.
+        if not run_step('get_metadata', 'Getting video metadata', self.log_file, self._get_video_metadata, self.local_source_path):
+             return False
 
-        # Step 2: Extract P7 HEVC stream
+        # Step 3: Extract P7 HEVC stream
         cmd1 = ["ffmpeg", "-i", self.local_source_path, "-map", "0:v:0", "-c", "copy", "-y", self.p7_video_path]
-        if not run_step('extract_p7', 'Extracting Profile 7 HEVC stream', self.p7_video_path, self._run_ffmpeg_copy_with_progress, cmd1, total_frames, frame_rate, "Extracting Profile 7 HEVC stream"):
+        if not run_step('extract_p7', 'Extracting Profile 7 HEVC stream', self.p7_video_path, self._run_ffmpeg_copy_with_progress, cmd1, self.total_frames, self.frame_rate, "Extracting Profile 7 HEVC stream"):
             return False
 
         # Step 3: Convert P7 to P8.1
@@ -283,7 +305,7 @@ class Transcoder:
 
         # Step 5: Re-encode video
         cmd4 = ["ffmpeg", "-fflags", "+genpts", "-i", self.p8_video_path, "-an", "-sn", "-dn", "-c:v", "libx265", "-preset", "medium", "-crf", "18", "-threads", "9", "-x265-params", "pools=9", "-y", self.reencoded_video_path]
-        if not run_step('reencode_x265', 'Re-encoding to x265', self.reencoded_video_path, self._run_ffmpeg_with_progress, cmd4, total_frames, "Re-encoding to x265"):
+        if not run_step('reencode_x265', 'Re-encoding to x265', self.reencoded_video_path, self._run_ffmpeg_with_progress, cmd4, self.total_frames, "Re-encoding to x265"):
             return False
 
         # Step 6: Inject RPU into re-encoded video

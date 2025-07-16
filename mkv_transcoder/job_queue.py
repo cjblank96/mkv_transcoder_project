@@ -63,8 +63,10 @@ class JobQueue:
                 'worker_id': None,
                 'output_path': None,
                 'added_at': time.time(),
+                'retries': 0,
                 'steps': {
                     'copy_source': 'pending',
+                    'get_metadata': 'pending',
                     'extract_p7': 'pending',
                     'convert_p8': 'pending',
                     'extract_rpu': 'pending',
@@ -78,14 +80,22 @@ class JobQueue:
             return True
         return self._execute_with_lock(_add_job_op)
 
-    def claim_next_available_job(self, worker_id):
-        """Finds the next pending or failed job, marks it as 'running', and returns it."""
+    def claim_next_available_job(self, worker_id, max_retries=3):
+        """Finds the next available job that hasn't exceeded max_retries, marks it as 'running', and returns it."""
         def _get_and_update_op(queue):
+            # First, quarantine any jobs that have failed too many times.
+            for job in queue['jobs']:
+                if job.get('status') == 'failed' and job.get('retries', 0) >= max_retries:
+                    job['status'] = 'failed_permanent'
+                    print(f"Job {job['id']} has failed {job.get('retries', 0)} times and is now permanently failed.")
+
+            # Now, find the next available job to run.
             for job in sorted(queue['jobs'], key=lambda j: j['added_at']):
                 if job.get('status') in ['pending', 'failed']:
                     job['status'] = 'running'
                     job['worker_id'] = worker_id
                     job['claimed_at'] = time.time()
+                    job['retries'] = job.get('retries', 0) + 1
                     return job
             return None
         return self._execute_with_lock(_get_and_update_op)
@@ -124,6 +134,7 @@ class JobQueue:
         """Resets the progress of a job from a specific step index."""
         step_order = [
             'copy_source',
+            'get_metadata',
             'extract_p7',
             'convert_p8',
             'extract_rpu',
