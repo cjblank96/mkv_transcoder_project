@@ -38,6 +38,28 @@ class Transcoder:
         os.makedirs(log_dir, exist_ok=True)
         self.log_file = os.path.join(log_dir, f"{self.base_filename}_{self.job_id}.log")
         self.logger = self._setup_logger()
+        self._log_initial_paths()
+
+    def _log_initial_paths(self):
+        self.logger.info(f"Job {self.job_id} initialized.")
+        self.logger.info(f"Input file: {self.input_path}")
+        self.logger.info(f"Output file: {self.output_path}")
+        self.logger.info(f"Staging directory: {self.staging_dir}")
+        self.logger.info(f"RAM disk directory: {self.ram_temp_dir}")
+        self._log_disk_space(config.STAGING_DIR, "Staging Directory")
+        self._log_disk_space(config.RAM_TEMP_DIR, "RAM Disk")
+
+    def _log_disk_space(self, path, description):
+        try:
+            total, used, free = shutil.disk_usage(path)
+            self.logger.info(f"Disk space for {description} ({path}):")
+            self.logger.info(f"  - Total: {total / (1024**3):.2f} GB")
+            self.logger.info(f"  - Used: {used / (1024**3):.2f} GB")
+            self.logger.info(f"  - Free: {free / (1024**3):.2f} GB")
+        except FileNotFoundError:
+            self.logger.error(f"Path not found for disk space check: {path}")
+        except Exception as e:
+            self.logger.error(f"Could not check disk space for {path}: {e}")
 
     def _setup_logger(self):
         logger = logging.getLogger(f"transcoder_{self.job_id}")
@@ -52,6 +74,7 @@ class Transcoder:
 
     def _run_command(self, command, step_name):
         self.logger.info(f"{step_name}...")
+        self.logger.info(f"Executing command: {' '.join(command)}")
         print(f"- {step_name}...")
         try:
             process = subprocess.run(
@@ -82,6 +105,7 @@ class Transcoder:
 
     def _run_ffmpeg_with_progress(self, command, total_frames):
         self.logger.info("Re-encoding HEVC stream with progress...")
+        self.logger.info(f"Executing command: {' '.join(command)}")
         print("- Re-encoding HEVC stream (this may take a while)...")
         process = subprocess.Popen(command, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8')
         
@@ -105,6 +129,37 @@ class Transcoder:
         print("\n- Re-encoding successful.")
         return True
 
+    def _run_dovi_tool_with_progress(self, command, step_name):
+        self.logger.info(f"{step_name}...")
+        self.logger.info(f"Executing command: {' '.join(command)}")
+        print(f"- {step_name}...")
+        process = subprocess.Popen(command, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8')
+
+        progress_bar = tqdm(total=100, unit='%', desc=step_name, bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]')
+
+        for line in process.stderr:
+            # dovi_tool progress is typically in the format: INFO: Processing... 25%
+            if 'INFO' in line and '%' in line:
+                try:
+                    # Extract the percentage value
+                    percentage = int(line.strip().split(' ')[-1].replace('%', ''))
+                    progress_bar.update(percentage - progress_bar.n)
+                except (ValueError, IndexError):
+                    pass # Ignore lines that don't contain a clear percentage
+            self.logger.debug(line.strip())
+
+        progress_bar.close()
+        process.wait()
+
+        if process.returncode != 0:
+            self.logger.error(f"{step_name} failed with exit code {process.returncode}")
+            print(f"\n- {step_name} failed. Check logs.")
+            return False
+
+        self.logger.info(f"{step_name} successful.")
+        print(f"\n- {step_name} successful.")
+        return True
+
     def transcode(self):
         print(f"\nStarting job {self.job_id} for: {os.path.basename(self.input_path)}")
 
@@ -115,7 +170,7 @@ class Transcoder:
 
         # Step 2: Convert P7 to P8.1
         cmd2 = ["dovi_tool", "-m", "2", "convert", "--discard", "-i", self.p7_video_path, "-o", self.p8_video_path]
-        if not self._run_command(cmd2, "Converting P7 to P8.1"):
+        if not self._run_dovi_tool_with_progress(cmd2, "Converting P7 to P8.1"):
             return False
 
         # Step 3: Extract RPU from P8.1 stream
@@ -136,7 +191,7 @@ class Transcoder:
 
         # Step 5: Inject RPU into re-encoded video
         cmd5 = ["dovi_tool", "inject-rpu", "-i", self.reencoded_video_path, "--rpu-in", self.rpu_path, "-o", self.final_video_with_rpu_path]
-        if not self._run_command(cmd5, "Injecting RPU into re-encoded video"):
+        if not self._run_dovi_tool_with_progress(cmd5, "Injecting RPU into re-encoded video"):
             return False
 
         # Step 6: Remux final MKV
