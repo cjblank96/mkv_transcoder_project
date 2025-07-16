@@ -1,95 +1,85 @@
 # mkv_transcoder/job_queue.py
 
 import json
+import os
 import fcntl
 import time
-from datetime import datetime
+import uuid
 from . import config
 
 class JobQueue:
-    def add_job(self, input_path):
-        """Add a new job to the queue if it doesn't already exist."""
-        self._lock()
+    def __init__(self, queue_file=config.JOB_QUEUE_FILE):
+        self.queue_file = queue_file
+        # Create the queue file with an empty list if it doesn't exist
+        if not os.path.exists(self.queue_file):
+            # Also create parent directory if it doesn't exist
+            os.makedirs(os.path.dirname(self.queue_file), exist_ok=True)
+            with open(self.queue_file, 'w') as f:
+                json.dump([], f)
+
+    def _execute_with_lock(self, operation):
         try:
-            try:
-                with open(self.queue_path, 'r+') as f:
-                    jobs = json.load(f)
-            except (FileNotFoundError, json.JSONDecodeError):
-                jobs = []
+            with open(self.queue_file, 'r+') as f:
+                fcntl.flock(f, fcntl.LOCK_EX)
+                try:
+                    data = f.read()
+                    queue = json.loads(data) if data else []
+                    result = operation(queue)
+                    f.seek(0)
+                    f.truncate()
+                    json.dump(queue, f, indent=4)
+                    return result
+                finally:
+                    fcntl.flock(f, fcntl.LOCK_UN)
+        except (IOError, json.JSONDecodeError) as e:
+            print(f"Error accessing queue file {self.queue_file}: {e}")
+            # In case of corruption, reset the file
+            with open(self.queue_file, 'w') as f:
+                json.dump([], f)
+            return None
 
-            # Check if a job with this input path already exists
-            if any(job['input_path'] == input_path for job in jobs):
-                return False # Job already exists
-
+    def add_job(self, input_path):
+        def _add_job_op(queue):
+            if any(job['input_path'] == input_path for job in queue):
+                print(f"Job for {input_path} already exists. Skipping.")
+                return None
+            
             new_job = {
+                'id': str(uuid.uuid4()),
                 'input_path': input_path,
                 'status': 'pending',
+                'worker_id': None,
                 'output_path': None,
-                'assigned_to': None,
-                'created_at': datetime.utcnow().isoformat() + 'Z',
-                'updated_at': datetime.utcnow().isoformat() + 'Z',
+                'added_at': time.time()
             }
-            jobs.append(new_job)
-
-            with open(self.queue_path, 'w') as f:
-                json.dump(jobs, f, indent=2)
-            
-            return True # Job was added
-        finally:
-            self._unlock()
-    """Manages the job queue with file-based locking."""
-
-    def __init__(self, queue_path=config.JOB_QUEUE_PATH, lock_path=config.LOCK_FILE_PATH):
-        self.queue_path = queue_path
-        self.lock_path = lock_path
-
-    def _lock(self):
-        """Acquire an exclusive lock."""
-        self.lockfile = open(self.lock_path, 'w')
-        fcntl.flock(self.lockfile, fcntl.LOCK_EX)
-
-    def _unlock(self):
-        """Release the lock."""
-        fcntl.flock(self.lockfile, fcntl.LOCK_UN)
-        self.lockfile.close()
+            queue.append(new_job)
+            print(f"Added job for {input_path}")
+            return new_job
+        
+        return self._execute_with_lock(_add_job_op)
 
     def get_next_job(self, worker_id):
-        """Find and claim the next available job."""
-        self._lock()
-        try:
-            with open(self.queue_path, 'r+') as f:
-                jobs = json.load(f)
-                for job in jobs:
-                    if job['status'] == 'pending':
-                        job['status'] = 'in_progress'
-                        job['assigned_to'] = worker_id
-                        job['updated_at'] = datetime.utcnow().isoformat() + 'Z'
-                        
-                        # Rewind and write the updated jobs list back to the file
-                        f.seek(0)
-                        json.dump(jobs, f, indent=2)
-                        f.truncate()
-                        return job
+        def _get_next_job_op(queue):
+            for job in queue:
+                if job['status'] == 'pending':
+                    job['status'] = 'claimed'
+                    job['worker_id'] = worker_id
+                    job['claimed_at'] = time.time()
+                    return job
             return None
-        finally:
-            self._unlock()
+        
+        return self._execute_with_lock(_get_next_job_op)
 
-    def update_job_status(self, input_path, status, output_path=None):
-        """Update the status of a job."""
-        self._lock()
-        try:
-            with open(self.queue_path, 'r+') as f:
-                jobs = json.load(f)
-                for job in jobs:
-                    if job['input_path'] == input_path:
-                        job['status'] = status
-                        job['updated_at'] = datetime.utcnow().isoformat() + 'Z'
-                        if output_path:
-                            job['output_path'] = output_path
-                        
-                        f.seek(0)
-                        json.dump(jobs, f, indent=2)
-                        f.truncate()
-                        break
-        finally:
-            self._unlock()
+    def update_job_status(self, job_id, status, output_path=None):
+        def _update_job_op(queue):
+            for job in queue:
+                if job['id'] == job_id:
+                    job['status'] = status
+                    if output_path:
+                        job['output_path'] = output_path
+                    job['completed_at'] = time.time()
+                    return job
+            print(f"Warning: Could not find job ID {job_id} to update status.")
+            return None
+
+        return self._execute_with_lock(_update_job_op)
