@@ -238,28 +238,24 @@ class Transcoder:
         self.logger.info(f"Executing dovi_tool command: {' '.join(command)}")
         print(f"- {description}...")
         try:
-            # Using subprocess.run for simplicity and robust error capture
             process = subprocess.run(command, capture_output=True, text=True, encoding='utf-8', check=False)
 
-            # Always log stdout for debugging, as dovi_tool might print useful info here
             if process.stdout:
-                self.logger.debug(f"{description} stdout:\n{process.stdout}")
+                self.logger.info(f"{description} stdout:\n{process.stdout}")
 
             if process.returncode != 0:
                 self.logger.error(f"dovi_tool command failed: {' '.join(command)}")
                 self.logger.error(f"Exit code: {process.returncode}")
-                # Always log stderr on failure, this is critical for debugging
                 if process.stderr:
                     self.logger.error(f"{description} stderr:\n{process.stderr}")
                 print(f"\n- {description} failed. Check logs for details.")
                 return False
 
-            print("  Done.                                ")
-            self.logger.info(f"dovi_tool command successful.")
+            self.logger.info(f"Successfully completed: {description}")
+            print("  Done.")
             return True
 
         except Exception as e:
-            # Catch any other unexpected exceptions during process execution
             self.logger.error(f"An unexpected error occurred while running dovi_tool: {' '.join(command)}", exc_info=True)
             print(f"\n- {description} failed with an unexpected error. Check logs.")
             return False
