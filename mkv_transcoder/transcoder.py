@@ -116,7 +116,7 @@ class Transcoder:
         cmd3 = [
             "ffmpeg", "-hide_banner", "-i", self.hevc_file, "-i", self.rpu_file,
             "-map", "0:v:0", "-map", "1:d:0",
-            "-c:v", "libx265", "-crf", "18", "-preset", "slow",
+            "-c:v", "libx265", "-crf", "18", "-preset", "medium",
             "-x265-params", f"dhdr10-info=true:repeat-headers=true:aud=true:hrd=true:colorprim=bt2020:transfer=smpte2084:colormatrix=bt2020nc:master-display=G(13250,34500)B(7500,3000)R(34000,16000)WP(15635,16450)L(10000000,50):max-cll=1100,450:dolby-vision-profile=8.1:dolby-vision-rpu-file={self.rpu_file}:dolby-vision-check=true",
             "-y", video_p8_hevc
         ]
