@@ -129,7 +129,7 @@ class Transcoder:
             return False
         cmd4 = [
             "ffmpeg", "-fflags", "+genpts", "-i", self.p8_video_path, "-an", "-sn", "-dn",
-            "-c:v", "libx265", "-preset", "medium", "-crf", "18", "-y", self.reencoded_video_path
+            "-c:v", "libx265", "-preset", "medium", "-crf", "18","-threads", "4", "-x265-params", "pools=4", "-y", self.reencoded_video_path
         ]
         if not self._run_ffmpeg_with_progress(cmd4, total_frames):
             return False
