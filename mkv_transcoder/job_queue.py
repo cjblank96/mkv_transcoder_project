@@ -8,7 +8,7 @@ import uuid
 from . import config
 
 class JobQueue:
-    def __init__(self, queue_file=config.JOB_QUEUE_FILE):
+    def __init__(self, queue_file=config.JOB_QUEUE_PATH):
         self.queue_file = queue_file
         # Create the queue file with an empty list if it doesn't exist
         if not os.path.exists(self.queue_file):
