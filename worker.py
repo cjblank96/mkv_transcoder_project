@@ -36,7 +36,7 @@ def main():
 
             if success:
                 logging.info(f"Job {job['id']} completed successfully.")
-                job_queue.update_job_status(job['id'], 'done', transcoder.final_output_file)
+                job_queue.update_job_status(job['id'], 'done', transcoder.output_path)
             else:
                 logging.error(f"Job {job['id']} failed during transcoding.")
                 job_queue.update_job_status(job['id'], 'failed')

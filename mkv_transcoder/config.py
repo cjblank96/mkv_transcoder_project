@@ -35,7 +35,11 @@ LOG_DIR = os.path.join(SHARED_DIR, "logs")
 
 # Base directory for temporary files on the transcoder VMs
 # Each VM should have this path available and have sufficient space (e.g., 500GB).
-TEMP_DIR_BASE = os.getenv("TRANSCODER_TEMP_DIR", "/var/tmp/mkv_transcoder")
+# Point to a directory on the Unraid share to ensure enough space for large intermediate files.
+TEMP_DIR_BASE = "/mnt/unraid/mkv_transcoder_project/temp"
+
+# Staging directory for large intermediate HEVC files.
+STAGING_DIR = "/mnt/staging"
 
 # RAM-based temp directory for small, frequently accessed files on Linux VMs
 # This leverages system memory to speed up I/O for non-video files.

@@ -1,8 +1,8 @@
-import logging
 import os
-import re
-import shutil
 import subprocess
+import logging
+import shutil
+import re
 from tqdm import tqdm
 
 from . import config
@@ -11,157 +11,158 @@ class Transcoder:
     def __init__(self, job_id, input_path):
         self.job_id = job_id
         self.input_path = input_path
-        self.base_name = os.path.splitext(os.path.basename(input_path))[0]
+        self.base_filename = os.path.splitext(os.path.basename(input_path))[0]
 
-        # Persistent temp dir for large files
-        self.persistent_temp_dir = os.path.join(config.TEMP_DIR_BASE, f"{self.base_name}_{self.job_id}")
-        # RAM-based temp dir for small files
-        self.ram_temp_dir = os.path.join(config.RAM_TEMP_DIR, f"{self.base_name}_{self.job_id}")
-
-        self.hevc_file = os.path.join(self.persistent_temp_dir, "track1.hevc")
-        self.rpu_file = os.path.join(self.ram_temp_dir, "rpu_81.bin")
-        self.chapters_file = os.path.join(self.ram_temp_dir, "chapters.txt")
-
-        self.final_output_dir = os.path.dirname(self.input_path)
-        self.final_output_file = os.path.join(self.final_output_dir, f"{self.base_name}_DV_P8.mkv")
-
-        os.makedirs(self.persistent_temp_dir, exist_ok=True)
+        # Create unique directories for this job's intermediate files
+        self.temp_dir_name = f"{self.base_filename}_{self.job_id}"
+        self.staging_dir = os.path.join(config.STAGING_DIR, self.temp_dir_name)
+        self.ram_temp_dir = os.path.join(config.RAM_TEMP_DIR, self.temp_dir_name)
+        os.makedirs(self.staging_dir, exist_ok=True)
         os.makedirs(self.ram_temp_dir, exist_ok=True)
 
-        # Set up file-based logging for this specific job
-        self.logger = logging.getLogger(f"transcoder_{self.job_id}")
-        self.logger.setLevel(logging.INFO)
-        
-        if not self.logger.handlers:
-            # Ensure the shared log directory exists
-            os.makedirs(config.LOG_DIR, exist_ok=True)
-            log_file = os.path.join(config.LOG_DIR, f"{self.base_name}_{self.job_id}_transcode.log")
-            fh = logging.FileHandler(log_file)
-            fh.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
-            self.logger.addHandler(fh)
+        # Define paths for intermediate and final files
+        self.p7_video_path = os.path.join(self.staging_dir, 'video_p7.hevc')
+        self.p8_video_path = os.path.join(self.staging_dir, 'video_p8.hevc')
+        self.reencoded_video_path = os.path.join(self.staging_dir, 'video_reencoded.hevc')
+        self.final_video_with_rpu_path = os.path.join(self.staging_dir, 'video_final_with_rpu.hevc')
 
-    def _run_command(self, command, description):
-        print(f"- {description}...")
+        # Small RPU file goes to the RAM disk for performance
+        self.rpu_path = os.path.join(self.ram_temp_dir, 'rpu.bin')
+
+        # Define final output path
+        output_filename = f"{self.base_filename}_DV_P8.mkv"
+        self.output_path = os.path.join(os.path.dirname(self.input_path), output_filename)
+
+        # Setup logging
+        log_dir = os.path.join(config.LOG_DIR, 'transcoding_logs')
+        os.makedirs(log_dir, exist_ok=True)
+        self.log_file = os.path.join(log_dir, f"{self.base_filename}_{self.job_id}.log")
+        self.logger = self._setup_logger()
+
+    def _setup_logger(self):
+        logger = logging.getLogger(f"transcoder_{self.job_id}")
+        logger.setLevel(logging.INFO)
+        
+        if not logger.handlers:
+            fh = logging.FileHandler(self.log_file)
+            formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+            fh.setFormatter(formatter)
+            logger.addHandler(fh)
+        return logger
+
+    def _run_command(self, command, step_name):
+        self.logger.info(f"{step_name}...")
+        print(f"- {step_name}...")
         try:
-            # For simple commands, we don't need to see their output unless there's an error.
-            subprocess.run(command, check=True, capture_output=True, text=True)
-            print("  Done.")
+            process = subprocess.run(
+                command, check=True, capture_output=True, text=True, encoding='utf-8'
+            )
+            self.logger.info(f"{step_name} successful.")
+            self.logger.debug(f"Stdout: {process.stdout}")
             return True
         except subprocess.CalledProcessError as e:
-            print("  Failed.")
-            self.logger.error(f"Failed: {description}")
             self.logger.error(f"Command failed: {' '.join(command)}")
             self.logger.error(f"Exit code: {e.returncode}")
             self.logger.error(f"Stderr: {e.stderr}")
+            print(f"- {step_name} failed. Check logs for details.")
             return False
 
-    def _get_total_frames(self):
+    def _get_total_frames(self, video_file):
         command = [
             "ffprobe", "-v", "error", "-select_streams", "v:0",
             "-count_frames", "-show_entries", "stream=nb_read_frames",
-            "-of", "default=nokey=1:noprint_wrappers=1", self.input_path
+            "-of", "default=nokey=1:noprint_wrappers=1", video_file
         ]
         try:
-            result = subprocess.run(command, check=True, capture_output=True, text=True)
+            result = subprocess.run(command, capture_output=True, text=True, check=True)
             return int(result.stdout.strip())
         except (subprocess.CalledProcessError, ValueError) as e:
-            self.logger.error(f"Could not get total frames for {self.input_path}: {e}")
+            self.logger.error(f"Failed to get total frames for {video_file}: {e}")
             return None
 
     def _run_ffmpeg_with_progress(self, command, total_frames):
-        print(f"\n- Re-encoding video with progress...")
-        process = subprocess.Popen(
-            command, 
-            stdout=subprocess.PIPE, 
-            stderr=subprocess.STDOUT, 
-            universal_newlines=True, 
-            text=True,
-            errors='ignore' # Ignore potential decoding errors from ffmpeg progress
-        )
+        self.logger.info("Re-encoding HEVC stream with progress...")
+        print("- Re-encoding HEVC stream (this may take a while)...")
+        process = subprocess.Popen(command, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8')
         
-        pbar = tqdm(total=total_frames, unit=' frames', ncols=80, bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]')
+        progress_bar = tqdm(total=total_frames, unit='frames', desc="Re-encoding", bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}{postfix}]')
         
-        frame_regex = re.compile(r"frame=\s*(\d+)")
-
-        for line in iter(process.stdout.readline, ''):
-            self.logger.debug(f"ffmpeg: {line.strip()}")
-            match = frame_regex.search(line)
+        for line in process.stderr:
+            match = re.search(r'frame=\s*(\d+)', line)
             if match:
-                current_frame = int(match.group(1))
-                pbar.update(current_frame - pbar.n) # Update to the absolute frame number
+                frames_done = int(match.group(1))
+                progress_bar.update(frames_done - progress_bar.n)
         
-        pbar.close()
+        progress_bar.close()
         process.wait()
         
         if process.returncode != 0:
-            self.logger.error(f"ffmpeg command failed with exit code {process.returncode}")
-            print("  Re-encoding failed. See log for details.")
+            self.logger.error(f"ffmpeg re-encoding failed with exit code {process.returncode}")
+            print("\n- Re-encoding failed. Check logs.")
             return False
         
-        print("  Done.")
+        self.logger.info("Re-encoding successful.")
+        print("\n- Re-encoding successful.")
         return True
 
     def transcode(self):
         print(f"\nStarting job {self.job_id} for: {os.path.basename(self.input_path)}")
 
-        # Define paths for intermediate files
-        p7_hevc_file = os.path.join(self.persistent_temp_dir, "video_p7.hevc")
-        p81_hevc_file = os.path.join(self.persistent_temp_dir, "video_p81.hevc")
-        rpu_file = os.path.join(self.ram_temp_dir, "rpu.bin")
-        reencoded_hevc_file = os.path.join(self.persistent_temp_dir, "video_final.hevc")
-        final_video_with_rpu = os.path.join(self.persistent_temp_dir, "video_final_with_rpu.hevc")
-
-        # Step 1: Extract Profile 7 HEVC stream from original MKV
-        cmd1 = ["ffmpeg", "-i", self.input_path, "-map", "0:v:0", "-c", "copy", "-y", p7_hevc_file]
+        # Step 1: Extract Profile 7 HEVC stream
+        cmd1 = ["ffmpeg", "-i", self.input_path, "-map", "0:v:0", "-c", "copy", "-y", self.p7_video_path]
         if not self._run_command(cmd1, "Extracting Profile 7 HEVC stream"):
             return False
 
-        # Step 2: Convert Profile 7 to Profile 8.1
-        cmd2 = ["dovi_tool", "-m", "2", "convert", "--discard", "-i", p7_hevc_file, "-o", p81_hevc_file]
+        # Step 2: Convert P7 to P8.1
+        cmd2 = ["dovi_tool", "-m", "2", "convert", "--discard", "-i", self.p7_video_path, "-o", self.p8_video_path]
         if not self._run_command(cmd2, "Converting P7 to P8.1"):
             return False
 
-        # Step 3: Extract RPU from the new Profile 8.1 stream
-        cmd3 = ["dovi_tool", "extract-rpu", "-i", p81_hevc_file, "-o", rpu_file]
+        # Step 3: Extract RPU from P8.1 stream
+        cmd3 = ["dovi_tool", "extract-rpu", "-i", self.p8_video_path, "-o", self.rpu_path]
         if not self._run_command(cmd3, "Extracting RPU from P8.1 stream"):
             return False
 
-        # Step 4: Re-encode the Profile 8.1 video (long step with progress)
-        total_frames = self._get_total_frames()
+        # Step 4: Re-encode video
+        total_frames = self._get_total_frames(self.p8_video_path)
         if not total_frames:
             return False
         cmd4 = [
-            "ffmpeg", "-fflags", "+genpts", "-i", p81_hevc_file, "-an", "-sn", "-dn",
-            "-c:v", "libx265", "-preset", "medium", "-crf", "18", "-y", reencoded_hevc_file
+            "ffmpeg", "-fflags", "+genpts", "-i", self.p8_video_path, "-an", "-sn", "-dn",
+            "-c:v", "libx265", "-preset", "medium", "-crf", "18", "-y", self.reencoded_video_path
         ]
         if not self._run_ffmpeg_with_progress(cmd4, total_frames):
             return False
 
-        # Step 5: Inject RPU into the re-encoded video
-        cmd5 = ["dovi_tool", "inject-rpu", "-i", reencoded_hevc_file, "--rpu-in", rpu_file, "-o", final_video_with_rpu]
-        if not self._run_command(cmd5, "Injecting RPU into final video"):
+        # Step 5: Inject RPU into re-encoded video
+        cmd5 = ["dovi_tool", "inject-rpu", "-i", self.reencoded_video_path, "--rpu-in", self.rpu_path, "-o", self.final_video_with_rpu_path]
+        if not self._run_command(cmd5, "Injecting RPU into re-encoded video"):
             return False
 
-        # Step 6: Remux final MKV using mkvmerge
-        # Note: This is a simplified mkvmerge command. A robust implementation would
-        # dynamically detect audio and subtitle tracks from the source.
+        # Step 6: Remux final MKV
         cmd6 = [
-            "mkvmerge", "-o", self.final_output_file, "--language", "0:eng", final_video_with_rpu,
+            "mkvmerge", "-o", self.output_path, 
+            "--language", "0:eng", self.final_video_with_rpu_path, 
             "--no-video", self.input_path
         ]
-        if not self._run_command(cmd6, "Remuxing final MKV with mkvmerge"):
+        if not self._run_command(cmd6, "Remuxing final MKV"):
             return False
 
-        print(f"\nJob {self.job_id} completed successfully.")
-        print(f"Final file located at: {self.final_output_file}")
+        print(f"\nSuccessfully transcoded {os.path.basename(self.input_path)} to {self.output_path}")
         return True
 
     def cleanup(self):
-        """Removes the temporary directories and all their contents."""
-        for d in [self.persistent_temp_dir, self.ram_temp_dir]:
-            if d and os.path.isdir(d):
-                self.logger.info(f"Cleaning up temporary directory: {d}")
-                try:
-                    shutil.rmtree(d)
-                except OSError as e:
-                    self.logger.error(f"Error cleaning up temp directory {d}: {e}")
+        """Cleans up all temporary files and directories created by the transcoder."""
+        self.logger.info(f"Cleaning up staging directory: {self.staging_dir}")
+        try:
+            if os.path.exists(self.staging_dir):
+                shutil.rmtree(self.staging_dir)
+        except OSError as e:
+            self.logger.error(f"Error removing staging directory {self.staging_dir}: {e}")
+
+        self.logger.info(f"Cleaning up RAM disk directory: {self.ram_temp_dir}")
+        try:
+            if os.path.exists(self.ram_temp_dir):
+                shutil.rmtree(self.ram_temp_dir)
+        except OSError as e:
+            self.logger.error(f"Error removing RAM temp directory {self.ram_temp_dir}: {e}")
