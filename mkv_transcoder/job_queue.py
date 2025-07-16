@@ -70,6 +70,12 @@ class JobQueue:
         
         return self._execute_with_lock(_get_next_job_op)
 
+    def get_all_file_paths(self):
+        """Returns a set of all file_paths currently in the queue."""
+        def _get_paths_op(queue):
+            return {job.get('file_path') for job in queue.get('jobs', [])}
+        return self._execute_with_lock(_get_paths_op)
+
     def update_job_status(self, job_id, status, output_path=None):
         def _update_job_op(queue):
             for job in queue:
