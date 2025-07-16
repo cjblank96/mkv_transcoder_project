@@ -3,6 +3,8 @@ import subprocess
 import logging
 import shutil
 import re
+import pty
+import select
 from tqdm import tqdm
 
 from . import config
@@ -13,14 +15,11 @@ class Transcoder:
         self.original_input_path = input_path
         self.base_filename = os.path.splitext(os.path.basename(input_path))[0]
 
-        # A single, unique staging directory for all this job's local files
         self.job_staging_dir = os.path.join(config.STAGING_DIR, self.job_id)
         os.makedirs(self.job_staging_dir, exist_ok=True)
 
-        # Define the path for the local source file first, so we can preserve it
         self.local_source_path = os.path.join(self.job_staging_dir, os.path.basename(self.original_input_path))
 
-        # Clean up intermediate files from any previous failed run, preserving the source file
         for filename in os.listdir(self.job_staging_dir):
             file_path = os.path.join(self.job_staging_dir, filename)
             if file_path != self.local_source_path:
@@ -32,19 +31,16 @@ class Transcoder:
                 except Exception as e:
                     print(f'Failed to delete {file_path}. Reason: {e}')
 
-        # Define paths for all other files, which will now be local to the staging directory
         self.p7_video_path = os.path.join(self.job_staging_dir, 'video_p7.hevc')
         self.p8_video_path = os.path.join(self.job_staging_dir, 'video_p8.hevc')
         self.rpu_path = os.path.join(self.job_staging_dir, 'rpu.bin')
         self.reencoded_video_path = os.path.join(self.job_staging_dir, 'video_reencoded.hevc')
         self.final_video_with_rpu_path = os.path.join(self.job_staging_dir, 'video_final_with_rpu.hevc')
         
-        # Define local and final (network) output paths
         output_filename = f"{self.base_filename}_DV_P8.mkv"
         self.local_output_path = os.path.join(self.job_staging_dir, output_filename)
         self.output_path = os.path.join(os.path.dirname(self.original_input_path), output_filename)
 
-        # Setup logging
         log_dir = os.path.join(config.LOG_DIR, 'transcoding_logs')
         os.makedirs(log_dir, exist_ok=True)
         self.log_file = os.path.join(log_dir, f"{self.job_id}.log")
@@ -131,133 +127,172 @@ class Transcoder:
             print(f"- {step_name} failed. Check logs for details.")
             return False
 
-    def _get_total_frames(self, video_file):
-        # Attempt 1: MakeMKV `NUMBER_OF_FRAMES` tag (fast)
-        self.logger.info(f"Attempt 1: Checking for 'NUMBER_OF_FRAMES' tag for {video_file}...")
-        command1 = ["ffprobe", "-v", "quiet", "-show_format", "-show_streams", video_file]
-        self.logger.info(f"Executing command: {' '.join(command1)}")
+    def _get_video_metadata(self, video_file):
+        """Gets total frames and avg frame rate from video file."""
+        total_frames = None
+        frame_rate = None
+        self.logger.info(f"Attempting to get video metadata from {video_file}")
         try:
-            result = subprocess.run(command1, capture_output=True, text=True, check=True)
+            command = ["ffprobe", "-v", "quiet", "-show_format", "-show_streams", video_file]
+            result = subprocess.run(command, capture_output=True, text=True, check=True)
+            frame_rate_str = None
             for line in result.stdout.splitlines():
                 if 'NUMBER_OF_FRAMES' in line:
                     parts = line.split('=')
                     if len(parts) == 2 and parts[1].isdigit():
                         total_frames = int(parts[1])
-                        self.logger.info(f"Successfully found {total_frames} frames from 'NUMBER_OF_FRAMES' tag.")
-                        return total_frames
-        except (subprocess.CalledProcessError, ValueError, IndexError) as e:
-            self.logger.warning(f"'NUMBER_OF_FRAMES' not found or failed to parse: {e}")
+                elif 'avg_frame_rate' in line:
+                    parts = line.split('=')
+                    if len(parts) == 2:
+                        frame_rate_str = parts[1]
+            if frame_rate_str:
+                num, den = frame_rate_str.split('/')
+                if float(den) != 0:
+                    frame_rate = float(num) / float(den)
+        except (subprocess.CalledProcessError, ValueError, IndexError, ZeroDivisionError) as e:
+            self.logger.warning(f"Could not get metadata via ffprobe tags: {e}")
 
-        # Attempt 2: Manual frame count (slow fallback)
-        self.logger.warning("Primary method failed. Falling back to manually counting frames.")
-        command2 = ["ffprobe", "-v", "error", "-select_streams", "v:0", "-count_frames", "-show_entries", "stream=nb_read_frames", "-of", "default=nokey=1:noprint_wrappers=1", video_file]
-        self.logger.info(f"Executing fallback command: {' '.join(command2)}")
-        try:
-            result = subprocess.run(command2, capture_output=True, text=True, check=True)
-            total_frames = int(result.stdout.strip())
-            self.logger.info(f"Successfully counted {total_frames} frames.")
-            return total_frames
-        except (subprocess.CalledProcessError, ValueError, IndexError) as e:
-            self.logger.error(f"Manual frame count failed for {video_file}: {e}")
-            return None
+        if not total_frames:
+            self.logger.warning("Falling back to manually counting frames.")
+            try:
+                command = ["ffprobe", "-v", "error", "-select_streams", "v:0", "-count_frames", "-show_entries", "stream=nb_read_frames", "-of", "default=nokey=1:noprint_wrappers=1", video_file]
+                result = subprocess.run(command, capture_output=True, text=True, check=True)
+                total_frames = int(result.stdout.strip())
+            except (subprocess.CalledProcessError, ValueError) as e:
+                self.logger.error(f"Manual frame count failed: {e}")
+                return None, None
 
-    def _run_ffmpeg_with_progress(self, command, total_frames):
-        self.logger.info("Re-encoding HEVC stream with progress...")
-        self.logger.info(f"Executing command: {' '.join(command)}")
-        print("- Re-encoding HEVC stream (this may take a while)...")
+        if total_frames and frame_rate:
+            self.logger.info(f"Found {total_frames} frames at {frame_rate:.3f} fps.")
+            return total_frames, frame_rate
+        else:
+            self.logger.error("Failed to determine total frames or frame rate.")
+            return None, None
+
+    def _run_ffmpeg_with_progress(self, command, total_frames, description):
+        self.logger.info(f"Executing ffmpeg command: {' '.join(command)}")
+        print(f"- {description}...")
         process = subprocess.Popen(command, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8')
-        progress_bar = tqdm(total=total_frames, unit='frames', desc="Re-encoding", bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}{postfix}]')
+        pbar = tqdm(total=total_frames, unit='frames', desc=description, bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}{postfix}]')
         for line in process.stderr:
             match = re.search(r'frame=\s*(\d+)', line)
             if match:
                 frames_done = int(match.group(1))
-                progress_bar.update(frames_done - progress_bar.n)
-        progress_bar.close()
+                pbar.update(frames_done - pbar.n)
+        pbar.close()
         process.wait()
         if process.returncode != 0:
-            self.logger.error(f"ffmpeg re-encoding failed with exit code {process.returncode}")
-            print("\n- Re-encoding failed. Check logs.")
+            self.logger.error(f"ffmpeg command failed with exit code {process.returncode}")
+            print(f"\n- {description} failed. Check logs.")
             return False
-        self.logger.info("Re-encoding successful.")
-        print("\n- Re-encoding successful.")
+        self.logger.info(f"Successfully completed: {description}")
         return True
 
-    def _run_dovi_tool_with_progress(self, command, step_name):
-        self.logger.info(f"{step_name}...")
-        self.logger.info(f"Executing command: {' '.join(command)}")
-        print(f"- {step_name}...")
-        process = subprocess.Popen(command, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8')
-        progress_bar = tqdm(total=100, unit='%', desc=step_name, bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]')
-        for line in process.stderr:
-            if 'INFO' in line and '%' in line:
+    def _run_ffmpeg_copy_with_progress(self, command, total_frames, frame_rate, description):
+        self.logger.info(f"Executing ffmpeg stream copy: {' '.join(command)}")
+        print(f"- {description}...")
+        progress_command = command[:1] + ['-progress', 'pipe:1', '-nostats'] + command[1:]
+        process = subprocess.Popen(progress_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, bufsize=1)
+        pbar = tqdm(total=total_frames, desc=description, unit="frame")
+        last_frame = 0
+        for line in iter(process.stdout.readline, ''):
+            if 'out_time_us' in line:
                 try:
-                    percentage = int(line.strip().split(' ')[-1].replace('%', ''))
-                    progress_bar.update(percentage - progress_bar.n)
+                    out_time_us = int(line.strip().split('=')[1])
+                    estimated_frame = int((out_time_us / 1_000_000) * frame_rate)
+                    update_amount = estimated_frame - last_frame
+                    if update_amount > 0:
+                        pbar.update(update_amount)
+                        last_frame = estimated_frame
                 except (ValueError, IndexError):
-                    pass
-            self.logger.debug(line.strip())
-        progress_bar.close()
+                    continue
+        if last_frame < total_frames:
+            pbar.update(total_frames - last_frame)
+        pbar.close()
         process.wait()
         if process.returncode != 0:
-            self.logger.error(f"{step_name} failed with exit code {process.returncode}")
-            print(f"\n- {step_name} failed. Check logs.")
+            self.logger.error(f"ffmpeg copy failed. Stderr: {process.stderr.read()}")
+            print(f"\n- {description} failed. Check logs.")
             return False
-        self.logger.info(f"{step_name} successful.")
-        print(f"\n- {step_name} successful.")
+        self.logger.info(f"Successfully completed: {description}")
+        return True
+
+    def _run_dovi_tool_with_native_progress(self, command, description):
+        self.logger.info(f"Executing dovi_tool command: {' '.join(command)}")
+        print(f"- {description}...")
+        master, slave = pty.openpty()
+        process = subprocess.Popen(command, stdout=slave, stderr=slave, close_fds=True, preexec_fn=os.setsid)
+        os.close(slave)
+        buffer = ""
+        try:
+            while process.poll() is None:
+                r, _, _ = select.select([master], [], [], 0.1)
+                if r:
+                    try:
+                        output = os.read(master, 1024).decode(errors='ignore')
+                        if output:
+                            print(output, end='', flush=True)
+                            buffer += output
+                            while '\n' in buffer:
+                                line, buffer = buffer.split('\n', 1)
+                                self.logger.info(line.strip())
+                    except OSError:
+                        break
+            if buffer.strip():
+                self.logger.info(buffer.strip())
+        finally:
+            os.close(master)
+
+        if process.returncode != 0:
+            self.logger.error(f"dovi_tool command failed with exit code {process.returncode}")
+            print(f"\n- {description} failed. Check logs for details.")
+            return False
+        self.logger.info(f"Successfully completed: {description}")
+        print()
         return True
 
     def transcode(self):
         print(f"\nStarting job {self.job_id} for: {os.path.basename(self.original_input_path)}")
-
-        # Step 0: Check if source file needs to be copied
         try:
             source_size = os.path.getsize(self.original_input_path)
             if os.path.exists(self.local_source_path) and os.path.getsize(self.local_source_path) == source_size:
-                self.logger.info("Source file already exists in staging directory and appears valid. Skipping copy.")
+                self.logger.info("Source file found in staging, skipping copy.")
                 print("- Source file found in staging. Skipping copy.")
             else:
                 if not self._copy_with_progress(self.original_input_path, self.local_source_path, "Copying source file locally"):
                     return False
         except FileNotFoundError:
-            self.logger.error(f"Original source file not found at {self.original_input_path}")
+            self.logger.error(f"Source file not found: {self.original_input_path}")
             return False
 
-        # Step 0.5: Get total frame count from local source file metadata
-        total_frames = self._get_total_frames(self.local_source_path)
-        if not total_frames:
+        total_frames, frame_rate = self._get_video_metadata(self.local_source_path)
+        if not total_frames or not frame_rate:
             return False
 
-        # Step 1: Extract Profile 7 HEVC stream (from local copy)
         cmd1 = ["ffmpeg", "-i", self.local_source_path, "-map", "0:v:0", "-c", "copy", "-y", self.p7_video_path]
-        if not self._run_command(cmd1, "Extracting Profile 7 HEVC stream"):
+        if not self._run_ffmpeg_copy_with_progress(cmd1, total_frames, frame_rate, "Extracting Profile 7 HEVC stream"):
             return False
 
-        # Step 2: Convert P7 to P8.1
         cmd2 = ["dovi_tool", "-m", "2", "convert", "--discard", "-i", self.p7_video_path, "-o", self.p8_video_path]
-        if not self._run_dovi_tool_with_progress(cmd2, "Converting P7 to P8.1"):
+        if not self._run_dovi_tool_with_native_progress(cmd2, "Converting P7 to P8.1"):
             return False
 
-        # Step 3: Extract RPU from P8.1 stream
         cmd3 = ["dovi_tool", "extract-rpu", "-i", self.p8_video_path, "-o", self.rpu_path]
-        if not self._run_command(cmd3, "Extracting RPU from P8.1 stream"):
+        if not self._run_dovi_tool_with_native_progress(cmd3, "Extracting RPU from P8.1 stream"):
             return False
 
-        # Step 4: Re-encode video
-        cmd4 = ["ffmpeg", "-fflags", "+genpts", "-i", self.p8_video_path, "-an", "-sn", "-dn", "-c:v", "libx265", "-preset", "medium", "-crf", "18", "-threads", "10", "-x265-params", "pools=4", "-y", self.reencoded_video_path]
-        if not self._run_ffmpeg_with_progress(cmd4, total_frames):
+        cmd4 = ["ffmpeg", "-fflags", "+genpts", "-i", self.p8_video_path, "-an", "-sn", "-dn", "-c:v", "libx265", "-preset", "medium", "-crf", "18", "-threads", "9", "-x265-params", "pools=9", "-y", self.reencoded_video_path]
+        if not self._run_ffmpeg_with_progress(cmd4, total_frames, "Re-encoding to x265"):
             return False
 
-        # Step 5: Inject RPU into re-encoded video
         cmd5 = ["dovi_tool", "inject-rpu", "-i", self.reencoded_video_path, "--rpu-in", self.rpu_path, "-o", self.final_video_with_rpu_path]
-        if not self._run_dovi_tool_with_progress(cmd5, "Injecting RPU into re-encoded video"):
+        if not self._run_dovi_tool_with_native_progress(cmd5, "Injecting RPU into re-encoded video"):
             return False
 
-        # Step 6: Remux final MKV (using local source for audio/subs)
         cmd6 = ["mkvmerge", "-o", self.local_output_path, "--language", "0:eng", self.final_video_with_rpu_path, "--no-video", self.local_source_path]
         if not self._run_command(cmd6, "Remuxing final MKV"):
             return False
 
-        # Step 7: Move final file to its destination on the network share
         if not self._move_final_file(self.local_output_path, self.output_path):
             return False
 
@@ -265,7 +300,6 @@ class Transcoder:
         return True
 
     def cleanup(self):
-        """Cleans up the entire local job staging directory."""
         self.logger.info(f"Cleaning up job staging directory: {self.job_staging_dir}")
         try:
             if os.path.exists(self.job_staging_dir):
