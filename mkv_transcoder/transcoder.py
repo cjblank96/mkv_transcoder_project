@@ -110,15 +110,19 @@ class Transcoder:
         self.logger.info(f"Executing command: {' '.join(command)}")
         print(f"- {step_name}...")
         try:
-            process = subprocess.run(command, check=True, capture_output=True, text=True, encoding='utf-8')
+            process = subprocess.run(command, capture_output=True, text=True, encoding='utf-8', check=False)
+            self.logger.debug(f"{step_name} stdout:\n{process.stdout}")
+            if process.returncode != 0:
+                self.logger.error(f"Command failed: {' '.join(command)}")
+                self.logger.error(f"Exit code: {process.returncode}")
+                self.logger.error(f"{step_name} stderr:\n{process.stderr}")
+                print(f"- {step_name} failed. Check logs for details.")
+                return False
             self.logger.info(f"{step_name} successful.")
-            self.logger.debug(f"Stdout: {process.stdout}")
             return True
-        except subprocess.CalledProcessError as e:
-            self.logger.error(f"Command failed: {' '.join(command)}")
-            self.logger.error(f"Exit code: {e.returncode}")
-            self.logger.error(f"Stderr: {e.stderr}")
-            print(f"- {step_name} failed. Check logs for details.")
+        except Exception as e:
+            self.logger.error(f"An unexpected error occurred while running command: {' '.join(command)}", exc_info=True)
+            print(f"- {step_name} failed with an unexpected error. Check logs.")
             return False
 
     def _get_video_metadata(self, video_path):
