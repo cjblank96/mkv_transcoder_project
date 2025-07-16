@@ -50,21 +50,14 @@ class JobQueue:
                 json.dump({'jobs': []}, f, indent=4)
             return None
 
-    def add_job(self, input_path):
-        """Adds a new job to the queue if it doesn't already exist."""
+    def add_job(self, input_path, job_type):
+        """Adds a new job to the queue with a specific type if it doesn't already exist."""
         def _add_job_op(queue):
             if any(j.get('input_path') == input_path for j in queue['jobs']):
                 return False # Job already exists
-            
-            new_job = {
-                'id': str(uuid.uuid4()),
-                'input_path': input_path,
-                'status': 'pending',
-                'worker_id': None,
-                'output_path': None,
-                'added_at': time.time(),
-                'retries': 0,
-                'steps': {
+
+            if job_type == 'dolby_vision':
+                steps = {
                     'copy_source': 'pending',
                     'get_metadata': 'pending',
                     'extract_p7': 'pending',
@@ -75,6 +68,28 @@ class JobQueue:
                     'remux_final': 'pending',
                     'move_final': 'pending'
                 }
+            elif job_type == 'standard':
+                # The re-encode step will now also handle muxing for standard jobs
+                steps = {
+                    'copy_source': 'pending',
+                    'get_metadata': 'pending',
+                    'reencode_x265': 'pending',
+                    'move_final': 'pending'
+                }
+            else:
+                print(f"ERROR: Unknown job type '{job_type}' for {input_path}")
+                return False
+
+            new_job = {
+                'id': str(uuid.uuid4()),
+                'input_path': input_path,
+                'job_type': job_type,
+                'status': 'pending',
+                'worker_id': None,
+                'output_path': None,
+                'added_at': time.time(),
+                'retries': 0,
+                'steps': steps
             }
             queue['jobs'].append(new_job)
             return True
