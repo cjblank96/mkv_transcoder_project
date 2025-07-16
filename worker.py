@@ -28,10 +28,10 @@ def main():
             logging.info("No pending jobs found in the queue. Worker is shutting down.")
             break # Exit the loop if no jobs are available
 
-        logging.info(f"Worker '{worker_id}' claimed job {job['id']} for file: {job['file_path']}")
+        logging.info(f"Worker '{worker_id}' claimed job {job['id']} for file: {job['input_path']}")
         transcoder = None
         try:
-            transcoder = Transcoder(job_id=job['id'], input_path=job['file_path'])
+            transcoder = Transcoder(job_id=job['id'], input_path=job['input_path'])
             success = transcoder.transcode()
 
             if success:
