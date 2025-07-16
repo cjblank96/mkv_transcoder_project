@@ -33,7 +33,9 @@ class Transcoder:
         self.logger.setLevel(logging.INFO)
         
         if not self.logger.handlers:
-            log_file = os.path.join(self.persistent_temp_dir, f"{self.base_name}_transcode.log")
+            # Ensure the shared log directory exists
+            os.makedirs(config.LOG_DIR, exist_ok=True)
+            log_file = os.path.join(config.LOG_DIR, f"{self.base_name}_{self.job_id}_transcode.log")
             fh = logging.FileHandler(log_file)
             fh.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
             self.logger.addHandler(fh)

@@ -1,45 +1,55 @@
 # worker.py
 
 import logging
-import os
 import socket
 import time
+import sys
+import os
+
+# Add project root to the Python path
+project_root = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, project_root)
+
 from mkv_transcoder.job_queue import JobQueue
 from mkv_transcoder.transcoder import Transcoder
-from mkv_transcoder import config
+
+# Basic logging configuration for the worker itself
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def main():
     worker_id = socket.gethostname()
     job_queue = JobQueue()
-    print(f"Worker '{worker_id}' started. Polling for jobs...")
+    logging.info(f"Worker '{worker_id}' started. Polling for jobs...")
 
     while True:
-        job = job_queue.get_next_job(worker_id)
-        if job:
-            print(f"Claimed job: {job['input_path']}")
-            
-            transcoder = Transcoder(job_id=job['id'], input_path=job['input_path'])
-            try:
-                success = transcoder.transcode()
-                if success:
-                    job_queue.update_job_status(job['id'], 'done', transcoder.final_output_file)
-                    logging.info(f"Worker {worker_id} completed job {job['id']}.")
-                else:
-                    logging.error(f"Worker {worker_id} failed job {job['id']}. See transcoder log for details.")
-                    if not job_queue.update_job_status(job['id'], 'failed'):
-                        logging.warning(f"Could not update status for failed job {job['id']}.")
-            except Exception as e:
-                logging.error(f"Worker {worker_id} CRASHED on job {job['id']}: {e}", exc_info=True)
-                if not job_queue.update_job_status(job['id'], 'failed'):
-                    logging.warning(f"Could not update status for crashed job {job['id']}.")
-            finally:
-                # Always clean up the temporary directory
-                if transcoder:
-                    transcoder.cleanup()
+        job = job_queue.get_next_pending_job()
 
-        else:
-            # No pending jobs, wait before polling again
-            time.sleep(10)
+        if not job:
+            logging.info("No pending jobs found in the queue. Worker is shutting down.")
+            break # Exit the loop if no jobs are available
+
+        logging.info(f"Worker '{worker_id}' claimed job {job['id']} for file: {job['file_path']}")
+        transcoder = None
+        try:
+            transcoder = Transcoder(job_id=job['id'], input_path=job['file_path'])
+            success = transcoder.transcode()
+
+            if success:
+                logging.info(f"Job {job['id']} completed successfully.")
+                job_queue.update_job_status(job['id'], 'done', transcoder.final_output_file)
+            else:
+                logging.error(f"Job {job['id']} failed during transcoding.")
+                job_queue.update_job_status(job['id'], 'failed')
+
+        except Exception as e:
+            logging.error(f"A critical error occurred while processing job {job['id']}: {e}", exc_info=True)
+            if job:
+                job_queue.update_job_status(job['id'], 'failed')
+        finally:
+            if transcoder:
+                transcoder.cleanup()
+
+    logging.info(f"Worker '{worker_id}' finished all jobs and is now exiting.")
 
 if __name__ == "__main__":
     main()
