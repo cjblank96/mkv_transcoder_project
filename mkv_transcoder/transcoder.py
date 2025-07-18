@@ -6,6 +6,7 @@ import re
 import json
 import time
 import platform
+import sys
 import threading
 from queue import Queue, Empty
 
@@ -115,15 +116,35 @@ class Transcoder:
         self.logger.info(f"Executing command: {' '.join(command)}")
         print(f"- {step_name}...")
         try:
-            process = subprocess.run(command, capture_output=True, text=True, encoding='utf-8', check=False)
-            self.logger.debug(f"{step_name} stdout:\n{process.stdout}")
+            process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8')
+
+            # Thread to consume stdout to prevent blocking
+            def consume_stdout():
+                with process.stdout:
+                    for line in iter(process.stdout.readline, ''):
+                        self.logger.debug(f"STDOUT: {line.strip()}")
+
+            stdout_thread = threading.Thread(target=consume_stdout)
+            stdout_thread.start()
+
+            # Read stderr line by line and log/print it in real-time
+            with process.stderr:
+                for line in iter(process.stderr.readline, ''):
+                    line = line.strip()
+                    if line:
+                        self.logger.error(line)
+                        print(line, file=sys.stderr)
+
+            stdout_thread.join()
+            process.wait()
+
             if process.returncode != 0:
-                self.logger.error(f"Command failed: {' '.join(command)}")
-                self.logger.error(f"Exit code: {process.returncode}")
-                self.logger.error(f"{step_name} stderr:\n{process.stderr}")
+                self.logger.error(f"{step_name} failed with exit code {process.returncode}.")
                 print(f"- {step_name} failed. Check logs for details.")
                 return False
+
             self.logger.info(f"{step_name} successful.")
+            print(f"- {step_name} successful.")
             return True
         except Exception as e:
             self.logger.error(f"An unexpected error occurred while running command: {' '.join(command)}", exc_info=True)
@@ -194,28 +215,43 @@ class Transcoder:
     def _run_ffmpeg_with_progress(self, command, total_frames, description):
         self.logger.info(f"Executing ffmpeg command: {' '.join(command)}")
         print(f"- {description}...")
-        process = subprocess.Popen(command, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8')
-        error_lines = []
+        process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8')
         pbar = tqdm(total=total_frames, unit='frames', desc=description, bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}{postfix}]')
-        for line in process.stderr:
-            # Only log lines containing error keywords
-            if re.search(r'(error|invalid|no such file|failed)', line, re.IGNORECASE):
-                error_lines.append(line)
-            match = re.search(r'frame=\s*(\d+)', line)
-            if match:
-                frames_done = int(match.group(1))
-                pbar.update(frames_done - pbar.n)
+
+        # Consume stdout in a thread to prevent blocking
+        def consume_stdout():
+            with process.stdout:
+                for line in iter(process.stdout.readline, ''):
+                    self.logger.debug(f"STDOUT: {line.strip()}")
+        stdout_thread = threading.Thread(target=consume_stdout)
+        stdout_thread.start()
+
+        # Read stderr for progress and errors
+        with process.stderr:
+            for line in iter(process.stderr.readline, ''):
+                line = line.strip()
+                if not line:
+                    continue
+                match = re.search(r'frame=\s*(\d+)', line)
+                if match:
+                    frames_done = int(match.group(1))
+                    pbar.update(frames_done - pbar.n)
+                else:
+                    # If it's not a progress line, log it as an error
+                    self.logger.error(line)
+                    print(line, file=sys.stderr)
+
         pbar.close()
+        stdout_thread.join()
         process.wait()
+
         if process.returncode != 0:
-            self.logger.error(f"ffmpeg command failed with exit code {process.returncode}")
-            if error_lines:
-                self.logger.error(f"ffmpeg error output:\n{''.join(error_lines)}")
-            else:
-                self.logger.error("ffmpeg did not output any error lines to stderr.")
+            self.logger.error(f"{description} failed with exit code {process.returncode}.")
             print(f"\n- {description} failed. Check logs.")
             return False
+
         self.logger.info(f"Successfully completed: {description}")
+        print(f"- {description} successful.")
         return True
 
     def _run_ffmpeg_copy_with_progress(self, command, total_frames, frame_rate, description):
@@ -342,30 +378,8 @@ class Transcoder:
             return None
 
     def _run_dovi_tool_with_progress(self, command, description):
-        self.logger.info(f"Executing dovi_tool command: {' '.join(command)}")
-        print(f"- {description}...")
-        try:
-            process = subprocess.run(command, capture_output=True, text=True, encoding='utf-8', check=False)
-
-            if process.stdout:
-                self.logger.info(f"{description} stdout:\n{process.stdout}")
-
-            if process.returncode != 0:
-                self.logger.error(f"dovi_tool command failed: {' '.join(command)}")
-                self.logger.error(f"Exit code: {process.returncode}")
-                if process.stderr:
-                    self.logger.error(f"{description} stderr:\n{process.stderr}")
-                print(f"\n- {description} failed. Check logs for details.")
-                return False
-
-            self.logger.info(f"Successfully completed: {description}")
-            print("  Done.")
-            return True
-
-        except Exception as e:
-            self.logger.error(f"An unexpected error occurred while running dovi_tool: {' '.join(command)}", exc_info=True)
-            print(f"\n- {description} failed with an unexpected error. Check logs.")
-            return False
+        # This function can now use the general-purpose _run_command
+        return self._run_command(command, description)
 
     def transcode(self):
         self.logger.info(f"=== Entering transcode() for job {self.job_id} ===")

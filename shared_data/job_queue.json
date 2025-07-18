@@ -8,7 +8,7 @@
             "worker_id": "CJBLANK",
             "output_path": null,
             "added_at": 1752847758.1850944,
-            "retries": 1,
+            "retries": 0,
             "steps": {
                 "copy_source": "completed",
                 "get_metadata": "pending",
@@ -20,7 +20,7 @@
                 "remux_final": "pending",
                 "move_final": "pending"
             },
-            "claimed_at": 1752847773.8997147,
+            "claimed_at": 1752867514.88975,
             "completed_at": 1752849032.1530504
         },
         {

@@ -40,3 +40,11 @@
 2025-07-18 08:23:15,898 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 147148 frames.
 2025-07-18 08:23:15,945 - INFO - Starting step: extract_p7 - Extracting Profile 7 HEVC stream
 2025-07-18 08:23:15,954 - INFO - Executing ffmpeg stream copy: ffmpeg -i H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\Hell Or High Water-FPL_MainFeature_DV_t00.mkv -map 0:v:0 -c copy -y H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\video_p7.hevc
+2025-07-18 13:38:35,021 - INFO - Job d5a2bd21-6a04-447a-a4fa-ae7de261f782 initialized.
+2025-07-18 13:38:35,022 - INFO - Original input file: Z:\landing_point\Video\Hell Or High Water\Hell Or High Water-FPL_MainFeature_DV_t00.mkv
+2025-07-18 13:38:35,023 - INFO - Final output file: Z:\landing_point\Video\Hell Or High Water\Hell Or High Water-FPL_MainFeature_DV_t00_DV_P8.mkv
+2025-07-18 13:38:35,023 - INFO - Local job staging directory: H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782
+2025-07-18 13:38:35,024 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-18 13:38:35,024 - INFO -   - Total: 3726.01 GB
+2025-07-18 13:38:35,025 - INFO -   - Used: 1734.02 GB
+2025-07-18 13:38:35,025 - INFO -   - Free: 1991.99 GB
