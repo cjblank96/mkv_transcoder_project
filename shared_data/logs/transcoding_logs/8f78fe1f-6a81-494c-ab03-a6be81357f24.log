@@ -1,0 +1,72 @@
+2025-07-17 22:59:58,416 - INFO - Job 8f78fe1f-6a81-494c-ab03-a6be81357f24 initialized.
+2025-07-17 22:59:58,420 - INFO - Original input file: Z:\landing_point\Test\test_file_dune.mkv
+2025-07-17 22:59:58,435 - INFO - Final output file: Z:\landing_point\Test\test_file_dune_DV_P8.mkv
+2025-07-17 22:59:58,437 - INFO - Local job staging directory: H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24
+2025-07-17 22:59:58,438 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-17 22:59:58,438 - INFO -   - Total: 3726.01 GB
+2025-07-17 22:59:58,439 - INFO -   - Used: 1413.22 GB
+2025-07-17 22:59:58,439 - INFO -   - Free: 2312.79 GB
+2025-07-17 22:59:58,443 - INFO - === Entering transcode() for job 8f78fe1f-6a81-494c-ab03-a6be81357f24 ===
+2025-07-17 22:59:58,445 - INFO - Job dict: {
+  "id": "8f78fe1f-6a81-494c-ab03-a6be81357f24",
+  "input_path": "Z:\\landing_point\\Test\\test_file_dune.mkv",
+  "job_type": "dolby_vision",
+  "status": "running",
+  "worker_id": "CJBLANK",
+  "output_path": null,
+  "added_at": 1752814795.691395,
+  "retries": 1,
+  "steps": {
+    "copy_source": "pending",
+    "get_metadata": "pending",
+    "extract_p7": "pending",
+    "convert_p8": "pending",
+    "extract_rpu": "pending",
+    "reencode_x265": "pending",
+    "inject_rpu": "pending",
+    "remux_final": "pending",
+    "move_final": "pending"
+  },
+  "claimed_at": 1752814798.3087249
+}
+2025-07-17 22:59:58,446 - INFO - === Starting transcode pipeline for job 8f78fe1f-6a81-494c-ab03-a6be81357f24 ===
+2025-07-17 22:59:58,447 - INFO - Job dict: {'id': '8f78fe1f-6a81-494c-ab03-a6be81357f24', 'input_path': 'Z:\\landing_point\\Test\\test_file_dune.mkv', 'job_type': 'dolby_vision', 'status': 'running', 'worker_id': 'CJBLANK', 'output_path': None, 'added_at': 1752814795.691395, 'retries': 1, 'steps': {'copy_source': 'pending', 'get_metadata': 'pending', 'extract_p7': 'pending', 'convert_p8': 'pending', 'extract_rpu': 'pending', 'reencode_x265': 'pending', 'inject_rpu': 'pending', 'remux_final': 'pending', 'move_final': 'pending'}, 'claimed_at': 1752814798.3087249}
+2025-07-17 22:59:58,447 - INFO - Starting step: copy_source - Copying source file locally
+2025-07-17 22:59:58,456 - INFO - Copying source file locally: from Z:\landing_point\Test\test_file_dune.mkv to H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\test_file_dune.mkv
+2025-07-17 23:00:01,285 - INFO - Copy successful.
+2025-07-17 23:00:01,319 - INFO - Starting step: get_metadata - Getting video metadata
+2025-07-17 23:00:01,327 - INFO - Attempting to get video metadata from H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\test_file_dune.mkv
+2025-07-17 23:00:01,384 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-17 23:00:01,421 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 223615 frames.
+2025-07-17 23:00:01,455 - INFO - Starting step: extract_p7 - Extracting Profile 7 HEVC stream
+2025-07-17 23:00:01,464 - INFO - Executing ffmpeg stream copy: ffmpeg -i H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\test_file_dune.mkv -map 0:v:0 -c copy -y H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\video_p7.hevc
+2025-07-17 23:00:01,596 - INFO - Successfully completed: Extracting P7 stream
+2025-07-17 23:00:01,640 - INFO - Starting step: convert_p8 - Converting P7 to P8.1
+2025-07-17 23:00:01,644 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\video_p7.hevc -o H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\video_p8.hevc
+2025-07-17 23:00:01,781 - INFO - Successfully completed: Converting to P8.1
+2025-07-17 23:00:01,817 - INFO - Starting step: extract_rpu - Extracting RPU
+2025-07-17 23:00:01,826 - INFO - Executing dovi_tool command: dovi_tool extract-rpu -i H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\video_p8.hevc -o H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\rpu.bin
+2025-07-17 23:00:01,914 - INFO - Extracting RPU stdout:
+Reordering metadata... Done.
+
+2025-07-17 23:00:01,916 - INFO - Successfully completed: Extracting RPU
+2025-07-17 23:00:01,946 - INFO - Starting step: reencode_x265 - Re-encoding to x265
+2025-07-17 23:00:01,955 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\video_p8.hevc -an -sn -dn -c:v libx265 -preset slow -crf 20.5 -threads 6 -x265-params pools=6 -y H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\video_reencoded.hevc
+2025-07-17 23:03:08,044 - INFO - Successfully completed: Re-encoding to x265
+2025-07-17 23:03:08,085 - INFO - Starting step: inject_rpu - Injecting RPU
+2025-07-17 23:03:08,095 - INFO - Executing dovi_tool command: dovi_tool inject-rpu -i H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\video_reencoded.hevc --rpu-in H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\rpu.bin -o H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\video_final_with_rpu.hevc
+2025-07-17 23:03:08,137 - INFO - Injecting RPU stdout:
+Parsing RPU file...
+Processing input video for frame order info...
+Rewriting file with interleaved RPU NALs..
+
+2025-07-17 23:03:08,138 - INFO - Successfully completed: Injecting RPU
+2025-07-17 23:03:08,207 - INFO - Starting step: remux_final - Remuxing final MKV
+2025-07-17 23:03:08,217 - INFO - Remuxing final MKV...
+2025-07-17 23:03:08,225 - INFO - Executing command: mkvmerge -o H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\test_file_dune_DV_P8.mkv --language 0:eng H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\video_final_with_rpu.hevc --no-video H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\test_file_dune.mkv
+2025-07-17 23:03:08,543 - INFO - Remuxing final MKV successful.
+2025-07-17 23:03:08,583 - INFO - Starting step: move_final - Moving final file to destination
+2025-07-17 23:03:08,591 - INFO - Moving final file from H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24\test_file_dune_DV_P8.mkv to Z:\landing_point\Test\test_file_dune_DV_P8.mkv
+2025-07-17 23:03:09,081 - INFO - Move successful.
+2025-07-17 23:03:09,166 - INFO - === transcode() completed successfully for job 8f78fe1f-6a81-494c-ab03-a6be81357f24 ===
+2025-07-17 23:03:09,300 - INFO - Cleaning up job staging directory: H:\staging\8f78fe1f-6a81-494c-ab03-a6be81357f24

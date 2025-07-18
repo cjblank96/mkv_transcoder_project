@@ -63,7 +63,7 @@ class Transcoder:
         logger = logging.getLogger(f"transcoder_{self.job_id}")
         logger.setLevel(logging.INFO)
         if not logger.handlers:
-            fh = logging.FileHandler(self.log_file)
+            fh = logging.FileHandler(self.log_file, mode='a')  # APPEND mode
             formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
             fh.setFormatter(formatter)
             logger.addHandler(fh)
@@ -189,8 +189,12 @@ class Transcoder:
         self.logger.info(f"Executing ffmpeg command: {' '.join(command)}")
         print(f"- {description}...")
         process = subprocess.Popen(command, stderr=subprocess.PIPE, universal_newlines=True, encoding='utf-8')
+        error_lines = []
         pbar = tqdm(total=total_frames, unit='frames', desc=description, bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}{postfix}]')
         for line in process.stderr:
+            # Only log lines containing error keywords
+            if re.search(r'(error|invalid|no such file|failed)', line, re.IGNORECASE):
+                error_lines.append(line)
             match = re.search(r'frame=\s*(\d+)', line)
             if match:
                 frames_done = int(match.group(1))
@@ -199,6 +203,10 @@ class Transcoder:
         process.wait()
         if process.returncode != 0:
             self.logger.error(f"ffmpeg command failed with exit code {process.returncode}")
+            if error_lines:
+                self.logger.error(f"ffmpeg error output:\n{''.join(error_lines)}")
+            else:
+                self.logger.error("ffmpeg did not output any error lines to stderr.")
             print(f"\n- {description} failed. Check logs.")
             return False
         self.logger.info(f"Successfully completed: {description}")
@@ -208,28 +216,47 @@ class Transcoder:
         self.logger.info(f"Executing ffmpeg stream copy: {' '.join(command)}")
         print(f"- {description}...")
         progress_command = command[:1] + ['-progress', 'pipe:1', '-nostats'] + command[1:]
-        process = subprocess.Popen(progress_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, bufsize=1)
+        
+        # stdout must be read to prevent pipe buffer from filling and causing a deadlock.
+        process = subprocess.Popen(progress_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, bufsize=1, encoding='utf-8')
         pbar = tqdm(total=total_frames, desc=description, unit="frame")
         last_frame = 0
+
+        # Read stdout for progress updates
         for line in iter(process.stdout.readline, ''):
-            if 'out_time_us' in line:
+            if 'frame=' in line:
                 try:
-                    out_time_us = int(line.strip().split('=')[1])
-                    estimated_frame = int((out_time_us / 1_000_000) * frame_rate)
-                    update_amount = estimated_frame - last_frame
-                    if update_amount > 0:
-                        pbar.update(update_amount)
-                        last_frame = estimated_frame
+                    parts = line.strip().split('=')
+                    if parts[0].strip() == 'frame':
+                        frame_num = int(parts[1])
+                        update_amount = frame_num - last_frame
+                        if update_amount > 0:
+                            pbar.update(update_amount)
+                            last_frame = frame_num
                 except (ValueError, IndexError):
                     continue
-        if last_frame < total_frames:
-            pbar.update(total_frames - last_frame)
         pbar.close()
-        process.wait()
+
+        try:
+            _, stderr_output = process.communicate(timeout=300) # 5 minute timeout
+        except subprocess.TimeoutExpired:
+            process.kill()
+            _, stderr_output = process.communicate()
+            self.logger.error(f"ffmpeg process timed out after 300 seconds during '{description}'.")
+            self.logger.error(f"ffmpeg stderr: {stderr_output}")
+            print(f"\n- {description} failed (timeout). Check logs.")
+            return False
+
         if process.returncode != 0:
-            self.logger.error(f"ffmpeg copy failed. Stderr: {process.stderr.read()}")
+            self.logger.error(f"ffmpeg copy failed with exit code {process.returncode} during '{description}'.")
+            error_lines = [line for line in stderr_output.splitlines() if re.search(r'(error|invalid|no such file|failed)', line, re.IGNORECASE)]
+            if error_lines:
+                self.logger.error(f"Filtered ffmpeg error output:\n{''.join(error_lines)}")
+            else:
+                self.logger.error(f"Full ffmpeg stderr (no specific error keywords found):\n{stderr_output}")
             print(f"\n- {description} failed. Check logs.")
             return False
+
         self.logger.info(f"Successfully completed: {description}")
         return True
 
@@ -260,85 +287,189 @@ class Transcoder:
             return False
 
     def transcode(self):
-        job_type = self.job.get('job_type', 'standard') # Default to standard if type is missing
-        print(f"\nStarting job {self.job_id} for: {os.path.basename(self.original_input_path)} (Type: {job_type})")
+        self.logger.info(f"=== Entering transcode() for job {self.job_id} ===")
+        import json
+        try:
+            self.logger.info(f"Job dict: {json.dumps(self.job, indent=2)}")
+        except Exception as e:
+            self.logger.warning(f"Could not serialize job dict: {e}")
+        # Explicitly check input file existence
+        if not os.path.exists(self.original_input_path):
+            self.logger.error(f"Input file does not exist: {self.original_input_path}")
+            raise FileNotFoundError(f"Input file does not exist: {self.original_input_path}")
+        try:
+            import traceback
+            job_type = self.job.get('job_type', 'standard') # Default to standard if type is missing
+            self.logger.info(f"=== Starting transcode pipeline for job {self.job_id} ===")
+            self.logger.info(f"Job dict: {self.job}")
+            print(f"\nStarting job {self.job_id} for: {os.path.basename(self.original_input_path)} (Type: {job_type})")
 
-        def run_step(step_name, description, file_to_check, function, *args, **kwargs):
-            # For resumability, check if the step is defined for this job type at all
-            if step_name not in self.job['steps']:
-                return True # This step is not part of the job type, so we skip it
+            def run_step(step_name, description, file_to_check, function, *args, **kwargs):
+                if step_name not in self.job['steps']:
+                    return True
+                if self.job['steps'].get(step_name) == 'completed' and os.path.exists(file_to_check):
+                    self.logger.info(f"Step '{step_name}' already completed. Skipping.")
+                    print(f"- Skipping already completed step: {description}")
+                    return True
+                try:
+                    self.logger.info(f"Starting step: {step_name} - {description}")
+                    success = function(*args, **kwargs)
+                except Exception as e:
+                    self.logger.error(f"Exception in step '{step_name}': {e}", exc_info=True)
+                    print(f"- Step '{step_name}' failed with exception. Check logs.")
+                    self.job_queue.update_job_step_status(self.job_id, step_name, 'failed')
+                    return False
+                new_status = 'completed' if success else 'failed'
+                if not success:
+                    self.logger.error(f"Step '{step_name}' failed (no exception). Check previous log entries for details.")
+                self.job_queue.update_job_step_status(self.job_id, step_name, new_status)
+                return success
 
-            if self.job['steps'].get(step_name) == 'completed' and os.path.exists(file_to_check):
-                self.logger.info(f"Step '{step_name}' already completed. Skipping.")
-                print(f"- Skipping already completed step: {description}")
+            try:
+                # --- Universal Steps --- 
+                if not run_step('copy_source', 'Copying source file locally', self.local_source_path, self._copy_source_file):
+                    self.logger.error("transcode() failed during step: copy_source")
+                    return False
+                if not run_step('get_metadata', 'Getting video metadata', self.log_file, self._get_video_metadata, self.local_source_path):
+                    self.logger.error("transcode() failed during step: get_metadata")
+                    return False
+
+                # Define output filenames first
+                if job_type == 'dolby_vision':
+                    output_filename = os.path.basename(self.original_input_path).replace('.mkv', '_DV_P8.mkv')
+                else: # standard
+                    output_filename = os.path.basename(self.original_input_path).replace('.mkv', '_x265.mkv')
+                self.local_output_path = os.path.join(self.job_staging_dir, output_filename)
+                self.output_path = os.path.join(os.path.dirname(self.original_input_path), output_filename)
+
+                # --- Dolby Vision Path --- 
+                if job_type == 'dolby_vision':
+                    cmd1 = ["ffmpeg", "-i", self.local_source_path, "-map", "0:v:0", "-c", "copy", "-y", self.p7_video_path]
+                    if not run_step('extract_p7', 'Extracting Profile 7 HEVC stream', self.p7_video_path, self._run_ffmpeg_copy_with_progress, cmd1, self.total_frames, self.frame_rate, "Extracting P7 stream"):
+                        self.logger.error("transcode() failed during step: extract_p7")
+                        return False
+
+                    cmd2 = ["dovi_tool", "-m", "2", "convert", "--discard", "-i", self.p7_video_path, "-o", self.p8_video_path]
+                    if not run_step('convert_p8', 'Converting P7 to P8.1', self.p8_video_path, self._run_dovi_tool_with_progress, cmd2, "Converting to P8.1"):
+                        self.logger.error("transcode() failed during step: convert_p8")
+                        return False
+
+                    cmd3 = ["dovi_tool", "extract-rpu", "-i", self.p8_video_path, "-o", self.rpu_path]
+                    if not run_step('extract_rpu', 'Extracting RPU', self.rpu_path, self._run_dovi_tool_with_progress, cmd3, "Extracting RPU"):
+                        self.logger.error("transcode() failed during step: extract_rpu")
+                        return False
+
+                    # Re-encode video only
+                    cmd4 = ["ffmpeg", "-fflags", "+genpts", "-i", self.p8_video_path, "-an", "-sn", "-dn", "-c:v", "libx265", "-preset", "slow", "-crf", "20.5", "-threads", "8", "-x265-params", "pools=8", "-y", self.reencoded_video_path]
+                    if not run_step('reencode_x265', 'Re-encoding to x265', self.reencoded_video_path, self._run_ffmpeg_with_progress, cmd4, self.total_frames, "Re-encoding to x265"):
+                        self.logger.error("transcode() failed during step: reencode_x265")
+                        return False
+
+                    # Inject RPU
+                    cmd5 = ["dovi_tool", "inject-rpu", "-i", self.reencoded_video_path, "--rpu-in", self.rpu_path, "-o", self.final_video_with_rpu_path]
+                    if not run_step('inject_rpu', 'Injecting RPU', self.final_video_with_rpu_path, self._run_dovi_tool_with_progress, cmd5, "Injecting RPU"):
+                        self.logger.error("transcode() failed during step: inject_rpu")
+                        return False
+
+                    # Remux final MKV
+                    cmd6 = ["mkvmerge", "-o", self.local_output_path, "--language", "0:eng", self.final_video_with_rpu_path, "--no-video", self.local_source_path]
+                    if not run_step('remux_final', 'Remuxing final MKV', self.local_output_path, self._run_command, cmd6, "Remuxing final MKV"):
+                        self.logger.error("transcode() failed during step: remux_final")
+                        return False
+
+                # --- Standard Path (Optimized) --- 
+                else: # 'standard' job type
+                    cmd_reencode_mux = [
+                        "ffmpeg", "-fflags", "+genpts", "-i", self.local_source_path,
+                        "-map", "0", "-c:v", "libx265", "-preset", "medium", "-crf", "18",
+                        "-threads", "9", "-x265-params", "pools=9",
+                        "-c:a", "copy", "-c:s", "copy", "-y", self.local_output_path
+                    ]
+                    if not run_step('reencode_x265', 'Re-encoding and Muxing', self.local_output_path, self._run_ffmpeg_with_progress, cmd_reencode_mux, self.total_frames, "Re-encoding to x265"):
+                        self.logger.error("transcode() failed during step: reencode_x265")
+                        return False
+
+                if not run_step('move_final', 'Moving final file to destination', self.output_path, self._move_final_file, self.local_output_path, self.output_path):
+                    self.logger.error("transcode() failed during step: move_final")
+                    return False
+
+                print(f"\nSuccessfully transcoded {os.path.basename(self.original_input_path)} to {self.output_path}")
+                self.logger.info(f"=== transcode() completed successfully for job {self.job_id} ===")
                 return True
-            
-            success = function(*args, **kwargs)
-            new_status = 'completed' if success else 'failed'
-            self.job_queue.update_job_step_status(self.job_id, step_name, new_status)
-            return success
+            except Exception as e:
+                self.logger.error(f"UNHANDLED EXCEPTION in job pipeline: {e}", exc_info=True)
+                print(f"- Unhandled exception in job pipeline. Check logs for details.")
+                self.logger.error(f"=== transcode() failed for job {self.job_id} ===")
+                return False
+                return False
 
-        # --- Universal Steps --- 
-        if not run_step('copy_source', 'Copying source file locally', self.local_source_path, self._copy_source_file):
+            # Define output filenames first
+            if job_type == 'dolby_vision':
+                output_filename = os.path.basename(self.original_input_path).replace('.mkv', '_DV_P8.mkv')
+            else: # standard
+                output_filename = os.path.basename(self.original_input_path).replace('.mkv', '_x265.mkv')
+            self.local_output_path = os.path.join(self.job_staging_dir, output_filename)
+            self.output_path = os.path.join(os.path.dirname(self.original_input_path), output_filename)
+
+            # --- Dolby Vision Path --- 
+            if job_type == 'dolby_vision':
+                cmd1 = ["ffmpeg", "-i", self.local_source_path, "-map", "0:v:0", "-c", "copy", "-y", self.p7_video_path]
+                if not run_step('extract_p7', 'Extracting Profile 7 HEVC stream', self.p7_video_path, self._run_ffmpeg_copy_with_progress, cmd1, self.total_frames, self.frame_rate, "Extracting P7 stream"):
+                    self.logger.error("transcode() failed during step: extract_p7")
+                    return False
+
+                cmd2 = ["dovi_tool", "-m", "2", "convert", "--discard", "-i", self.p7_video_path, "-o", self.p8_video_path]
+                if not run_step('convert_p8', 'Converting P7 to P8.1', self.p8_video_path, self._run_dovi_tool_with_progress, cmd2, "Converting to P8.1"):
+                    self.logger.error("transcode() failed during step: convert_p8")
+                    return False
+
+                cmd3 = ["dovi_tool", "extract-rpu", "-i", self.p8_video_path, "-o", self.rpu_path]
+                if not run_step('extract_rpu', 'Extracting RPU', self.rpu_path, self._run_dovi_tool_with_progress, cmd3, "Extracting RPU"):
+                    self.logger.error("transcode() failed during step: extract_rpu")
+                    return False
+
+                # Re-encode video only
+                cmd4 = ["ffmpeg", "-fflags", "+genpts", "-i", self.p8_video_path, "-an", "-sn", "-dn", "-c:v", "libx265", "-preset", "medium", "-crf", "18", "-threads", "9", "-x265-params", "pools=9", "-y", self.reencoded_video_path]
+                if not run_step('reencode_x265', 'Re-encoding to x265', self.reencoded_video_path, self._run_ffmpeg_with_progress, cmd4, self.total_frames, "Re-encoding to x265"):
+                    self.logger.error("transcode() failed during step: reencode_x265")
+                    return False
+
+                # Inject RPU
+                cmd5 = ["dovi_tool", "inject-rpu", "-i", self.reencoded_video_path, "--rpu-in", self.rpu_path, "-o", self.final_video_with_rpu_path]
+                if not run_step('inject_rpu', 'Injecting RPU', self.final_video_with_rpu_path, self._run_dovi_tool_with_progress, cmd5, "Injecting RPU"):
+                    self.logger.error("transcode() failed during step: inject_rpu")
+                    return False
+
+                # Remux final MKV
+                cmd6 = ["mkvmerge", "-o", self.local_output_path, "--language", "0:eng", self.final_video_with_rpu_path, "--no-video", self.local_source_path]
+                if not run_step('remux_final', 'Remuxing final MKV', self.local_output_path, self._run_command, cmd6, "Remuxing final MKV"):
+                    self.logger.error("transcode() failed during step: remux_final")
+                    return False
+
+            # --- Standard Path (Optimized) --- 
+            else: # 'standard' job type
+                cmd_reencode_mux = [
+                    "ffmpeg", "-fflags", "+genpts", "-i", self.local_source_path,
+                    "-map", "0", "-c:v", "libx265", "-preset", "medium", "-crf", "18",
+                    "-threads", "9", "-x265-params", "pools=9",
+                    "-c:a", "copy", "-c:s", "copy", "-y", self.local_output_path
+                ]
+                if not run_step('reencode_x265', 'Re-encoding and Muxing', self.local_output_path, self._run_ffmpeg_with_progress, cmd_reencode_mux, self.total_frames, "Re-encoding to x265"):
+                    self.logger.error("transcode() failed during step: reencode_x265")
+                    return False
+
+            if not run_step('move_final', 'Moving final file to destination', self.output_path, self._move_final_file, self.local_output_path, self.output_path):
+                self.logger.error("transcode() failed during step: move_final")
+                return False
+
+            print(f"\nSuccessfully transcoded {os.path.basename(self.original_input_path)} to {self.output_path}")
+            self.logger.info(f"=== transcode() completed successfully for job {self.job_id} ===")
+            return True
+        except Exception as e:
+            self.logger.error(f"UNHANDLED EXCEPTION in job pipeline: {e}", exc_info=True)
+            print(f"- Unhandled exception in job pipeline. Check logs for details.")
+            self.logger.error(f"=== transcode() failed for job {self.job_id} ===")
             return False
-        if not run_step('get_metadata', 'Getting video metadata', self.log_file, self._get_video_metadata, self.local_source_path):
-            return False
-
-        # Define output filenames first
-        if job_type == 'dolby_vision':
-            output_filename = os.path.basename(self.original_input_path).replace('.mkv', '_DV_P8.mkv')
-        else: # standard
-            output_filename = os.path.basename(self.original_input_path).replace('.mkv', '_x265.mkv')
-        self.local_output_path = os.path.join(self.job_staging_dir, output_filename)
-        self.output_path = os.path.join(os.path.dirname(self.original_input_path), output_filename)
-
-        # --- Dolby Vision Path --- 
-        if job_type == 'dolby_vision':
-            cmd1 = ["ffmpeg", "-i", self.local_source_path, "-map", "0:v:0", "-c", "copy", "-y", self.p7_video_path]
-            if not run_step('extract_p7', 'Extracting Profile 7 HEVC stream', self.p7_video_path, self._run_ffmpeg_copy_with_progress, cmd1, self.total_frames, self.frame_rate, "Extracting P7 stream"):
-                return False
-
-            cmd2 = ["dovi_tool", "-m", "2", "convert", "--discard", "-i", self.p7_video_path, "-o", self.p8_video_path]
-            if not run_step('convert_p8', 'Converting P7 to P8.1', self.p8_video_path, self._run_dovi_tool_with_progress, cmd2, "Converting to P8.1"):
-                return False
-
-            cmd3 = ["dovi_tool", "extract-rpu", "-i", self.p8_video_path, "-o", self.rpu_path]
-            if not run_step('extract_rpu', 'Extracting RPU', self.rpu_path, self._run_dovi_tool_with_progress, cmd3, "Extracting RPU"):
-                return False
-
-            # Re-encode video only
-            cmd4 = ["ffmpeg", "-fflags", "+genpts", "-i", self.p8_video_path, "-an", "-sn", "-dn", "-c:v", "libx265", "-preset", "medium", "-crf", "18", "-threads", "9", "-x265-params", "pools=9", "-y", self.reencoded_video_path]
-            if not run_step('reencode_x265', 'Re-encoding to x265', self.reencoded_video_path, self._run_ffmpeg_with_progress, cmd4, self.total_frames, "Re-encoding to x265"):
-                return False
-
-            # Inject RPU
-            cmd5 = ["dovi_tool", "inject-rpu", "-i", self.reencoded_video_path, "--rpu-in", self.rpu_path, "-o", self.final_video_with_rpu_path]
-            if not run_step('inject_rpu', 'Injecting RPU', self.final_video_with_rpu_path, self._run_dovi_tool_with_progress, cmd5, "Injecting RPU"):
-                return False
-
-            # Remux final MKV
-            cmd6 = ["mkvmerge", "-o", self.local_output_path, "--language", "0:eng", self.final_video_with_rpu_path, "--no-video", self.local_source_path]
-            if not run_step('remux_final', 'Remuxing final MKV', self.local_output_path, self._run_command, cmd6, "Remuxing final MKV"):
-                return False
-
-        # --- Standard Path (Optimized) --- 
-        else: # 'standard' job type
-            # Re-encode video and copy all other streams in a single command
-            cmd_reencode_mux = [
-                "ffmpeg", "-fflags", "+genpts", "-i", self.local_source_path,
-                "-map", "0", "-c:v", "libx265", "-preset", "medium", "-crf", "18",
-                "-threads", "9", "-x265-params", "pools=9",
-                "-c:a", "copy", "-c:s", "copy", "-y", self.local_output_path
-            ]
-            # The output of this step is the final file
-            if not run_step('reencode_x265', 'Re-encoding and Muxing', self.local_output_path, self._run_ffmpeg_with_progress, cmd_reencode_mux, self.total_frames, "Re-encoding to x265"):
-                return False
-
-        if not run_step('move_final', 'Moving final file to destination', self.output_path, self._move_final_file, self.local_output_path, self.output_path):
-            return False
-
-        print(f"\nSuccessfully transcoded {os.path.basename(self.original_input_path)} to {self.output_path}")
-        return True
 
     def _copy_source_file(self):
         try:

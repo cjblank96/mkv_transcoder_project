@@ -1,0 +1,42 @@
+2025-07-17 22:47:01,643 - INFO - Job 5f86e461-efe9-463c-a8fe-3908508d5392 initialized.
+2025-07-17 22:47:01,644 - INFO - Original input file: Z:\landing_point\Test\test_file_dune.mkv
+2025-07-17 22:47:01,644 - INFO - Final output file: Z:\landing_point\Test\test_file_dune_DV_P8.mkv
+2025-07-17 22:47:01,645 - INFO - Local job staging directory: H:\staging\5f86e461-efe9-463c-a8fe-3908508d5392
+2025-07-17 22:47:01,645 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-17 22:47:01,646 - INFO -   - Total: 3726.01 GB
+2025-07-17 22:47:01,647 - INFO -   - Used: 1412.98 GB
+2025-07-17 22:47:01,647 - INFO -   - Free: 2313.03 GB
+2025-07-17 22:47:01,648 - INFO - === Entering transcode() for job 5f86e461-efe9-463c-a8fe-3908508d5392 ===
+2025-07-17 22:47:01,648 - INFO - Job dict: {
+  "id": "5f86e461-efe9-463c-a8fe-3908508d5392",
+  "input_path": "Z:\\landing_point\\Test\\test_file_dune.mkv",
+  "job_type": "dolby_vision",
+  "status": "running",
+  "worker_id": "CJBLANK",
+  "output_path": null,
+  "added_at": 1752814010.552588,
+  "retries": 1,
+  "steps": {
+    "copy_source": "pending",
+    "get_metadata": "pending",
+    "extract_p7": "pending",
+    "convert_p8": "pending",
+    "extract_rpu": "pending",
+    "reencode_x265": "pending",
+    "inject_rpu": "pending",
+    "remux_final": "pending",
+    "move_final": "pending"
+  },
+  "claimed_at": 1752814021.4859786
+}
+2025-07-17 22:47:01,655 - INFO - === Starting transcode pipeline for job 5f86e461-efe9-463c-a8fe-3908508d5392 ===
+2025-07-17 22:47:01,656 - INFO - Job dict: {'id': '5f86e461-efe9-463c-a8fe-3908508d5392', 'input_path': 'Z:\\landing_point\\Test\\test_file_dune.mkv', 'job_type': 'dolby_vision', 'status': 'running', 'worker_id': 'CJBLANK', 'output_path': None, 'added_at': 1752814010.552588, 'retries': 1, 'steps': {'copy_source': 'pending', 'get_metadata': 'pending', 'extract_p7': 'pending', 'convert_p8': 'pending', 'extract_rpu': 'pending', 'reencode_x265': 'pending', 'inject_rpu': 'pending', 'remux_final': 'pending', 'move_final': 'pending'}, 'claimed_at': 1752814021.4859786}
+2025-07-17 22:47:01,657 - INFO - Starting step: copy_source - Copying source file locally
+2025-07-17 22:47:01,665 - INFO - Copying source file locally: from Z:\landing_point\Test\test_file_dune.mkv to H:\staging\5f86e461-efe9-463c-a8fe-3908508d5392\test_file_dune.mkv
+2025-07-17 22:47:04,500 - INFO - Copy successful.
+2025-07-17 22:47:04,535 - INFO - Starting step: get_metadata - Getting video metadata
+2025-07-17 22:47:04,542 - INFO - Attempting to get video metadata from H:\staging\5f86e461-efe9-463c-a8fe-3908508d5392\test_file_dune.mkv
+2025-07-17 22:47:04,599 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-17 22:47:04,636 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 223615 frames.
+2025-07-17 22:47:04,668 - INFO - Starting step: extract_p7 - Extracting Profile 7 HEVC stream
+2025-07-17 22:47:04,677 - INFO - Executing ffmpeg stream copy: ffmpeg -i H:\staging\5f86e461-efe9-463c-a8fe-3908508d5392\test_file_dune.mkv -map 0:v:0 -c copy -y H:\staging\5f86e461-efe9-463c-a8fe-3908508d5392\video_p7.hevc

@@ -722,3 +722,30 @@
 2025-07-17 19:54:18,498 - INFO - Moving final file from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00_x265.mkv to /mnt/unraid/landing_point/Video/Dune/Dune_t00_x265.mkv
 2025-07-17 19:55:19,463 - INFO - Move successful.
 2025-07-17 19:55:19,523 - INFO - Cleaning up job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-17 22:26:29,362 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-17 22:26:29,363 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-17 22:26:29,364 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune\Dune_t00_DV_P8.mkv
+2025-07-17 22:26:29,364 - INFO - Local job staging directory: H:\staging\2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-17 22:26:29,365 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-17 22:26:29,366 - INFO -   - Total: 3726.01 GB
+2025-07-17 22:26:29,366 - INFO -   - Used: 1412.98 GB
+2025-07-17 22:26:29,367 - INFO -   - Free: 2313.03 GB
+2025-07-17 22:26:29,369 - ERROR - Source file not found: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-17 22:26:29,519 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-17 22:26:29,520 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-17 22:26:29,521 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune\Dune_t00_DV_P8.mkv
+2025-07-17 22:26:29,521 - INFO - Local job staging directory: H:\staging\2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-17 22:26:29,522 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-17 22:26:29,523 - INFO -   - Total: 3726.01 GB
+2025-07-17 22:26:29,523 - INFO -   - Used: 1412.98 GB
+2025-07-17 22:26:29,524 - INFO -   - Free: 2313.03 GB
+2025-07-17 22:26:29,524 - ERROR - Source file not found: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-17 22:26:29,674 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-17 22:26:29,674 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-17 22:26:29,675 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune\Dune_t00_DV_P8.mkv
+2025-07-17 22:26:29,676 - INFO - Local job staging directory: H:\staging\2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-17 22:26:29,676 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-17 22:26:29,677 - INFO -   - Total: 3726.01 GB
+2025-07-17 22:26:29,677 - INFO -   - Used: 1412.98 GB
+2025-07-17 22:26:29,678 - INFO -   - Free: 2313.03 GB
+2025-07-17 22:26:29,679 - ERROR - Source file not found: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv

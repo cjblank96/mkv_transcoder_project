@@ -1,0 +1,42 @@
+2025-07-17 23:20:30,933 - INFO - Job 836d9319-92e6-4425-8db5-2c5d60c8cb93 initialized.
+2025-07-17 23:20:30,934 - INFO - Original input file: Z:\landing_point\Video\Eternal Sunshine of the Spotless Mind\Eternal Sunshine of the Spotless Mind_t00.mkv
+2025-07-17 23:20:30,935 - INFO - Final output file: Z:\landing_point\Video\Eternal Sunshine of the Spotless Mind\Eternal Sunshine of the Spotless Mind_t00_DV_P8.mkv
+2025-07-17 23:20:30,935 - INFO - Local job staging directory: H:\staging\836d9319-92e6-4425-8db5-2c5d60c8cb93
+2025-07-17 23:20:30,936 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-17 23:20:30,937 - INFO -   - Total: 3726.01 GB
+2025-07-17 23:20:30,937 - INFO -   - Used: 1413.22 GB
+2025-07-17 23:20:30,938 - INFO -   - Free: 2312.79 GB
+2025-07-17 23:20:30,938 - INFO - === Entering transcode() for job 836d9319-92e6-4425-8db5-2c5d60c8cb93 ===
+2025-07-17 23:20:30,939 - INFO - Job dict: {
+  "id": "836d9319-92e6-4425-8db5-2c5d60c8cb93",
+  "input_path": "Z:\\landing_point\\Video\\Eternal Sunshine of the Spotless Mind\\Eternal Sunshine of the Spotless Mind_t00.mkv",
+  "job_type": "dolby_vision",
+  "status": "running",
+  "worker_id": "CJBLANK",
+  "output_path": null,
+  "added_at": 1752816010.4968164,
+  "retries": 1,
+  "steps": {
+    "copy_source": "pending",
+    "get_metadata": "pending",
+    "extract_p7": "pending",
+    "convert_p8": "pending",
+    "extract_rpu": "pending",
+    "reencode_x265": "pending",
+    "inject_rpu": "pending",
+    "remux_final": "pending",
+    "move_final": "pending"
+  },
+  "claimed_at": 1752816030.8723109
+}
+2025-07-17 23:20:30,948 - INFO - === Starting transcode pipeline for job 836d9319-92e6-4425-8db5-2c5d60c8cb93 ===
+2025-07-17 23:20:30,949 - INFO - Job dict: {'id': '836d9319-92e6-4425-8db5-2c5d60c8cb93', 'input_path': 'Z:\\landing_point\\Video\\Eternal Sunshine of the Spotless Mind\\Eternal Sunshine of the Spotless Mind_t00.mkv', 'job_type': 'dolby_vision', 'status': 'running', 'worker_id': 'CJBLANK', 'output_path': None, 'added_at': 1752816010.4968164, 'retries': 1, 'steps': {'copy_source': 'pending', 'get_metadata': 'pending', 'extract_p7': 'pending', 'convert_p8': 'pending', 'extract_rpu': 'pending', 'reencode_x265': 'pending', 'inject_rpu': 'pending', 'remux_final': 'pending', 'move_final': 'pending'}, 'claimed_at': 1752816030.8723109}
+2025-07-17 23:20:30,949 - INFO - Starting step: copy_source - Copying source file locally
+2025-07-17 23:20:30,962 - INFO - Copying source file locally: from Z:\landing_point\Video\Eternal Sunshine of the Spotless Mind\Eternal Sunshine of the Spotless Mind_t00.mkv to H:\staging\836d9319-92e6-4425-8db5-2c5d60c8cb93\Eternal Sunshine of the Spotless Mind_t00.mkv
+2025-07-17 23:50:52,783 - INFO - Copy successful.
+2025-07-17 23:50:52,824 - INFO - Starting step: get_metadata - Getting video metadata
+2025-07-17 23:50:52,825 - INFO - Attempting to get video metadata from H:\staging\836d9319-92e6-4425-8db5-2c5d60c8cb93\Eternal Sunshine of the Spotless Mind_t00.mkv
+2025-07-17 23:50:53,111 - INFO - Successfully got frame rate: 24.000 fps.
+2025-07-17 23:50:53,159 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 155177 frames.
+2025-07-17 23:50:53,257 - INFO - Starting step: extract_p7 - Extracting Profile 7 HEVC stream
+2025-07-17 23:50:53,259 - INFO - Executing ffmpeg stream copy: ffmpeg -i H:\staging\836d9319-92e6-4425-8db5-2c5d60c8cb93\Eternal Sunshine of the Spotless Mind_t00.mkv -map 0:v:0 -c copy -y H:\staging\836d9319-92e6-4425-8db5-2c5d60c8cb93\video_p7.hevc

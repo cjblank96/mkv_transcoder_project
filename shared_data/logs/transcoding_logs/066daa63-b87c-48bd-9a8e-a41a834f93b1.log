@@ -1,0 +1,42 @@
+2025-07-17 23:21:43,060 - INFO - Job 066daa63-b87c-48bd-9a8e-a41a834f93b1 initialized.
+2025-07-17 23:21:43,081 - INFO - Original input file: Z:\landing_point\Video\Hell Or High Water\Hell Or High Water-FPL_MainFeature_DV_t00.mkv
+2025-07-17 23:21:43,089 - INFO - Final output file: Z:\landing_point\Video\Hell Or High Water\Hell Or High Water-FPL_MainFeature_DV_t00_DV_P8.mkv
+2025-07-17 23:21:43,100 - INFO - Local job staging directory: H:\staging\066daa63-b87c-48bd-9a8e-a41a834f93b1
+2025-07-17 23:21:43,135 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-17 23:21:43,142 - INFO -   - Total: 3726.01 GB
+2025-07-17 23:21:43,150 - INFO -   - Used: 1418.33 GB
+2025-07-17 23:21:43,204 - INFO -   - Free: 2307.68 GB
+2025-07-17 23:21:43,220 - INFO - === Entering transcode() for job 066daa63-b87c-48bd-9a8e-a41a834f93b1 ===
+2025-07-17 23:21:43,223 - INFO - Job dict: {
+  "id": "066daa63-b87c-48bd-9a8e-a41a834f93b1",
+  "input_path": "Z:\\landing_point\\Video\\Hell Or High Water\\Hell Or High Water-FPL_MainFeature_DV_t00.mkv",
+  "job_type": "dolby_vision",
+  "status": "running",
+  "worker_id": "CJBLANK",
+  "output_path": null,
+  "added_at": 1752816025.9429388,
+  "retries": 1,
+  "steps": {
+    "copy_source": "pending",
+    "get_metadata": "pending",
+    "extract_p7": "pending",
+    "convert_p8": "pending",
+    "extract_rpu": "pending",
+    "reencode_x265": "pending",
+    "inject_rpu": "pending",
+    "remux_final": "pending",
+    "move_final": "pending"
+  },
+  "claimed_at": 1752816102.6196518
+}
+2025-07-17 23:21:43,342 - INFO - === Starting transcode pipeline for job 066daa63-b87c-48bd-9a8e-a41a834f93b1 ===
+2025-07-17 23:21:43,392 - INFO - Job dict: {'id': '066daa63-b87c-48bd-9a8e-a41a834f93b1', 'input_path': 'Z:\\landing_point\\Video\\Hell Or High Water\\Hell Or High Water-FPL_MainFeature_DV_t00.mkv', 'job_type': 'dolby_vision', 'status': 'running', 'worker_id': 'CJBLANK', 'output_path': None, 'added_at': 1752816025.9429388, 'retries': 1, 'steps': {'copy_source': 'pending', 'get_metadata': 'pending', 'extract_p7': 'pending', 'convert_p8': 'pending', 'extract_rpu': 'pending', 'reencode_x265': 'pending', 'inject_rpu': 'pending', 'remux_final': 'pending', 'move_final': 'pending'}, 'claimed_at': 1752816102.6196518}
+2025-07-17 23:21:43,406 - INFO - Starting step: copy_source - Copying source file locally
+2025-07-17 23:21:43,510 - INFO - Copying source file locally: from Z:\landing_point\Video\Hell Or High Water\Hell Or High Water-FPL_MainFeature_DV_t00.mkv to H:\staging\066daa63-b87c-48bd-9a8e-a41a834f93b1\Hell Or High Water-FPL_MainFeature_DV_t00.mkv
+2025-07-17 23:49:28,567 - INFO - Copy successful.
+2025-07-17 23:49:28,934 - INFO - Starting step: get_metadata - Getting video metadata
+2025-07-17 23:49:28,937 - INFO - Attempting to get video metadata from H:\staging\066daa63-b87c-48bd-9a8e-a41a834f93b1\Hell Or High Water-FPL_MainFeature_DV_t00.mkv
+2025-07-17 23:49:29,212 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-17 23:49:29,258 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 147148 frames.
+2025-07-17 23:49:37,600 - INFO - Starting step: extract_p7 - Extracting Profile 7 HEVC stream
+2025-07-17 23:49:37,633 - INFO - Executing ffmpeg stream copy: ffmpeg -i H:\staging\066daa63-b87c-48bd-9a8e-a41a834f93b1\Hell Or High Water-FPL_MainFeature_DV_t00.mkv -map 0:v:0 -c copy -y H:\staging\066daa63-b87c-48bd-9a8e-a41a834f93b1\video_p7.hevc

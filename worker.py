@@ -20,26 +20,59 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 def main():
     parser = argparse.ArgumentParser(description="MKV Transcoder Worker")
     parser.add_argument('--force-rerun', type=int, metavar='STEP_INDEX', help='Force the job to re-run starting from the specified step index (1-8).')
+    parser.add_argument('--job-id', type=str, help='(Optional) Job ID to force re-run. Required if --force-rerun is used.')
+    parser.add_argument('--input-path', type=str, help='(Optional) Input path to force re-run. Required if --force-rerun is used and --job-id is not given.')
     args = parser.parse_args()
 
     worker_id = socket.gethostname()
     job_queue = JobQueue()
     logging.info(f"Worker '{worker_id}' started. Polling for jobs...")
 
-    # This flag ensures we only apply the force-rerun logic once to the first job claimed.
-    rerun_flag_applied = False
-
-    # If --force-rerun is used, forcibly reset the first job in the queue (regardless of status)
     if args.force_rerun:
-        # Load all jobs and reset the first one (or you could extend this to select by input_path/ID)
-        def _get_first_job(queue):
-            return queue['jobs'][0] if queue['jobs'] else None
-        first_job = job_queue._execute_with_lock(_get_first_job)
-        if first_job:
-            job_queue.force_reset_job_progress(job_id=first_job['id'], from_step_index=args.force_rerun)
-            logging.warning(f"--force-rerun flag detected. Forcibly resetting job {first_job['id']} to start from step {args.force_rerun} (status was: {first_job.get('status')}).")
-        else:
-            logging.info("No jobs found in the queue to force reset.")
+        if not args.job_id and not args.input_path:
+            logging.error("--force-rerun requires either --job-id or --input-path to specify which job to reset.")
+            sys.exit(1)
+
+        # Try to forcibly reset the specified job
+        reset_result = job_queue.force_reset_job_progress(
+            job_id=args.job_id,
+            input_path=args.input_path,
+            from_step_index=args.force_rerun
+        )
+        if not reset_result:
+            logging.error("No job found to force reset with given criteria.")
+            sys.exit(1)
+        logging.warning(f"--force-rerun flag detected. Forcibly resetting job (ID: {args.job_id}, Input: {args.input_path}) to start from step {args.force_rerun}.")
+
+        # Claim and process ONLY the specified job
+        def _find_job(queue):
+            for job in queue['jobs']:
+                if (args.job_id and job.get('id') == args.job_id) or (args.input_path and job.get('input_path') == args.input_path):
+                    return job
+            return None
+        target_job = job_queue._execute_with_lock(_find_job)
+        if not target_job:
+            logging.error("Could not find job to process after reset.")
+            sys.exit(1)
+        # Set worker_id and claimed_at
+        target_job['worker_id'] = worker_id
+        target_job['claimed_at'] = time.time()
+        # Save
+        def _update_job(queue):
+            for job in queue['jobs']:
+                if job['id'] == target_job['id']:
+                    job.update(target_job)
+                    return True
+            return False
+        job_queue._execute_with_lock(_update_job)
+        logging.info(f"Worker '{worker_id}' claimed job {target_job['id']} for file: {target_job['input_path']}")
+        # Process the job as usual
+        try:
+            transcoder = Transcoder(target_job, worker_id)
+            transcoder.run()
+        except Exception as e:
+            logging.error(f"Job {target_job['id']} failed during transcoding.")
+        sys.exit(0)
 
     while True:
         job = job_queue.claim_next_available_job(worker_id)
