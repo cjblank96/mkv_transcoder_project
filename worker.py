@@ -68,8 +68,10 @@ def main():
         logging.info(f"Worker '{worker_id}' claimed job {target_job['id']} for file: {target_job['input_path']}")
         # Process the job as usual
         try:
-            transcoder = Transcoder(target_job, worker_id)
-            transcoder.run()
+            # Quote the path for shell compatibility
+            target_job['input_path'] = f'"{target_job["input_path"]}"'
+            transcoder = Transcoder(target_job, job_queue)
+            transcoder.transcode()
         except Exception as e:
             logging.error(f"Job {target_job['id']} failed during transcoding.")
         sys.exit(0)
@@ -98,6 +100,8 @@ def main():
             logging.warning("No available job to process (job is None). Skipping processing.")
         else:
             try:
+                # Quote the path for shell compatibility
+                job['input_path'] = f'"{job["input_path"]}"'
                 transcoder = Transcoder(job=job, job_queue=job_queue)
                 success = transcoder.transcode()
 

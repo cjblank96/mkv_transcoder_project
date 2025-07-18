@@ -48,3 +48,11 @@
 2025-07-18 13:38:35,024 - INFO -   - Total: 3726.01 GB
 2025-07-18 13:38:35,025 - INFO -   - Used: 1734.02 GB
 2025-07-18 13:38:35,025 - INFO -   - Free: 1991.99 GB
+2025-07-18 14:04:03,421 - INFO - Job d5a2bd21-6a04-447a-a4fa-ae7de261f782 initialized.
+2025-07-18 14:04:03,422 - INFO - Original input file: Z:\landing_point\Video\Hell Or High Water\Hell Or High Water-FPL_MainFeature_DV_t00.mkv
+2025-07-18 14:04:03,433 - INFO - Final output file: Z:\landing_point\Video\Hell Or High Water\Hell Or High Water-FPL_MainFeature_DV_t00_DV_P8.mkv
+2025-07-18 14:04:03,436 - INFO - Local job staging directory: H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782
+2025-07-18 14:04:03,439 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-18 14:04:03,449 - INFO -   - Total: 3726.01 GB
+2025-07-18 14:04:03,460 - INFO -   - Used: 1734.02 GB
+2025-07-18 14:04:03,480 - INFO -   - Free: 1991.99 GB
