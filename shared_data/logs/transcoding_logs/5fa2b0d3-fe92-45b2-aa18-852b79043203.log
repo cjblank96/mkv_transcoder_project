@@ -1,0 +1,26 @@
+2025-07-17 22:05:49,919 - INFO - Job 5fa2b0d3-fe92-45b2-aa18-852b79043203 initialized.
+2025-07-17 22:05:49,920 - INFO - Original input file: Z:\landing_point\Test\test_file_dune.mkv
+2025-07-17 22:05:49,921 - INFO - Final output file: Z:\landing_point\Test\test_file_dune_DV_P8.mkv
+2025-07-17 22:05:49,922 - INFO - Local job staging directory: /mnt/staging\5fa2b0d3-fe92-45b2-aa18-852b79043203
+2025-07-17 22:05:49,931 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-17 22:05:49,932 - INFO -   - Total: 31663.04 GB
+2025-07-17 22:05:49,932 - INFO -   - Used: 3027.29 GB
+2025-07-17 22:05:49,933 - INFO -   - Free: 28635.74 GB
+2025-07-17 22:05:49,947 - INFO - Copying source file locally: from Z:\landing_point\Test\test_file_dune.mkv to /mnt/staging\5fa2b0d3-fe92-45b2-aa18-852b79043203\test_file_dune.mkv
+2025-07-17 22:05:56,609 - INFO - Copy successful.
+2025-07-17 22:05:56,658 - INFO - Attempting to get video metadata from /mnt/staging\5fa2b0d3-fe92-45b2-aa18-852b79043203\test_file_dune.mkv
+2025-07-17 22:05:56,808 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-17 22:05:56,853 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 223615 frames.
+2025-07-17 22:05:56,900 - INFO - Executing ffmpeg stream copy: ffmpeg -i /mnt/staging\5fa2b0d3-fe92-45b2-aa18-852b79043203\test_file_dune.mkv -map 0:v:0 -c copy -y /mnt/staging\5fa2b0d3-fe92-45b2-aa18-852b79043203\video_p7.hevc
+2025-07-17 22:08:30,749 - INFO - Job 5fa2b0d3-fe92-45b2-aa18-852b79043203 initialized.
+2025-07-17 22:08:30,750 - INFO - Original input file: Z:\landing_point\Test\test_file_dune.mkv
+2025-07-17 22:08:30,750 - INFO - Final output file: Z:\landing_point\Test\test_file_dune_DV_P8.mkv
+2025-07-17 22:08:30,751 - INFO - Local job staging directory: H:\staging\5fa2b0d3-fe92-45b2-aa18-852b79043203
+2025-07-17 22:08:30,751 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-17 22:08:30,752 - INFO -   - Total: 3726.01 GB
+2025-07-17 22:08:30,752 - INFO -   - Used: 1412.74 GB
+2025-07-17 22:08:30,753 - INFO -   - Free: 2313.27 GB
+2025-07-17 22:08:30,769 - INFO - Copying source file locally: from Z:\landing_point\Test\test_file_dune.mkv to H:\staging\5fa2b0d3-fe92-45b2-aa18-852b79043203\test_file_dune.mkv
+2025-07-17 22:08:33,550 - INFO - Copy successful.
+2025-07-17 22:08:33,605 - INFO - Step 'get_metadata' already completed. Skipping.
+2025-07-17 22:08:33,606 - INFO - Executing ffmpeg stream copy: ffmpeg -i H:\staging\5fa2b0d3-fe92-45b2-aa18-852b79043203\test_file_dune.mkv -map 0:v:0 -c copy -y H:\staging\5fa2b0d3-fe92-45b2-aa18-852b79043203\video_p7.hevc

@@ -119,6 +119,29 @@
             },
             "claimed_at": 1752730242.9077766,
             "completed_at": 1752730242.937502
+        },
+        {
+            "id": "5fa2b0d3-fe92-45b2-aa18-852b79043203",
+            "input_path": "Z:\\landing_point\\Test\\test_file_dune.mkv",
+            "job_type": "dolby_vision",
+            "status": "failed_permanent",
+            "worker_id": "CJBLANK",
+            "output_path": null,
+            "added_at": 1752811413.3392723,
+            "retries": 3,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            },
+            "claimed_at": 1752811891.8310058,
+            "completed_at": 1752811735.5336804
         }
     ]
 }

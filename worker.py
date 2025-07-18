@@ -49,33 +49,37 @@ def main():
 
         transcoder = None
         success = False
-        try:
-            transcoder = Transcoder(job=job, job_queue=job_queue)
-            success = transcoder.transcode()
+        if job is None:
+            logging.warning("No available job to process (job is None). Skipping processing.")
+        else:
+            try:
+                transcoder = Transcoder(job=job, job_queue=job_queue)
+                success = transcoder.transcode()
 
-            if success:
-                logging.info(f"Job {job['id']} completed successfully.")
-                job_queue.update_job_status(job['id'], 'done', transcoder.output_path)
-            else:
-                logging.error(f"Job {job['id']} failed during transcoding.")
-                job_queue.update_job_status(job['id'], 'failed')
+                if success:
+                    logging.info(f"Job {job['id']} completed successfully.")
+                    job_queue.update_job_status(job['id'], 'done', transcoder.output_path)
+                else:
+                    logging.error(f"Job {job['id']} failed during transcoding.")
+                    job_queue.update_job_status(job['id'], 'failed')
 
-        except BaseException as e:
-            # Catching BaseException to handle KeyboardInterrupt and other critical errors
-            if isinstance(e, KeyboardInterrupt):
-                logging.warning(f"Keyboard interrupt received. Marking job {job['id']} as failed and exiting.")
-            else:
-                logging.error(f"A critical error occurred while processing job {job['id']}: {e}", exc_info=True)
-            
-            if job:
-                job_queue.update_job_status(job['id'], 'failed')
-            
-            # Re-raise the exception to ensure the worker process terminates
-            raise
-        finally:
-            # Cleanup only on success to allow for faster retries of failed jobs
-            if transcoder and success:
-                transcoder.cleanup()
+            except BaseException as e:
+                # Catching BaseException to handle KeyboardInterrupt and other critical errors
+                job_id = job['id'] if job else 'UNKNOWN'
+                if isinstance(e, KeyboardInterrupt):
+                    logging.warning(f"Keyboard interrupt received. Marking job {job_id} as failed and exiting.")
+                else:
+                    logging.error(f"A critical error occurred while processing job {job_id}: {e}", exc_info=True)
+                
+                if job:
+                    job_queue.update_job_status(job_id, 'failed')
+                
+                # Re-raise the exception to ensure the worker process terminates
+                raise
+            finally:
+                # Cleanup only on success to allow for faster retries of failed jobs
+                if transcoder and success:
+                    transcoder.cleanup()
 
     logging.info(f"Worker '{worker_id}' finished all jobs and is now exiting.")
 

@@ -3,8 +3,7 @@ import subprocess
 import logging
 import shutil
 import re
-import pty
-import select
+
 from tqdm import tqdm
 
 from . import config

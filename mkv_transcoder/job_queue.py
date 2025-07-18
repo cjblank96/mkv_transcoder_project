@@ -4,7 +4,7 @@ import json
 import os
 import time
 import uuid
-import fcntl
+import portalocker
 from . import config
 
 class JobQueue:
@@ -20,7 +20,7 @@ class JobQueue:
         """A robust, file-locking wrapper to perform operations on the job queue."""
         try:
             with open(self.queue_file, 'r+') as f:
-                fcntl.flock(f, fcntl.LOCK_EX)
+                portalocker.lock(f, portalocker.LOCK_EX)
                 try:
                     # Read the current state
                     data = f.read()
@@ -42,7 +42,7 @@ class JobQueue:
                     json.dump(queue_data, f, indent=4)
                     return result
                 finally:
-                    fcntl.flock(f, fcntl.LOCK_UN)
+                    portalocker.unlock(f)
         except (IOError, json.JSONDecodeError) as e:
             print(f"ERROR: Could not access or parse job queue file at {self.queue_file}: {e}")
             # Attempt to reset the file to a clean state
@@ -172,8 +172,11 @@ class JobQueue:
                         if step_name in job.get('steps', {}):
                             job['steps'][step_name] = 'pending'
                     
-                    # Mark the job as 'failed' to ensure it gets re-processed
+                    # Reset job status and retries to allow re-processing, even if previously permanently failed
+                    if job.get('status') == 'failed_permanent':
+                        print(f"[ADMIN] Job {job['id']} was permanently failed but is being reset for re-run.")
                     job['status'] = 'failed'
+                    job['retries'] = 0
                     return True
             return False
         return self._execute_with_lock(_reset_op)

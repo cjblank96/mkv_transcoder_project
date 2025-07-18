@@ -1,6 +1,7 @@
 # This project uses one external Python package for progress bars.
 # Install it using: pip install -r requirements.txt
 tqdm
+portalocker
 
 # The required dependencies are system-level command-line tools.
 # Please see the README.md for instructions on how to install:

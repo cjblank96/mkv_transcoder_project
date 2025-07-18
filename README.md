@@ -66,7 +66,102 @@ All configuration is handled in `mkv_transcoder/config.py`. You can either edit 
 -   **`TEMP_DIR_BASE`**: The base directory on each worker VM for storing large intermediate HEVC files (e.g., `/var/tmp/mkv_transcoder`). **Ensure this directory exists and has sufficient space (e.g., >100GB).**
 -   **`RAM_TEMP_DIR`**: The RAM-based directory (`/dev/shm` on Linux) for storing small temporary files.
 
+## Advanced Configuration and Reference
+
+### Environment Variables
+
+- `UNRAID_USERNAME`: Username for Unraid share access (default: `cjblank`)
+- `UNRAID_PASSWORD`: Password for Unraid share access (default: see `config.py`)
+- `UNRAID_HOST`: IP address of Unraid server (default: `10.50.50.218`)
+- `UNRAID_SHARE_NAME`: Name of the Unraid share (default: `UNRAID_SHARE`)
+- `UNRAID_MOUNT_PATH`: Base mount path for Unraid share (default: `/mnt/unraid`)
+- `MKV_SHARED_DIR`: Path to shared directory for job queue and logs (default: `<project_root>/shared_data`)
+- `TRANSCODER_RAM_DIR`: RAM-based temp directory (default: `/dev/shm`)
+
+### Advanced Configuration
+
+- `TEMP_DIR_BASE`: Base directory for large intermediate files (default: `/mnt/unraid/mkv_transcoder_project/temp`)
+- `STAGING_DIR`: Platform-dependent staging directory
+    - Windows: `H:\staging`
+    - Linux: `/mnt/staging`
+- `JOB_QUEUE_PATH`: Path to the job queue JSON (default: `$MKV_SHARED_DIR/job_queue.json`)
+- `LOCK_FILE_PATH`: Path to the job queue lock file (default: `$MKV_SHARED_DIR/job_queue.lock`)
+- `LOG_DIR`: Path to logs (default: `$MKV_SHARED_DIR/logs`)
+- `STALE_JOB_THRESHOLD_HOURS`: (default: 2)
+- `TRANSCODER_VMS`: List of VM IPs (default: `10.50.50.110-113`)
+
+### Job Types and Pipeline Steps
+
+- **Job Types:**
+    - `dolby_vision`: Full pipeline (default for new jobs)
+    - `standard`: Reduced steps (copy, get_metadata, reencode_x265, move_final)
+- **Pipeline Steps:**
+    - `copy_source`, `get_metadata`, `extract_p7`, `convert_p8`, `extract_rpu`, `reencode_x265`, `inject_rpu`, `remux_final`, `move_final`
+    - `standard` jobs skip some steps
+
+### File and Directory Structure
+
+- `job_queue.json` and `job_queue.lock`: Located in `$MKV_SHARED_DIR`
+- Logs: `$MKV_SHARED_DIR/logs` (per-job logs in `logs/transcoding_logs/`)
+- Staging files: In `STAGING_DIR/<job_id>`
+- Temp/intermediate files: In `TEMP_DIR_BASE`
+
+### Logging
+
+- Each job has a dedicated log file in `logs/transcoding_logs/`
+- Logs include: job initialization, file paths, disk space, command execution, errors
+
+### Dependencies
+
+- **Python:** `tqdm`, `portalocker`
+- **System:** `ffmpeg`, `mkvtoolnix` (`mkvmerge`), `dovi_tool`
+
+### Limitations & Expectations
+
+- All VMs must have access to the same shared file system
+- Default paths are for Linux; Windows support is platform-aware
+- Only `.mkv` files are supported for the pipeline
+- Jobs are identified by UUID and input path
+
+---
+
 ## How to Run the Pipeline
+
+---
+
+## Command-Line Flags
+
+### `scanner.py`
+- `--full-scan` &nbsp; &nbsp; Scan the entire media directory (`config.VIDEO_LANDING_POINT`) and add all MKV files to the job queue.
+- `--dry-run` &nbsp; &nbsp; Add only the test file to the queue for a dry run.
+- `--file PATH [PATH ...]` &nbsp; &nbsp; Add one or more specific MKV files to the queue by their full path.
+
+> **Note:** These flags are mutually exclusive—use only one per invocation.
+
+### `worker.py`
+- `--force-rerun STEP_INDEX` &nbsp; &nbsp; Force the job to re-run starting from the specified step index (1-8).
+
+---
+
+## Handling Failed and Permanently Failed Jobs
+
+- Each job tracks its retry count. If a job fails more than a set number of times (default: 3), it is marked as `failed_permanent` (permanently failed) and will not be picked up by workers again. This prevents infinite failure loops.
+- The job queue and worker scripts are designed to skip jobs with `failed_permanent` status during normal operation.
+
+---
+
+## Admin Override: Forcibly Resetting Jobs
+
+If you wish to re-run a job that has been marked as permanently failed (status `failed_permanent`), you can use the `--force-rerun` flag with `worker.py`:
+
+```bash
+python worker.py --force-rerun <STEP_INDEX>
+```
+
+- When this flag is used, the job's status and retry count are reset, even if it was previously marked as permanently failed. A message will be printed indicating that an admin override is occurring.
+- This allows you to manually retry jobs that were previously locked out, while still protecting against runaway retries in normal unattended operation.
+
+---
 
 ### Step 1: Scan for Media and Populate the Queue
 
