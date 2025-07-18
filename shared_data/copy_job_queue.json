@@ -3,22 +3,22 @@
         {
             "id": "2cb955c6-dba6-497a-9eb3-92944d5bd80c",
             "input_path": "/mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv",
-            "status": "done",
+            "status": "running",
             "worker_id": "ffmpeg-vm1",
-            "output_path": "/mnt/unraid/landing_point/Video/Dune/Dune_t00_x265.mkv",
+            "output_path": null,
             "added_at": 1752687308.9565156,
             "steps": {
                 "copy_source": "completed",
                 "extract_p7": "completed",
                 "convert_p8": "completed",
                 "extract_rpu": "completed",
-                "reencode_x265": "completed",
+                "reencode_x265": "failed",
                 "inject_rpu": "pending",
                 "remux_final": "pending",
-                "move_final": "completed"
+                "move_final": "pending"
             },
             "claimed_at": 1752711057.465166,
-            "completed_at": 1752782119.5171943,
+            "completed_at": 1752707676.2957497,
             "retries": 1
         },
         {
@@ -43,19 +43,18 @@
             "id": "4661788c-6483-4994-98bf-893eccabe9fa",
             "input_path": "/mnt/unraid/landing_point/Video/Blade Runner 2049/Blade Runner 2049_t02.mkv",
             "job_type": "standard",
-            "status": "done",
+            "status": "running",
             "worker_id": "ffmpeg-vm2",
-            "output_path": "/mnt/unraid/landing_point/Video/Blade Runner 2049/Blade Runner 2049_t02_x265.mkv",
+            "output_path": null,
             "added_at": 1752710938.180937,
             "retries": 1,
             "steps": {
                 "copy_source": "completed",
                 "get_metadata": "completed",
-                "reencode_x265": "completed",
-                "move_final": "completed"
+                "reencode_x265": "pending",
+                "move_final": "pending"
             },
-            "claimed_at": 1752710999.9120266,
-            "completed_at": 1752771642.970599
+            "claimed_at": 1752710999.9120266
         },
         {
             "id": "bb2332b8-a3ea-42ce-a34a-f2ccf684f7fe",
@@ -78,9 +77,9 @@
             "id": "1a08d8b5-0aa8-4661-a3f9-5e1826f31f73",
             "input_path": "/mnt/unraid/landing_point/Video/Chinatown/Chinatown-FPL_MainFeature_t12.mkv",
             "job_type": "dolby_vision",
-            "status": "done",
+            "status": "running",
             "worker_id": "ffmpeg-vm4",
-            "output_path": "/mnt/unraid/landing_point/Video/Chinatown/Chinatown-FPL_MainFeature_t12_DV_P8.mkv",
+            "output_path": null,
             "added_at": 1752710991.597579,
             "retries": 1,
             "steps": {
@@ -89,36 +88,12 @@
                 "extract_p7": "completed",
                 "convert_p8": "completed",
                 "extract_rpu": "completed",
-                "reencode_x265": "completed",
-                "inject_rpu": "completed",
-                "remux_final": "completed",
-                "move_final": "completed"
-            },
-            "claimed_at": 1752711024.702056,
-            "completed_at": 1752786285.352941
-        },
-        {
-            "id": "157c658b-a144-4a44-beb8-ef6532047475",
-            "input_path": "/mnt/unraid/landing_point/Video/Godzilla Minus One/Godzilla Minus One-SEG FPL_MainFeature_t00.mkv",
-            "job_type": "dolby_vision",
-            "status": "failed_permanent",
-            "worker_id": "CJBLANK",
-            "output_path": null,
-            "added_at": 1752729405.5980124,
-            "retries": 3,
-            "steps": {
-                "copy_source": "completed",
-                "get_metadata": "completed",
-                "extract_p7": "completed",
-                "convert_p8": "failed",
-                "extract_rpu": "pending",
                 "reencode_x265": "pending",
                 "inject_rpu": "pending",
                 "remux_final": "pending",
                 "move_final": "pending"
             },
-            "claimed_at": 1752730242.9077766,
-            "completed_at": 1752730242.937502
+            "claimed_at": 1752711024.702056
         }
     ]
 }

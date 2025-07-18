@@ -1,0 +1,724 @@
+2025-07-16 19:34:31,436 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 19:34:31,437 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 19:34:31,437 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 19:34:31,437 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 19:34:31,437 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 19:34:31,437 - INFO -   - Total: 491.08 GB
+2025-07-16 19:34:31,437 - INFO -   - Used: 0.00 GB
+2025-07-16 19:34:31,437 - INFO -   - Free: 466.07 GB
+2025-07-16 19:34:33,935 - INFO - Copying source file locally: from /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv to /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 19:45:51,494 - INFO - Copy successful.
+2025-07-16 19:45:51,494 - INFO - Attempt 1: Checking for 'NUMBER_OF_FRAMES' tag for /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv...
+2025-07-16 19:45:51,495 - INFO - Executing command: ffprobe -v quiet -show_format -show_streams /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 19:45:51,527 - INFO - Successfully found 223615 frames from 'NUMBER_OF_FRAMES' tag.
+2025-07-16 19:45:51,528 - INFO - Extracting Profile 7 HEVC stream...
+2025-07-16 19:45:51,529 - INFO - Executing command: ffmpeg -i /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv -map 0:v:0 -c copy -y /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/video_p7.hevc
+2025-07-16 19:53:06,530 - INFO - Extracting Profile 7 HEVC stream successful.
+2025-07-16 19:53:06,532 - INFO - Converting P7 to P8.1...
+2025-07-16 19:53:06,533 - INFO - Executing command: dovi_tool -m 2 convert --discard -i /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/video_p7.hevc -o /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/video_p8.hevc
+2025-07-16 20:01:09,467 - INFO - Converting P7 to P8.1 successful.
+2025-07-16 20:01:09,469 - INFO - Extracting RPU from P8.1 stream...
+2025-07-16 20:01:09,470 - INFO - Executing command: dovi_tool extract-rpu -i /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/video_p8.hevc -o /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/rpu.bin
+2025-07-16 20:05:39,918 - INFO - Extracting RPU from P8.1 stream successful.
+2025-07-16 20:05:39,920 - INFO - Re-encoding HEVC stream with progress...
+2025-07-16 20:05:39,921 - INFO - Executing command: ffmpeg -fflags +genpts -i /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/video_p8.hevc -an -sn -dn -c:v libx265 -preset medium -crf 18 -threads 10 -x265-params pools=4 -y /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/video_reencoded.hevc
+2025-07-16 21:40:12,666 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:40:12,667 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:40:12,668 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:40:12,668 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:40:12,669 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:40:12,669 - INFO -   - Total: 491.08 GB
+2025-07-16 21:40:12,670 - INFO -   - Used: 265.06 GB
+2025-07-16 21:40:12,670 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:25,779 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:25,780 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:25,781 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:25,781 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:25,782 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:25,783 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:25,783 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:25,784 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:25,784 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:25,785 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:25,826 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:25,849 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:25,849 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:25,849 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:25,849 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:25,849 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:25,849 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:25,849 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:25,849 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:25,849 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:25,850 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:25,870 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:25,894 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:25,894 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:25,894 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:25,894 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:25,894 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:25,894 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:25,894 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:25,894 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:25,894 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:25,894 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:25,915 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:25,937 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:25,938 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:25,938 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:25,938 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:25,938 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:25,938 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:25,938 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:25,938 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:25,938 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:25,938 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:25,960 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:25,983 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:25,983 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:25,984 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:25,984 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:25,984 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:25,984 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:25,984 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:25,984 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:25,984 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:25,984 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,006 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,029 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,029 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,029 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,029 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,030 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,030 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,030 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,030 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,030 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,030 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,051 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,075 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,075 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,075 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,075 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,075 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,075 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,075 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,075 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,075 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,075 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,096 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,120 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,120 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,120 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,120 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,120 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,121 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,121 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,121 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,121 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,121 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,142 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,167 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,167 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,167 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,167 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,167 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,167 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,167 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,167 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,167 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,167 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,189 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,212 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,212 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,212 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,212 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,212 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,212 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,212 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,212 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,212 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,212 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,233 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,257 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,257 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,257 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,257 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,257 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,257 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,257 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,257 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,257 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,257 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,279 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,302 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,302 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,303 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,303 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,303 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,303 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,303 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,303 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,303 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,303 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,324 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,345 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,345 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,346 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,346 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,346 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,346 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,346 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,346 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,346 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,346 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,367 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,390 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,390 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,390 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,390 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,390 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,390 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,390 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,390 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,390 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,390 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,412 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,435 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,436 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,436 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,436 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,436 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,436 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,436 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,436 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,436 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,436 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,457 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,480 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,480 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,480 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,480 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,480 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,480 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,480 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,480 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,481 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,481 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,501 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,525 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,525 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,525 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,525 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,525 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,525 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,525 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,525 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,525 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,525 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,546 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,570 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,570 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,570 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,571 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,571 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,571 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,571 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,571 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,571 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,571 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,592 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,614 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,614 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,614 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,614 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,614 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,614 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,615 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,615 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,615 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,615 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,636 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,662 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,662 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,662 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,662 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,662 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,662 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,662 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,662 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,663 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,663 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,685 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,710 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,710 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,711 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,711 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,711 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,711 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,711 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,711 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,711 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,711 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,732 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,756 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,756 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,756 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,756 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,756 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,756 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,756 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,757 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,757 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,757 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,777 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,804 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,804 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,804 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,804 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,804 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,804 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,804 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,805 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,805 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,805 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,826 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,847 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,847 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,847 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,847 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,847 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,847 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,847 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,847 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,847 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,847 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,869 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,891 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,891 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,891 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,892 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,892 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,892 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,892 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,892 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,892 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,892 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,913 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,935 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,935 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,935 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,935 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,935 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,935 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,935 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,936 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,936 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,936 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,956 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:26,978 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:26,978 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:26,978 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:26,978 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:26,978 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:26,978 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:26,978 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:26,978 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:26,978 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:26,979 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:26,999 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,022 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,022 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,022 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,022 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,023 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,023 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,023 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,023 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,023 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,023 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,044 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,065 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,065 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,066 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,066 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,066 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,066 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,066 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,066 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,066 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,066 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,087 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,109 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,109 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,109 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,109 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,109 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,109 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,109 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,109 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,109 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,110 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,131 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,153 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,154 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,154 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,154 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,154 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,154 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,154 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,154 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,154 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,154 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,175 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,197 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,197 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,197 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,197 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,197 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,198 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,198 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,198 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,198 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,198 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,218 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,241 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,241 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,241 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,241 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,241 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,241 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,241 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,241 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,241 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,241 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,262 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,285 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,285 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,285 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,285 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,285 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,285 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,285 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,285 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,285 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,285 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,306 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,329 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,329 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,329 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,329 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,329 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,329 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,329 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,329 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,329 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,329 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,350 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,372 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,372 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,372 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,372 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,372 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,372 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,372 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,372 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,372 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,372 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,393 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,416 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,417 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,417 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,417 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,417 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,417 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,417 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,417 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,417 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,417 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,438 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,460 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,460 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,460 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,460 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,460 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,460 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,460 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,460 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,460 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,460 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,481 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,503 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,503 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,503 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,504 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,504 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,504 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,504 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,504 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,504 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,504 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,525 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,547 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,547 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,547 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,548 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,548 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,548 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,548 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,548 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,548 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,548 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,569 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,591 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,591 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,591 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,591 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,591 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,592 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,592 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,592 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,592 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,592 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,613 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,635 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,635 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,635 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,635 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,635 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,635 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,635 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,635 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,635 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,635 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,656 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,681 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,681 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,681 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,681 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,681 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,681 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,681 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,681 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,681 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,682 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,702 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,726 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,726 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,726 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,727 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,727 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,727 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,727 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,727 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,727 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,727 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,748 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,770 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,770 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,770 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,771 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,771 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,771 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,771 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,771 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,771 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,771 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,791 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,818 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,818 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,819 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,819 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,819 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,819 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,819 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,819 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,819 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,819 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,839 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,862 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,862 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,862 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,862 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,862 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,862 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,862 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,862 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,862 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,862 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,883 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,904 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,904 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,904 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,904 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,904 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,905 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,905 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,905 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,905 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,905 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,925 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,948 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,948 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,948 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,948 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,948 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,948 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,948 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,948 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,948 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,948 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:27,969 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:27,992 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:27,992 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:27,992 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:27,992 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:27,992 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:27,992 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:27,992 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:27,992 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:27,992 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:27,992 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:28,013 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:28,034 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:28,034 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:28,034 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:28,034 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:28,035 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:28,035 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:28,035 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:28,035 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:28,035 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:28,035 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:28,055 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:28,078 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:28,078 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:28,079 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:28,079 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:28,079 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:28,079 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:28,079 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:28,079 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:28,079 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:28,079 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:28,100 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:28,122 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:28,122 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:28,122 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:28,122 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:28,122 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:28,122 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:28,122 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:28,122 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:28,122 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:28,123 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:28,143 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:28,165 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:28,165 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:28,165 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:28,165 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:28,165 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:28,165 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:28,165 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:28,165 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:28,166 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:28,166 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:28,187 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:28,209 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:28,209 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:28,209 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:28,209 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:28,209 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:28,209 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:28,209 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:28,209 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:28,209 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:28,209 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:28,230 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:28,252 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:28,253 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:28,253 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:28,253 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:28,253 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:28,253 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:28,253 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:28,253 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:28,253 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:28,253 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:28,274 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:28,296 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:28,296 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:28,296 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:28,296 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:28,296 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:28,296 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:28,296 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:28,297 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:28,297 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:28,297 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:43:28,317 - ERROR - Failed to determine total frames or frame rate.
+2025-07-16 21:43:28,341 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:43:28,341 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:43:28,341 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:43:28,341 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:43:28,341 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:43:28,341 - INFO -   - Total: 491.08 GB
+2025-07-16 21:43:28,341 - INFO -   - Used: 265.06 GB
+2025-07-16 21:43:28,341 - INFO -   - Free: 201.00 GB
+2025-07-16 21:43:28,341 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:43:28,341 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:59:00,981 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 21:59:00,982 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 21:59:00,983 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 21:59:00,983 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 21:59:00,984 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 21:59:00,984 - INFO -   - Total: 491.08 GB
+2025-07-16 21:59:00,985 - INFO -   - Used: 265.06 GB
+2025-07-16 21:59:00,985 - INFO -   - Free: 201.00 GB
+2025-07-16 21:59:00,986 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 21:59:00,986 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 21:59:01,007 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-16 21:59:01,028 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 223615 frames.
+2025-07-16 21:59:01,039 - INFO - Step 'extract_p7' already completed. Skipping.
+2025-07-16 21:59:01,039 - INFO - Step 'convert_p8' already completed. Skipping.
+2025-07-16 21:59:01,040 - INFO - Step 'extract_rpu' already completed. Skipping.
+2025-07-16 21:59:01,040 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/video_p8.hevc -an -sn -dn -c:v libx265 -preset medium -crf 18 -threads 9 -x265-params pools=9 -y /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/video_reencoded.hevc
+2025-07-16 23:04:33,377 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 23:04:33,378 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 23:04:33,379 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 23:04:33,379 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 23:04:33,379 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:04:33,380 - INFO -   - Total: 491.08 GB
+2025-07-16 23:04:33,380 - INFO -   - Used: 0.00 GB
+2025-07-16 23:04:33,381 - INFO -   - Free: 466.07 GB
+2025-07-16 23:04:33,388 - INFO - Copying source file locally: from /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv to /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 23:07:51,726 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 23:07:51,727 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 23:07:51,728 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 23:07:51,728 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 23:07:51,729 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:07:51,729 - INFO -   - Total: 491.08 GB
+2025-07-16 23:07:51,730 - INFO -   - Used: 265.16 GB
+2025-07-16 23:07:51,730 - INFO -   - Free: 200.91 GB
+2025-07-16 23:07:51,731 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 23:07:51,731 - INFO - Attempting to get video metadata from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 23:07:51,834 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-16 23:07:51,855 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 223615 frames.
+2025-07-16 23:07:51,876 - INFO - Step 'extract_p7' already completed. Skipping.
+2025-07-16 23:07:51,876 - INFO - Step 'convert_p8' already completed. Skipping.
+2025-07-16 23:07:51,876 - INFO - Step 'extract_rpu' already completed. Skipping.
+2025-07-16 23:07:51,876 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/video_p8.hevc -an -sn -dn -c:v libx265 -preset medium -crf 18 -threads 9 -x265-params pools=9 -y /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/video_reencoded.hevc
+2025-07-17 00:10:57,494 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-17 00:10:57,494 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-17 00:10:57,495 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-17 00:10:57,495 - INFO - Local job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-17 00:10:57,496 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-17 00:10:57,496 - INFO -   - Total: 491.08 GB
+2025-07-17 00:10:57,497 - INFO -   - Used: 265.13 GB
+2025-07-17 00:10:57,497 - INFO -   - Free: 200.94 GB
+2025-07-17 00:10:57,498 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-17 00:10:57,498 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv -map 0 -c:v libx265 -preset medium -crf 18 -threads 9 -x265-params pools=9 -c:a copy -c:s copy -y /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00_x265.mkv
+2025-07-17 19:54:18,470 - INFO - Successfully completed: Re-encoding to x265
+2025-07-17 19:54:18,498 - INFO - Moving final file from /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00_x265.mkv to /mnt/unraid/landing_point/Video/Dune/Dune_t00_x265.mkv
+2025-07-17 19:55:19,463 - INFO - Move successful.
+2025-07-17 19:55:19,523 - INFO - Cleaning up job staging directory: /mnt/staging/2cb955c6-dba6-497a-9eb3-92944d5bd80c

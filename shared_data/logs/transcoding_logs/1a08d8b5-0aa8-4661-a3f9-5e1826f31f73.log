@@ -1,0 +1,37 @@
+2025-07-17 00:10:24,730 - INFO - Job 1a08d8b5-0aa8-4661-a3f9-5e1826f31f73 initialized.
+2025-07-17 00:10:24,730 - INFO - Original input file: /mnt/unraid/landing_point/Video/Chinatown/Chinatown-FPL_MainFeature_t12.mkv
+2025-07-17 00:10:24,730 - INFO - Final output file: /mnt/unraid/landing_point/Video/Chinatown/Chinatown-FPL_MainFeature_t12_DV_P8.mkv
+2025-07-17 00:10:24,730 - INFO - Local job staging directory: /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73
+2025-07-17 00:10:24,730 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-17 00:10:24,731 - INFO -   - Total: 491.08 GB
+2025-07-17 00:10:24,731 - INFO -   - Used: 0.00 GB
+2025-07-17 00:10:24,731 - INFO -   - Free: 466.07 GB
+2025-07-17 00:10:24,738 - INFO - Copying source file locally: from /mnt/unraid/landing_point/Video/Chinatown/Chinatown-FPL_MainFeature_t12.mkv to /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/Chinatown-FPL_MainFeature_t12.mkv
+2025-07-17 01:04:08,885 - INFO - Copy successful.
+2025-07-17 01:04:08,922 - INFO - Attempting to get video metadata from /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/Chinatown-FPL_MainFeature_t12.mkv
+2025-07-17 01:04:09,051 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-17 01:04:09,070 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 187721 frames.
+2025-07-17 01:04:09,087 - INFO - Executing ffmpeg stream copy: ffmpeg -i /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/Chinatown-FPL_MainFeature_t12.mkv -map 0:v:0 -c copy -y /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/video_p7.hevc
+2025-07-17 01:12:03,658 - INFO - Successfully completed: Extracting P7 stream
+2025-07-17 01:12:03,685 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/video_p7.hevc -o /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/video_p8.hevc
+2025-07-17 01:20:53,241 - INFO - Successfully completed: Converting to P8.1
+2025-07-17 01:20:53,278 - INFO - Executing dovi_tool command: dovi_tool extract-rpu -i /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/video_p8.hevc -o /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/rpu.bin
+2025-07-17 01:25:47,794 - INFO - Extracting RPU stdout:
+Reordering metadata... Done.
+
+2025-07-17 01:25:47,799 - INFO - Successfully completed: Extracting RPU
+2025-07-17 01:25:47,830 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/video_p8.hevc -an -sn -dn -c:v libx265 -preset medium -crf 18 -threads 9 -x265-params pools=9 -y /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/video_reencoded.hevc
+2025-07-17 20:52:14,766 - INFO - Successfully completed: Re-encoding to x265
+2025-07-17 20:52:14,787 - INFO - Executing dovi_tool command: dovi_tool inject-rpu -i /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/video_reencoded.hevc --rpu-in /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/rpu.bin -o /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/video_final_with_rpu.hevc
+2025-07-17 20:56:59,440 - INFO - Injecting RPU stdout:
+Parsing RPU file...
+Processing input video for frame order info...
+Rewriting file with interleaved RPU NALs..
+
+2025-07-17 20:56:59,444 - INFO - Successfully completed: Injecting RPU
+2025-07-17 20:56:59,462 - INFO - Remuxing final MKV...
+2025-07-17 20:56:59,463 - INFO - Executing command: mkvmerge -o /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/Chinatown-FPL_MainFeature_t12_DV_P8.mkv --language 0:eng /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/video_final_with_rpu.hevc --no-video /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/Chinatown-FPL_MainFeature_t12.mkv
+2025-07-17 21:03:53,466 - INFO - Remuxing final MKV successful.
+2025-07-17 21:03:53,493 - INFO - Moving final file from /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73/Chinatown-FPL_MainFeature_t12_DV_P8.mkv to /mnt/unraid/landing_point/Video/Chinatown/Chinatown-FPL_MainFeature_t12_DV_P8.mkv
+2025-07-17 21:04:45,327 - INFO - Move successful.
+2025-07-17 21:04:45,358 - INFO - Cleaning up job staging directory: /mnt/staging/1a08d8b5-0aa8-4661-a3f9-5e1826f31f73

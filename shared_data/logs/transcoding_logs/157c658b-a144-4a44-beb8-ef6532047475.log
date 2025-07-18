@@ -1,0 +1,79 @@
+2025-07-16 23:18:55,338 - INFO - Job 157c658b-a144-4a44-beb8-ef6532047475 initialized.
+2025-07-16 23:18:55,338 - INFO - Original input file: /mnt/unraid/landing_point/Video/Godzilla Minus One/Godzilla Minus One-SEG FPL_MainFeature_t00.mkv
+2025-07-16 23:18:55,338 - INFO - Final output file: /mnt/unraid/landing_point/Video/Godzilla Minus One/Godzilla Minus One-SEG FPL_MainFeature_t00_DV_P8.mkv
+2025-07-16 23:18:55,338 - INFO - Local job staging directory: /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475
+2025-07-16 23:18:55,338 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:18:55,339 - INFO -   - Total: 1006.85 GB
+2025-07-16 23:18:55,339 - INFO -   - Used: 8.20 GB
+2025-07-16 23:18:55,339 - INFO -   - Free: 947.44 GB
+2025-07-16 23:18:55,350 - INFO - Copying source file locally: from /mnt/unraid/landing_point/Video/Godzilla Minus One/Godzilla Minus One-SEG FPL_MainFeature_t00.mkv to /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475/Godzilla Minus One-SEG FPL_MainFeature_t00.mkv
+2025-07-16 23:29:53,133 - INFO - Copy successful.
+2025-07-16 23:29:53,167 - INFO - Attempting to get video metadata from /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475/Godzilla Minus One-SEG FPL_MainFeature_t00.mkv
+2025-07-16 23:29:53,291 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-16 23:29:53,337 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 179514 frames.
+2025-07-16 23:29:53,354 - INFO - Executing ffmpeg stream copy: ffmpeg -i /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475/Godzilla Minus One-SEG FPL_MainFeature_t00.mkv -map 0:v:0 -c copy -y /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475/video_p7.hevc
+2025-07-16 23:30:42,748 - INFO - Successfully completed: Extracting P7 stream
+2025-07-16 23:30:42,773 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475/video_p7.hevc -o /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475/video_p8.hevc
+2025-07-16 23:30:42,776 - ERROR - An unexpected error occurred while running dovi_tool: dovi_tool -m 2 convert --discard -i /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475/video_p7.hevc -o /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475/video_p8.hevc
+Traceback (most recent call last):
+  File "/mnt/unraid/mkv_transcoder_project/mkv_transcoder/transcoder.py", line 241, in _run_dovi_tool_with_progress
+    process = subprocess.run(command, capture_output=True, text=True, encoding='utf-8', check=False)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'dovi_tool'
+2025-07-16 23:30:42,864 - INFO - Job 157c658b-a144-4a44-beb8-ef6532047475 initialized.
+2025-07-16 23:30:42,865 - INFO - Original input file: /mnt/unraid/landing_point/Video/Godzilla Minus One/Godzilla Minus One-SEG FPL_MainFeature_t00.mkv
+2025-07-16 23:30:42,866 - INFO - Final output file: /mnt/unraid/landing_point/Video/Godzilla Minus One/Godzilla Minus One-SEG FPL_MainFeature_t00_DV_P8.mkv
+2025-07-16 23:30:42,867 - INFO - Local job staging directory: /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475
+2025-07-16 23:30:42,867 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:30:42,868 - INFO -   - Total: 1006.85 GB
+2025-07-16 23:30:42,869 - INFO -   - Used: 137.47 GB
+2025-07-16 23:30:42,870 - INFO -   - Free: 818.16 GB
+2025-07-16 23:30:42,870 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 23:30:42,875 - INFO - Step 'get_metadata' already completed. Skipping.
+2025-07-16 23:30:42,876 - INFO - Step 'extract_p7' already completed. Skipping.
+2025-07-16 23:30:42,877 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475/video_p7.hevc -o /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475/video_p8.hevc
+2025-07-16 23:30:42,879 - ERROR - An unexpected error occurred while running dovi_tool: dovi_tool -m 2 convert --discard -i /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475/video_p7.hevc -o /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475/video_p8.hevc
+Traceback (most recent call last):
+  File "/mnt/unraid/mkv_transcoder_project/mkv_transcoder/transcoder.py", line 241, in _run_dovi_tool_with_progress
+    process = subprocess.run(command, capture_output=True, text=True, encoding='utf-8', check=False)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'dovi_tool'
+2025-07-16 23:30:42,921 - INFO - Job 157c658b-a144-4a44-beb8-ef6532047475 initialized.
+2025-07-16 23:30:42,921 - INFO - Original input file: /mnt/unraid/landing_point/Video/Godzilla Minus One/Godzilla Minus One-SEG FPL_MainFeature_t00.mkv
+2025-07-16 23:30:42,921 - INFO - Final output file: /mnt/unraid/landing_point/Video/Godzilla Minus One/Godzilla Minus One-SEG FPL_MainFeature_t00_DV_P8.mkv
+2025-07-16 23:30:42,921 - INFO - Local job staging directory: /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475
+2025-07-16 23:30:42,921 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:30:42,921 - INFO -   - Total: 1006.85 GB
+2025-07-16 23:30:42,921 - INFO -   - Used: 137.47 GB
+2025-07-16 23:30:42,921 - INFO -   - Free: 818.16 GB
+2025-07-16 23:30:42,921 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 23:30:42,921 - INFO - Step 'get_metadata' already completed. Skipping.
+2025-07-16 23:30:42,922 - INFO - Step 'extract_p7' already completed. Skipping.
+2025-07-16 23:30:42,922 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475/video_p7.hevc -o /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475/video_p8.hevc
+2025-07-16 23:30:42,923 - ERROR - An unexpected error occurred while running dovi_tool: dovi_tool -m 2 convert --discard -i /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475/video_p7.hevc -o /mnt/staging/157c658b-a144-4a44-beb8-ef6532047475/video_p8.hevc
+Traceback (most recent call last):
+  File "/mnt/unraid/mkv_transcoder_project/mkv_transcoder/transcoder.py", line 241, in _run_dovi_tool_with_progress
+    process = subprocess.run(command, capture_output=True, text=True, encoding='utf-8', check=False)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'dovi_tool'

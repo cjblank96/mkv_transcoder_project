@@ -1,0 +1,14 @@
+2025-07-17 00:10:10,268 - INFO - Job bb2332b8-a3ea-42ce-a34a-f2ccf684f7fe initialized.
+2025-07-17 00:10:10,268 - INFO - Original input file: /mnt/unraid/landing_point/Video/American Gangster/American Gangster_t01.mkv
+2025-07-17 00:10:10,268 - INFO - Final output file: /mnt/unraid/landing_point/Video/American Gangster/American Gangster_t01_DV_P8.mkv
+2025-07-17 00:10:10,268 - INFO - Local job staging directory: /mnt/staging/bb2332b8-a3ea-42ce-a34a-f2ccf684f7fe
+2025-07-17 00:10:10,268 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-17 00:10:10,268 - INFO -   - Total: 491.08 GB
+2025-07-17 00:10:10,269 - INFO -   - Used: 0.00 GB
+2025-07-17 00:10:10,269 - INFO -   - Free: 466.07 GB
+2025-07-17 00:10:10,277 - INFO - Copying source file locally: from /mnt/unraid/landing_point/Video/American Gangster/American Gangster_t01.mkv to /mnt/staging/bb2332b8-a3ea-42ce-a34a-f2ccf684f7fe/American Gangster_t01.mkv
+2025-07-17 01:03:48,104 - INFO - Copy successful.
+2025-07-17 01:03:48,138 - INFO - Attempting to get video metadata from /mnt/staging/bb2332b8-a3ea-42ce-a34a-f2ccf684f7fe/American Gangster_t01.mkv
+2025-07-17 01:03:48,358 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-17 01:03:48,371 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 252890 frames.
+2025-07-17 01:03:48,384 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i /mnt/staging/bb2332b8-a3ea-42ce-a34a-f2ccf684f7fe/American Gangster_t01.mkv -map 0 -c:v libx265 -preset medium -crf 18 -threads 9 -x265-params pools=9 -c:a copy -c:s copy -y /mnt/staging/bb2332b8-a3ea-42ce-a34a-f2ccf684f7fe/American Gangster_t01_x265.mkv

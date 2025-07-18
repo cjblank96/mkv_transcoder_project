@@ -1,0 +1,230 @@
+2025-07-16 23:08:00,295 - INFO - Job 54589cf5-2733-46bb-9c89-c0d79c17503c initialized.
+2025-07-16 23:08:00,295 - INFO - Original input file: /mnt/unraid/landing_point/Test/test_file_dune.mkv
+2025-07-16 23:08:00,295 - INFO - Final output file: /mnt/unraid/landing_point/Test/test_file_dune_DV_P8.mkv
+2025-07-16 23:08:00,296 - INFO - Local job staging directory: /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c
+2025-07-16 23:08:00,296 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:08:00,296 - INFO -   - Total: 491.08 GB
+2025-07-16 23:08:00,296 - INFO -   - Used: 6.37 GB
+2025-07-16 23:08:00,296 - INFO -   - Free: 459.69 GB
+2025-07-16 23:08:00,302 - INFO - Copying source file locally: from /mnt/unraid/landing_point/Test/test_file_dune.mkv to /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune.mkv
+2025-07-16 23:08:02,816 - INFO - Copy successful.
+2025-07-16 23:08:02,843 - INFO - Attempting to get video metadata from /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune.mkv
+2025-07-16 23:08:02,935 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-16 23:08:02,949 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 223615 frames.
+2025-07-16 23:08:02,959 - INFO - Executing ffmpeg stream copy: ffmpeg -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune.mkv -map 0:v:0 -c copy -y /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc
+2025-07-16 23:08:03,325 - INFO - Successfully completed: Extracting Profile 7 HEVC stream
+2025-07-16 23:08:03,337 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc
+2025-07-16 23:08:03,756 - INFO - [00:00:00] [36m██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░[0m 50%     [2K[00:00:00] [36m████████████████████████████████████████████████████████████[0m 100%    [2K
+2025-07-16 23:08:03,756 - ERROR - dovi_tool command failed with exit code None
+2025-07-16 23:08:03,792 - INFO - Job 54589cf5-2733-46bb-9c89-c0d79c17503c initialized.
+2025-07-16 23:08:03,792 - INFO - Original input file: /mnt/unraid/landing_point/Test/test_file_dune.mkv
+2025-07-16 23:08:03,792 - INFO - Final output file: /mnt/unraid/landing_point/Test/test_file_dune_DV_P8.mkv
+2025-07-16 23:08:03,792 - INFO - Local job staging directory: /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c
+2025-07-16 23:08:03,792 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:08:03,792 - INFO -   - Total: 491.08 GB
+2025-07-16 23:08:03,792 - INFO -   - Used: 7.06 GB
+2025-07-16 23:08:03,793 - INFO -   - Free: 459.01 GB
+2025-07-16 23:08:03,793 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 23:08:03,795 - INFO - Step 'get_metadata' already completed. Skipping.
+2025-07-16 23:08:03,795 - INFO - Step 'extract_p7' already completed. Skipping.
+2025-07-16 23:08:03,795 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc
+2025-07-16 23:08:04,941 - INFO - [00:00:00] [36m██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░[0m 50%     [2K[00:00:00] [36m████████████████████████████████████████████████████████████[0m 100%    [2K
+2025-07-16 23:08:04,942 - ERROR - dovi_tool command failed with exit code None
+2025-07-16 23:08:04,990 - INFO - Job 54589cf5-2733-46bb-9c89-c0d79c17503c initialized.
+2025-07-16 23:08:04,990 - INFO - Original input file: /mnt/unraid/landing_point/Test/test_file_dune.mkv
+2025-07-16 23:08:04,990 - INFO - Final output file: /mnt/unraid/landing_point/Test/test_file_dune_DV_P8.mkv
+2025-07-16 23:08:04,990 - INFO - Local job staging directory: /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c
+2025-07-16 23:08:04,991 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:08:04,991 - INFO -   - Total: 491.08 GB
+2025-07-16 23:08:04,991 - INFO -   - Used: 7.06 GB
+2025-07-16 23:08:04,991 - INFO -   - Free: 459.01 GB
+2025-07-16 23:08:04,991 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 23:08:04,991 - INFO - Step 'get_metadata' already completed. Skipping.
+2025-07-16 23:08:04,991 - INFO - Step 'extract_p7' already completed. Skipping.
+2025-07-16 23:08:04,991 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc
+2025-07-16 23:08:06,307 - INFO - [00:00:00] [36m██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░[0m 50%     [2K[00:00:00] [36m████████████████████████████████████████████████████████████[0m 100%    [2K
+2025-07-16 23:08:06,307 - ERROR - dovi_tool command failed with exit code None
+2025-07-16 23:20:06,938 - INFO - Job 54589cf5-2733-46bb-9c89-c0d79c17503c initialized.
+2025-07-16 23:20:06,939 - INFO - Original input file: /mnt/unraid/landing_point/Test/test_file_dune.mkv
+2025-07-16 23:20:06,940 - INFO - Final output file: /mnt/unraid/landing_point/Test/test_file_dune_DV_P8.mkv
+2025-07-16 23:20:06,940 - INFO - Local job staging directory: /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c
+2025-07-16 23:20:06,941 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:20:06,941 - INFO -   - Total: 491.08 GB
+2025-07-16 23:20:06,942 - INFO -   - Used: 6.37 GB
+2025-07-16 23:20:06,942 - INFO -   - Free: 459.69 GB
+2025-07-16 23:20:06,966 - INFO - Copying source file locally: from /mnt/unraid/landing_point/Test/test_file_dune.mkv to /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune.mkv
+2025-07-16 23:20:07,459 - INFO - Copy successful.
+2025-07-16 23:20:07,473 - INFO - Attempting to get video metadata from /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune.mkv
+2025-07-16 23:20:07,485 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-16 23:20:07,497 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 223615 frames.
+2025-07-16 23:20:07,510 - INFO - Executing ffmpeg stream copy: ffmpeg -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune.mkv -map 0:v:0 -c copy -y /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc
+2025-07-16 23:20:07,796 - INFO - Successfully completed: Extracting Profile 7 HEVC stream
+2025-07-16 23:20:07,814 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc
+2025-07-16 23:20:08,200 - INFO - [00:00:00] [36m██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░[0m 50%     [2K[00:00:00] [36m████████████████████████████████████████████████████████████[0m 100%    [2K
+2025-07-16 23:20:08,201 - ERROR - dovi_tool command failed with exit code None
+2025-07-16 23:20:08,245 - INFO - Job 54589cf5-2733-46bb-9c89-c0d79c17503c initialized.
+2025-07-16 23:20:08,246 - INFO - Original input file: /mnt/unraid/landing_point/Test/test_file_dune.mkv
+2025-07-16 23:20:08,246 - INFO - Final output file: /mnt/unraid/landing_point/Test/test_file_dune_DV_P8.mkv
+2025-07-16 23:20:08,247 - INFO - Local job staging directory: /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c
+2025-07-16 23:20:08,247 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:20:08,247 - INFO -   - Total: 491.08 GB
+2025-07-16 23:20:08,247 - INFO -   - Used: 7.06 GB
+2025-07-16 23:20:08,247 - INFO -   - Free: 459.01 GB
+2025-07-16 23:20:08,247 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 23:20:08,249 - INFO - Step 'get_metadata' already completed. Skipping.
+2025-07-16 23:20:08,249 - INFO - Step 'extract_p7' already completed. Skipping.
+2025-07-16 23:20:08,249 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc
+2025-07-16 23:20:09,361 - INFO - [00:00:00] [36m██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░[0m 50%     [2K[00:00:00] [36m████████████████████████████████████████████████████████████[0m 100%    [2K
+2025-07-16 23:20:09,362 - ERROR - dovi_tool command failed with exit code None
+2025-07-16 23:20:09,405 - INFO - Job 54589cf5-2733-46bb-9c89-c0d79c17503c initialized.
+2025-07-16 23:20:09,405 - INFO - Original input file: /mnt/unraid/landing_point/Test/test_file_dune.mkv
+2025-07-16 23:20:09,405 - INFO - Final output file: /mnt/unraid/landing_point/Test/test_file_dune_DV_P8.mkv
+2025-07-16 23:20:09,405 - INFO - Local job staging directory: /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c
+2025-07-16 23:20:09,405 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:20:09,405 - INFO -   - Total: 491.08 GB
+2025-07-16 23:20:09,405 - INFO -   - Used: 7.06 GB
+2025-07-16 23:20:09,406 - INFO -   - Free: 459.01 GB
+2025-07-16 23:20:09,406 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 23:20:09,406 - INFO - Step 'get_metadata' already completed. Skipping.
+2025-07-16 23:20:09,406 - INFO - Step 'extract_p7' already completed. Skipping.
+2025-07-16 23:20:09,406 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc
+2025-07-16 23:20:10,663 - INFO - [00:00:00] [36m██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░[0m 50%     [2K[00:00:00] [36m████████████████████████████████████████████████████████████[0m 100%    [2K
+2025-07-16 23:20:10,665 - ERROR - dovi_tool command failed with exit code None
+2025-07-16 23:25:15,348 - INFO - Job 54589cf5-2733-46bb-9c89-c0d79c17503c initialized.
+2025-07-16 23:25:15,349 - INFO - Original input file: /mnt/unraid/landing_point/Test/test_file_dune.mkv
+2025-07-16 23:25:15,350 - INFO - Final output file: /mnt/unraid/landing_point/Test/test_file_dune_DV_P8.mkv
+2025-07-16 23:25:15,350 - INFO - Local job staging directory: /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c
+2025-07-16 23:25:15,351 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:25:15,351 - INFO -   - Total: 491.08 GB
+2025-07-16 23:25:15,352 - INFO -   - Used: 7.06 GB
+2025-07-16 23:25:15,352 - INFO -   - Free: 459.01 GB
+2025-07-16 23:25:15,353 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 23:25:15,355 - INFO - Step 'get_metadata' already completed. Skipping.
+2025-07-16 23:25:15,355 - INFO - Step 'extract_p7' already completed. Skipping.
+2025-07-16 23:25:15,356 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc
+2025-07-16 23:25:16,561 - INFO - [00:00:00] [36m██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░[0m 50%     [2K[00:00:00] [36m████████████████████████████████████████████████████████████[0m 100%    [2K
+2025-07-16 23:25:16,562 - ERROR - dovi_tool command failed with exit code None
+2025-07-16 23:25:16,614 - INFO - Job 54589cf5-2733-46bb-9c89-c0d79c17503c initialized.
+2025-07-16 23:25:16,614 - INFO - Original input file: /mnt/unraid/landing_point/Test/test_file_dune.mkv
+2025-07-16 23:25:16,614 - INFO - Final output file: /mnt/unraid/landing_point/Test/test_file_dune_DV_P8.mkv
+2025-07-16 23:25:16,614 - INFO - Local job staging directory: /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c
+2025-07-16 23:25:16,614 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:25:16,614 - INFO -   - Total: 491.08 GB
+2025-07-16 23:25:16,614 - INFO -   - Used: 7.06 GB
+2025-07-16 23:25:16,614 - INFO -   - Free: 459.01 GB
+2025-07-16 23:25:16,614 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 23:25:16,614 - INFO - Step 'get_metadata' already completed. Skipping.
+2025-07-16 23:25:16,614 - INFO - Step 'extract_p7' already completed. Skipping.
+2025-07-16 23:25:16,614 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc
+2025-07-16 23:25:17,967 - INFO - [00:00:00] [36m██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░[0m 50%     [2K[00:00:00] [36m████████████████████████████████████████████████████████████[0m 100%    [2K
+2025-07-16 23:25:17,967 - ERROR - dovi_tool command failed with exit code None
+2025-07-16 23:25:18,010 - INFO - Job 54589cf5-2733-46bb-9c89-c0d79c17503c initialized.
+2025-07-16 23:25:18,010 - INFO - Original input file: /mnt/unraid/landing_point/Test/test_file_dune.mkv
+2025-07-16 23:25:18,010 - INFO - Final output file: /mnt/unraid/landing_point/Test/test_file_dune_DV_P8.mkv
+2025-07-16 23:25:18,010 - INFO - Local job staging directory: /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c
+2025-07-16 23:25:18,010 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:25:18,010 - INFO -   - Total: 491.08 GB
+2025-07-16 23:25:18,010 - INFO -   - Used: 7.06 GB
+2025-07-16 23:25:18,010 - INFO -   - Free: 459.01 GB
+2025-07-16 23:25:18,010 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 23:25:18,010 - INFO - Step 'get_metadata' already completed. Skipping.
+2025-07-16 23:25:18,010 - INFO - Step 'extract_p7' already completed. Skipping.
+2025-07-16 23:25:18,010 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc
+2025-07-16 23:25:19,160 - INFO - [00:00:00] [36m██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░[0m 50%     [2K[00:00:00] [36m████████████████████████████████████████████████████████████[0m 100%    [2K
+2025-07-16 23:25:19,160 - ERROR - dovi_tool command failed with exit code None
+2025-07-16 23:29:18,537 - INFO - Job 54589cf5-2733-46bb-9c89-c0d79c17503c initialized.
+2025-07-16 23:29:18,538 - INFO - Original input file: /mnt/unraid/landing_point/Test/test_file_dune.mkv
+2025-07-16 23:29:18,538 - INFO - Final output file: /mnt/unraid/landing_point/Test/test_file_dune_DV_P8.mkv
+2025-07-16 23:29:18,538 - INFO - Local job staging directory: /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c
+2025-07-16 23:29:18,538 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:29:18,538 - INFO -   - Total: 491.08 GB
+2025-07-16 23:29:18,538 - INFO -   - Used: 7.06 GB
+2025-07-16 23:29:18,539 - INFO -   - Free: 459.01 GB
+2025-07-16 23:29:18,562 - INFO - Copying source file locally: from /mnt/unraid/landing_point/Test/test_file_dune.mkv to /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune.mkv
+2025-07-16 23:29:20,024 - INFO - Copy successful.
+2025-07-16 23:29:20,043 - INFO - Attempting to get video metadata from /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune.mkv
+2025-07-16 23:29:20,057 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-16 23:29:20,069 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 223615 frames.
+2025-07-16 23:29:20,081 - INFO - Executing ffmpeg stream copy: ffmpeg -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune.mkv -map 0:v:0 -c copy -y /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc
+2025-07-16 23:29:21,213 - INFO - Successfully completed: Extracting Profile 7 HEVC stream
+2025-07-16 23:29:21,232 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc
+2025-07-16 23:29:22,502 - INFO - Successfully completed: Converting P7 to P8.1
+2025-07-16 23:29:22,522 - INFO - Executing dovi_tool command: dovi_tool extract-rpu -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/rpu.bin
+2025-07-16 23:29:22,694 - INFO - Extracting RPU from P8.1 stream stdout:
+Reordering metadata... Done.
+
+2025-07-16 23:29:22,695 - INFO - Successfully completed: Extracting RPU from P8.1 stream
+2025-07-16 23:29:22,709 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc -an -sn -dn -c:v libx265 -preset medium -crf 18 -threads 9 -x265-params pools=9 -y /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_reencoded.hevc
+2025-07-16 23:35:35,495 - INFO - Job 54589cf5-2733-46bb-9c89-c0d79c17503c initialized.
+2025-07-16 23:35:35,496 - INFO - Original input file: /mnt/unraid/landing_point/Test/test_file_dune.mkv
+2025-07-16 23:35:35,496 - INFO - Final output file: /mnt/unraid/landing_point/Test/test_file_dune_DV_P8.mkv
+2025-07-16 23:35:35,497 - INFO - Local job staging directory: /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c
+2025-07-16 23:35:35,497 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:35:35,498 - INFO -   - Total: 491.08 GB
+2025-07-16 23:35:35,498 - INFO -   - Used: 7.08 GB
+2025-07-16 23:35:35,499 - INFO -   - Free: 458.99 GB
+2025-07-16 23:35:35,523 - INFO - Copying source file locally: from /mnt/unraid/landing_point/Test/test_file_dune.mkv to /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune.mkv
+2025-07-16 23:35:36,996 - INFO - Copy successful.
+2025-07-16 23:35:37,016 - INFO - Attempting to get video metadata from /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune.mkv
+2025-07-16 23:35:37,030 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-16 23:35:37,043 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 223615 frames.
+2025-07-16 23:35:37,055 - INFO - Executing ffmpeg stream copy: ffmpeg -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune.mkv -map 0:v:0 -c copy -y /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc
+2025-07-16 23:35:38,219 - INFO - Successfully completed: Extracting Profile 7 HEVC stream
+2025-07-16 23:35:38,237 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc
+2025-07-16 23:35:39,373 - INFO - Successfully completed: Converting P7 to P8.1
+2025-07-16 23:35:39,392 - INFO - Executing dovi_tool command: dovi_tool extract-rpu -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/rpu.bin
+2025-07-16 23:35:39,565 - INFO - Extracting RPU from P8.1 stream stdout:
+Reordering metadata... Done.
+
+2025-07-16 23:35:39,566 - INFO - Successfully completed: Extracting RPU from P8.1 stream
+2025-07-16 23:38:47,125 - INFO - Job 54589cf5-2733-46bb-9c89-c0d79c17503c initialized.
+2025-07-16 23:38:47,126 - INFO - Original input file: /mnt/unraid/landing_point/Test/test_file_dune.mkv
+2025-07-16 23:38:47,127 - INFO - Final output file: /mnt/unraid/landing_point/Test/test_file_dune_DV_P8.mkv
+2025-07-16 23:38:47,127 - INFO - Local job staging directory: /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c
+2025-07-16 23:38:47,128 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:38:47,128 - INFO -   - Total: 491.08 GB
+2025-07-16 23:38:47,129 - INFO -   - Used: 7.08 GB
+2025-07-16 23:38:47,129 - INFO -   - Free: 458.99 GB
+2025-07-16 23:38:47,154 - INFO - Copying source file locally: from /mnt/unraid/landing_point/Test/test_file_dune.mkv to /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune.mkv
+2025-07-16 23:38:48,644 - INFO - Copy successful.
+2025-07-16 23:38:48,664 - INFO - Attempting to get video metadata from /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune.mkv
+2025-07-16 23:38:48,676 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-16 23:38:48,689 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 223615 frames.
+2025-07-16 23:38:48,701 - INFO - Executing ffmpeg stream copy: ffmpeg -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune.mkv -map 0:v:0 -c copy -y /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc
+2025-07-16 23:38:49,848 - INFO - Successfully completed: Extracting Profile 7 HEVC stream
+2025-07-16 23:38:49,868 - INFO - Executing dovi_tool command: dovi_tool -m 2 convert --discard -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p7.hevc -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc
+2025-07-16 23:38:51,118 - INFO - Successfully completed: Converting P7 to P8.1
+2025-07-16 23:38:51,139 - INFO - Executing dovi_tool command: dovi_tool extract-rpu -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/rpu.bin
+2025-07-16 23:38:51,318 - INFO - Extracting RPU from P8.1 stream stdout:
+Reordering metadata... Done.
+
+2025-07-16 23:38:51,319 - INFO - Successfully completed: Extracting RPU from P8.1 stream
+2025-07-16 23:38:51,331 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc -an -sn -dn -c:v libx265 -preset medium -crf 18 -threads 9 -x265-params pools=9 -y /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_reencoded.hevc
+2025-07-16 23:41:04,471 - INFO - Job 54589cf5-2733-46bb-9c89-c0d79c17503c initialized.
+2025-07-16 23:41:04,472 - INFO - Original input file: /mnt/unraid/landing_point/Test/test_file_dune.mkv
+2025-07-16 23:41:04,472 - INFO - Final output file: /mnt/unraid/landing_point/Test/test_file_dune_DV_P8.mkv
+2025-07-16 23:41:04,473 - INFO - Local job staging directory: /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c
+2025-07-16 23:41:04,473 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 23:41:04,474 - INFO -   - Total: 491.08 GB
+2025-07-16 23:41:04,474 - INFO -   - Used: 7.08 GB
+2025-07-16 23:41:04,475 - INFO -   - Free: 458.99 GB
+2025-07-16 23:41:04,475 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-16 23:41:04,477 - INFO - Step 'get_metadata' already completed. Skipping.
+2025-07-16 23:41:04,478 - INFO - Step 'extract_p7' already completed. Skipping.
+2025-07-16 23:41:04,478 - INFO - Step 'convert_p8' already completed. Skipping.
+2025-07-16 23:41:04,479 - INFO - Step 'extract_rpu' already completed. Skipping.
+2025-07-16 23:41:04,479 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_p8.hevc -an -sn -dn -c:v libx265 -preset medium -crf 18 -threads 9 -x265-params pools=9 -y /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_reencoded.hevc
+2025-07-16 23:43:51,166 - INFO - Successfully completed: Re-encoding to x265
+2025-07-16 23:43:51,180 - INFO - Executing dovi_tool command: dovi_tool inject-rpu -i /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_reencoded.hevc --rpu-in /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/rpu.bin -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_final_with_rpu.hevc
+2025-07-16 23:43:51,246 - INFO - Injecting RPU into re-encoded video stdout:
+Parsing RPU file...
+Processing input video for frame order info...
+Rewriting file with interleaved RPU NALs..
+
+2025-07-16 23:43:51,246 - INFO - Successfully completed: Injecting RPU into re-encoded video
+2025-07-16 23:43:51,266 - INFO - Remuxing final MKV...
+2025-07-16 23:43:51,266 - INFO - Executing command: mkvmerge -o /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune_DV_P8.mkv --language 0:eng /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/video_final_with_rpu.hevc --no-video /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune.mkv
+2025-07-16 23:43:51,859 - INFO - Remuxing final MKV successful.
+2025-07-16 23:43:51,873 - INFO - Moving final file from /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c/test_file_dune_DV_P8.mkv to /mnt/unraid/landing_point/Test/test_file_dune_DV_P8.mkv
+2025-07-16 23:43:52,891 - INFO - Move successful.
+2025-07-16 23:43:52,919 - INFO - Cleaning up job staging directory: /mnt/staging/54589cf5-2733-46bb-9c89-c0d79c17503c

@@ -1,0 +1,18 @@
+2025-07-17 00:09:59,937 - INFO - Job 4661788c-6483-4994-98bf-893eccabe9fa initialized.
+2025-07-17 00:09:59,937 - INFO - Original input file: /mnt/unraid/landing_point/Video/Blade Runner 2049/Blade Runner 2049_t02.mkv
+2025-07-17 00:09:59,937 - INFO - Final output file: /mnt/unraid/landing_point/Video/Blade Runner 2049/Blade Runner 2049_t02_DV_P8.mkv
+2025-07-17 00:09:59,937 - INFO - Local job staging directory: /mnt/staging/4661788c-6483-4994-98bf-893eccabe9fa
+2025-07-17 00:09:59,937 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-17 00:09:59,937 - INFO -   - Total: 491.08 GB
+2025-07-17 00:09:59,937 - INFO -   - Used: 6.37 GB
+2025-07-17 00:09:59,937 - INFO -   - Free: 459.69 GB
+2025-07-17 00:09:59,946 - INFO - Copying source file locally: from /mnt/unraid/landing_point/Video/Blade Runner 2049/Blade Runner 2049_t02.mkv to /mnt/staging/4661788c-6483-4994-98bf-893eccabe9fa/Blade Runner 2049_t02.mkv
+2025-07-17 01:04:36,728 - INFO - Copy successful.
+2025-07-17 01:04:36,754 - INFO - Attempting to get video metadata from /mnt/staging/4661788c-6483-4994-98bf-893eccabe9fa/Blade Runner 2049_t02.mkv
+2025-07-17 01:04:36,982 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-17 01:04:37,002 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 235628 frames.
+2025-07-17 01:04:37,018 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i /mnt/staging/4661788c-6483-4994-98bf-893eccabe9fa/Blade Runner 2049_t02.mkv -map 0 -c:v libx265 -preset medium -crf 18 -threads 9 -x265-params pools=9 -c:a copy -c:s copy -y /mnt/staging/4661788c-6483-4994-98bf-893eccabe9fa/Blade Runner 2049_t02_x265.mkv
+2025-07-17 16:59:23,482 - INFO - Successfully completed: Re-encoding to x265
+2025-07-17 16:59:31,995 - INFO - Moving final file from /mnt/staging/4661788c-6483-4994-98bf-893eccabe9fa/Blade Runner 2049_t02_x265.mkv to /mnt/unraid/landing_point/Video/Blade Runner 2049/Blade Runner 2049_t02_x265.mkv
+2025-07-17 17:00:42,945 - INFO - Move successful.
+2025-07-17 17:00:42,978 - INFO - Cleaning up job staging directory: /mnt/staging/4661788c-6483-4994-98bf-893eccabe9fa

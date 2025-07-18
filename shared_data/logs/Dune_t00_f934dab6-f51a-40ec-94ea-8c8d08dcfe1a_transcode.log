@@ -1,0 +1,422 @@
+2025-07-16 06:42:35,707 - ERROR - Failed: Extracting Profile 7 HEVC stream
+2025-07-16 06:42:35,707 - ERROR - Command failed: ffmpeg -i /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv -map 0:v:0 -c copy -y /var/tmp/mkv_transcoder/Dune_t00_f934dab6-f51a-40ec-94ea-8c8d08dcfe1a/video_p7.hevc
+2025-07-16 06:42:35,707 - ERROR - Exit code: 228
+2025-07-16 06:42:35,707 - ERROR - Stderr: ffmpeg version 7.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2024 the FFmpeg developers
+  built with gcc 8 (Debian 8.3.0-6)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-debug --disable-ffplay --disable-indev=sndio --disable-outdev=sndio --cc=gcc --enable-fontconfig --enable-frei0r --enable-gnutls --enable-gmp --enable-libgme --enable-gray --enable-libaom --enable-libfribidi --enable-libass --enable-libvmaf --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librubberband --enable-libsoxr --enable-libspeex --enable-libsrt --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvo-amrwbenc --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libdav1d --enable-libxvid --enable-libzvbi --enable-libzimg
+  libavutil      59.  8.100 / 59.  8.100
+  libavcodec     61.  3.100 / 61.  3.100
+  libavformat    61.  1.100 / 61.  1.100
+  libavdevice    61.  1.100 / 61.  1.100
+  libavfilter    10.  1.100 / 10.  1.100
+  libswscale      8.  1.100 /  8.  1.100
+  libswresample   5.  1.100 /  5.  1.100
+  libpostproc    58.  1.100 / 58.  1.100
+[matroska,webm @ 0x32497dc0] Invalid Block Addition value 0x0 for unknown Block Addition Mapping type 68766345, name ""
+Input #0, matroska,webm, from '/mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv':
+  Metadata:
+    title           : Dune
+    encoder         : libmakemkv v1.18.1 (1.3.10/1.5.2) win(x64-release)
+    creation_time   : 2025-06-01T00:07:51.000000Z
+  Duration: 02:35:26.61, start: 0.000000, bitrate: 64827 kb/s
+  Chapters:
+    Chapter #0:0: start 0.000000, end 195.987458
+      Metadata:
+        title           : Chapter 01
+    Chapter #0:1: start 195.987458, end 774.774000
+      Metadata:
+        title           : Chapter 02
+    Chapter #0:2: start 774.774000, end 1320.569250
+      Metadata:
+        title           : Chapter 03
+    Chapter #0:3: start 1320.569250, end 1756.755000
+      Metadata:
+        title           : Chapter 04
+    Chapter #0:4: start 1756.755000, end 2350.931917
+      Metadata:
+        title           : Chapter 05
+    Chapter #0:5: start 2350.931917, end 2839.795292
+      Metadata:
+        title           : Chapter 06
+    Chapter #0:6: start 2839.795292, end 3413.493417
+      Metadata:
+        title           : Chapter 07
+    Chapter #0:7: start 3413.493417, end 4010.381375
+      Metadata:
+        title           : Chapter 08
+    Chapter #0:8: start 4010.381375, end 4604.891958
+      Metadata:
+        title           : Chapter 09
+    Chapter #0:9: start 4604.891958, end 5160.655500
+      Metadata:
+        title           : Chapter 10
+    Chapter #0:10: start 5160.655500, end 5760.087667
+      Metadata:
+        title           : Chapter 11
+    Chapter #0:11: start 5760.087667, end 6309.469833
+      Metadata:
+        title           : Chapter 12
+    Chapter #0:12: start 6309.469833, end 6830.323500
+      Metadata:
+        title           : Chapter 13
+    Chapter #0:13: start 6830.323500, end 7418.411000
+      Metadata:
+        title           : Chapter 14
+    Chapter #0:14: start 7418.411000, end 7933.008417
+      Metadata:
+        title           : Chapter 15
+    Chapter #0:15: start 7933.008417, end 8445.770667
+      Metadata:
+        title           : Chapter 16
+    Chapter #0:16: start 8445.770667, end 8847.630458
+      Metadata:
+        title           : Chapter 17
+    Chapter #0:17: start 8847.630458, end 9326.608958
+      Metadata:
+        title           : Chapter 18
+  Stream #0:0(eng): Video: hevc (Main 10), yuv420p10le(tv, bt2020nc/bt2020/smpte2084), 3840x2160 [SAR 1:1 DAR 16:9], 23.98 fps, 23.98 tbr, 1k tbn
+      Metadata:
+        BPS-eng         : 59752391
+        DURATION-eng    : 02:35:26.608958333
+        NUMBER_OF_FRAMES-eng: 223615
+        NUMBER_OF_BYTES-eng: 69660891904
+        SOURCE_ID-eng   : 001011
+        _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+        _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-01 00:07:51
+        _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+      Side data:
+        DOVI configuration record: version: 1.0, profile: 7, level: 6, rpu flag: 1, el flag: 1, bl flag: 1, compatibility id: 6
+  Stream #0:1(eng): Audio: truehd (Dolby TrueHD + Dolby Atmos), 48000 Hz, 7.1, s32 (24 bit) (default)
+      Metadata:
+        title           : Surround 7.1
+        BPS-eng         : 3242671
+        DURATION-eng    : 02:35:26.609166666
+        NUMBER_OF_FRAMES-eng: 11191931
+        NUMBER_OF_BYTES-eng: 3780391034
+        SOURCE_ID-eng   : 001100
+        _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+        _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-01 00:07:51
+        _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+  Stream #0:2(eng): Audio: ac3, 48000 Hz, 5.1(side), fltp, 448 kb/s
+      Metadata:
+        title           : Surround 5.1
+        BPS-eng         : 448000
+        DURATION-eng    : 02:35:26.624000000
+        NUMBER_OF_FRAMES-eng: 291457
+        NUMBER_OF_BYTES-eng: 522290944
+        SOURCE_ID-eng   : 001100
+        _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+        _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-01 00:07:51
+        _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+  Stream #0:3(eng): Audio: ac3, 48000 Hz, 5.1(side), fltp, 448 kb/s
+      Metadata:
+        title           : Surround 5.1
+        BPS-eng         : 448000
+        DURATION-eng    : 02:35:25.568000000
+        NUMBER_OF_FRAMES-eng: 291424
+        NUMBER_OF_BYTES-eng: 522231808
+        SOURCE_ID-eng   : 001101
+        _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+        _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-01 00:07:51
+        _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+  Stream #0:4(eng): Audio: ac3, 48000 Hz, 5.1(side), fltp, 448 kb/s
+      Metadata:
+        title           : Surround 5.1
+        BPS-eng         : 448000
+        DURATION-eng    : 02:35:26.624000000
+        NUMBER_OF_FRAMES-eng: 291457
+        NUMBER_OF_BYTES-eng: 522290944
+        SOURCE_ID-eng   : 001102
+        _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+        _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-01 00:07:51
+        _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+  Stream #0:5(eng): Audio: ac3, 48000 Hz, 5.1(side), fltp, 448 kb/s
+      Metadata:
+        title           : Surround 5.1
+        BPS-eng         : 448000
+        DURATION-eng    : 02:35:26.624000000
+        NUMBER_OF_FRAMES-eng: 291457
+        NUMBER_OF_BYTES-eng: 522290944
+        SOURCE_ID-eng   : 001103
+        _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+        _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-01 00:07:51
+        _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+  Stream #0:6(eng): Subtitle: hdmv_pgs_subtitle (pgssub), 1920x1080
+      Metadata:
+        BPS-eng         : 25968
+        DURATION-eng    : 02:26:51.073104166
+        NUMBER_OF_FRAMES-eng: 3406
+        NUMBER_OF_BYTES-eng: 28601046
+        SOURCE_ID-eng   : 0012A0
+        _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+        _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-01 00:07:51
+        _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+Output #0, hevc, to '/var/tmp/mkv_transcoder/Dune_t00_f934dab6-f51a-40ec-94ea-8c8d08dcfe1a/video_p7.hevc':
+  Metadata:
+    title           : Dune
+    encoder         : Lavf61.1.100
+  Chapters:
+    Chapter #0:0: start 0.000000, end 195.987458
+      Metadata:
+        title           : Chapter 01
+    Chapter #0:1: start 195.987458, end 774.774000
+      Metadata:
+        title           : Chapter 02
+    Chapter #0:2: start 774.774000, end 1320.569250
+      Metadata:
+        title           : Chapter 03
+    Chapter #0:3: start 1320.569250, end 1756.755000
+      Metadata:
+        title           : Chapter 04
+    Chapter #0:4: start 1756.755000, end 2350.931917
+      Metadata:
+        title           : Chapter 05
+    Chapter #0:5: start 2350.931917, end 2839.795292
+      Metadata:
+        title           : Chapter 06
+    Chapter #0:6: start 2839.795292, end 3413.493417
+      Metadata:
+        title           : Chapter 07
+    Chapter #0:7: start 3413.493417, end 4010.381375
+      Metadata:
+        title           : Chapter 08
+    Chapter #0:8: start 4010.381375, end 4604.891958
+      Metadata:
+        title           : Chapter 09
+    Chapter #0:9: start 4604.891958, end 5160.655500
+      Metadata:
+        title           : Chapter 10
+    Chapter #0:10: start 5160.655500, end 5760.087667
+      Metadata:
+        title           : Chapter 11
+    Chapter #0:11: start 5760.087667, end 6309.469833
+      Metadata:
+        title           : Chapter 12
+    Chapter #0:12: start 6309.469833, end 6830.323500
+      Metadata:
+        title           : Chapter 13
+    Chapter #0:13: start 6830.323500, end 7418.411000
+      Metadata:
+        title           : Chapter 14
+    Chapter #0:14: start 7418.411000, end 7933.008417
+      Metadata:
+        title           : Chapter 15
+    Chapter #0:15: start 7933.008417, end 8445.770667
+      Metadata:
+        title           : Chapter 16
+    Chapter #0:16: start 8445.770667, end 8847.630458
+      Metadata:
+        title           : Chapter 17
+    Chapter #0:17: start 8847.630458, end 9326.608958
+      Metadata:
+        title           : Chapter 18
+  Stream #0:0(eng): Video: hevc (Main 10), yuv420p10le(tv, bt2020nc/bt2020/smpte2084), 3840x2160 [SAR 1:1 DAR 16:9], q=2-31, 23.98 fps, 23.98 tbr, 23.98 tbn
+      Metadata:
+        BPS-eng         : 59752391
+        DURATION-eng    : 02:35:26.608958333
+        NUMBER_OF_FRAMES-eng: 223615
+        NUMBER_OF_BYTES-eng: 69660891904
+        SOURCE_ID-eng   : 001011
+        _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+        _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-01 00:07:51
+        _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+      Side data:
+        DOVI configuration record: version: 1.0, profile: 7, level: 6, rpu flag: 1, el flag: 1, bl flag: 1, compatibility id: 6
+Press [q] to stop, [?] for help
+size=     512KiB time=00:00:07.79 bitrate= 537.8kbits/s speed=15.6x    
+size=     512KiB time=00:00:07.79 bitrate= 537.8kbits/s speed= 7.8x    
+size=     512KiB time=00:00:07.79 bitrate= 537.8kbits/s speed= 5.2x    
+size=     512KiB time=00:00:07.79 bitrate= 537.8kbits/s speed= 3.9x    
+size=     512KiB time=00:00:07.79 bitrate= 537.8kbits/s speed=3.12x    
+size=     512KiB time=00:00:07.79 bitrate= 537.8kbits/s speed= 2.6x    
+size=     512KiB time=00:00:07.79 bitrate= 537.8kbits/s speed=2.23x    
+size=     512KiB time=00:00:07.79 bitrate= 537.8kbits/s speed=1.95x    
+size=     512KiB time=00:00:07.79 bitrate= 537.8kbits/s speed=1.73x    
+size=     512KiB time=00:00:07.79 bitrate= 537.8kbits/s speed=1.56x    
+size=     512KiB time=00:00:07.79 bitrate= 537.8kbits/s speed=1.42x    
+size=     512KiB time=00:00:07.79 bitrate= 537.8kbits/s speed= 1.3x    
+size=     512KiB time=00:00:07.79 bitrate= 537.8kbits/s speed= 1.2x    
+size=     512KiB time=00:00:07.79 bitrate= 537.8kbits/s speed=1.11x    
+size=     512KiB time=00:00:07.79 bitrate= 537.8kbits/s speed=1.04x    
+size=     512KiB time=00:00:07.79 bitrate= 537.8kbits/s speed=0.975x    
+size=    5376KiB time=00:00:13.84 bitrate=3180.7kbits/s speed=1.63x    
+size=   39168KiB time=00:00:19.35 bitrate=16580.4kbits/s speed=2.15x    
+size=   97536KiB time=00:00:25.44 bitrate=31406.6kbits/s speed=2.68x    
+size=  139520KiB time=00:00:30.98 bitrate=36882.4kbits/s speed= 3.1x    
+size=  189440KiB time=00:00:37.66 bitrate=41205.8kbits/s speed=3.59x    
+size=  235520KiB time=00:00:43.20 bitrate=44652.3kbits/s speed=3.93x    
+size=  278016KiB time=00:01:02.93 bitrate=36187.1kbits/s speed=5.47x    
+size=  331520KiB time=00:01:08.48 bitrate=39656.2kbits/s speed=5.71x    
+size=  385280KiB time=00:01:13.94 bitrate=42681.5kbits/s speed=5.91x    
+size=  439552KiB time=00:01:19.53 bitrate=45272.1kbits/s speed=6.12x    
+size=  493824KiB time=00:01:25.08 bitrate=47546.0kbits/s speed= 6.3x    
+size=  544000KiB time=00:01:30.25 bitrate=49375.6kbits/s speed=6.44x    
+size=  598272KiB time=00:01:36.01 bitrate=51046.2kbits/s speed=6.62x    
+size=  649472KiB time=00:01:41.51 bitrate=52409.7kbits/s speed=6.77x    
+size=  680704KiB time=00:01:44.68 bitrate=53266.7kbits/s speed=6.75x    
+size=  713984KiB time=00:01:47.85 bitrate=54228.8kbits/s speed=6.74x    
+size=  744448KiB time=00:01:51.44 bitrate=54722.7kbits/s speed=6.75x    
+size=  778240KiB time=00:01:55.86 bitrate=55023.9kbits/s speed=6.81x    
+size=  808704KiB time=00:01:59.91 bitrate=55248.5kbits/s speed=6.85x    
+size=  842752KiB time=00:02:04.79 bitrate=55323.1kbits/s speed=6.93x    
+size=  871680KiB time=00:02:08.71 bitrate=55479.3kbits/s speed=6.96x    
+size=  911616KiB time=00:02:12.38 bitrate=56412.2kbits/s speed=6.97x    
+size=  954112KiB time=00:02:16.71 bitrate=57169.0kbits/s speed=7.01x    
+size=  992256KiB time=00:02:20.55 bitrate=57831.5kbits/s speed=7.03x    
+size= 1045504KiB time=00:02:26.18 bitrate=58587.8kbits/s speed=7.13x    
+size= 1094912KiB time=00:02:31.15 bitrate=59341.8kbits/s speed= 7.2x    
+size= 1148672KiB time=00:02:36.65 bitrate=60067.4kbits/s speed=7.28x    
+size= 1198336KiB time=00:02:41.78 bitrate=60677.5kbits/s speed=7.35x    
+size= 1255168KiB time=00:02:49.50 bitrate=60662.0kbits/s speed=7.53x    
+size= 1285120KiB time=00:02:54.17 bitrate=60443.9kbits/s speed=7.57x    
+size= 1331456KiB time=00:03:02.80 bitrate=59665.6kbits/s speed=7.78x    
+size= 1383680KiB time=00:03:07.56 bitrate=60433.9kbits/s speed=7.81x    
+size= 1436416KiB time=00:03:16.40 bitrate=59912.8kbits/s speed=8.01x    
+size= 1482240KiB time=00:03:21.15 bitrate=60362.7kbits/s speed=8.04x    
+size= 1536256KiB time=00:03:27.12 bitrate=60761.0kbits/s speed=8.12x    
+size= 1589248KiB time=00:03:33.62 bitrate=60942.7kbits/s speed=8.21x    
+size= 1642752KiB time=00:03:39.21 bitrate=61388.3kbits/s speed=8.27x    
+size= 1696256KiB time=00:03:45.14 bitrate=61720.1kbits/s speed=8.34x    
+size= 1738496KiB time=00:03:50.22 bitrate=61859.1kbits/s speed=8.37x    
+size= 1772800KiB time=00:03:55.40 bitrate=61693.8kbits/s speed= 8.4x    
+size= 1805568KiB time=00:04:01.94 bitrate=61133.6kbits/s speed=8.49x    
+size= 1846016KiB time=00:04:09.49 bitrate=60611.7kbits/s speed= 8.6x    
+size= 1875456KiB time=00:04:14.67 bitrate=60328.0kbits/s speed=8.63x    
+size= 1912576KiB time=00:04:20.63 bitrate=60114.0kbits/s speed=8.68x    
+size= 1942272KiB time=00:04:25.51 bitrate=59925.4kbits/s speed= 8.7x    
+size= 1979392KiB time=00:04:31.27 bitrate=59775.1kbits/s speed=8.75x    
+size= 2001664KiB time=00:04:35.48 bitrate=59523.2kbits/s speed=8.74x    
+size= 2038272KiB time=00:04:42.15 bitrate=59178.3kbits/s speed=8.81x    
+size= 2087168KiB time=00:04:49.53 bitrate=59052.8kbits/s speed=8.91x    
+size= 2140928KiB time=00:04:56.04 bitrate=59242.6kbits/s speed=8.97x    
+size= 2194176KiB time=00:05:03.80 bitrate=59165.6kbits/s speed=9.07x    
+size= 2243584KiB time=00:05:10.43 bitrate=59205.6kbits/s speed=9.13x    
+size= 2296576KiB time=00:05:17.44 bitrate=59266.3kbits/s speed= 9.2x    
+size= 2349568KiB time=00:05:24.36 bitrate=59339.5kbits/s speed=9.26x    
+size= 2402048KiB time=00:05:31.70 bitrate=59322.3kbits/s speed=9.34x    
+size= 2455808KiB time=00:05:37.50 bitrate=59608.3kbits/s speed=9.37x    
+size= 2509824KiB time=00:05:43.59 bitrate=59839.6kbits/s speed=9.41x    
+size= 2558976KiB time=00:05:51.05 bitrate=59714.2kbits/s speed=9.48x    
+size= 2600448KiB time=00:05:57.10 bitrate=59654.2kbits/s speed=9.52x    
+size= 2653952KiB time=00:06:04.69 bitrate=59614.4kbits/s speed=9.59x    
+size= 2699520KiB time=00:06:11.74 bitrate=59488.1kbits/s speed=9.65x    
+size= 2749184KiB time=00:06:17.71 bitrate=59625.9kbits/s speed=9.68x    
+size= 2806272KiB time=00:06:24.42 bitrate=59801.0kbits/s speed=9.73x    
+size= 2868736KiB time=00:06:30.76 bitrate=60140.2kbits/s speed=9.77x    
+size= 2923008KiB time=00:06:36.60 bitrate=60375.8kbits/s speed=9.79x    
+size= 2965248KiB time=00:06:41.56 bitrate=60491.3kbits/s speed=9.79x    
+size= 3007488KiB time=00:06:47.32 bitrate=60486.0kbits/s speed=9.81x    
+size= 3045632KiB time=00:06:53.12 bitrate=60393.6kbits/s speed=9.83x    
+size= 3083776KiB time=00:06:57.70 bitrate=60478.4kbits/s speed=9.83x    
+size= 3129600KiB time=00:07:03.71 bitrate=60507.0kbits/s speed=9.85x    
+size= 3171072KiB time=00:07:09.92 bitrate=60422.6kbits/s speed=9.88x    
+size= 3205120KiB time=00:07:14.68 bitrate=60403.3kbits/s speed=9.88x    
+size= 3243520KiB time=00:07:18.89 bitrate=60540.3kbits/s speed=9.86x    
+size= 3270400KiB time=00:07:21.81 bitrate=60638.6kbits/s speed=9.81x    
+size= 3304192KiB time=00:07:27.07 bitrate=60545.1kbits/s speed=9.82x    
+size= 3342592KiB time=00:07:32.24 bitrate=60548.2kbits/s speed=9.83x    
+size= 3386880KiB time=00:07:39.79 bitrate=60343.2kbits/s speed=9.88x    
+size= 3439360KiB time=00:07:48.25 bitrate=60170.2kbits/s speed=9.96x    
+size= 3492352KiB time=00:07:55.30 bitrate=60191.3kbits/s speed=  10x    
+size= 3546368KiB time=00:08:02.44 bitrate=60218.6kbits/s speed=  10x    
+size= 3598848KiB time=00:08:11.32 bitrate=60004.8kbits/s speed=10.1x    
+size= 3651840KiB time=00:08:19.12 bitrate=59936.9kbits/s speed=10.2x    
+size= 3703808KiB time=00:08:27.71 bitrate=59761.1kbits/s speed=10.3x    
+size= 3756544KiB time=00:08:35.51 bitrate=59695.0kbits/s speed=10.3x    
+size= 3810048KiB time=00:08:42.14 bitrate=59776.2kbits/s speed=10.3x    
+size= 3862016KiB time=00:08:51.78 bitrate=59493.7kbits/s speed=10.4x    
+size= 3911168KiB time=00:08:59.16 bitrate=59426.0kbits/s speed=10.5x    
+size= 3963392KiB time=00:09:08.63 bitrate=59180.2kbits/s speed=10.5x    
+size= 4010240KiB time=00:09:15.17 bitrate=59173.5kbits/s speed=10.6x    
+size= 4059648KiB time=00:09:25.85 bitrate=58772.3kbits/s speed=10.7x    
+size= 4109312KiB time=00:09:32.48 bitrate=58802.1kbits/s speed=10.7x    
+size= 4166400KiB time=00:09:39.99 bitrate=58847.3kbits/s speed=10.7x    
+size= 4213248KiB time=00:09:47.79 bitrate=58719.3kbits/s speed=10.8x    
+size= 4264704KiB time=00:09:53.67 bitrate=58847.7kbits/s speed=10.8x    
+size= 4317952KiB time=00:10:00.55 bitrate=58899.7kbits/s speed=10.8x    
+size= 4368896KiB time=00:10:06.85 bitrate=58976.1kbits/s speed=10.8x    
+size= 4421632KiB time=00:10:12.73 bitrate=59115.2kbits/s speed=10.8x    
+size= 4474624KiB time=00:10:20.07 bitrate=59115.4kbits/s speed=10.9x    
+size= 4527104KiB time=00:10:27.45 bitrate=59105.1kbits/s speed=10.9x    
+size= 4572928KiB time=00:10:33.96 bitrate=59090.6kbits/s speed=10.9x    
+size= 4625152KiB time=00:10:42.05 bitrate=59012.3kbits/s speed=  11x    
+size= 4678912KiB time=00:10:48.60 bitrate=59095.4kbits/s speed=  11x    
+size= 4736000KiB time=00:10:55.27 bitrate=59207.3kbits/s speed=  11x    
+size= 4789248KiB time=00:11:02.45 bitrate=59224.6kbits/s speed=  11x    
+size= 4841216KiB time=00:11:08.75 bitrate=59303.4kbits/s speed=11.1x    
+size= 4884736KiB time=00:11:13.67 bitrate=59399.5kbits/s speed=  11x    
+size= 4934144KiB time=00:11:19.63 bitrate=59473.7kbits/s speed=  11x    
+size= 4991232KiB time=00:11:26.35 bitrate=59573.2kbits/s speed=11.1x    
+size= 5039360KiB time=00:11:32.27 bitrate=59633.1kbits/s speed=11.1x    
+size= 5093632KiB time=00:11:40.53 bitrate=59564.8kbits/s speed=11.1x    
+size= 5144320KiB time=00:11:46.87 bitrate=59618.0kbits/s speed=11.1x    
+size= 5201408KiB time=00:11:53.46 bitrate=59722.8kbits/s speed=11.1x    
+size= 5252864KiB time=00:11:59.26 bitrate=59827.4kbits/s speed=11.1x    
+size= 5306112KiB time=00:12:05.76 bitrate=59892.1kbits/s speed=11.2x    
+size= 5352960KiB time=00:12:11.23 bitrate=59969.4kbits/s speed=11.2x    
+size= 5391360KiB time=00:12:15.94 bitrate=60012.8kbits/s speed=11.1x    
+size= 5444864KiB time=00:12:22.28 bitrate=60090.7kbits/s speed=11.2x    
+size= 5486592KiB time=00:12:27.28 bitrate=60145.7kbits/s speed=11.1x    
+size= 5539840KiB time=00:12:33.79 bitrate=60205.3kbits/s speed=11.2x    
+size= 5593600KiB time=00:12:40.13 bitrate=60282.5kbits/s speed=11.2x    
+size= 5647104KiB time=00:12:46.30 bitrate=60368.9kbits/s speed=11.2x    
+size= 5704704KiB time=00:12:52.73 bitrate=60477.7kbits/s speed=11.2x    
+size= 5757696KiB time=00:13:00.27 bitrate=60448.9kbits/s speed=11.2x    
+size= 5802752KiB time=00:13:07.74 bitrate=60344.6kbits/s speed=11.2x    
+size= 5854720KiB time=00:13:15.29 bitrate=60307.1kbits/s speed=11.3x    
+size= 5913088KiB time=00:13:21.42 bitrate=60442.4kbits/s speed=11.3x    
+size= 5966336KiB time=00:13:28.22 bitrate=60473.7kbits/s speed=11.3x    
+size= 6016000KiB time=00:13:34.98 bitrate=60471.5kbits/s speed=11.3x    
+size= 6068992KiB time=00:13:42.73 bitrate=60428.9kbits/s speed=11.3x    
+size= 6113792KiB time=00:13:49.78 bitrate=60357.9kbits/s speed=11.4x    
+size= 6158336KiB time=00:13:56.79 bitrate=60288.5kbits/s speed=11.4x    
+size= 6188288KiB time=00:14:01.46 bitrate=60245.5kbits/s speed=11.4x    
+size= 6218240KiB time=00:14:05.80 bitrate=60226.6kbits/s speed=11.3x    
+size= 6252544KiB time=00:14:10.47 bitrate=60226.2kbits/s speed=11.3x    
+size= 6286592KiB time=00:14:14.97 bitrate=60235.2kbits/s speed=11.3x    
+size= 6324480KiB time=00:14:19.98 bitrate=60245.5kbits/s speed=11.3x    
+size= 6354432KiB time=00:14:24.02 bitrate=60247.4kbits/s speed=11.3x    
+size= 6388480KiB time=00:14:28.61 bitrate=60250.3kbits/s speed=11.3x    
+size= 6418688KiB time=00:14:32.66 bitrate=60254.5kbits/s speed=11.3x    
+size= 6427648KiB time=00:14:34.16 bitrate=60235.0kbits/s speed=11.2x    
+size= 6427648KiB time=00:14:34.16 bitrate=60235.0kbits/s speed=11.1x    
+size= 6427648KiB time=00:14:34.16 bitrate=60235.0kbits/s speed=11.1x    
+size= 6427648KiB time=00:14:34.16 bitrate=60235.0kbits/s speed=  11x    
+size= 6461184KiB time=00:14:37.75 bitrate=60301.9kbits/s speed=  11x    
+size= 6499840KiB time=00:14:43.09 bitrate=60295.9kbits/s speed=  11x    
+size= 6548224KiB time=00:14:49.51 bitrate=60306.1kbits/s speed=  11x    
+size= 6588928KiB time=00:14:54.43 bitrate=60347.0kbits/s speed=  11x    
+size= 6632448KiB time=00:15:00.06 bitrate=60365.7kbits/s speed=  11x    
+size= 6686208KiB time=00:15:06.57 bitrate=60418.2kbits/s speed=  11x    
+size= 6732032KiB time=00:15:11.99 bitrate=60470.6kbits/s speed=  11x    
+size= 6785792KiB time=00:15:19.29 bitrate=60469.5kbits/s speed=  11x    
+size= 6846976KiB time=00:15:26.67 bitrate=60528.7kbits/s speed=  11x    
+size= 6900480KiB time=00:15:33.09 bitrate=60581.8kbits/s speed=  11x    
+size= 6909184KiB time=00:15:34.47 bitrate=60568.8kbits/s speed=  11x    
+size= 6909184KiB time=00:15:34.47 bitrate=60568.8kbits/s speed=10.9x    
+size= 6935296KiB time=00:15:37.18 bitrate=60621.8kbits/s speed=10.9x    
+size= 6985216KiB time=00:15:42.94 bitrate=60685.5kbits/s speed=10.9x    
+size= 7038720KiB time=00:15:48.86 bitrate=60768.7kbits/s speed=10.9x    
+size= 7085568KiB time=00:15:53.91 bitrate=60849.5kbits/s speed=10.9x    
+size= 7135744KiB time=00:15:59.79 bitrate=60904.9kbits/s speed=10.9x    
+size= 7149824KiB time=00:16:01.37 bitrate=60924.5kbits/s speed=10.9x    
+size= 7181824KiB time=00:16:04.54 bitrate=60996.1kbits/s speed=10.8x    
+size= 7239168KiB time=00:16:11.05 bitrate=61071.1kbits/s speed=10.8x    
+size= 7270400KiB time=00:16:14.76 bitrate=61101.0kbits/s speed=10.8x    
+size= 7317248KiB time=00:16:19.18 bitrate=61217.1kbits/s speed=10.8x    
+size= 7354880KiB time=00:16:24.77 bitrate=61182.7kbits/s speed=10.8x    
+[vost#0:0/copy @ 0x3280af00] Error submitting a packet to the muxer: No space left on device
+    Last message repeated 1 times
+[out#0/hevc @ 0x3280a700] Error muxing a packet
+[out#0/hevc @ 0x3280a700] Task finished with error code: -28 (No space left on device)
+[out#0/hevc @ 0x3280a700] Terminating thread with return code -28 (No space left on device)
+[out#0/hevc @ 0x3280a700] Error writing trailer: No space left on device
+[out#0/hevc @ 0x3280a700] Error closing file: No space left on device
+[out#0/hevc @ 0x3280a700] video:7373938KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+size= 7373568KiB time=00:16:27.31 bitrate=61180.1kbits/s speed=10.8x    
+Conversion failed!
+
+2025-07-16 06:42:35,720 - INFO - Cleaning up temporary directory: /var/tmp/mkv_transcoder/Dune_t00_f934dab6-f51a-40ec-94ea-8c8d08dcfe1a
+2025-07-16 06:42:36,653 - INFO - Cleaning up temporary directory: /dev/shm/Dune_t00_f934dab6-f51a-40ec-94ea-8c8d08dcfe1a

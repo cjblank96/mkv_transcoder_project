@@ -1,0 +1,17 @@
+2025-07-16 17:25:06,241 - INFO - Job 390d5f75-083c-464c-a127-dd089e358bd0 initialized.
+2025-07-16 17:25:06,241 - INFO - Input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 17:25:06,241 - INFO - Output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 17:25:06,241 - INFO - Staging directory: /mnt/staging/Dune_t00_390d5f75-083c-464c-a127-dd089e358bd0
+2025-07-16 17:25:06,241 - INFO - RAM disk directory: /dev/shm/Dune_t00_390d5f75-083c-464c-a127-dd089e358bd0
+2025-07-16 17:25:06,241 - INFO - Disk space for Staging Directory (/mnt/staging):
+2025-07-16 17:25:06,241 - INFO -   - Total: 14.66 GB
+2025-07-16 17:25:06,241 - INFO -   - Used: 7.62 GB
+2025-07-16 17:25:06,241 - INFO -   - Free: 6.27 GB
+2025-07-16 17:25:06,242 - INFO - Disk space for RAM Disk (/dev/shm):
+2025-07-16 17:25:06,242 - INFO -   - Total: 11.73 GB
+2025-07-16 17:25:06,242 - INFO -   - Used: 0.00 GB
+2025-07-16 17:25:06,242 - INFO -   - Free: 11.73 GB
+2025-07-16 17:25:06,242 - INFO - Extracting Profile 7 HEVC stream...
+2025-07-16 17:25:06,242 - INFO - Executing command: ffmpeg -i /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv -map 0:v:0 -c copy -y /mnt/staging/Dune_t00_390d5f75-083c-464c-a127-dd089e358bd0/video_p7.hevc
+2025-07-16 17:25:20,916 - INFO - Cleaning up staging directory: /mnt/staging/Dune_t00_390d5f75-083c-464c-a127-dd089e358bd0
+2025-07-16 17:25:20,916 - INFO - Cleaning up RAM disk directory: /dev/shm/Dune_t00_390d5f75-083c-464c-a127-dd089e358bd0

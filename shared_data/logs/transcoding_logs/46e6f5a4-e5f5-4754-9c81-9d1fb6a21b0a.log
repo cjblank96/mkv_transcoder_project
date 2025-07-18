@@ -1,0 +1,18 @@
+2025-07-17 00:04:03,452 - INFO - Job 46e6f5a4-e5f5-4754-9c81-9d1fb6a21b0a initialized.
+2025-07-17 00:04:03,452 - INFO - Original input file: /mnt/unraid/landing_point/Test/br_snippet.mkv
+2025-07-17 00:04:03,452 - INFO - Final output file: /mnt/unraid/landing_point/Test/br_snippet_DV_P8.mkv
+2025-07-17 00:04:03,452 - INFO - Local job staging directory: /mnt/staging/46e6f5a4-e5f5-4754-9c81-9d1fb6a21b0a
+2025-07-17 00:04:03,453 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-17 00:04:03,453 - INFO -   - Total: 491.08 GB
+2025-07-17 00:04:03,453 - INFO -   - Used: 6.37 GB
+2025-07-17 00:04:03,453 - INFO -   - Free: 459.69 GB
+2025-07-17 00:04:03,458 - INFO - Copying source file locally: from /mnt/unraid/landing_point/Test/br_snippet.mkv to /mnt/staging/46e6f5a4-e5f5-4754-9c81-9d1fb6a21b0a/br_snippet.mkv
+2025-07-17 00:04:03,936 - INFO - Copy successful.
+2025-07-17 00:04:03,947 - INFO - Attempting to get video metadata from /mnt/staging/46e6f5a4-e5f5-4754-9c81-9d1fb6a21b0a/br_snippet.mkv
+2025-07-17 00:04:03,959 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-17 00:04:03,971 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 235628 frames.
+2025-07-17 00:04:03,981 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i /mnt/staging/46e6f5a4-e5f5-4754-9c81-9d1fb6a21b0a/br_snippet.mkv -map 0 -c:v libx265 -preset medium -crf 18 -threads 9 -x265-params pools=9 -c:a copy -c:s copy -y /mnt/staging/46e6f5a4-e5f5-4754-9c81-9d1fb6a21b0a/br_snippet_x265.mkv
+2025-07-17 00:06:37,429 - INFO - Successfully completed: Re-encoding to x265
+2025-07-17 00:06:37,442 - INFO - Moving final file from /mnt/staging/46e6f5a4-e5f5-4754-9c81-9d1fb6a21b0a/br_snippet_x265.mkv to /mnt/unraid/landing_point/Test/br_snippet_x265.mkv
+2025-07-17 00:06:37,633 - INFO - Move successful.
+2025-07-17 00:06:37,655 - INFO - Cleaning up job staging directory: /mnt/staging/46e6f5a4-e5f5-4754-9c81-9d1fb6a21b0a

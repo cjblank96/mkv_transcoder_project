@@ -1,0 +1,48 @@
+2025-07-16 17:35:15,167 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 17:35:15,167 - INFO - Input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 17:35:15,167 - INFO - Output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 17:35:15,167 - INFO - Staging directory: /mnt/staging/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 17:35:15,167 - INFO - RAM disk directory: /dev/shm/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 17:35:15,167 - INFO - Disk space for Staging Directory (/mnt/staging):
+2025-07-16 17:35:15,167 - INFO -   - Total: 491.08 GB
+2025-07-16 17:35:15,167 - INFO -   - Used: 0.00 GB
+2025-07-16 17:35:15,167 - INFO -   - Free: 466.07 GB
+2025-07-16 17:35:15,167 - INFO - Disk space for RAM Disk (/dev/shm):
+2025-07-16 17:35:15,167 - INFO -   - Total: 11.73 GB
+2025-07-16 17:35:15,167 - INFO -   - Used: 0.00 GB
+2025-07-16 17:35:15,167 - INFO -   - Free: 11.73 GB
+2025-07-16 17:35:15,167 - INFO - Extracting Profile 7 HEVC stream...
+2025-07-16 17:35:15,168 - INFO - Executing command: ffmpeg -i /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv -map 0:v:0 -c copy -y /mnt/staging/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c/video_p7.hevc
+2025-07-16 17:46:45,627 - INFO - Extracting Profile 7 HEVC stream successful.
+2025-07-16 17:46:45,629 - INFO - Converting P7 to P8.1...
+2025-07-16 17:46:45,629 - INFO - Executing command: dovi_tool -m 2 convert --discard -i /mnt/staging/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c/video_p7.hevc -o /mnt/staging/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c/video_p8.hevc
+2025-07-16 17:52:11,324 - INFO - Converting P7 to P8.1 successful.
+2025-07-16 17:52:11,327 - INFO - Extracting RPU from P8.1 stream...
+2025-07-16 17:52:11,327 - INFO - Executing command: dovi_tool extract-rpu -i /mnt/staging/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c/video_p8.hevc -o /dev/shm/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c/rpu.bin
+2025-07-16 17:56:24,024 - INFO - Extracting RPU from P8.1 stream successful.
+2025-07-16 18:54:41,994 - INFO - Cleaning up staging directory: /mnt/staging/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 19:00:23,283 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 19:00:23,284 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 19:00:23,284 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 19:00:23,285 - INFO - Local job staging directory: /mnt/staging/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 19:00:23,285 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 19:00:23,286 - INFO -   - Total: 491.08 GB
+2025-07-16 19:00:23,286 - INFO -   - Used: 64.88 GB
+2025-07-16 19:00:23,287 - INFO -   - Free: 401.19 GB
+2025-07-16 19:00:23,288 - INFO - Copying source file locally: from /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv to /mnt/staging/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 19:00:57,767 - INFO - Cleaning up job staging directory: /mnt/staging/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 19:03:56,576 - INFO - Job 2cb955c6-dba6-497a-9eb3-92944d5bd80c initialized.
+2025-07-16 19:03:56,576 - INFO - Original input file: /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv
+2025-07-16 19:03:56,577 - INFO - Final output file: /mnt/unraid/landing_point/Video/Dune/Dune_t00_DV_P8.mkv
+2025-07-16 19:03:56,577 - INFO - Local job staging directory: /mnt/staging/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c
+2025-07-16 19:03:56,578 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-16 19:03:56,578 - INFO -   - Total: 491.08 GB
+2025-07-16 19:03:56,579 - INFO -   - Used: 0.00 GB
+2025-07-16 19:03:56,579 - INFO -   - Free: 466.07 GB
+2025-07-16 19:03:56,580 - INFO - Copying source file locally: from /mnt/unraid/landing_point/Video/Dune/Dune_t00.mkv to /mnt/staging/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 19:15:18,556 - INFO - Copy successful.
+2025-07-16 19:15:18,556 - INFO - Getting total frame count from metadata for /mnt/staging/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv...
+2025-07-16 19:15:18,556 - INFO - Executing command: ffprobe -v error -select_streams v:0 -show_entries stream=nb_frames -of default=nokey=1:noprint_wrappers=1 /mnt/staging/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 19:15:18,590 - WARNING - nb_frames not found in metadata, falling back to counting frames.
+2025-07-16 19:15:18,590 - INFO - Executing fallback command: ffprobe -v error -select_streams v:0 -count_frames -show_entries stream=nb_read_frames -of default=nokey=1:noprint_wrappers=1 /mnt/staging/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c/Dune_t00.mkv
+2025-07-16 19:26:12,943 - INFO - Cleaning up job staging directory: /mnt/staging/Dune_t00_2cb955c6-dba6-497a-9eb3-92944d5bd80c
