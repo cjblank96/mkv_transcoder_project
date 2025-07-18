@@ -180,3 +180,33 @@ class JobQueue:
                     return True
             return False
         return self._execute_with_lock(_reset_op)
+
+    def force_reset_job_progress(self, job_id=None, input_path=None, from_step_index=1):
+        """Forcefully resets a job's progress and status by job_id or input_path, regardless of its current status."""
+        step_order = [
+            'copy_source',
+            'get_metadata',
+            'extract_p7',
+            'convert_p8',
+            'extract_rpu',
+            'reencode_x265',
+            'inject_rpu',
+            'remux_final',
+            'move_final'
+        ]
+        if not (1 <= from_step_index <= len(step_order)):
+            print(f"Error: Invalid step index {from_step_index}. Must be between 1 and {len(step_order)}.")
+            return False
+        def _force_reset_op(queue):
+            for job in queue['jobs']:
+                if (job_id and job.get('id') == job_id) or (input_path and job.get('input_path') == input_path):
+                    for i in range(from_step_index - 1, len(step_order)):
+                        step_name = step_order[i]
+                        if step_name in job.get('steps', {}):
+                            job['steps'][step_name] = 'pending'
+                    print(f"[ADMIN] Force-resetting job {job['id']} (status was: {job.get('status')}) for re-run from step {from_step_index}.")
+                    job['status'] = 'failed'
+                    job['retries'] = 0
+                    return True
+            return False
+        return self._execute_with_lock(_force_reset_op)

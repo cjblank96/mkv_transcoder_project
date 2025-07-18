@@ -29,6 +29,18 @@ def main():
     # This flag ensures we only apply the force-rerun logic once to the first job claimed.
     rerun_flag_applied = False
 
+    # If --force-rerun is used, forcibly reset the first job in the queue (regardless of status)
+    if args.force_rerun:
+        # Load all jobs and reset the first one (or you could extend this to select by input_path/ID)
+        def _get_first_job(queue):
+            return queue['jobs'][0] if queue['jobs'] else None
+        first_job = job_queue._execute_with_lock(_get_first_job)
+        if first_job:
+            job_queue.force_reset_job_progress(job_id=first_job['id'], from_step_index=args.force_rerun)
+            logging.warning(f"--force-rerun flag detected. Forcibly resetting job {first_job['id']} to start from step {args.force_rerun} (status was: {first_job.get('status')}).")
+        else:
+            logging.info("No jobs found in the queue to force reset.")
+
     while True:
         job = job_queue.claim_next_available_job(worker_id)
 
