@@ -1,0 +1,48 @@
+{
+    "jobs": [
+        {
+            "id": "d5a2bd21-6a04-447a-a4fa-ae7de261f782",
+            "input_path": "Z:\\landing_point\\Video\\Hell Or High Water\\Hell Or High Water-FPL_MainFeature_DV_t00.mkv",
+            "job_type": "dolby_vision",
+            "status": "failed",
+            "worker_id": "CJBLANK",
+            "output_path": null,
+            "added_at": 1752847758.1850944,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            },
+            "claimed_at": 1752847773.8997147,
+            "completed_at": 1752849032.1530504
+        },
+        {
+            "id": "836d9319-92e6-4425-8db5-2c5d60c8cb93",
+            "input_path": "Z:\\landing_point\\Video\\Eternal Sunshine of the Spotless Mind\\Eternal Sunshine of the Spotless Mind_t00.mkv",
+            "job_type": "dolby_vision",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1752847765.879076,
+            "retries": 0,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            }
+        }
+    ]
+}

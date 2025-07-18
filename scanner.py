@@ -13,6 +13,7 @@ sys.path.insert(0, project_root)
 from mkv_transcoder.job_queue import JobQueue
 from mkv_transcoder import config
 
+
 def is_dolby_vision(file_path):
     """
     Checks if a video file contains a Dolby Vision stream by looking for the DOVI RPU.
@@ -24,7 +25,7 @@ def is_dolby_vision(file_path):
             '-v', 'quiet',
             '-print_format', 'json',
             '-show_streams',
-            file_path
+            f'"{file_path}"'
         ]
         result = subprocess.run(command, capture_output=True, text=True, check=True)
         data = json.loads(result.stdout)
