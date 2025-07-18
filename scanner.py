@@ -25,7 +25,7 @@ def is_dolby_vision(file_path):
             '-v', 'quiet',
             '-print_format', 'json',
             '-show_streams',
-            f'"{file_path}"'
+            file_path
         ]
         result = subprocess.run(command, capture_output=True, text=True, check=True)
         data = json.loads(result.stdout)
