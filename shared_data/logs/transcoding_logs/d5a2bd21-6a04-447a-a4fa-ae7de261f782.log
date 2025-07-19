@@ -56,3 +56,164 @@
 2025-07-18 14:04:03,449 - INFO -   - Total: 3726.01 GB
 2025-07-18 14:04:03,460 - INFO -   - Used: 1734.02 GB
 2025-07-18 14:04:03,480 - INFO -   - Free: 1991.99 GB
+2025-07-18 14:37:07,562 - INFO - Job d5a2bd21-6a04-447a-a4fa-ae7de261f782 initialized.
+2025-07-18 14:37:07,579 - INFO - Original input file: "Z:\landing_point\Video\Hell Or High Water\Hell Or High Water-FPL_MainFeature_DV_t00.mkv"
+2025-07-18 14:37:07,581 - INFO - Final output file: "Z:\landing_point\Video\Hell Or High Water\Hell Or High Water-FPL_MainFeature_DV_t00_DV_P8.mkv
+2025-07-18 14:37:07,581 - INFO - Local job staging directory: H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782
+2025-07-18 14:37:07,582 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-18 14:37:07,583 - INFO -   - Total: 3726.01 GB
+2025-07-18 14:37:07,583 - INFO -   - Used: 1734.02 GB
+2025-07-18 14:37:07,584 - INFO -   - Free: 1991.99 GB
+2025-07-18 14:37:07,584 - INFO - === Entering transcode() for job d5a2bd21-6a04-447a-a4fa-ae7de261f782 ===
+2025-07-18 14:37:07,585 - INFO - Job dict: {
+  "id": "d5a2bd21-6a04-447a-a4fa-ae7de261f782",
+  "input_path": "\"Z:\\landing_point\\Video\\Hell Or High Water\\Hell Or High Water-FPL_MainFeature_DV_t00.mkv\"",
+  "job_type": "dolby_vision",
+  "status": "failed",
+  "worker_id": "CJBLANK",
+  "output_path": null,
+  "added_at": 1752847758.1850944,
+  "retries": 0,
+  "steps": {
+    "copy_source": "completed",
+    "get_metadata": "pending",
+    "extract_p7": "pending",
+    "convert_p8": "pending",
+    "extract_rpu": "pending",
+    "reencode_x265": "pending",
+    "inject_rpu": "pending",
+    "remux_final": "pending",
+    "move_final": "pending"
+  },
+  "claimed_at": 1752871027.365671,
+  "completed_at": 1752849032.1530504
+}
+2025-07-18 14:37:07,585 - ERROR - Input file does not exist: "Z:\landing_point\Video\Hell Or High Water\Hell Or High Water-FPL_MainFeature_DV_t00.mkv"
+2025-07-18 15:00:23,430 - INFO - Job d5a2bd21-6a04-447a-a4fa-ae7de261f782 initialized.
+2025-07-18 15:00:23,445 - INFO - Original input file: Z:\landing_point\Video\Hell Or High Water\Hell Or High Water-FPL_MainFeature_DV_t00.mkv
+2025-07-18 15:00:23,447 - INFO - Final output file: Z:\landing_point\Video\Hell Or High Water\Hell Or High Water-FPL_MainFeature_DV_t00_DV_P8.mkv
+2025-07-18 15:00:23,448 - INFO - Local job staging directory: H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782
+2025-07-18 15:00:23,448 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-18 15:00:23,451 - INFO -   - Total: 3726.01 GB
+2025-07-18 15:00:23,452 - INFO -   - Used: 1734.02 GB
+2025-07-18 15:00:23,452 - INFO -   - Free: 1991.99 GB
+2025-07-18 15:00:23,453 - INFO - === Entering transcode() for job d5a2bd21-6a04-447a-a4fa-ae7de261f782 ===
+2025-07-18 15:00:23,453 - INFO - Job dict: {
+  "id": "d5a2bd21-6a04-447a-a4fa-ae7de261f782",
+  "input_path": "\"Z:\\landing_point\\Video\\Hell Or High Water\\Hell Or High Water-FPL_MainFeature_DV_t00.mkv\"",
+  "job_type": "dolby_vision",
+  "status": "failed",
+  "worker_id": "CJBLANK",
+  "output_path": null,
+  "added_at": 1752847758.1850944,
+  "retries": 0,
+  "steps": {
+    "copy_source": "completed",
+    "get_metadata": "pending",
+    "extract_p7": "pending",
+    "convert_p8": "pending",
+    "extract_rpu": "pending",
+    "reencode_x265": "pending",
+    "inject_rpu": "pending",
+    "remux_final": "pending",
+    "move_final": "pending"
+  },
+  "claimed_at": 1752872423.2401996,
+  "completed_at": 1752849032.1530504
+}
+2025-07-18 15:00:23,463 - INFO - === Starting transcode pipeline for job d5a2bd21-6a04-447a-a4fa-ae7de261f782 ===
+2025-07-18 15:00:23,463 - INFO - Job dict: {'id': 'd5a2bd21-6a04-447a-a4fa-ae7de261f782', 'input_path': '"Z:\\landing_point\\Video\\Hell Or High Water\\Hell Or High Water-FPL_MainFeature_DV_t00.mkv"', 'job_type': 'dolby_vision', 'status': 'failed', 'worker_id': 'CJBLANK', 'output_path': None, 'added_at': 1752847758.1850944, 'retries': 0, 'steps': {'copy_source': 'completed', 'get_metadata': 'pending', 'extract_p7': 'pending', 'convert_p8': 'pending', 'extract_rpu': 'pending', 'reencode_x265': 'pending', 'inject_rpu': 'pending', 'remux_final': 'pending', 'move_final': 'pending'}, 'claimed_at': 1752872423.2401996, 'completed_at': 1752849032.1530504}
+2025-07-18 15:00:23,464 - INFO - Step 'copy_source' already completed. Skipping.
+2025-07-18 15:00:23,464 - INFO - Starting step: get_metadata - Getting video metadata
+2025-07-18 15:00:23,465 - INFO - Attempting to get video metadata from H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\Hell Or High Water-FPL_MainFeature_DV_t00.mkv
+2025-07-18 15:00:23,550 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-18 15:00:23,602 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 147148 frames.
+2025-07-18 15:00:23,628 - INFO - Probing for main video stream in: H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\Hell Or High Water-FPL_MainFeature_DV_t00.mkv
+2025-07-18 15:00:23,694 - INFO - Found main video stream at index: 0
+2025-07-18 15:00:23,703 - INFO - Using map specifier '0:v:0' for ffmpeg.
+2025-07-18 15:00:23,706 - INFO - Starting step: extract_p7 - Extracting Profile 7 HEVC stream
+2025-07-18 15:00:23,708 - INFO - Executing ffmpeg stream copy: ffmpeg -i "H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\Hell Or High Water-FPL_MainFeature_DV_t00.mkv" -map 0:v:0 -c copy -y "H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\video_p7.hevc"
+2025-07-18 15:04:23,197 - INFO - Successfully completed: Extracting P7 stream
+2025-07-18 15:04:23,235 - INFO - Starting step: convert_p8 - Converting P7 to P8.1
+2025-07-18 15:04:23,244 - INFO - Converting to P8.1...
+2025-07-18 15:04:23,246 - INFO - Executing command: dovi_tool -m 2 convert --discard -i "H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\video_p7.hevc" -o "H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\video_p8.hevc"
+2025-07-18 15:08:20,101 - INFO - Converting to P8.1 successful.
+2025-07-18 15:08:20,157 - INFO - Starting step: extract_rpu - Extracting RPU
+2025-07-18 15:08:20,158 - INFO - Extracting RPU...
+2025-07-18 15:08:20,161 - INFO - Executing command: dovi_tool extract-rpu -i "H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\video_p8.hevc" -o "H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\rpu.bin"
+2025-07-18 15:10:22,299 - INFO - Extracting RPU successful.
+2025-07-18 15:10:22,368 - INFO - Starting step: reencode_x265 - Re-encoding to x265
+2025-07-18 15:10:22,368 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i "H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\video_p8.hevc" -an -sn -dn -c:v libx265 -preset slow -crf 20.5 -threads 8 -x265-params pools=8 -y "H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\video_reencoded.hevc"
+2025-07-18 15:10:22,488 - ERROR - ffmpeg version 7.1.1-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+2025-07-18 15:10:22,489 - ERROR - built with gcc 14.2.0 (Rev1, Built by MSYS2 project)
+2025-07-18 15:10:22,493 - ERROR - configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+2025-07-18 15:10:22,508 - ERROR - libavutil      59. 39.100 / 59. 39.100
+2025-07-18 15:10:22,558 - ERROR - libavcodec     61. 19.101 / 61. 19.101
+2025-07-18 15:10:22,562 - ERROR - libavformat    61.  7.100 / 61.  7.100
+2025-07-18 15:10:22,576 - ERROR - libavdevice    61.  3.100 / 61.  3.100
+2025-07-18 15:10:22,581 - ERROR - libavfilter    10.  4.100 / 10.  4.100
+2025-07-18 15:10:22,593 - ERROR - libswscale      8.  3.100 /  8.  3.100
+2025-07-18 15:10:22,597 - ERROR - libswresample   5.  3.100 /  5.  3.100
+2025-07-18 15:10:22,610 - ERROR - libpostproc    58.  3.100 / 58.  3.100
+2025-07-18 15:10:22,613 - ERROR - Input #0, hevc, from 'H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\video_p8.hevc':
+2025-07-18 15:10:22,626 - ERROR - Duration: N/A, bitrate: N/A
+2025-07-18 15:10:22,630 - ERROR - Stream #0:0: Video: hevc (Main 10), yuv420p10le(tv, bt2020nc/bt2020/smpte2084), 3840x2160 [SAR 1:1 DAR 16:9], 25 fps, 23.98 tbr, 1200k tbn
+2025-07-18 15:10:22,633 - ERROR - Stream mapping:
+2025-07-18 15:10:22,638 - ERROR - Stream #0:0 -> #0:0 (hevc (native) -> hevc (libx265))
+2025-07-18 15:10:22,691 - ERROR - Press [q] to stop, [?] for help
+2025-07-18 15:10:22,696 - ERROR - x265 [info]: HEVC encoder version 4.1+110-0e0eee580
+2025-07-18 15:10:22,708 - ERROR - x265 [info]: build info [Windows][GCC 14.2.0][64 bit] 10bit
+2025-07-18 15:10:22,711 - ERROR - x265 [info]: using cpu capabilities: MMX2 SSE2Fast LZCNT SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+2025-07-18 15:10:22,716 - ERROR - x265 [info]: Main 10 profile, Level-5 (Main tier)
+2025-07-18 15:10:22,728 - ERROR - x265 [info]: Thread pool created using 8 threads
+2025-07-18 15:10:22,732 - ERROR - x265 [info]: Slices                              : 1
+2025-07-18 15:10:22,745 - ERROR - x265 [info]: frame threads / pool features       : 8 / wpp(34 rows)
+2025-07-18 15:10:22,757 - ERROR - x265 [info]: Coding QT: max CU size, min CU size : 64 / 8
+2025-07-18 15:10:22,760 - ERROR - x265 [info]: Residual QT: max TU size, max depth : 32 / 1 inter / 1 intra
+2025-07-18 15:10:22,764 - ERROR - x265 [info]: ME / range / subpel / merge         : star / 57 / 3 / 3
+2025-07-18 15:10:22,776 - ERROR - x265 [info]: Keyframe min / max / scenecut / bias  : 23 / 250 / 40 / 5.00
+2025-07-18 15:10:22,780 - ERROR - x265 [info]: Lookahead / bframes / badapt        : 25 / 4 / 2
+2025-07-18 15:10:22,830 - ERROR - x265 [info]: b-pyramid / weightp / weightb       : 1 / 1 / 0
+2025-07-18 15:10:22,834 - ERROR - x265 [info]: References / ref-limit  cu / depth  : 4 / on / on
+2025-07-18 15:10:22,847 - ERROR - x265 [info]: AQ: mode / str / qg-size / cu-tree  : 2 / 1.0 / 32 / 1
+2025-07-18 15:10:22,852 - ERROR - x265 [info]: Rate Control / qCompress            : CRF-20.5 / 0.60
+2025-07-18 15:10:22,856 - ERROR - x265 [info]: tools: rect limit-modes rd=4 psy-rd=2.00 rdoq=2 psy-rdoq=1.00
+2025-07-18 15:10:22,879 - ERROR - x265 [info]: tools: rskip mode=1 signhide tmvp strong-intra-smoothing lslices=4
+2025-07-18 15:10:22,883 - ERROR - x265 [info]: tools: deblock sao dhdr10-info
+2025-07-18 15:10:22,895 - ERROR - Output #0, hevc, to 'H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\video_reencoded.hevc':
+2025-07-18 15:10:22,911 - ERROR - Metadata:
+2025-07-18 15:10:22,926 - ERROR - encoder         : Lavf61.7.100
+2025-07-18 15:10:22,987 - ERROR - Stream #0:0: Video: hevc, yuv420p10le(tv, bt2020nc/bt2020/smpte2084, progressive), 3840x2160 [SAR 1:1 DAR 16:9], q=2-31, 23.98 fps, 23.98 tbn
+2025-07-18 15:10:22,992 - ERROR - Metadata:
+2025-07-18 15:10:23,006 - ERROR - encoder         : Lavc61.19.101 libx265
+2025-07-18 15:10:23,010 - ERROR - Side data:
+2025-07-18 15:10:23,015 - ERROR - Mastering Display Metadata, has_primaries:1 has_luminance:1 r(0.6800,0.3200) g(0.2650,0.6900) b(0.1500 0.0600) wp(0.3127, 0.3290) min_luminance=0.005000, max_luminance=1000.000000
+2025-07-18 15:10:23,029 - ERROR - Content Light Level Metadata, MaxCLL=1000, MaxFALL=559
+2025-07-18 15:10:23,053 - ERROR - cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+2025-07-18 22:24:25,503 - INFO - Job d5a2bd21-6a04-447a-a4fa-ae7de261f782 initialized.
+2025-07-18 22:24:25,504 - INFO - Original input file: Z:\landing_point\Video\Hell Or High Water\Hell Or High Water-FPL_MainFeature_DV_t00.mkv
+2025-07-18 22:24:25,504 - INFO - Final output file: Z:\landing_point\Video\Hell Or High Water\Hell Or High Water-FPL_MainFeature_DV_t00_DV_P8.mkv
+2025-07-18 22:24:25,505 - INFO - Local job staging directory: /mnt/staging/d5a2bd21-6a04-447a-a4fa-ae7de261f782
+2025-07-18 22:24:25,505 - INFO - Disk space for Local Staging SSD (/mnt/staging):
+2025-07-18 22:24:25,506 - INFO -   - Total: 491.08 GB
+2025-07-18 22:24:25,506 - INFO -   - Used: 0.00 GB
+2025-07-18 22:24:25,507 - INFO -   - Free: 466.07 GB
+2025-07-19 03:37:16,954 - ERROR - [out#0/hevc @ 000001e80ca5b040] video:9138337KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000000%
+2025-07-19 03:37:16,957 - ERROR - x265 [info]: frame I:    890, Avg QP:20.48  kb/s: 40874.43
+2025-07-19 03:37:16,959 - ERROR - x265 [info]: frame P:  31090, Avg QP:22.26  kb/s: 24629.01
+2025-07-19 03:37:16,970 - ERROR - x265 [info]: frame B: 115168, Avg QP:25.62  kb/s: 8615.68
+2025-07-19 03:37:16,972 - ERROR - x265 [info]: Weighted P-Frames: Y:0.5% UV:0.3%
+2025-07-19 03:37:16,975 - ERROR - encoded 147148 frames in 44814.32s (3.28 fps), 12194.15 kb/s, Avg QP:24.88
+2025-07-19 03:37:17,330 - INFO - Successfully completed: Re-encoding to x265
+2025-07-19 03:37:17,455 - INFO - Starting step: inject_rpu - Injecting RPU
+2025-07-19 03:37:17,472 - INFO - Injecting RPU...
+2025-07-19 03:37:17,479 - INFO - Executing command: dovi_tool inject-rpu -i "H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\video_reencoded.hevc" --rpu-in "H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\rpu.bin" -o "H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\video_final_with_rpu.hevc"
+2025-07-19 03:38:11,015 - INFO - Injecting RPU successful.
+2025-07-19 03:38:11,058 - INFO - Starting step: remux_final - Remuxing final MKV
+2025-07-19 03:38:11,066 - INFO - Remuxing final MKV...
+2025-07-19 03:38:11,073 - INFO - Executing command: mkvmerge -o "H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\Hell Or High Water-FPL_MainFeature_DV_t00_DV_P8.mkv" --language 0:eng "H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\video_final_with_rpu.hevc" --no-video "H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\Hell Or High Water-FPL_MainFeature_DV_t00.mkv"
+2025-07-19 03:41:26,702 - INFO - Remuxing final MKV successful.
+2025-07-19 03:41:26,743 - INFO - Starting step: move_final - Moving final file to destination
+2025-07-19 03:41:26,751 - INFO - Moving final file from H:\staging\d5a2bd21-6a04-447a-a4fa-ae7de261f782\Hell Or High Water-FPL_MainFeature_DV_t00_DV_P8.mkv to Z:\landing_point\Video\Hell Or High Water\Hell Or High Water-FPL_MainFeature_DV_t00_DV_P8.mkv
+2025-07-19 03:43:27,445 - INFO - Move successful.
+2025-07-19 03:43:28,161 - INFO - === transcode() completed successfully for job d5a2bd21-6a04-447a-a4fa-ae7de261f782 ===
