@@ -543,7 +543,7 @@ class Transcoder:
                     return False
 
                 # Re-encode video only
-                cmd4 = ["ffmpeg", "-fflags", "+genpts", "-i", f'"{self.p8_video_path}"', "-an", "-sn", "-dn", "-c:v", "libx265", "-preset", "medium", "-crf", "18", "-threads", "10", "-x265-params", "pools=10:no-sao=1:early-skip=1:rd=3:me=hex", "-y", f'"{self.reencoded_video_path}"']
+                cmd4 = ["ffmpeg", "-fflags", "+genpts", "-i", f'"{self.p8_video_path}"', "-an", "-sn", "-dn", "-c:v", "libx265", "-preset", "slow", "-crf", "20.5", "-threads", "10", "-x265-params", "pools=10:no-sao=1:early-skip=1:rd=3:me=hex", "-y", f'"{self.reencoded_video_path}"']
                 if not run_step('reencode_x265', 'Re-encoding to x265', self.reencoded_video_path, self._run_ffmpeg_with_progress, cmd4, self.total_frames, "Re-encoding to x265"):
                     self.logger.error("transcode() failed during step: reencode_x265")
                     return False
@@ -564,8 +564,8 @@ class Transcoder:
             else: # 'standard' job type
                 cmd_reencode_mux = [
                     "ffmpeg", "-fflags", "+genpts", "-i", f'"{self.local_source_path}"',
-                    "-map", "0", "-c:v", "libx265", "-preset", "medium", "-crf", "18",
-                    "-threads", "9", "-x265-params", "pools=9",
+                    "-map", "0", "-c:v", "libx265", "-preset", "slow", "-crf", "20.5",
+                    "-threads", "10", "-x265-params", "pools=10:no-sao=1:early-skip=1:rd=3:me=hex",
                     "-c:a", "copy", "-c:s", "copy", "-y", f'"{self.local_output_path}"'
                 ]
                 if not run_step('reencode_x265', 'Re-encoding and Muxing', self.local_output_path, self._run_ffmpeg_with_progress, cmd_reencode_mux, self.total_frames, "Re-encoding to x265"):
