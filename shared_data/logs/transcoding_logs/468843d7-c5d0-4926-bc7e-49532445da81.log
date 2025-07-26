@@ -1,0 +1,422 @@
+2025-07-21 13:58:10,791 - INFO - Job 468843d7-c5d0-4926-bc7e-49532445da81 initialized.
+2025-07-21 13:58:10,799 - INFO - Original input file: Z:\landing_point\Video\Harry Potter and the Sorcerer's Stone\Harry Potter and the Sorcerer's Stone_t00.mkv
+2025-07-21 13:58:10,817 - INFO - Final output file: Z:\landing_point\Video\Harry Potter and the Sorcerer's Stone\Harry Potter and the Sorcerer's Stone_t00_DV_P8.mkv
+2025-07-21 13:58:10,820 - INFO - Local job staging directory: H:\staging\468843d7-c5d0-4926-bc7e-49532445da81
+2025-07-21 13:58:10,828 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-21 13:58:10,835 - INFO -   - Total: 3726.01 GB
+2025-07-21 13:58:10,838 - INFO -   - Used: 2105.24 GB
+2025-07-21 13:58:10,845 - INFO -   - Free: 1620.77 GB
+2025-07-21 13:58:10,853 - INFO - === Entering transcode() for job 468843d7-c5d0-4926-bc7e-49532445da81 ===
+2025-07-21 13:58:10,855 - INFO - Job dict: {
+  "id": "468843d7-c5d0-4926-bc7e-49532445da81",
+  "input_path": "\"Z:\\landing_point\\Video\\Harry Potter and the Sorcerer's Stone\\Harry Potter and the Sorcerer's Stone_t00.mkv\"",
+  "job_type": "standard",
+  "status": "running",
+  "worker_id": "CJBLANK",
+  "output_path": null,
+  "added_at": 1752956659.2360363,
+  "retries": 1,
+  "steps": {
+    "copy_source": "pending",
+    "get_metadata": "pending",
+    "reencode_x265": "pending",
+    "move_final": "pending"
+  },
+  "claimed_at": 1753127890.652289
+}
+2025-07-21 13:58:10,863 - INFO - === Starting transcode pipeline for job 468843d7-c5d0-4926-bc7e-49532445da81 ===
+2025-07-21 13:58:10,864 - INFO - Job dict: {'id': '468843d7-c5d0-4926-bc7e-49532445da81', 'input_path': '"Z:\\landing_point\\Video\\Harry Potter and the Sorcerer\'s Stone\\Harry Potter and the Sorcerer\'s Stone_t00.mkv"', 'job_type': 'standard', 'status': 'running', 'worker_id': 'CJBLANK', 'output_path': None, 'added_at': 1752956659.2360363, 'retries': 1, 'steps': {'copy_source': 'pending', 'get_metadata': 'pending', 'reencode_x265': 'pending', 'move_final': 'pending'}, 'claimed_at': 1753127890.652289}
+2025-07-21 13:58:10,865 - INFO - Starting step: copy_source - Copying source file locally
+2025-07-21 13:58:10,875 - INFO - Copying source file locally: from Z:\landing_point\Video\Harry Potter and the Sorcerer's Stone\Harry Potter and the Sorcerer's Stone_t00.mkv to H:\staging\468843d7-c5d0-4926-bc7e-49532445da81\Harry Potter and the Sorcerer's Stone_t00.mkv
+2025-07-21 14:19:37,136 - INFO - Copy successful.
+2025-07-21 14:19:37,210 - INFO - Starting step: get_metadata - Getting video metadata
+2025-07-21 14:19:37,218 - INFO - Attempting to get video metadata from H:\staging\468843d7-c5d0-4926-bc7e-49532445da81\Harry Potter and the Sorcerer's Stone_t00.mkv
+2025-07-21 14:19:37,446 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-21 14:19:37,529 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 219173 frames.
+2025-07-21 14:19:45,770 - INFO - Starting step: reencode_x265 - Re-encoding and Muxing
+2025-07-21 14:19:45,772 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i "H:\staging\468843d7-c5d0-4926-bc7e-49532445da81\Harry Potter and the Sorcerer's Stone_t00.mkv" -map 0 -c:v libx265 -preset medium -crf 18 -threads 10 -x265-params pools=10:no-sao=1:early-skip=1:rd=3:me=hex -c:a copy -c:s copy -y "H:\staging\468843d7-c5d0-4926-bc7e-49532445da81\Harry Potter and the Sorcerer's Stone_t00_x265.mkv"
+2025-07-21 14:19:45,902 - ERROR - ffmpeg version 7.1.1-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+2025-07-21 14:19:45,904 - ERROR - built with gcc 14.2.0 (Rev1, Built by MSYS2 project)
+2025-07-21 14:19:45,904 - ERROR - configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+2025-07-21 14:19:45,905 - ERROR - libavutil      59. 39.100 / 59. 39.100
+2025-07-21 14:19:45,906 - ERROR - libavcodec     61. 19.101 / 61. 19.101
+2025-07-21 14:19:45,906 - ERROR - libavformat    61.  7.100 / 61.  7.100
+2025-07-21 14:19:45,907 - ERROR - libavdevice    61.  3.100 / 61.  3.100
+2025-07-21 14:19:45,908 - ERROR - libavfilter    10.  4.100 / 10.  4.100
+2025-07-21 14:19:45,908 - ERROR - libswscale      8.  3.100 /  8.  3.100
+2025-07-21 14:19:45,909 - ERROR - libswresample   5.  3.100 /  5.  3.100
+2025-07-21 14:19:45,910 - ERROR - libpostproc    58.  3.100 / 58.  3.100
+2025-07-21 14:19:45,910 - ERROR - [matroska,webm @ 00000248380176c0] Could not find codec parameters for stream 4 (Subtitle: hdmv_pgs_subtitle (pgssub)): unspecified size
+2025-07-21 14:19:45,911 - ERROR - Consider increasing the value for the 'analyzeduration' (0) and 'probesize' (5000000) options
+2025-07-21 14:19:45,911 - ERROR - Input #0, matroska,webm, from 'H:\staging\468843d7-c5d0-4926-bc7e-49532445da81\Harry Potter and the Sorcerer's Stone_t00.mkv':
+2025-07-21 14:19:45,912 - ERROR - Metadata:
+2025-07-21 14:19:45,913 - ERROR - title           : Harry Potter and the Sorcerer's Stone
+2025-07-21 14:19:45,913 - ERROR - encoder         : libmakemkv v1.18.1 (1.3.10/1.5.2) win(x64-release)
+2025-07-21 14:19:45,914 - ERROR - creation_time   : 2025-05-28T23:48:36.000000Z
+2025-07-21 14:19:45,914 - ERROR - Duration: 02:32:21.34, start: 0.000000, bitrate: 67008 kb/s
+2025-07-21 14:19:45,915 - ERROR - Chapters:
+2025-07-21 14:19:45,916 - ERROR - Chapter #0:0: start 0.000000, end 244.869625
+2025-07-21 14:19:45,916 - ERROR - Metadata:
+2025-07-21 14:19:45,917 - ERROR - title           : Chapter 01
+2025-07-21 14:19:45,917 - ERROR - Chapter #0:1: start 244.869625, end 490.781958
+2025-07-21 14:19:45,918 - ERROR - Metadata:
+2025-07-21 14:19:45,919 - ERROR - title           : Chapter 02
+2025-07-21 14:19:45,919 - ERROR - Chapter #0:2: start 490.781958, end 736.819417
+2025-07-21 14:19:45,920 - ERROR - Metadata:
+2025-07-21 14:19:45,921 - ERROR - title           : Chapter 03
+2025-07-21 14:19:45,921 - ERROR - Chapter #0:3: start 736.819417, end 1104.812042
+2025-07-21 14:19:45,922 - ERROR - Metadata:
+2025-07-21 14:19:45,923 - ERROR - title           : Chapter 04
+2025-07-21 14:19:45,923 - ERROR - Chapter #0:4: start 1104.812042, end 1303.260292
+2025-07-21 14:19:45,924 - ERROR - Metadata:
+2025-07-21 14:19:45,925 - ERROR - title           : Chapter 05
+2025-07-21 14:19:45,925 - ERROR - Chapter #0:5: start 1303.260292, end 1481.271458
+2025-07-21 14:19:45,926 - ERROR - Metadata:
+2025-07-21 14:19:45,927 - ERROR - title           : Chapter 06
+2025-07-21 14:19:45,927 - ERROR - Chapter #0:6: start 1481.271458, end 1729.102375
+2025-07-21 14:19:45,928 - ERROR - Metadata:
+2025-07-21 14:19:45,929 - ERROR - title           : Chapter 07
+2025-07-21 14:19:45,929 - ERROR - Chapter #0:7: start 1729.102375, end 1864.571042
+2025-07-21 14:19:45,930 - ERROR - Metadata:
+2025-07-21 14:19:45,931 - ERROR - title           : Chapter 08
+2025-07-21 14:19:45,931 - ERROR - Chapter #0:8: start 1864.571042, end 2045.168125
+2025-07-21 14:19:45,932 - ERROR - Metadata:
+2025-07-21 14:19:45,933 - ERROR - title           : Chapter 09
+2025-07-21 14:19:45,933 - ERROR - Chapter #0:9: start 2045.168125, end 2269.141875
+2025-07-21 14:19:45,934 - ERROR - Metadata:
+2025-07-21 14:19:45,934 - ERROR - title           : Chapter 10
+2025-07-21 14:19:45,935 - ERROR - Chapter #0:10: start 2269.141875, end 2489.069917
+2025-07-21 14:19:45,936 - ERROR - Metadata:
+2025-07-21 14:19:45,936 - ERROR - title           : Chapter 11
+2025-07-21 14:19:45,937 - ERROR - Chapter #0:11: start 2489.069917, end 2773.061958
+2025-07-21 14:19:45,938 - ERROR - Metadata:
+2025-07-21 14:19:45,939 - ERROR - title           : Chapter 12
+2025-07-21 14:19:45,940 - ERROR - Chapter #0:12: start 2773.061958, end 3028.650625
+2025-07-21 14:19:45,941 - ERROR - Metadata:
+2025-07-21 14:19:45,941 - ERROR - title           : Chapter 13
+2025-07-21 14:19:45,942 - ERROR - Chapter #0:13: start 3028.650625, end 3303.758792
+2025-07-21 14:19:45,943 - ERROR - Metadata:
+2025-07-21 14:19:45,943 - ERROR - title           : Chapter 14
+2025-07-21 14:19:45,944 - ERROR - Chapter #0:14: start 3303.758792, end 3655.151500
+2025-07-21 14:19:45,945 - ERROR - Metadata:
+2025-07-21 14:19:45,945 - ERROR - title           : Chapter 15
+2025-07-21 14:19:45,946 - ERROR - Chapter #0:15: start 3655.151500, end 3823.486333
+2025-07-21 14:19:45,947 - ERROR - Metadata:
+2025-07-21 14:19:45,947 - ERROR - title           : Chapter 16
+2025-07-21 14:19:45,948 - ERROR - Chapter #0:16: start 3823.486333, end 4067.730333
+2025-07-21 14:19:45,949 - ERROR - Metadata:
+2025-07-21 14:19:45,949 - ERROR - title           : Chapter 17
+2025-07-21 14:19:45,950 - ERROR - Chapter #0:17: start 4067.730333, end 4428.799375
+2025-07-21 14:19:45,950 - ERROR - Metadata:
+2025-07-21 14:19:45,951 - ERROR - title           : Chapter 18
+2025-07-21 14:19:45,952 - ERROR - Chapter #0:18: start 4428.799375, end 4817.354208
+2025-07-21 14:19:45,952 - ERROR - Metadata:
+2025-07-21 14:19:45,953 - ERROR - title           : Chapter 19
+2025-07-21 14:19:45,954 - ERROR - Chapter #0:19: start 4817.354208, end 5034.154125
+2025-07-21 14:19:45,954 - ERROR - Metadata:
+2025-07-21 14:19:45,955 - ERROR - title           : Chapter 20
+2025-07-21 14:19:45,956 - ERROR - Chapter #0:20: start 5034.154125, end 5311.806500
+2025-07-21 14:19:45,957 - ERROR - Metadata:
+2025-07-21 14:19:45,957 - ERROR - title           : Chapter 21
+2025-07-21 14:19:45,958 - ERROR - Chapter #0:21: start 5311.806500, end 5502.038208
+2025-07-21 14:19:45,959 - ERROR - Metadata:
+2025-07-21 14:19:45,959 - ERROR - title           : Chapter 22
+2025-07-21 14:19:45,960 - ERROR - Chapter #0:22: start 5502.038208, end 5802.213083
+2025-07-21 14:19:45,960 - ERROR - Metadata:
+2025-07-21 14:19:45,961 - ERROR - title           : Chapter 23
+2025-07-21 14:19:45,962 - ERROR - Chapter #0:23: start 5802.213083, end 6154.439958
+2025-07-21 14:19:45,962 - ERROR - Metadata:
+2025-07-21 14:19:45,963 - ERROR - title           : Chapter 24
+2025-07-21 14:19:45,964 - ERROR - Chapter #0:24: start 6154.439958, end 6544.496292
+2025-07-21 14:19:45,965 - ERROR - Metadata:
+2025-07-21 14:19:45,965 - ERROR - title           : Chapter 25
+2025-07-21 14:19:45,966 - ERROR - Chapter #0:25: start 6544.496292, end 6801.002542
+2025-07-21 14:19:45,966 - ERROR - Metadata:
+2025-07-21 14:19:45,967 - ERROR - title           : Chapter 26
+2025-07-21 14:19:45,968 - ERROR - Chapter #0:26: start 6801.002542, end 7089.290542
+2025-07-21 14:19:45,969 - ERROR - Metadata:
+2025-07-21 14:19:45,969 - ERROR - title           : Chapter 27
+2025-07-21 14:19:45,970 - ERROR - Chapter #0:27: start 7089.290542, end 7424.375292
+2025-07-21 14:19:45,971 - ERROR - Metadata:
+2025-07-21 14:19:45,972 - ERROR - title           : Chapter 28
+2025-07-21 14:19:45,973 - ERROR - Chapter #0:28: start 7424.375292, end 7615.691417
+2025-07-21 14:19:45,973 - ERROR - Metadata:
+2025-07-21 14:19:45,974 - ERROR - title           : Chapter 29
+2025-07-21 14:19:45,975 - ERROR - Chapter #0:29: start 7615.691417, end 7854.930417
+2025-07-21 14:19:45,975 - ERROR - Metadata:
+2025-07-21 14:19:45,976 - ERROR - title           : Chapter 30
+2025-07-21 14:19:45,977 - ERROR - Chapter #0:30: start 7854.930417, end 8058.341958
+2025-07-21 14:19:45,977 - ERROR - Metadata:
+2025-07-21 14:19:45,978 - ERROR - title           : Chapter 31
+2025-07-21 14:19:45,979 - ERROR - Chapter #0:31: start 8058.341958, end 8249.115875
+2025-07-21 14:19:45,979 - ERROR - Metadata:
+2025-07-21 14:19:45,980 - ERROR - title           : Chapter 32
+2025-07-21 14:19:45,981 - ERROR - Chapter #0:32: start 8249.115875, end 8503.995500
+2025-07-21 14:19:45,981 - ERROR - Metadata:
+2025-07-21 14:19:45,982 - ERROR - title           : Chapter 33
+2025-07-21 14:19:45,983 - ERROR - Chapter #0:33: start 8503.995500, end 8652.393750
+2025-07-21 14:19:45,983 - ERROR - Metadata:
+2025-07-21 14:19:45,984 - ERROR - title           : Chapter 34
+2025-07-21 14:19:45,985 - ERROR - Chapter #0:34: start 8652.393750, end 9141.344000
+2025-07-21 14:19:45,986 - ERROR - Metadata:
+2025-07-21 14:19:45,987 - ERROR - title           : Chapter 35
+2025-07-21 14:19:45,987 - ERROR - Stream #0:0(eng): Video: hevc (Main 10), yuv420p10le(tv, bt2020nc/bt2020/smpte2084), 3840x2160 [SAR 1:1 DAR 16:9], 23.98 fps, 23.98 tbr, 1k tbn
+2025-07-21 14:19:45,988 - ERROR - Metadata:
+2025-07-21 14:19:45,989 - ERROR - BPS-eng         : 60681769
+2025-07-21 14:19:45,989 - ERROR - DURATION-eng    : 02:32:21.340541666
+2025-07-21 14:19:45,990 - ERROR - NUMBER_OF_FRAMES-eng: 219173
+2025-07-21 14:19:45,990 - ERROR - NUMBER_OF_BYTES-eng: 69339085490
+2025-07-21 14:19:45,991 - ERROR - SOURCE_ID-eng   : 001011
+2025-07-21 14:19:45,992 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-21 14:19:45,992 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-28 23:48:36
+2025-07-21 14:19:45,993 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-21 14:19:45,994 - ERROR - Stream #0:1(eng): Audio: dts (dca) (DTS-HD MA + DTS:X), 48000 Hz, 7.1, s32p (24 bit) (default)
+2025-07-21 14:19:45,994 - ERROR - Metadata:
+2025-07-21 14:19:45,995 - ERROR - title           : Surround 7.1
+2025-07-21 14:19:45,996 - ERROR - BPS-eng         : 4341827
+2025-07-21 14:19:45,996 - ERROR - DURATION-eng    : 02:32:21.344000000
+2025-07-21 14:19:45,997 - ERROR - NUMBER_OF_FRAMES-eng: 857001
+2025-07-21 14:19:45,998 - ERROR - NUMBER_OF_BYTES-eng: 4961267216
+2025-07-21 14:19:45,998 - ERROR - SOURCE_ID-eng   : 001100
+2025-07-21 14:19:45,999 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-21 14:19:45,999 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-28 23:48:36
+2025-07-21 14:19:46,000 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-21 14:19:46,001 - ERROR - Stream #0:2(eng): Audio: dts (dca) (DTS), 48000 Hz, 5.1(side), fltp, 1536 kb/s
+2025-07-21 14:19:46,002 - ERROR - Metadata:
+2025-07-21 14:19:46,002 - ERROR - title           : Surround 5.1
+2025-07-21 14:19:46,003 - ERROR - BPS-eng         : 1509000
+2025-07-21 14:19:46,004 - ERROR - DURATION-eng    : 02:32:21.344000000
+2025-07-21 14:19:46,004 - ERROR - NUMBER_OF_FRAMES-eng: 857001
+2025-07-21 14:19:46,005 - ERROR - NUMBER_OF_BYTES-eng: 1724286012
+2025-07-21 14:19:46,006 - ERROR - SOURCE_ID-eng   : 001100
+2025-07-21 14:19:46,006 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-21 14:19:46,007 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-28 23:48:36
+2025-07-21 14:19:46,008 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-21 14:19:46,008 - ERROR - Stream #0:3(eng): Audio: ac3, 48000 Hz, 5.1(side), fltp, 448 kb/s
+2025-07-21 14:19:46,009 - ERROR - Metadata:
+2025-07-21 14:19:46,009 - ERROR - title           : Surround 5.1
+2025-07-21 14:19:46,010 - ERROR - BPS-eng         : 448000
+2025-07-21 14:19:46,011 - ERROR - DURATION-eng    : 02:32:21.344000000
+2025-07-21 14:19:46,011 - ERROR - NUMBER_OF_FRAMES-eng: 285667
+2025-07-21 14:19:46,012 - ERROR - NUMBER_OF_BYTES-eng: 511915264
+2025-07-21 14:19:46,013 - ERROR - SOURCE_ID-eng   : 001101
+2025-07-21 14:19:46,013 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-21 14:19:46,014 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-28 23:48:36
+2025-07-21 14:19:46,015 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-21 14:19:46,015 - ERROR - Stream #0:4(eng): Subtitle: hdmv_pgs_subtitle (pgssub)
+2025-07-21 14:19:46,016 - ERROR - Metadata:
+2025-07-21 14:19:46,016 - ERROR - BPS-eng         : 22841
+2025-07-21 14:19:46,017 - ERROR - DURATION-eng    : 02:31:00.447229166
+2025-07-21 14:19:46,018 - ERROR - NUMBER_OF_FRAMES-eng: 2606
+2025-07-21 14:19:46,019 - ERROR - NUMBER_OF_BYTES-eng: 25869397
+2025-07-21 14:19:46,019 - ERROR - SOURCE_ID-eng   : 0012A0
+2025-07-21 14:19:46,020 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-21 14:19:46,021 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-28 23:48:36
+2025-07-21 14:19:46,021 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-21 14:19:46,022 - ERROR - Stream mapping:
+2025-07-21 14:19:46,023 - ERROR - Stream #0:0 -> #0:0 (hevc (native) -> hevc (libx265))
+2025-07-21 14:19:46,023 - ERROR - Stream #0:1 -> #0:1 (copy)
+2025-07-21 14:19:46,024 - ERROR - Stream #0:2 -> #0:2 (copy)
+2025-07-21 14:19:46,024 - ERROR - Stream #0:3 -> #0:3 (copy)
+2025-07-21 14:19:46,025 - ERROR - Stream #0:4 -> #0:4 (copy)
+2025-07-21 14:19:46,026 - ERROR - Press [q] to stop, [?] for help
+2025-07-21 14:19:46,034 - ERROR - x265 [info]: HEVC encoder version 4.1+110-0e0eee580
+2025-07-21 14:19:46,035 - ERROR - x265 [info]: build info [Windows][GCC 14.2.0][64 bit] 10bit
+2025-07-21 14:19:46,036 - ERROR - x265 [info]: using cpu capabilities: MMX2 SSE2Fast LZCNT SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+2025-07-21 14:19:46,037 - ERROR - x265 [warning]: Turning on repeat-headers for HDR compatibility
+2025-07-21 14:19:46,037 - ERROR - x265 [info]: Main 10 profile, Level-5 (Main tier)
+2025-07-21 14:19:46,038 - ERROR - x265 [info]: Thread pool created using 10 threads
+2025-07-21 14:19:46,039 - ERROR - x265 [info]: Slices                              : 1
+2025-07-21 14:19:46,040 - ERROR - x265 [info]: frame threads / pool features       : 10 / wpp(34 rows)
+2025-07-21 14:19:46,064 - ERROR - x265 [info]: Coding QT: max CU size, min CU size : 64 / 8
+2025-07-21 14:19:46,066 - ERROR - x265 [info]: Residual QT: max TU size, max depth : 32 / 1 inter / 1 intra
+2025-07-21 14:19:46,067 - ERROR - x265 [info]: ME / range / subpel / merge         : hex / 57 / 2 / 3
+2025-07-21 14:19:46,068 - ERROR - x265 [info]: Keyframe min / max / scenecut / bias  : 23 / 250 / 40 / 5.00
+2025-07-21 14:19:46,068 - ERROR - x265 [info]: Lookahead / bframes / badapt        : 20 / 4 / 2
+2025-07-21 14:19:46,069 - ERROR - x265 [info]: b-pyramid / weightp / weightb       : 1 / 1 / 0
+2025-07-21 14:19:46,070 - ERROR - x265 [info]: References / ref-limit  cu / depth  : 3 / off / on
+2025-07-21 14:19:46,071 - ERROR - x265 [info]: AQ: mode / str / qg-size / cu-tree  : 2 / 1.0 / 32 / 1
+2025-07-21 14:19:46,072 - ERROR - x265 [info]: Rate Control / qCompress            : CRF-18.0 / 0.60
+2025-07-21 14:19:46,072 - ERROR - x265 [info]: tools: rd=3 psy-rd=2.00 early-skip rskip mode=1 signhide tmvp
+2025-07-21 14:19:46,073 - ERROR - x265 [info]: tools: b-intra strong-intra-smoothing lslices=8 deblock
+2025-07-21 14:19:46,074 - ERROR - x265 [info]: tools: dhdr10-info
+2025-07-21 14:19:46,074 - ERROR - Output #0, matroska, to 'H:\staging\468843d7-c5d0-4926-bc7e-49532445da81\Harry Potter and the Sorcerer's Stone_t00_x265.mkv':
+2025-07-21 14:19:46,075 - ERROR - Metadata:
+2025-07-21 14:19:46,076 - ERROR - title           : Harry Potter and the Sorcerer's Stone
+2025-07-21 14:19:46,077 - ERROR - encoder         : Lavf61.7.100
+2025-07-21 14:19:46,077 - ERROR - Chapters:
+2025-07-21 14:19:46,078 - ERROR - Chapter #0:0: start 0.000000, end 244.869625
+2025-07-21 14:19:46,079 - ERROR - Metadata:
+2025-07-21 14:19:46,079 - ERROR - title           : Chapter 01
+2025-07-21 14:19:46,080 - ERROR - Chapter #0:1: start 244.869625, end 490.781958
+2025-07-21 14:19:46,081 - ERROR - Metadata:
+2025-07-21 14:19:46,081 - ERROR - title           : Chapter 02
+2025-07-21 14:19:46,082 - ERROR - Chapter #0:2: start 490.781958, end 736.819417
+2025-07-21 14:19:46,083 - ERROR - Metadata:
+2025-07-21 14:19:46,083 - ERROR - title           : Chapter 03
+2025-07-21 14:19:46,084 - ERROR - Chapter #0:3: start 736.819417, end 1104.812042
+2025-07-21 14:19:46,084 - ERROR - Metadata:
+2025-07-21 14:19:46,085 - ERROR - title           : Chapter 04
+2025-07-21 14:19:46,086 - ERROR - Chapter #0:4: start 1104.812042, end 1303.260292
+2025-07-21 14:19:46,086 - ERROR - Metadata:
+2025-07-21 14:19:46,087 - ERROR - title           : Chapter 05
+2025-07-21 14:19:46,088 - ERROR - Chapter #0:5: start 1303.260292, end 1481.271458
+2025-07-21 14:19:46,088 - ERROR - Metadata:
+2025-07-21 14:19:46,089 - ERROR - title           : Chapter 06
+2025-07-21 14:19:46,090 - ERROR - Chapter #0:6: start 1481.271458, end 1729.102375
+2025-07-21 14:19:46,090 - ERROR - Metadata:
+2025-07-21 14:19:46,091 - ERROR - title           : Chapter 07
+2025-07-21 14:19:46,092 - ERROR - Chapter #0:7: start 1729.102375, end 1864.571042
+2025-07-21 14:19:46,092 - ERROR - Metadata:
+2025-07-21 14:19:46,093 - ERROR - title           : Chapter 08
+2025-07-21 14:19:46,093 - ERROR - Chapter #0:8: start 1864.571042, end 2045.168125
+2025-07-21 14:19:46,094 - ERROR - Metadata:
+2025-07-21 14:19:46,095 - ERROR - title           : Chapter 09
+2025-07-21 14:19:46,096 - ERROR - Chapter #0:9: start 2045.168125, end 2269.141875
+2025-07-21 14:19:46,096 - ERROR - Metadata:
+2025-07-21 14:19:46,097 - ERROR - title           : Chapter 10
+2025-07-21 14:19:46,098 - ERROR - Chapter #0:10: start 2269.141875, end 2489.069917
+2025-07-21 14:19:46,098 - ERROR - Metadata:
+2025-07-21 14:19:46,099 - ERROR - title           : Chapter 11
+2025-07-21 14:19:46,099 - ERROR - Chapter #0:11: start 2489.069917, end 2773.061958
+2025-07-21 14:19:46,100 - ERROR - Metadata:
+2025-07-21 14:19:46,101 - ERROR - title           : Chapter 12
+2025-07-21 14:19:46,101 - ERROR - Chapter #0:12: start 2773.061958, end 3028.650625
+2025-07-21 14:19:46,102 - ERROR - Metadata:
+2025-07-21 14:19:46,103 - ERROR - title           : Chapter 13
+2025-07-21 14:19:46,103 - ERROR - Chapter #0:13: start 3028.650625, end 3303.758792
+2025-07-21 14:19:46,104 - ERROR - Metadata:
+2025-07-21 14:19:46,105 - ERROR - title           : Chapter 14
+2025-07-21 14:19:46,105 - ERROR - Chapter #0:14: start 3303.758792, end 3655.151500
+2025-07-21 14:19:46,106 - ERROR - Metadata:
+2025-07-21 14:19:46,107 - ERROR - title           : Chapter 15
+2025-07-21 14:19:46,107 - ERROR - Chapter #0:15: start 3655.151500, end 3823.486333
+2025-07-21 14:19:46,108 - ERROR - Metadata:
+2025-07-21 14:19:46,109 - ERROR - title           : Chapter 16
+2025-07-21 14:19:46,110 - ERROR - Chapter #0:16: start 3823.486333, end 4067.730333
+2025-07-21 14:19:46,110 - ERROR - Metadata:
+2025-07-21 14:19:46,111 - ERROR - title           : Chapter 17
+2025-07-21 14:19:46,112 - ERROR - Chapter #0:17: start 4067.730333, end 4428.799375
+2025-07-21 14:19:46,112 - ERROR - Metadata:
+2025-07-21 14:19:46,113 - ERROR - title           : Chapter 18
+2025-07-21 14:19:46,113 - ERROR - Chapter #0:18: start 4428.799375, end 4817.354208
+2025-07-21 14:19:46,114 - ERROR - Metadata:
+2025-07-21 14:19:46,115 - ERROR - title           : Chapter 19
+2025-07-21 14:19:46,115 - ERROR - Chapter #0:19: start 4817.354208, end 5034.154125
+2025-07-21 14:19:46,116 - ERROR - Metadata:
+2025-07-21 14:19:46,116 - ERROR - title           : Chapter 20
+2025-07-21 14:19:46,117 - ERROR - Chapter #0:20: start 5034.154125, end 5311.806500
+2025-07-21 14:19:46,118 - ERROR - Metadata:
+2025-07-21 14:19:46,118 - ERROR - title           : Chapter 21
+2025-07-21 14:19:46,119 - ERROR - Chapter #0:21: start 5311.806500, end 5502.038208
+2025-07-21 14:19:46,119 - ERROR - Metadata:
+2025-07-21 14:19:46,120 - ERROR - title           : Chapter 22
+2025-07-21 14:19:46,121 - ERROR - Chapter #0:22: start 5502.038208, end 5802.213083
+2025-07-21 14:19:46,121 - ERROR - Metadata:
+2025-07-21 14:19:46,122 - ERROR - title           : Chapter 23
+2025-07-21 14:19:46,122 - ERROR - Chapter #0:23: start 5802.213083, end 6154.439958
+2025-07-21 14:19:46,123 - ERROR - Metadata:
+2025-07-21 14:19:46,123 - ERROR - title           : Chapter 24
+2025-07-21 14:19:46,124 - ERROR - Chapter #0:24: start 6154.439958, end 6544.496292
+2025-07-21 14:19:46,124 - ERROR - Metadata:
+2025-07-21 14:19:46,125 - ERROR - title           : Chapter 25
+2025-07-21 14:19:46,127 - ERROR - Chapter #0:25: start 6544.496292, end 6801.002542
+2025-07-21 14:19:46,128 - ERROR - Metadata:
+2025-07-21 14:19:46,128 - ERROR - title           : Chapter 26
+2025-07-21 14:19:46,129 - ERROR - Chapter #0:26: start 6801.002542, end 7089.290542
+2025-07-21 14:19:46,130 - ERROR - Metadata:
+2025-07-21 14:19:46,131 - ERROR - title           : Chapter 27
+2025-07-21 14:19:46,131 - ERROR - Chapter #0:27: start 7089.290542, end 7424.375292
+2025-07-21 14:19:46,132 - ERROR - Metadata:
+2025-07-21 14:19:46,133 - ERROR - title           : Chapter 28
+2025-07-21 14:19:46,133 - ERROR - Chapter #0:28: start 7424.375292, end 7615.691417
+2025-07-21 14:19:46,134 - ERROR - Metadata:
+2025-07-21 14:19:46,135 - ERROR - title           : Chapter 29
+2025-07-21 14:19:46,135 - ERROR - Chapter #0:29: start 7615.691417, end 7854.930417
+2025-07-21 14:19:46,136 - ERROR - Metadata:
+2025-07-21 14:19:46,137 - ERROR - title           : Chapter 30
+2025-07-21 14:19:46,137 - ERROR - Chapter #0:30: start 7854.930417, end 8058.341958
+2025-07-21 14:19:46,138 - ERROR - Metadata:
+2025-07-21 14:19:46,139 - ERROR - title           : Chapter 31
+2025-07-21 14:19:46,139 - ERROR - Chapter #0:31: start 8058.341958, end 8249.115875
+2025-07-21 14:19:46,140 - ERROR - Metadata:
+2025-07-21 14:19:46,141 - ERROR - title           : Chapter 32
+2025-07-21 14:19:46,142 - ERROR - Chapter #0:32: start 8249.115875, end 8503.995500
+2025-07-21 14:19:46,142 - ERROR - Metadata:
+2025-07-21 14:19:46,143 - ERROR - title           : Chapter 33
+2025-07-21 14:19:46,144 - ERROR - Chapter #0:33: start 8503.995500, end 8652.393750
+2025-07-21 14:19:46,145 - ERROR - Metadata:
+2025-07-21 14:19:46,145 - ERROR - title           : Chapter 34
+2025-07-21 14:19:46,146 - ERROR - Chapter #0:34: start 8652.393750, end 9141.344000
+2025-07-21 14:19:46,147 - ERROR - Metadata:
+2025-07-21 14:19:46,147 - ERROR - title           : Chapter 35
+2025-07-21 14:19:46,148 - ERROR - Stream #0:0(eng): Video: hevc, yuv420p10le(tv, bt2020nc/bt2020/smpte2084, progressive), 3840x2160 [SAR 1:1 DAR 16:9], q=2-31, 23.98 fps, 1k tbn
+2025-07-21 14:19:46,149 - ERROR - Metadata:
+2025-07-21 14:19:46,149 - ERROR - BPS-eng         : 60681769
+2025-07-21 14:19:46,150 - ERROR - DURATION-eng    : 02:32:21.340541666
+2025-07-21 14:19:46,151 - ERROR - NUMBER_OF_FRAMES-eng: 219173
+2025-07-21 14:19:46,151 - ERROR - NUMBER_OF_BYTES-eng: 69339085490
+2025-07-21 14:19:46,152 - ERROR - SOURCE_ID-eng   : 001011
+2025-07-21 14:19:46,152 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-21 14:19:46,153 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-28 23:48:36
+2025-07-21 14:19:46,154 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-21 14:19:46,155 - ERROR - encoder         : Lavc61.19.101 libx265
+2025-07-21 14:19:46,155 - ERROR - Side data:
+2025-07-21 14:19:46,156 - ERROR - Mastering Display Metadata, has_primaries:1 has_luminance:1 r(0.6800,0.3200) g(0.2650,0.6900) b(0.1500 0.0600) wp(0.3127, 0.3290) min_luminance=0.005000, max_luminance=4000.000000
+2025-07-21 14:19:46,157 - ERROR - Content Light Level Metadata, MaxCLL=552, MaxFALL=190
+2025-07-21 14:19:46,158 - ERROR - cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+2025-07-21 14:19:46,158 - ERROR - Stream #0:1(eng): Audio: dts (DTS-HD MA + DTS:X) ([1] [0][0] / 0x2001), 48000 Hz, 7.1, s32p (24 bit) (default)
+2025-07-21 14:19:46,159 - ERROR - Metadata:
+2025-07-21 14:19:46,160 - ERROR - title           : Surround 7.1
+2025-07-21 14:19:46,160 - ERROR - BPS-eng         : 4341827
+2025-07-21 14:19:46,161 - ERROR - DURATION-eng    : 02:32:21.344000000
+2025-07-21 14:19:46,162 - ERROR - NUMBER_OF_FRAMES-eng: 857001
+2025-07-21 14:19:46,162 - ERROR - NUMBER_OF_BYTES-eng: 4961267216
+2025-07-21 14:19:46,163 - ERROR - SOURCE_ID-eng   : 001100
+2025-07-21 14:19:46,163 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-21 14:19:46,164 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-28 23:48:36
+2025-07-21 14:19:46,165 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-21 14:19:46,165 - ERROR - Stream #0:2(eng): Audio: dts (DTS) ([1] [0][0] / 0x2001), 48000 Hz, 5.1(side), fltp, 1536 kb/s
+2025-07-21 14:19:46,166 - ERROR - Metadata:
+2025-07-21 14:19:46,166 - ERROR - title           : Surround 5.1
+2025-07-21 14:19:46,167 - ERROR - BPS-eng         : 1509000
+2025-07-21 14:19:46,167 - ERROR - DURATION-eng    : 02:32:21.344000000
+2025-07-21 14:19:46,168 - ERROR - NUMBER_OF_FRAMES-eng: 857001
+2025-07-21 14:19:46,169 - ERROR - NUMBER_OF_BYTES-eng: 1724286012
+2025-07-21 14:19:46,169 - ERROR - SOURCE_ID-eng   : 001100
+2025-07-21 14:19:46,170 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-21 14:19:46,171 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-28 23:48:36
+2025-07-21 14:19:46,172 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-21 14:19:46,172 - ERROR - Stream #0:3(eng): Audio: ac3 ([0] [0][0] / 0x2000), 48000 Hz, 5.1(side), fltp, 448 kb/s
+2025-07-21 14:19:46,173 - ERROR - Metadata:
+2025-07-21 14:19:46,174 - ERROR - title           : Surround 5.1
+2025-07-21 14:19:46,174 - ERROR - BPS-eng         : 448000
+2025-07-21 14:19:46,175 - ERROR - DURATION-eng    : 02:32:21.344000000
+2025-07-21 14:19:46,175 - ERROR - NUMBER_OF_FRAMES-eng: 285667
+2025-07-21 14:19:46,176 - ERROR - NUMBER_OF_BYTES-eng: 511915264
+2025-07-21 14:19:46,177 - ERROR - SOURCE_ID-eng   : 001101
+2025-07-21 14:19:46,177 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-21 14:19:46,178 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-28 23:48:36
+2025-07-21 14:19:46,178 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-21 14:19:46,179 - ERROR - Stream #0:4(eng): Subtitle: hdmv_pgs_subtitle ([255][255][255][255] / 0xFFFFFFFF)
+2025-07-21 14:19:46,180 - ERROR - Metadata:
+2025-07-21 14:19:46,180 - ERROR - BPS-eng         : 22841
+2025-07-21 14:19:46,181 - ERROR - DURATION-eng    : 02:31:00.447229166
+2025-07-21 14:19:46,181 - ERROR - NUMBER_OF_FRAMES-eng: 2606
+2025-07-21 14:19:46,182 - ERROR - NUMBER_OF_BYTES-eng: 25869397
+2025-07-21 14:19:46,183 - ERROR - SOURCE_ID-eng   : 0012A0
+2025-07-21 14:19:46,183 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-21 14:19:46,184 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-28 23:48:36
+2025-07-21 14:19:46,184 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-21 20:54:25,689 - ERROR - [out#0/matroska @ 0000024838017b40] video:12500453KiB audio:7028778KiB subtitle:25263KiB other streams:0KiB global headers:3KiB muxing overhead: 0.079733%
+2025-07-21 20:54:25,691 - ERROR - x265 [info]: frame I:   1850, Avg QP:18.07  kb/s: 43052.30
+2025-07-21 20:54:25,692 - ERROR - x265 [info]: frame P:  49798, Avg QP:19.75  kb/s: 20756.50
+2025-07-21 20:54:25,693 - ERROR - x265 [info]: frame B: 167525, Avg QP:22.93  kb/s: 8004.42
+2025-07-21 20:54:25,693 - ERROR - x265 [info]: Weighted P-Frames: Y:3.8% UV:2.7%
+2025-07-21 20:54:25,694 - ERROR - encoded 219173 frames in 23679.62s (9.26 fps), 11197.63 kb/s, Avg QP:22.16
+2025-07-21 20:54:26,054 - INFO - Successfully completed: Re-encoding to x265
+2025-07-21 20:54:26,115 - INFO - Starting step: move_final - Moving final file to destination
+2025-07-21 20:54:26,122 - INFO - Moving final file from H:\staging\468843d7-c5d0-4926-bc7e-49532445da81\Harry Potter and the Sorcerer's Stone_t00_x265.mkv to Z:\landing_point\Video\Harry Potter and the Sorcerer's Stone\Harry Potter and the Sorcerer's Stone_t00_x265.mkv
+2025-07-21 20:57:20,929 - INFO - Move successful.
+2025-07-21 20:57:20,992 - INFO - === transcode() completed successfully for job 468843d7-c5d0-4926-bc7e-49532445da81 ===
+2025-07-21 20:57:21,084 - INFO - Cleaning up job staging directory: H:\staging\468843d7-c5d0-4926-bc7e-49532445da81

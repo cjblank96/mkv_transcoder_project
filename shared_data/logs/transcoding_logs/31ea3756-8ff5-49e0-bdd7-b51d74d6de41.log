@@ -1,0 +1,353 @@
+2025-07-22 23:43:47,488 - INFO - Job 31ea3756-8ff5-49e0-bdd7-b51d74d6de41 initialized.
+2025-07-22 23:43:47,489 - INFO - Original input file: Z:\landing_point\Video\SANJURO\SANJURO_t00.mkv
+2025-07-22 23:43:47,502 - INFO - Final output file: Z:\landing_point\Video\SANJURO\SANJURO_t00_DV_P8.mkv
+2025-07-22 23:43:47,503 - INFO - Local job staging directory: H:\staging\31ea3756-8ff5-49e0-bdd7-b51d74d6de41
+2025-07-22 23:43:47,503 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-22 23:43:47,504 - INFO -   - Total: 3726.01 GB
+2025-07-22 23:43:47,505 - INFO -   - Used: 2243.28 GB
+2025-07-22 23:43:47,505 - INFO -   - Free: 1482.73 GB
+2025-07-22 23:43:47,508 - INFO - === Entering transcode() for job 31ea3756-8ff5-49e0-bdd7-b51d74d6de41 ===
+2025-07-22 23:43:47,510 - INFO - Job dict: {
+  "id": "31ea3756-8ff5-49e0-bdd7-b51d74d6de41",
+  "input_path": "\"Z:\\landing_point\\Video\\SANJURO\\SANJURO_t00.mkv\"",
+  "job_type": "standard",
+  "status": "running",
+  "worker_id": "CJBLANK",
+  "output_path": null,
+  "added_at": 1752956661.997851,
+  "retries": 1,
+  "steps": {
+    "copy_source": "pending",
+    "get_metadata": "pending",
+    "reencode_x265": "pending",
+    "move_final": "pending"
+  },
+  "claimed_at": 1753249427.3700926
+}
+2025-07-22 23:43:47,518 - INFO - === Starting transcode pipeline for job 31ea3756-8ff5-49e0-bdd7-b51d74d6de41 ===
+2025-07-22 23:43:47,519 - INFO - Job dict: {'id': '31ea3756-8ff5-49e0-bdd7-b51d74d6de41', 'input_path': '"Z:\\landing_point\\Video\\SANJURO\\SANJURO_t00.mkv"', 'job_type': 'standard', 'status': 'running', 'worker_id': 'CJBLANK', 'output_path': None, 'added_at': 1752956661.997851, 'retries': 1, 'steps': {'copy_source': 'pending', 'get_metadata': 'pending', 'reencode_x265': 'pending', 'move_final': 'pending'}, 'claimed_at': 1753249427.3700926}
+2025-07-22 23:43:47,519 - INFO - Starting step: copy_source - Copying source file locally
+2025-07-22 23:43:47,529 - INFO - Copying source file locally: from Z:\landing_point\Video\SANJURO\SANJURO_t00.mkv to H:\staging\31ea3756-8ff5-49e0-bdd7-b51d74d6de41\SANJURO_t00.mkv
+2025-07-22 23:59:00,733 - INFO - Copy successful.
+2025-07-22 23:59:00,796 - INFO - Starting step: get_metadata - Getting video metadata
+2025-07-22 23:59:00,804 - INFO - Attempting to get video metadata from H:\staging\31ea3756-8ff5-49e0-bdd7-b51d74d6de41\SANJURO_t00.mkv
+2025-07-22 23:59:01,029 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-22 23:59:01,106 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 137998 frames.
+2025-07-22 23:59:01,142 - INFO - Starting step: reencode_x265 - Re-encoding and Muxing
+2025-07-22 23:59:01,150 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i "H:\staging\31ea3756-8ff5-49e0-bdd7-b51d74d6de41\SANJURO_t00.mkv" -map 0 -c:v libx265 -preset medium -crf 18 -threads 10 -x265-params pools=10:no-sao=1:early-skip=1:rd=3:me=hex -c:a copy -c:s copy -y "H:\staging\31ea3756-8ff5-49e0-bdd7-b51d74d6de41\SANJURO_t00_x265.mkv"
+2025-07-22 23:59:01,267 - ERROR - ffmpeg version 7.1.1-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+2025-07-22 23:59:01,269 - ERROR - built with gcc 14.2.0 (Rev1, Built by MSYS2 project)
+2025-07-22 23:59:01,269 - ERROR - configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+2025-07-22 23:59:01,270 - ERROR - libavutil      59. 39.100 / 59. 39.100
+2025-07-22 23:59:01,271 - ERROR - libavcodec     61. 19.101 / 61. 19.101
+2025-07-22 23:59:01,271 - ERROR - libavformat    61.  7.100 / 61.  7.100
+2025-07-22 23:59:01,272 - ERROR - libavdevice    61.  3.100 / 61.  3.100
+2025-07-22 23:59:01,273 - ERROR - libavfilter    10.  4.100 / 10.  4.100
+2025-07-22 23:59:01,273 - ERROR - libswscale      8.  3.100 /  8.  3.100
+2025-07-22 23:59:01,274 - ERROR - libswresample   5.  3.100 /  5.  3.100
+2025-07-22 23:59:01,275 - ERROR - libpostproc    58.  3.100 / 58.  3.100
+2025-07-22 23:59:01,275 - ERROR - [matroska,webm @ 00000250669b89c0] Could not find codec parameters for stream 5 (Subtitle: hdmv_pgs_subtitle (pgssub)): unspecified size
+2025-07-22 23:59:01,276 - ERROR - Consider increasing the value for the 'analyzeduration' (0) and 'probesize' (5000000) options
+2025-07-22 23:59:01,276 - ERROR - [aist#0:2/pcm_s24le @ 00000250669d2c00] Guessed Channel Layout: mono
+2025-07-22 23:59:01,277 - ERROR - Input #0, matroska,webm, from 'H:\staging\31ea3756-8ff5-49e0-bdd7-b51d74d6de41\SANJURO_t00.mkv':
+2025-07-22 23:59:01,278 - ERROR - Metadata:
+2025-07-22 23:59:01,278 - ERROR - title           : SANJURO
+2025-07-22 23:59:01,279 - ERROR - encoder         : libmakemkv v1.18.1 (1.3.10/1.5.2) win(x64-release)
+2025-07-22 23:59:01,280 - ERROR - creation_time   : 2025-05-29T18:32:29.000000Z
+2025-07-22 23:59:01,281 - ERROR - Duration: 01:35:55.67, start: 0.000000, bitrate: 96570 kb/s
+2025-07-22 23:59:01,281 - ERROR - Chapters:
+2025-07-22 23:59:01,282 - ERROR - Chapter #0:0: start 0.000000, end 247.580667
+2025-07-22 23:59:01,283 - ERROR - Metadata:
+2025-07-22 23:59:01,283 - ERROR - title           : Chapter 01
+2025-07-22 23:59:01,284 - ERROR - Chapter #0:1: start 247.580667, end 749.874125
+2025-07-22 23:59:01,284 - ERROR - Metadata:
+2025-07-22 23:59:01,285 - ERROR - title           : Chapter 02
+2025-07-22 23:59:01,286 - ERROR - Chapter #0:2: start 749.874125, end 922.212958
+2025-07-22 23:59:01,286 - ERROR - Metadata:
+2025-07-22 23:59:01,287 - ERROR - title           : Chapter 03
+2025-07-22 23:59:01,287 - ERROR - Chapter #0:3: start 922.212958, end 1285.492542
+2025-07-22 23:59:01,288 - ERROR - Metadata:
+2025-07-22 23:59:01,288 - ERROR - title           : Chapter 04
+2025-07-22 23:59:01,289 - ERROR - Chapter #0:4: start 1285.492542, end 1545.794250
+2025-07-22 23:59:01,289 - ERROR - Metadata:
+2025-07-22 23:59:01,290 - ERROR - title           : Chapter 05
+2025-07-22 23:59:01,291 - ERROR - Chapter #0:5: start 1545.794250, end 1863.570042
+2025-07-22 23:59:01,291 - ERROR - Metadata:
+2025-07-22 23:59:01,292 - ERROR - title           : Chapter 06
+2025-07-22 23:59:01,292 - ERROR - Chapter #0:6: start 1863.570042, end 2320.901917
+2025-07-22 23:59:01,293 - ERROR - Metadata:
+2025-07-22 23:59:01,293 - ERROR - title           : Chapter 07
+2025-07-22 23:59:01,294 - ERROR - Chapter #0:7: start 2320.901917, end 2359.982625
+2025-07-22 23:59:01,295 - ERROR - Metadata:
+2025-07-22 23:59:01,295 - ERROR - title           : Chapter 08
+2025-07-22 23:59:01,296 - ERROR - Chapter #0:8: start 2359.982625, end 2486.484000
+2025-07-22 23:59:01,297 - ERROR - Metadata:
+2025-07-22 23:59:01,298 - ERROR - title           : Chapter 09
+2025-07-22 23:59:01,298 - ERROR - Chapter #0:9: start 2486.484000, end 2625.331042
+2025-07-22 23:59:01,299 - ERROR - Metadata:
+2025-07-22 23:59:01,300 - ERROR - title           : Chapter 10
+2025-07-22 23:59:01,300 - ERROR - Chapter #0:10: start 2625.331042, end 2827.324500
+2025-07-22 23:59:01,301 - ERROR - Metadata:
+2025-07-22 23:59:01,302 - ERROR - title           : Chapter 11
+2025-07-22 23:59:01,302 - ERROR - Chapter #0:11: start 2827.324500, end 3460.957500
+2025-07-22 23:59:01,303 - ERROR - Metadata:
+2025-07-22 23:59:01,303 - ERROR - title           : Chapter 12
+2025-07-22 23:59:01,304 - ERROR - Chapter #0:12: start 3460.957500, end 3588.209625
+2025-07-22 23:59:01,305 - ERROR - Metadata:
+2025-07-22 23:59:01,305 - ERROR - title           : Chapter 13
+2025-07-22 23:59:01,306 - ERROR - Chapter #0:13: start 3588.209625, end 3882.253375
+2025-07-22 23:59:01,307 - ERROR - Metadata:
+2025-07-22 23:59:01,307 - ERROR - title           : Chapter 14
+2025-07-22 23:59:01,308 - ERROR - Chapter #0:14: start 3882.253375, end 3982.144833
+2025-07-22 23:59:01,308 - ERROR - Metadata:
+2025-07-22 23:59:01,309 - ERROR - title           : Chapter 15
+2025-07-22 23:59:01,309 - ERROR - Chapter #0:15: start 3982.144833, end 4452.990208
+2025-07-22 23:59:01,310 - ERROR - Metadata:
+2025-07-22 23:59:01,311 - ERROR - title           : Chapter 16
+2025-07-22 23:59:01,312 - ERROR - Chapter #0:16: start 4452.990208, end 4814.434625
+2025-07-22 23:59:01,313 - ERROR - Metadata:
+2025-07-22 23:59:01,313 - ERROR - title           : Chapter 17
+2025-07-22 23:59:01,314 - ERROR - Chapter #0:17: start 4814.434625, end 5264.342417
+2025-07-22 23:59:01,315 - ERROR - Metadata:
+2025-07-22 23:59:01,315 - ERROR - title           : Chapter 18
+2025-07-22 23:59:01,316 - ERROR - Chapter #0:18: start 5264.342417, end 5471.632833
+2025-07-22 23:59:01,317 - ERROR - Metadata:
+2025-07-22 23:59:01,317 - ERROR - title           : Chapter 19
+2025-07-22 23:59:01,318 - ERROR - Chapter #0:19: start 5471.632833, end 5755.666583
+2025-07-22 23:59:01,319 - ERROR - Metadata:
+2025-07-22 23:59:01,320 - ERROR - title           : Chapter 20
+2025-07-22 23:59:01,320 - ERROR - Stream #0:0(eng): Video: hevc (Main 10), yuv420p10le(tv, bt709), 3840x2160 [SAR 1:1 DAR 16:9], 23.98 fps, 23.98 tbr, 1k tbn
+2025-07-22 23:59:01,321 - ERROR - Metadata:
+2025-07-22 23:59:01,322 - ERROR - BPS-eng         : 91199989
+2025-07-22 23:59:01,322 - ERROR - DURATION-eng    : 01:35:55.666583333
+2025-07-22 23:59:01,323 - ERROR - NUMBER_OF_FRAMES-eng: 137998
+2025-07-22 23:59:01,324 - ERROR - NUMBER_OF_BYTES-eng: 65614585024
+2025-07-22 23:59:01,324 - ERROR - SOURCE_ID-eng   : 001011
+2025-07-22 23:59:01,325 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-22 23:59:01,326 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-29 18:32:29
+2025-07-22 23:59:01,326 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-22 23:59:01,327 - ERROR - Stream #0:1(eng): Audio: ac3, 48000 Hz, mono, fltp, 192 kb/s (default)
+2025-07-22 23:59:01,328 - ERROR - Metadata:
+2025-07-22 23:59:01,329 - ERROR - title           : Mono
+2025-07-22 23:59:01,330 - ERROR - BPS-eng         : 192000
+2025-07-22 23:59:01,330 - ERROR - DURATION-eng    : 01:35:55.616000000
+2025-07-22 23:59:01,331 - ERROR - NUMBER_OF_FRAMES-eng: 179863
+2025-07-22 23:59:01,332 - ERROR - NUMBER_OF_BYTES-eng: 138134784
+2025-07-22 23:59:01,332 - ERROR - SOURCE_ID-eng   : 001102
+2025-07-22 23:59:01,333 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-22 23:59:01,334 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-29 18:32:29
+2025-07-22 23:59:01,334 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-22 23:59:01,335 - ERROR - Stream #0:2(jpn): Audio: pcm_s24le, 48000 Hz, mono, s32 (24 bit), 1152 kb/s
+2025-07-22 23:59:01,336 - ERROR - Metadata:
+2025-07-22 23:59:01,336 - ERROR - title           : Mono
+2025-07-22 23:59:01,337 - ERROR - BPS-eng         : 1152000
+2025-07-22 23:59:01,338 - ERROR - DURATION-eng    : 01:35:55.665000000
+2025-07-22 23:59:01,339 - ERROR - NUMBER_OF_FRAMES-eng: 172670
+2025-07-22 23:59:01,339 - ERROR - NUMBER_OF_BYTES-eng: 828815760
+2025-07-22 23:59:01,340 - ERROR - SOURCE_ID-eng   : 001100
+2025-07-22 23:59:01,341 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-22 23:59:01,341 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-29 18:32:29
+2025-07-22 23:59:01,342 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-22 23:59:01,343 - ERROR - Stream #0:3(jpn): Audio: dts (dca) (DTS-HD MA), 48000 Hz, 5.1(side), s32p (24 bit)
+2025-07-22 23:59:01,344 - ERROR - Metadata:
+2025-07-22 23:59:01,344 - ERROR - title           : Surround 5.1
+2025-07-22 23:59:01,345 - ERROR - BPS-eng         : 2485669
+2025-07-22 23:59:01,346 - ERROR - DURATION-eng    : 01:35:55.690666666
+2025-07-22 23:59:01,346 - ERROR - NUMBER_OF_FRAMES-eng: 539596
+2025-07-22 23:59:01,347 - ERROR - NUMBER_OF_BYTES-eng: 1788343204
+2025-07-22 23:59:01,348 - ERROR - SOURCE_ID-eng   : 001101
+2025-07-22 23:59:01,348 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-22 23:59:01,349 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-29 18:32:29
+2025-07-22 23:59:01,350 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-22 23:59:01,350 - ERROR - Stream #0:4(jpn): Audio: dts (dca) (DTS), 48000 Hz, 5.1(side), fltp, 1536 kb/s
+2025-07-22 23:59:01,351 - ERROR - Metadata:
+2025-07-22 23:59:01,352 - ERROR - title           : Surround 5.1
+2025-07-22 23:59:01,352 - ERROR - BPS-eng         : 1509000
+2025-07-22 23:59:01,353 - ERROR - DURATION-eng    : 01:35:55.690666666
+2025-07-22 23:59:01,354 - ERROR - NUMBER_OF_FRAMES-eng: 539596
+2025-07-22 23:59:01,354 - ERROR - NUMBER_OF_BYTES-eng: 1085667152
+2025-07-22 23:59:01,355 - ERROR - SOURCE_ID-eng   : 001101
+2025-07-22 23:59:01,356 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-22 23:59:01,356 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-29 18:32:29
+2025-07-22 23:59:01,357 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-22 23:59:01,358 - ERROR - Stream #0:5(eng): Subtitle: hdmv_pgs_subtitle (pgssub)
+2025-07-22 23:59:01,359 - ERROR - Metadata:
+2025-07-22 23:59:01,359 - ERROR - BPS-eng         : 25663
+2025-07-22 23:59:01,360 - ERROR - DURATION-eng    : 01:35:27.284062500
+2025-07-22 23:59:01,362 - ERROR - NUMBER_OF_FRAMES-eng: 1730
+2025-07-22 23:59:01,363 - ERROR - NUMBER_OF_BYTES-eng: 18372887
+2025-07-22 23:59:01,364 - ERROR - SOURCE_ID-eng   : 001200
+2025-07-22 23:59:01,364 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-22 23:59:01,365 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-29 18:32:29
+2025-07-22 23:59:01,366 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-22 23:59:01,367 - ERROR - Stream mapping:
+2025-07-22 23:59:01,367 - ERROR - Stream #0:0 -> #0:0 (hevc (native) -> hevc (libx265))
+2025-07-22 23:59:01,368 - ERROR - Stream #0:1 -> #0:1 (copy)
+2025-07-22 23:59:01,369 - ERROR - Stream #0:2 -> #0:2 (copy)
+2025-07-22 23:59:01,369 - ERROR - Stream #0:3 -> #0:3 (copy)
+2025-07-22 23:59:01,370 - ERROR - Stream #0:4 -> #0:4 (copy)
+2025-07-22 23:59:01,372 - ERROR - Stream #0:5 -> #0:5 (copy)
+2025-07-22 23:59:01,380 - ERROR - Press [q] to stop, [?] for help
+2025-07-22 23:59:01,428 - ERROR - x265 [info]: HEVC encoder version 4.1+110-0e0eee580
+2025-07-22 23:59:01,430 - ERROR - x265 [info]: build info [Windows][GCC 14.2.0][64 bit] 10bit
+2025-07-22 23:59:01,430 - ERROR - x265 [info]: using cpu capabilities: MMX2 SSE2Fast LZCNT SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+2025-07-22 23:59:01,431 - ERROR - x265 [info]: Main 10 profile, Level-5 (Main tier)
+2025-07-22 23:59:01,432 - ERROR - x265 [info]: Thread pool created using 10 threads
+2025-07-22 23:59:01,433 - ERROR - x265 [info]: Slices                              : 1
+2025-07-22 23:59:01,433 - ERROR - x265 [info]: frame threads / pool features       : 10 / wpp(34 rows)
+2025-07-22 23:59:01,460 - ERROR - x265 [info]: Coding QT: max CU size, min CU size : 64 / 8
+2025-07-22 23:59:01,462 - ERROR - x265 [info]: Residual QT: max TU size, max depth : 32 / 1 inter / 1 intra
+2025-07-22 23:59:01,463 - ERROR - x265 [info]: ME / range / subpel / merge         : hex / 57 / 2 / 3
+2025-07-22 23:59:01,464 - ERROR - x265 [info]: Keyframe min / max / scenecut / bias  : 23 / 250 / 40 / 5.00
+2025-07-22 23:59:01,464 - ERROR - x265 [info]: Lookahead / bframes / badapt        : 20 / 4 / 2
+2025-07-22 23:59:01,465 - ERROR - x265 [info]: b-pyramid / weightp / weightb       : 1 / 1 / 0
+2025-07-22 23:59:01,466 - ERROR - x265 [info]: References / ref-limit  cu / depth  : 3 / off / on
+2025-07-22 23:59:01,467 - ERROR - x265 [info]: AQ: mode / str / qg-size / cu-tree  : 2 / 1.0 / 32 / 1
+2025-07-22 23:59:01,468 - ERROR - x265 [info]: Rate Control / qCompress            : CRF-18.0 / 0.60
+2025-07-22 23:59:01,469 - ERROR - x265 [info]: tools: rd=3 psy-rd=2.00 early-skip rskip mode=1 signhide tmvp
+2025-07-22 23:59:01,469 - ERROR - x265 [info]: tools: b-intra strong-intra-smoothing lslices=8 deblock
+2025-07-22 23:59:01,470 - ERROR - x265 [info]: tools: dhdr10-info
+2025-07-22 23:59:01,471 - ERROR - Output #0, matroska, to 'H:\staging\31ea3756-8ff5-49e0-bdd7-b51d74d6de41\SANJURO_t00_x265.mkv':
+2025-07-22 23:59:01,471 - ERROR - Metadata:
+2025-07-22 23:59:01,472 - ERROR - title           : SANJURO
+2025-07-22 23:59:01,473 - ERROR - encoder         : Lavf61.7.100
+2025-07-22 23:59:01,473 - ERROR - Chapters:
+2025-07-22 23:59:01,474 - ERROR - Chapter #0:0: start 0.000000, end 247.580667
+2025-07-22 23:59:01,475 - ERROR - Metadata:
+2025-07-22 23:59:01,476 - ERROR - title           : Chapter 01
+2025-07-22 23:59:01,476 - ERROR - Chapter #0:1: start 247.580667, end 749.874125
+2025-07-22 23:59:01,477 - ERROR - Metadata:
+2025-07-22 23:59:01,478 - ERROR - title           : Chapter 02
+2025-07-22 23:59:01,478 - ERROR - Chapter #0:2: start 749.874125, end 922.212958
+2025-07-22 23:59:01,479 - ERROR - Metadata:
+2025-07-22 23:59:01,480 - ERROR - title           : Chapter 03
+2025-07-22 23:59:01,480 - ERROR - Chapter #0:3: start 922.212958, end 1285.492542
+2025-07-22 23:59:01,481 - ERROR - Metadata:
+2025-07-22 23:59:01,482 - ERROR - title           : Chapter 04
+2025-07-22 23:59:01,483 - ERROR - Chapter #0:4: start 1285.492542, end 1545.794250
+2025-07-22 23:59:01,484 - ERROR - Metadata:
+2025-07-22 23:59:01,484 - ERROR - title           : Chapter 05
+2025-07-22 23:59:01,485 - ERROR - Chapter #0:5: start 1545.794250, end 1863.570042
+2025-07-22 23:59:01,485 - ERROR - Metadata:
+2025-07-22 23:59:01,486 - ERROR - title           : Chapter 06
+2025-07-22 23:59:01,487 - ERROR - Chapter #0:6: start 1863.570042, end 2320.901917
+2025-07-22 23:59:01,487 - ERROR - Metadata:
+2025-07-22 23:59:01,488 - ERROR - title           : Chapter 07
+2025-07-22 23:59:01,488 - ERROR - Chapter #0:7: start 2320.901917, end 2359.982625
+2025-07-22 23:59:01,489 - ERROR - Metadata:
+2025-07-22 23:59:01,489 - ERROR - title           : Chapter 08
+2025-07-22 23:59:01,490 - ERROR - Chapter #0:8: start 2359.982625, end 2486.484000
+2025-07-22 23:59:01,491 - ERROR - Metadata:
+2025-07-22 23:59:01,491 - ERROR - title           : Chapter 09
+2025-07-22 23:59:01,492 - ERROR - Chapter #0:9: start 2486.484000, end 2625.331042
+2025-07-22 23:59:01,493 - ERROR - Metadata:
+2025-07-22 23:59:01,493 - ERROR - title           : Chapter 10
+2025-07-22 23:59:01,494 - ERROR - Chapter #0:10: start 2625.331042, end 2827.324500
+2025-07-22 23:59:01,495 - ERROR - Metadata:
+2025-07-22 23:59:01,495 - ERROR - title           : Chapter 11
+2025-07-22 23:59:01,496 - ERROR - Chapter #0:11: start 2827.324500, end 3460.957500
+2025-07-22 23:59:01,497 - ERROR - Metadata:
+2025-07-22 23:59:01,497 - ERROR - title           : Chapter 12
+2025-07-22 23:59:01,498 - ERROR - Chapter #0:12: start 3460.957500, end 3588.209625
+2025-07-22 23:59:01,499 - ERROR - Metadata:
+2025-07-22 23:59:01,499 - ERROR - title           : Chapter 13
+2025-07-22 23:59:01,500 - ERROR - Chapter #0:13: start 3588.209625, end 3882.253375
+2025-07-22 23:59:01,501 - ERROR - Metadata:
+2025-07-22 23:59:01,501 - ERROR - title           : Chapter 14
+2025-07-22 23:59:01,502 - ERROR - Chapter #0:14: start 3882.253375, end 3982.144833
+2025-07-22 23:59:01,503 - ERROR - Metadata:
+2025-07-22 23:59:01,503 - ERROR - title           : Chapter 15
+2025-07-22 23:59:01,504 - ERROR - Chapter #0:15: start 3982.144833, end 4452.990208
+2025-07-22 23:59:01,505 - ERROR - Metadata:
+2025-07-22 23:59:01,506 - ERROR - title           : Chapter 16
+2025-07-22 23:59:01,507 - ERROR - Chapter #0:16: start 4452.990208, end 4814.434625
+2025-07-22 23:59:01,508 - ERROR - Metadata:
+2025-07-22 23:59:01,508 - ERROR - title           : Chapter 17
+2025-07-22 23:59:01,509 - ERROR - Chapter #0:17: start 4814.434625, end 5264.342417
+2025-07-22 23:59:01,510 - ERROR - Metadata:
+2025-07-22 23:59:01,511 - ERROR - title           : Chapter 18
+2025-07-22 23:59:01,512 - ERROR - Chapter #0:18: start 5264.342417, end 5471.632833
+2025-07-22 23:59:01,513 - ERROR - Metadata:
+2025-07-22 23:59:01,513 - ERROR - title           : Chapter 19
+2025-07-22 23:59:01,514 - ERROR - Chapter #0:19: start 5471.632833, end 5755.666583
+2025-07-22 23:59:01,515 - ERROR - Metadata:
+2025-07-22 23:59:01,515 - ERROR - title           : Chapter 20
+2025-07-22 23:59:01,516 - ERROR - Stream #0:0(eng): Video: hevc, yuv420p10le(tv, bt709, progressive), 3840x2160 [SAR 1:1 DAR 16:9], q=2-31, 23.98 fps, 1k tbn
+2025-07-22 23:59:01,517 - ERROR - Metadata:
+2025-07-22 23:59:01,518 - ERROR - BPS-eng         : 91199989
+2025-07-22 23:59:01,519 - ERROR - DURATION-eng    : 01:35:55.666583333
+2025-07-22 23:59:01,519 - ERROR - NUMBER_OF_FRAMES-eng: 137998
+2025-07-22 23:59:01,520 - ERROR - NUMBER_OF_BYTES-eng: 65614585024
+2025-07-22 23:59:01,521 - ERROR - SOURCE_ID-eng   : 001011
+2025-07-22 23:59:01,522 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-22 23:59:01,522 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-29 18:32:29
+2025-07-22 23:59:01,523 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-22 23:59:01,523 - ERROR - encoder         : Lavc61.19.101 libx265
+2025-07-22 23:59:01,524 - ERROR - Side data:
+2025-07-22 23:59:01,525 - ERROR - cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+2025-07-22 23:59:01,525 - ERROR - Stream #0:1(eng): Audio: ac3 ([0] [0][0] / 0x2000), 48000 Hz, mono, fltp, 192 kb/s (default)
+2025-07-22 23:59:01,526 - ERROR - Metadata:
+2025-07-22 23:59:01,527 - ERROR - title           : Mono
+2025-07-22 23:59:01,528 - ERROR - BPS-eng         : 192000
+2025-07-22 23:59:01,529 - ERROR - DURATION-eng    : 01:35:55.616000000
+2025-07-22 23:59:01,529 - ERROR - NUMBER_OF_FRAMES-eng: 179863
+2025-07-22 23:59:01,530 - ERROR - NUMBER_OF_BYTES-eng: 138134784
+2025-07-22 23:59:01,531 - ERROR - SOURCE_ID-eng   : 001102
+2025-07-22 23:59:01,532 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-22 23:59:01,532 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-29 18:32:29
+2025-07-22 23:59:01,533 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-22 23:59:01,534 - ERROR - Stream #0:2(jpn): Audio: pcm_s24le ([1][0][0][0] / 0x0001), 48000 Hz, mono, s32 (24 bit), 1152 kb/s
+2025-07-22 23:59:01,534 - ERROR - Metadata:
+2025-07-22 23:59:01,535 - ERROR - title           : Mono
+2025-07-22 23:59:01,536 - ERROR - BPS-eng         : 1152000
+2025-07-22 23:59:01,537 - ERROR - DURATION-eng    : 01:35:55.665000000
+2025-07-22 23:59:01,537 - ERROR - NUMBER_OF_FRAMES-eng: 172670
+2025-07-22 23:59:01,538 - ERROR - NUMBER_OF_BYTES-eng: 828815760
+2025-07-22 23:59:01,539 - ERROR - SOURCE_ID-eng   : 001100
+2025-07-22 23:59:01,539 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-22 23:59:01,540 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-29 18:32:29
+2025-07-22 23:59:01,541 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-22 23:59:01,542 - ERROR - Stream #0:3(jpn): Audio: dts (DTS-HD MA) ([1] [0][0] / 0x2001), 48000 Hz, 5.1(side), s32p (24 bit)
+2025-07-22 23:59:01,542 - ERROR - Metadata:
+2025-07-22 23:59:01,543 - ERROR - title           : Surround 5.1
+2025-07-22 23:59:01,544 - ERROR - BPS-eng         : 2485669
+2025-07-22 23:59:01,544 - ERROR - DURATION-eng    : 01:35:55.690666666
+2025-07-22 23:59:01,545 - ERROR - NUMBER_OF_FRAMES-eng: 539596
+2025-07-22 23:59:01,546 - ERROR - NUMBER_OF_BYTES-eng: 1788343204
+2025-07-22 23:59:01,547 - ERROR - SOURCE_ID-eng   : 001101
+2025-07-22 23:59:01,547 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-22 23:59:01,548 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-29 18:32:29
+2025-07-22 23:59:01,549 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-22 23:59:01,549 - ERROR - Stream #0:4(jpn): Audio: dts (DTS) ([1] [0][0] / 0x2001), 48000 Hz, 5.1(side), fltp, 1536 kb/s
+2025-07-22 23:59:01,550 - ERROR - Metadata:
+2025-07-22 23:59:01,550 - ERROR - title           : Surround 5.1
+2025-07-22 23:59:01,551 - ERROR - BPS-eng         : 1509000
+2025-07-22 23:59:01,552 - ERROR - DURATION-eng    : 01:35:55.690666666
+2025-07-22 23:59:01,552 - ERROR - NUMBER_OF_FRAMES-eng: 539596
+2025-07-22 23:59:01,553 - ERROR - NUMBER_OF_BYTES-eng: 1085667152
+2025-07-22 23:59:01,554 - ERROR - SOURCE_ID-eng   : 001101
+2025-07-22 23:59:01,554 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-22 23:59:01,555 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-29 18:32:29
+2025-07-22 23:59:01,555 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-22 23:59:01,556 - ERROR - Stream #0:5(eng): Subtitle: hdmv_pgs_subtitle ([255][255][255][255] / 0xFFFFFFFF)
+2025-07-22 23:59:01,556 - ERROR - Metadata:
+2025-07-22 23:59:01,557 - ERROR - BPS-eng         : 25663
+2025-07-22 23:59:01,558 - ERROR - DURATION-eng    : 01:35:27.284062500
+2025-07-22 23:59:01,558 - ERROR - NUMBER_OF_FRAMES-eng: 1730
+2025-07-22 23:59:01,559 - ERROR - NUMBER_OF_BYTES-eng: 18372887
+2025-07-22 23:59:01,560 - ERROR - SOURCE_ID-eng   : 001200
+2025-07-22 23:59:01,560 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-22 23:59:01,561 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-05-29 18:32:29
+2025-07-22 23:59:01,562 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-23 04:58:32,620 - ERROR - [out#0/matroska @ 00000250669bb800] video:17204672KiB audio:3750938KiB subtitle:17942KiB other streams:0KiB global headers:2KiB muxing overhead: 0.052617%
+2025-07-23 04:58:32,622 - ERROR - x265 [info]: frame I:    708, Avg QP:18.32  kb/s: 66129.78
+2025-07-23 04:58:32,623 - ERROR - x265 [info]: frame P:  28912, Avg QP:19.83  kb/s: 46307.55
+2025-07-23 04:58:32,623 - ERROR - x265 [info]: frame B: 108378, Avg QP:23.23  kb/s: 18393.28
+2025-07-23 04:58:32,624 - ERROR - x265 [info]: Weighted P-Frames: Y:2.9% UV:0.0%
+2025-07-23 04:58:32,625 - ERROR - encoded 137998 frames in 17971.16s (7.68 fps), 24486.52 kb/s, Avg QP:22.49
+2025-07-23 04:58:32,964 - INFO - Successfully completed: Re-encoding to x265
+2025-07-23 04:58:33,023 - INFO - Starting step: move_final - Moving final file to destination
+2025-07-23 04:58:33,025 - INFO - Moving final file from H:\staging\31ea3756-8ff5-49e0-bdd7-b51d74d6de41\SANJURO_t00_x265.mkv to Z:\landing_point\Video\SANJURO\SANJURO_t00_x265.mkv
+2025-07-23 05:01:40,173 - INFO - Move successful.
+2025-07-23 05:01:40,242 - INFO - === transcode() completed successfully for job 31ea3756-8ff5-49e0-bdd7-b51d74d6de41 ===
+2025-07-23 05:01:40,312 - INFO - Cleaning up job staging directory: H:\staging\31ea3756-8ff5-49e0-bdd7-b51d74d6de41

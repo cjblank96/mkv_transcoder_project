@@ -1,0 +1,590 @@
+2025-07-19 14:25:38,887 - INFO - Job 4aff19df-ab54-4107-a057-e6be856cb241 initialized.
+2025-07-19 14:25:38,892 - INFO - Original input file: Z:\landing_point\Video\Dunkirk\Dunkirk_t00.mkv
+2025-07-19 14:25:38,939 - INFO - Final output file: Z:\landing_point\Video\Dunkirk\Dunkirk_t00_DV_P8.mkv
+2025-07-19 14:25:38,949 - INFO - Local job staging directory: H:\staging\4aff19df-ab54-4107-a057-e6be856cb241
+2025-07-19 14:25:38,963 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-19 14:25:38,970 - INFO -   - Total: 3726.01 GB
+2025-07-19 14:25:38,976 - INFO -   - Used: 1942.12 GB
+2025-07-19 14:25:38,983 - INFO -   - Free: 1783.89 GB
+2025-07-19 14:25:39,009 - INFO - === Entering transcode() for job 4aff19df-ab54-4107-a057-e6be856cb241 ===
+2025-07-19 14:25:39,020 - INFO - Job dict: {
+  "id": "4aff19df-ab54-4107-a057-e6be856cb241",
+  "input_path": "\"Z:\\landing_point\\Video\\Dunkirk\\Dunkirk_t00.mkv\"",
+  "job_type": "standard",
+  "status": "running",
+  "worker_id": "CJBLANK",
+  "output_path": null,
+  "added_at": 1752956657.1870825,
+  "retries": 1,
+  "steps": {
+    "copy_source": "pending",
+    "get_metadata": "pending",
+    "reencode_x265": "pending",
+    "move_final": "pending"
+  },
+  "claimed_at": 1752956738.4612405
+}
+2025-07-19 14:25:39,050 - INFO - === Starting transcode pipeline for job 4aff19df-ab54-4107-a057-e6be856cb241 ===
+2025-07-19 14:25:39,059 - INFO - Job dict: {'id': '4aff19df-ab54-4107-a057-e6be856cb241', 'input_path': '"Z:\\landing_point\\Video\\Dunkirk\\Dunkirk_t00.mkv"', 'job_type': 'standard', 'status': 'running', 'worker_id': 'CJBLANK', 'output_path': None, 'added_at': 1752956657.1870825, 'retries': 1, 'steps': {'copy_source': 'pending', 'get_metadata': 'pending', 'reencode_x265': 'pending', 'move_final': 'pending'}, 'claimed_at': 1752956738.4612405}
+2025-07-19 14:25:39,087 - INFO - Starting step: copy_source - Copying source file locally
+2025-07-19 14:25:39,114 - INFO - Copying source file locally: from Z:\landing_point\Video\Dunkirk\Dunkirk_t00.mkv to H:\staging\4aff19df-ab54-4107-a057-e6be856cb241\Dunkirk_t00.mkv
+2025-07-19 14:44:18,028 - INFO - Job 4aff19df-ab54-4107-a057-e6be856cb241 initialized.
+2025-07-19 14:44:18,053 - INFO - Original input file: Z:\landing_point\Video\Dunkirk\Dunkirk_t00.mkv
+2025-07-19 14:44:18,132 - INFO - Final output file: Z:\landing_point\Video\Dunkirk\Dunkirk_t00_DV_P8.mkv
+2025-07-19 14:44:18,136 - INFO - Local job staging directory: H:\staging\4aff19df-ab54-4107-a057-e6be856cb241
+2025-07-19 14:44:18,262 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-19 14:44:18,271 - INFO -   - Total: 3726.01 GB
+2025-07-19 14:44:18,309 - INFO -   - Used: 1941.30 GB
+2025-07-19 14:44:18,323 - INFO -   - Free: 1784.70 GB
+2025-07-19 14:44:18,331 - INFO - === Entering transcode() for job 4aff19df-ab54-4107-a057-e6be856cb241 ===
+2025-07-19 14:44:18,382 - INFO - Job dict: {
+  "id": "4aff19df-ab54-4107-a057-e6be856cb241",
+  "input_path": "\"Z:\\landing_point\\Video\\Dunkirk\\Dunkirk_t00.mkv\"",
+  "job_type": "standard",
+  "status": "running",
+  "worker_id": "CJBLANK",
+  "output_path": null,
+  "added_at": 1752956657.1870825,
+  "retries": 2,
+  "steps": {
+    "copy_source": "pending",
+    "get_metadata": "pending",
+    "reencode_x265": "pending",
+    "move_final": "pending"
+  },
+  "claimed_at": 1752957857.4650295
+}
+2025-07-19 14:44:18,450 - INFO - === Starting transcode pipeline for job 4aff19df-ab54-4107-a057-e6be856cb241 ===
+2025-07-19 14:44:18,461 - INFO - Job dict: {'id': '4aff19df-ab54-4107-a057-e6be856cb241', 'input_path': '"Z:\\landing_point\\Video\\Dunkirk\\Dunkirk_t00.mkv"', 'job_type': 'standard', 'status': 'running', 'worker_id': 'CJBLANK', 'output_path': None, 'added_at': 1752956657.1870825, 'retries': 2, 'steps': {'copy_source': 'pending', 'get_metadata': 'pending', 'reencode_x265': 'pending', 'move_final': 'pending'}, 'claimed_at': 1752957857.4650295}
+2025-07-19 14:44:18,506 - INFO - Starting step: copy_source - Copying source file locally
+2025-07-19 14:44:18,578 - INFO - Copying source file locally: from Z:\landing_point\Video\Dunkirk\Dunkirk_t00.mkv to H:\staging\4aff19df-ab54-4107-a057-e6be856cb241\Dunkirk_t00.mkv
+2025-07-19 15:04:32,347 - INFO - Copy successful.
+2025-07-19 15:04:32,838 - INFO - Starting step: get_metadata - Getting video metadata
+2025-07-19 15:04:32,845 - INFO - Attempting to get video metadata from H:\staging\4aff19df-ab54-4107-a057-e6be856cb241\Dunkirk_t00.mkv
+2025-07-19 15:04:33,402 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-19 15:04:33,513 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 153404 frames.
+2025-07-19 15:04:41,660 - INFO - Starting step: reencode_x265 - Re-encoding and Muxing
+2025-07-19 15:04:41,693 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i "H:\staging\4aff19df-ab54-4107-a057-e6be856cb241\Dunkirk_t00.mkv" -map 0 -c:v libx265 -preset medium -crf 18 -threads 10 -x265-params pools=10:no-sao=1:early-skip=1:rd=3:me=hex -c:a copy -c:s copy -y "H:\staging\4aff19df-ab54-4107-a057-e6be856cb241\Dunkirk_t00_x265.mkv"
+2025-07-19 15:04:41,905 - ERROR - ffmpeg version 7.1.1-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+2025-07-19 15:04:41,963 - ERROR - built with gcc 14.2.0 (Rev1, Built by MSYS2 project)
+2025-07-19 15:04:41,988 - ERROR - configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+2025-07-19 15:04:42,004 - ERROR - libavutil      59. 39.100 / 59. 39.100
+2025-07-19 15:04:42,038 - ERROR - libavcodec     61. 19.101 / 61. 19.101
+2025-07-19 15:04:42,048 - ERROR - libavformat    61.  7.100 / 61.  7.100
+2025-07-19 15:04:42,056 - ERROR - libavdevice    61.  3.100 / 61.  3.100
+2025-07-19 15:04:42,151 - ERROR - libavfilter    10.  4.100 / 10.  4.100
+2025-07-19 15:04:42,153 - ERROR - libswscale      8.  3.100 /  8.  3.100
+2025-07-19 15:04:42,162 - ERROR - libswresample   5.  3.100 /  5.  3.100
+2025-07-19 15:04:42,208 - ERROR - libpostproc    58.  3.100 / 58.  3.100
+2025-07-19 15:04:42,225 - ERROR - [matroska,webm @ 00000182b4bc89c0] Could not find codec parameters for stream 4 (Subtitle: hdmv_pgs_subtitle (pgssub)): unspecified size
+2025-07-19 15:04:42,234 - ERROR - Consider increasing the value for the 'analyzeduration' (0) and 'probesize' (5000000) options
+2025-07-19 15:04:42,351 - ERROR - Input #0, matroska,webm, from 'H:\staging\4aff19df-ab54-4107-a057-e6be856cb241\Dunkirk_t00.mkv':
+2025-07-19 15:04:42,378 - ERROR - Metadata:
+2025-07-19 15:04:42,386 - ERROR - title           : Dunkirk
+2025-07-19 15:04:42,473 - ERROR - encoder         : libmakemkv v1.18.1 (1.3.10/1.5.2) win(x64-release)
+2025-07-19 15:04:42,499 - ERROR - creation_time   : 2025-06-02T00:27:55.000000Z
+2025-07-19 15:04:42,502 - ERROR - Duration: 01:46:38.23, start: 0.000000, bitrate: 62612 kb/s
+2025-07-19 15:04:42,574 - ERROR - Chapters:
+2025-07-19 15:04:42,581 - ERROR - Chapter #0:0: start 0.000000, end 531.364167
+2025-07-19 15:04:42,588 - ERROR - Metadata:
+2025-07-19 15:04:42,629 - ERROR - title           : Chapter 01
+2025-07-19 15:04:42,651 - ERROR - Chapter #0:1: start 531.364167, end 1213.629083
+2025-07-19 15:04:42,653 - ERROR - Metadata:
+2025-07-19 15:04:42,657 - ERROR - title           : Chapter 02
+2025-07-19 15:04:42,718 - ERROR - Chapter #0:2: start 1213.629083, end 1747.620875
+2025-07-19 15:04:42,724 - ERROR - Metadata:
+2025-07-19 15:04:42,734 - ERROR - title           : Chapter 03
+2025-07-19 15:04:42,741 - ERROR - Chapter #0:3: start 1747.620875, end 2555.261042
+2025-07-19 15:04:42,753 - ERROR - Metadata:
+2025-07-19 15:04:42,768 - ERROR - title           : Chapter 04
+2025-07-19 15:04:42,789 - ERROR - Chapter #0:4: start 2555.261042, end 3168.206708
+2025-07-19 15:04:42,792 - ERROR - Metadata:
+2025-07-19 15:04:42,793 - ERROR - title           : Chapter 05
+2025-07-19 15:04:42,798 - ERROR - Chapter #0:5: start 3168.206708, end 3872.827292
+2025-07-19 15:04:42,806 - ERROR - Metadata:
+2025-07-19 15:04:42,831 - ERROR - title           : Chapter 06
+2025-07-19 15:04:42,847 - ERROR - Chapter #0:6: start 3872.827292, end 4370.699667
+2025-07-19 15:04:42,848 - ERROR - Metadata:
+2025-07-19 15:04:42,858 - ERROR - title           : Chapter 07
+2025-07-19 15:04:42,865 - ERROR - Chapter #0:7: start 4370.699667, end 5154.941458
+2025-07-19 15:04:42,873 - ERROR - Metadata:
+2025-07-19 15:04:42,890 - ERROR - title           : Chapter 08
+2025-07-19 15:04:42,914 - ERROR - Chapter #0:8: start 5154.941458, end 5603.347750
+2025-07-19 15:04:42,916 - ERROR - Metadata:
+2025-07-19 15:04:42,920 - ERROR - title           : Chapter 09
+2025-07-19 15:04:42,923 - ERROR - Chapter #0:9: start 5603.347750, end 5953.906292
+2025-07-19 15:04:42,944 - ERROR - Metadata:
+2025-07-19 15:04:42,967 - ERROR - title           : Chapter 10
+2025-07-19 15:04:42,974 - ERROR - Chapter #0:10: start 5953.906292, end 6398.225167
+2025-07-19 15:04:42,977 - ERROR - Metadata:
+2025-07-19 15:04:42,985 - ERROR - title           : Chapter 11
+2025-07-19 15:04:42,990 - ERROR - Stream #0:0(eng): Video: hevc (Main 10), yuv420p10le(tv, bt2020nc/bt2020/smpte2084), 3840x2160 [SAR 1:1 DAR 16:9], 23.98 fps, 23.98 tbr, 1k tbn
+2025-07-19 15:04:42,997 - ERROR - Metadata:
+2025-07-19 15:04:43,004 - ERROR - BPS-eng         : 58220125
+2025-07-19 15:04:43,021 - ERROR - DURATION-eng    : 01:46:38.225166666
+2025-07-19 15:04:43,043 - ERROR - NUMBER_OF_FRAMES-eng: 153404
+2025-07-19 15:04:43,045 - ERROR - NUMBER_OF_BYTES-eng: 46563182469
+2025-07-19 15:04:43,058 - ERROR - SOURCE_ID-eng   : 001011
+2025-07-19 15:04:43,065 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-19 15:04:43,073 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-19 15:04:43,104 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-19 15:04:43,129 - ERROR - Stream #0:1(eng): Audio: dts (dca) (DTS-HD MA), 48000 Hz, 5.1(side), s16p (default)
+2025-07-19 15:04:43,133 - ERROR - Metadata:
+2025-07-19 15:04:43,136 - ERROR - title           : Surround 5.1
+2025-07-19 15:04:43,144 - ERROR - BPS-eng         : 2411460
+2025-07-19 15:04:43,162 - ERROR - DURATION-eng    : 01:46:38.229333333
+2025-07-19 15:04:43,188 - ERROR - NUMBER_OF_FRAMES-eng: 599834
+2025-07-19 15:04:43,190 - ERROR - NUMBER_OF_BYTES-eng: 1928634924
+2025-07-19 15:04:43,200 - ERROR - SOURCE_ID-eng   : 001100
+2025-07-19 15:04:43,206 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-19 15:04:43,213 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-19 15:04:43,222 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-19 15:04:43,242 - ERROR - Stream #0:2(eng): Audio: dts (dca) (DTS), 48000 Hz, 5.1(side), fltp, 1536 kb/s
+2025-07-19 15:04:43,265 - ERROR - Metadata:
+2025-07-19 15:04:43,267 - ERROR - title           : Surround 5.1
+2025-07-19 15:04:43,270 - ERROR - BPS-eng         : 1509000
+2025-07-19 15:04:43,280 - ERROR - DURATION-eng    : 01:46:38.229333333
+2025-07-19 15:04:43,302 - ERROR - NUMBER_OF_FRAMES-eng: 599834
+2025-07-19 15:04:43,321 - ERROR - NUMBER_OF_BYTES-eng: 1206866008
+2025-07-19 15:04:43,324 - ERROR - SOURCE_ID-eng   : 001100
+2025-07-19 15:04:43,333 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-19 15:04:43,339 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-19 15:04:43,346 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-19 15:04:43,383 - ERROR - Stream #0:3(eng): Audio: ac3, 48000 Hz, 5.1(side), fltp, 448 kb/s
+2025-07-19 15:04:43,418 - ERROR - Metadata:
+2025-07-19 15:04:43,420 - ERROR - title           : Surround 5.1
+2025-07-19 15:04:43,423 - ERROR - BPS-eng         : 448000
+2025-07-19 15:04:43,437 - ERROR - DURATION-eng    : 01:46:38.240000000
+2025-07-19 15:04:43,472 - ERROR - NUMBER_OF_FRAMES-eng: 199945
+2025-07-19 15:04:43,493 - ERROR - NUMBER_OF_BYTES-eng: 358301440
+2025-07-19 15:04:43,495 - ERROR - SOURCE_ID-eng   : 001102
+2025-07-19 15:04:43,507 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-19 15:04:43,521 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-19 15:04:43,544 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-19 15:04:43,545 - ERROR - Stream #0:4(eng): Subtitle: hdmv_pgs_subtitle (pgssub)
+2025-07-19 15:04:43,546 - ERROR - Metadata:
+2025-07-19 15:04:43,546 - ERROR - BPS-eng         : 18904
+2025-07-19 15:04:43,547 - ERROR - DURATION-eng    : 01:45:25.464979166
+2025-07-19 15:04:43,547 - ERROR - NUMBER_OF_FRAMES-eng: 1718
+2025-07-19 15:04:43,548 - ERROR - NUMBER_OF_BYTES-eng: 14947201
+2025-07-19 15:04:43,549 - ERROR - SOURCE_ID-eng   : 0012A1
+2025-07-19 15:04:43,549 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-19 15:04:43,550 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-19 15:04:43,551 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-19 15:04:43,551 - ERROR - Stream mapping:
+2025-07-19 15:04:43,552 - ERROR - Stream #0:0 -> #0:0 (hevc (native) -> hevc (libx265))
+2025-07-19 15:04:43,552 - ERROR - Stream #0:1 -> #0:1 (copy)
+2025-07-19 15:04:43,553 - ERROR - Stream #0:2 -> #0:2 (copy)
+2025-07-19 15:04:43,553 - ERROR - Stream #0:3 -> #0:3 (copy)
+2025-07-19 15:04:43,554 - ERROR - Stream #0:4 -> #0:4 (copy)
+2025-07-19 15:04:43,554 - ERROR - Press [q] to stop, [?] for help
+2025-07-19 15:04:43,555 - ERROR - x265 [info]: HEVC encoder version 4.1+110-0e0eee580
+2025-07-19 15:04:43,556 - ERROR - x265 [info]: build info [Windows][GCC 14.2.0][64 bit] 10bit
+2025-07-19 15:04:43,556 - ERROR - x265 [info]: using cpu capabilities: MMX2 SSE2Fast LZCNT SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+2025-07-19 15:04:43,557 - ERROR - x265 [warning]: Turning on repeat-headers for HDR compatibility
+2025-07-19 15:04:43,557 - ERROR - x265 [info]: Main 10 profile, Level-5 (Main tier)
+2025-07-19 15:04:43,561 - ERROR - x265 [info]: Thread pool created using 10 threads
+2025-07-19 15:04:43,582 - ERROR - x265 [info]: Slices                              : 1
+2025-07-19 15:04:43,587 - ERROR - x265 [info]: frame threads / pool features       : 10 / wpp(34 rows)
+2025-07-19 15:04:43,588 - ERROR - x265 [info]: Coding QT: max CU size, min CU size : 64 / 8
+2025-07-19 15:04:43,596 - ERROR - x265 [info]: Residual QT: max TU size, max depth : 32 / 1 inter / 1 intra
+2025-07-19 15:04:43,608 - ERROR - x265 [info]: ME / range / subpel / merge         : hex / 57 / 2 / 3
+2025-07-19 15:04:43,621 - ERROR - x265 [info]: Keyframe min / max / scenecut / bias  : 23 / 250 / 40 / 5.00
+2025-07-19 15:04:43,648 - ERROR - x265 [info]: Lookahead / bframes / badapt        : 20 / 4 / 2
+2025-07-19 15:04:43,652 - ERROR - x265 [info]: b-pyramid / weightp / weightb       : 1 / 1 / 0
+2025-07-19 15:04:43,660 - ERROR - x265 [info]: References / ref-limit  cu / depth  : 3 / off / on
+2025-07-19 15:04:43,669 - ERROR - x265 [info]: AQ: mode / str / qg-size / cu-tree  : 2 / 1.0 / 32 / 1
+2025-07-19 15:04:43,700 - ERROR - x265 [info]: Rate Control / qCompress            : CRF-18.0 / 0.60
+2025-07-19 15:04:43,730 - ERROR - x265 [info]: tools: rd=3 psy-rd=2.00 early-skip rskip mode=1 signhide tmvp
+2025-07-19 15:04:43,731 - ERROR - x265 [info]: tools: b-intra strong-intra-smoothing lslices=8 deblock
+2025-07-19 15:04:43,735 - ERROR - x265 [info]: tools: dhdr10-info
+2025-07-19 15:04:43,741 - ERROR - Output #0, matroska, to 'H:\staging\4aff19df-ab54-4107-a057-e6be856cb241\Dunkirk_t00_x265.mkv':
+2025-07-19 15:04:43,751 - ERROR - Metadata:
+2025-07-19 15:04:43,778 - ERROR - title           : Dunkirk
+2025-07-19 15:04:43,791 - ERROR - encoder         : Lavf61.7.100
+2025-07-19 15:04:43,793 - ERROR - Chapters:
+2025-07-19 15:04:43,796 - ERROR - Chapter #0:0: start 0.000000, end 531.364167
+2025-07-19 15:04:43,814 - ERROR - Metadata:
+2025-07-19 15:04:43,851 - ERROR - title           : Chapter 01
+2025-07-19 15:04:43,854 - ERROR - Chapter #0:1: start 531.364167, end 1213.629083
+2025-07-19 15:04:43,858 - ERROR - Metadata:
+2025-07-19 15:04:43,862 - ERROR - title           : Chapter 02
+2025-07-19 15:04:43,873 - ERROR - Chapter #0:2: start 1213.629083, end 1747.620875
+2025-07-19 15:04:43,907 - ERROR - Metadata:
+2025-07-19 15:04:43,909 - ERROR - title           : Chapter 03
+2025-07-19 15:04:43,913 - ERROR - Chapter #0:3: start 1747.620875, end 2555.261042
+2025-07-19 15:04:43,920 - ERROR - Metadata:
+2025-07-19 15:04:43,924 - ERROR - title           : Chapter 04
+2025-07-19 15:04:43,943 - ERROR - Chapter #0:4: start 2555.261042, end 3168.206708
+2025-07-19 15:04:43,969 - ERROR - Metadata:
+2025-07-19 15:04:43,972 - ERROR - title           : Chapter 05
+2025-07-19 15:04:43,979 - ERROR - Chapter #0:5: start 3168.206708, end 3872.827292
+2025-07-19 15:04:43,992 - ERROR - Metadata:
+2025-07-19 15:04:44,001 - ERROR - title           : Chapter 06
+2025-07-19 15:04:44,013 - ERROR - Chapter #0:6: start 3872.827292, end 4370.699667
+2025-07-19 15:04:44,032 - ERROR - Metadata:
+2025-07-19 15:04:44,033 - ERROR - title           : Chapter 07
+2025-07-19 15:04:44,036 - ERROR - Chapter #0:7: start 4370.699667, end 5154.941458
+2025-07-19 15:04:44,039 - ERROR - Metadata:
+2025-07-19 15:04:44,049 - ERROR - title           : Chapter 08
+2025-07-19 15:04:44,062 - ERROR - Chapter #0:8: start 5154.941458, end 5603.347750
+2025-07-19 15:04:44,088 - ERROR - Metadata:
+2025-07-19 15:04:44,105 - ERROR - title           : Chapter 09
+2025-07-19 15:04:44,108 - ERROR - Chapter #0:9: start 5603.347750, end 5953.906292
+2025-07-19 15:04:44,121 - ERROR - Metadata:
+2025-07-19 15:04:44,146 - ERROR - title           : Chapter 10
+2025-07-19 15:04:44,162 - ERROR - Chapter #0:10: start 5953.906292, end 6398.225167
+2025-07-19 15:04:44,187 - ERROR - Metadata:
+2025-07-19 15:04:44,189 - ERROR - title           : Chapter 11
+2025-07-19 15:04:44,193 - ERROR - Stream #0:0(eng): Video: hevc, yuv420p10le(tv, bt2020nc/bt2020/smpte2084, progressive), 3840x2160 [SAR 1:1 DAR 16:9], q=2-31, 23.98 fps, 1k tbn
+2025-07-19 15:04:44,208 - ERROR - Metadata:
+2025-07-19 15:04:44,235 - ERROR - BPS-eng         : 58220125
+2025-07-19 15:04:44,242 - ERROR - DURATION-eng    : 01:46:38.225166666
+2025-07-19 15:04:44,244 - ERROR - NUMBER_OF_FRAMES-eng: 153404
+2025-07-19 15:04:44,251 - ERROR - NUMBER_OF_BYTES-eng: 46563182469
+2025-07-19 15:04:44,267 - ERROR - SOURCE_ID-eng   : 001011
+2025-07-19 15:04:44,295 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-19 15:04:44,297 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-19 15:04:44,301 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-19 15:04:44,315 - ERROR - encoder         : Lavc61.19.101 libx265
+2025-07-19 15:04:44,329 - ERROR - Side data:
+2025-07-19 15:04:44,361 - ERROR - Mastering Display Metadata, has_primaries:1 has_luminance:1 r(0.6800,0.3200) g(0.2650,0.6900) b(0.1500 0.0600) wp(0.3127, 0.3290) min_luminance=0.005000, max_luminance=4000.000000
+2025-07-19 15:04:44,363 - ERROR - Content Light Level Metadata, MaxCLL=323, MaxFALL=144
+2025-07-19 15:04:44,376 - ERROR - cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+2025-07-19 15:04:44,383 - ERROR - Stream #0:1(eng): Audio: dts (DTS-HD MA) ([1] [0][0] / 0x2001), 48000 Hz, 5.1(side), s16p (default)
+2025-07-19 15:04:44,390 - ERROR - Metadata:
+2025-07-19 15:04:44,420 - ERROR - title           : Surround 5.1
+2025-07-19 15:04:44,437 - ERROR - BPS-eng         : 2411460
+2025-07-19 15:04:44,467 - ERROR - DURATION-eng    : 01:46:38.229333333
+2025-07-19 15:04:44,468 - ERROR - NUMBER_OF_FRAMES-eng: 599834
+2025-07-19 15:04:44,475 - ERROR - NUMBER_OF_BYTES-eng: 1928634924
+2025-07-19 15:04:44,501 - ERROR - SOURCE_ID-eng   : 001100
+2025-07-19 15:04:44,521 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-19 15:04:44,526 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-19 15:04:44,533 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-19 15:04:44,542 - ERROR - Stream #0:2(eng): Audio: dts (DTS) ([1] [0][0] / 0x2001), 48000 Hz, 5.1(side), fltp, 1536 kb/s
+2025-07-19 15:04:44,561 - ERROR - Metadata:
+2025-07-19 15:04:44,591 - ERROR - title           : Surround 5.1
+2025-07-19 15:04:44,594 - ERROR - BPS-eng         : 1509000
+2025-07-19 15:04:44,607 - ERROR - DURATION-eng    : 01:46:38.229333333
+2025-07-19 15:04:44,612 - ERROR - NUMBER_OF_FRAMES-eng: 599834
+2025-07-19 15:04:44,626 - ERROR - NUMBER_OF_BYTES-eng: 1206866008
+2025-07-19 15:04:44,653 - ERROR - SOURCE_ID-eng   : 001100
+2025-07-19 15:04:44,656 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-19 15:04:44,659 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-19 15:04:44,663 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-19 15:04:44,673 - ERROR - Stream #0:3(eng): Audio: ac3 ([0] [0][0] / 0x2000), 48000 Hz, 5.1(side), fltp, 448 kb/s
+2025-07-19 15:04:44,683 - ERROR - Metadata:
+2025-07-19 15:04:44,700 - ERROR - title           : Surround 5.1
+2025-07-19 15:04:44,724 - ERROR - BPS-eng         : 448000
+2025-07-19 15:04:44,727 - ERROR - DURATION-eng    : 01:46:38.240000000
+2025-07-19 15:04:44,731 - ERROR - NUMBER_OF_FRAMES-eng: 199945
+2025-07-19 15:04:44,735 - ERROR - NUMBER_OF_BYTES-eng: 358301440
+2025-07-19 15:04:44,764 - ERROR - SOURCE_ID-eng   : 001102
+2025-07-19 15:04:44,796 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-19 15:04:44,798 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-19 15:04:44,802 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-19 15:04:44,806 - ERROR - Stream #0:4(eng): Subtitle: hdmv_pgs_subtitle ([255][255][255][255] / 0xFFFFFFFF)
+2025-07-19 15:04:44,817 - ERROR - Metadata:
+2025-07-19 15:04:44,835 - ERROR - BPS-eng         : 18904
+2025-07-19 15:04:44,863 - ERROR - DURATION-eng    : 01:45:25.464979166
+2025-07-19 15:04:44,865 - ERROR - NUMBER_OF_FRAMES-eng: 1718
+2025-07-19 15:04:44,871 - ERROR - NUMBER_OF_BYTES-eng: 14947201
+2025-07-19 15:04:44,886 - ERROR - SOURCE_ID-eng   : 0012A1
+2025-07-19 15:04:44,909 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-19 15:04:44,919 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-19 15:04:44,921 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-19 19:54:06,847 - ERROR - [out#0/matroska @ 00000182b4bcb800] video:8511400KiB audio:3411916KiB subtitle:14597KiB other streams:0KiB global headers:3KiB muxing overhead: 0.091269%
+2025-07-19 19:54:06,849 - ERROR - x265 [info]: frame I:   1289, Avg QP:17.30  kb/s: 38731.14
+2025-07-19 19:54:06,850 - ERROR - x265 [info]: frame P:  36951, Avg QP:18.99  kb/s: 20978.76
+2025-07-19 19:54:06,851 - ERROR - x265 [info]: frame B: 115164, Avg QP:22.30  kb/s: 7345.29
+2025-07-19 19:54:06,851 - ERROR - x265 [info]: Weighted P-Frames: Y:5.2% UV:3.6%
+2025-07-19 19:54:06,852 - ERROR - encoded 153404 frames in 17364.69s (8.83 fps), 10892.96 kb/s, Avg QP:21.46
+2025-07-19 19:54:07,115 - INFO - Successfully completed: Re-encoding to x265
+2025-07-19 19:54:07,173 - INFO - Starting step: move_final - Moving final file to destination
+2025-07-19 19:54:07,175 - INFO - Moving final file from H:\staging\4aff19df-ab54-4107-a057-e6be856cb241\Dunkirk_t00_x265.mkv to Z:\landing_point\Video\Dunkirk\Dunkirk_t00_x265.mkv
+2025-07-19 19:55:54,753 - INFO - Move successful.
+2025-07-19 19:55:54,812 - INFO - === transcode() completed successfully for job 4aff19df-ab54-4107-a057-e6be856cb241 ===
+2025-07-19 19:55:54,900 - INFO - Cleaning up job staging directory: H:\staging\4aff19df-ab54-4107-a057-e6be856cb241
+2025-07-20 14:04:49,042 - INFO - Job 4aff19df-ab54-4107-a057-e6be856cb241 initialized.
+2025-07-20 14:04:49,043 - INFO - Original input file: Z:\landing_point\Video\Dunkirk\Dunkirk_t00.mkv
+2025-07-20 14:04:49,058 - INFO - Final output file: Z:\landing_point\Video\Dunkirk\Dunkirk_t00_DV_P8.mkv
+2025-07-20 14:04:49,074 - INFO - Local job staging directory: H:\staging\4aff19df-ab54-4107-a057-e6be856cb241
+2025-07-20 14:04:49,090 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-20 14:04:49,101 - INFO -   - Total: 3726.01 GB
+2025-07-20 14:04:49,103 - INFO -   - Used: 2055.73 GB
+2025-07-20 14:04:49,124 - INFO -   - Free: 1670.28 GB
+2025-07-20 14:04:49,133 - INFO - === Entering transcode() for job 4aff19df-ab54-4107-a057-e6be856cb241 ===
+2025-07-20 14:04:49,148 - INFO - Job dict: {
+  "id": "4aff19df-ab54-4107-a057-e6be856cb241",
+  "input_path": "\"Z:\\landing_point\\Video\\Dunkirk\\Dunkirk_t00.mkv\"",
+  "job_type": "standard",
+  "status": "running",
+  "worker_id": "CJBLANK",
+  "output_path": "Z:\\landing_point\\Video\\Dunkirk\\Dunkirk_t00_x265.mkv",
+  "added_at": 1752956657.1870825,
+  "retries": 3,
+  "steps": {
+    "copy_source": "pending",
+    "get_metadata": "pending",
+    "reencode_x265": "pending",
+    "move_final": "pending"
+  },
+  "claimed_at": 1753041888.2250676,
+  "completed_at": 1752976554.8653479
+}
+2025-07-20 14:04:49,186 - INFO - === Starting transcode pipeline for job 4aff19df-ab54-4107-a057-e6be856cb241 ===
+2025-07-20 14:04:49,242 - INFO - Job dict: {'id': '4aff19df-ab54-4107-a057-e6be856cb241', 'input_path': '"Z:\\landing_point\\Video\\Dunkirk\\Dunkirk_t00.mkv"', 'job_type': 'standard', 'status': 'running', 'worker_id': 'CJBLANK', 'output_path': 'Z:\\landing_point\\Video\\Dunkirk\\Dunkirk_t00_x265.mkv', 'added_at': 1752956657.1870825, 'retries': 3, 'steps': {'copy_source': 'pending', 'get_metadata': 'pending', 'reencode_x265': 'pending', 'move_final': 'pending'}, 'claimed_at': 1753041888.2250676, 'completed_at': 1752976554.8653479}
+2025-07-20 14:04:49,254 - INFO - Starting step: copy_source - Copying source file locally
+2025-07-20 14:04:49,336 - INFO - Copying source file locally: from Z:\landing_point\Video\Dunkirk\Dunkirk_t00.mkv to H:\staging\4aff19df-ab54-4107-a057-e6be856cb241\Dunkirk_t00.mkv
+2025-07-20 14:25:07,690 - INFO - Copy successful.
+2025-07-20 14:25:07,954 - INFO - Starting step: get_metadata - Getting video metadata
+2025-07-20 14:25:08,049 - INFO - Attempting to get video metadata from H:\staging\4aff19df-ab54-4107-a057-e6be856cb241\Dunkirk_t00.mkv
+2025-07-20 14:25:08,368 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-20 14:25:08,446 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 153404 frames.
+2025-07-20 14:25:17,050 - INFO - Starting step: reencode_x265 - Re-encoding and Muxing
+2025-07-20 14:25:17,136 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i "H:\staging\4aff19df-ab54-4107-a057-e6be856cb241\Dunkirk_t00.mkv" -map 0 -c:v libx265 -preset medium -crf 18 -threads 10 -x265-params pools=10:no-sao=1:early-skip=1:rd=3:me=hex -c:a copy -c:s copy -y "H:\staging\4aff19df-ab54-4107-a057-e6be856cb241\Dunkirk_t00_x265.mkv"
+2025-07-20 14:25:17,594 - ERROR - ffmpeg version 7.1.1-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+2025-07-20 14:25:17,626 - ERROR - built with gcc 14.2.0 (Rev1, Built by MSYS2 project)
+2025-07-20 14:25:17,650 - ERROR - configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+2025-07-20 14:25:17,655 - ERROR - libavutil      59. 39.100 / 59. 39.100
+2025-07-20 14:25:17,758 - ERROR - libavcodec     61. 19.101 / 61. 19.101
+2025-07-20 14:25:17,761 - ERROR - libavformat    61.  7.100 / 61.  7.100
+2025-07-20 14:25:17,778 - ERROR - libavdevice    61.  3.100 / 61.  3.100
+2025-07-20 14:25:17,822 - ERROR - libavfilter    10.  4.100 / 10.  4.100
+2025-07-20 14:25:17,833 - ERROR - libswscale      8.  3.100 /  8.  3.100
+2025-07-20 14:25:17,835 - ERROR - libswresample   5.  3.100 /  5.  3.100
+2025-07-20 14:25:17,870 - ERROR - libpostproc    58.  3.100 / 58.  3.100
+2025-07-20 14:25:17,893 - ERROR - [matroska,webm @ 000001710cc189c0] Could not find codec parameters for stream 4 (Subtitle: hdmv_pgs_subtitle (pgssub)): unspecified size
+2025-07-20 14:25:17,900 - ERROR - Consider increasing the value for the 'analyzeduration' (0) and 'probesize' (5000000) options
+2025-07-20 14:25:17,980 - ERROR - Input #0, matroska,webm, from 'H:\staging\4aff19df-ab54-4107-a057-e6be856cb241\Dunkirk_t00.mkv':
+2025-07-20 14:25:17,988 - ERROR - Metadata:
+2025-07-20 14:25:18,051 - ERROR - title           : Dunkirk
+2025-07-20 14:25:18,097 - ERROR - encoder         : libmakemkv v1.18.1 (1.3.10/1.5.2) win(x64-release)
+2025-07-20 14:25:18,102 - ERROR - creation_time   : 2025-06-02T00:27:55.000000Z
+2025-07-20 14:25:18,172 - ERROR - Duration: 01:46:38.23, start: 0.000000, bitrate: 62612 kb/s
+2025-07-20 14:25:18,177 - ERROR - Chapters:
+2025-07-20 14:25:18,241 - ERROR - Chapter #0:0: start 0.000000, end 531.364167
+2025-07-20 14:25:18,249 - ERROR - Metadata:
+2025-07-20 14:25:18,260 - ERROR - title           : Chapter 01
+2025-07-20 14:25:18,336 - ERROR - Chapter #0:1: start 531.364167, end 1213.629083
+2025-07-20 14:25:18,340 - ERROR - Metadata:
+2025-07-20 14:25:18,380 - ERROR - title           : Chapter 02
+2025-07-20 14:25:18,399 - ERROR - Chapter #0:2: start 1213.629083, end 1747.620875
+2025-07-20 14:25:18,411 - ERROR - Metadata:
+2025-07-20 14:25:18,462 - ERROR - title           : Chapter 03
+2025-07-20 14:25:18,494 - ERROR - Chapter #0:3: start 1747.620875, end 2555.261042
+2025-07-20 14:25:18,497 - ERROR - Metadata:
+2025-07-20 14:25:18,546 - ERROR - title           : Chapter 04
+2025-07-20 14:25:18,568 - ERROR - Chapter #0:4: start 2555.261042, end 3168.206708
+2025-07-20 14:25:18,572 - ERROR - Metadata:
+2025-07-20 14:25:18,654 - ERROR - title           : Chapter 05
+2025-07-20 14:25:18,657 - ERROR - Chapter #0:5: start 3168.206708, end 3872.827292
+2025-07-20 14:25:18,675 - ERROR - Metadata:
+2025-07-20 14:25:18,704 - ERROR - title           : Chapter 06
+2025-07-20 14:25:18,720 - ERROR - Chapter #0:6: start 3872.827292, end 4370.699667
+2025-07-20 14:25:18,820 - ERROR - Metadata:
+2025-07-20 14:25:18,825 - ERROR - title           : Chapter 07
+2025-07-20 14:25:18,881 - ERROR - Chapter #0:7: start 4370.699667, end 5154.941458
+2025-07-20 14:25:18,888 - ERROR - Metadata:
+2025-07-20 14:25:18,897 - ERROR - title           : Chapter 08
+2025-07-20 14:25:18,955 - ERROR - Chapter #0:8: start 5154.941458, end 5603.347750
+2025-07-20 14:25:18,977 - ERROR - Metadata:
+2025-07-20 14:25:18,980 - ERROR - title           : Chapter 09
+2025-07-20 14:25:19,062 - ERROR - Chapter #0:9: start 5603.347750, end 5953.906292
+2025-07-20 14:25:19,065 - ERROR - Metadata:
+2025-07-20 14:25:19,142 - ERROR - title           : Chapter 10
+2025-07-20 14:25:19,147 - ERROR - Chapter #0:10: start 5953.906292, end 6398.225167
+2025-07-20 14:25:19,213 - ERROR - Metadata:
+2025-07-20 14:25:19,224 - ERROR - title           : Chapter 11
+2025-07-20 14:25:19,233 - ERROR - Stream #0:0(eng): Video: hevc (Main 10), yuv420p10le(tv, bt2020nc/bt2020/smpte2084), 3840x2160 [SAR 1:1 DAR 16:9], 23.98 fps, 23.98 tbr, 1k tbn
+2025-07-20 14:25:19,333 - ERROR - Metadata:
+2025-07-20 14:25:19,340 - ERROR - BPS-eng         : 58220125
+2025-07-20 14:25:19,343 - ERROR - DURATION-eng    : 01:46:38.225166666
+2025-07-20 14:25:19,372 - ERROR - NUMBER_OF_FRAMES-eng: 153404
+2025-07-20 14:25:19,411 - ERROR - NUMBER_OF_BYTES-eng: 46563182469
+2025-07-20 14:25:19,413 - ERROR - SOURCE_ID-eng   : 001011
+2025-07-20 14:25:19,514 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-20 14:25:19,530 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-20 14:25:19,577 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-20 14:25:19,592 - ERROR - Stream #0:1(eng): Audio: dts (dca) (DTS-HD MA), 48000 Hz, 5.1(side), s16p (default)
+2025-07-20 14:25:19,601 - ERROR - Metadata:
+2025-07-20 14:25:19,659 - ERROR - title           : Surround 5.1
+2025-07-20 14:25:19,682 - ERROR - BPS-eng         : 2411460
+2025-07-20 14:25:19,690 - ERROR - DURATION-eng    : 01:46:38.229333333
+2025-07-20 14:25:19,779 - ERROR - NUMBER_OF_FRAMES-eng: 599834
+2025-07-20 14:25:19,801 - ERROR - NUMBER_OF_BYTES-eng: 1928634924
+2025-07-20 14:25:19,805 - ERROR - SOURCE_ID-eng   : 001100
+2025-07-20 14:25:19,861 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-20 14:25:19,873 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-20 14:25:19,881 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-20 14:25:19,942 - ERROR - Stream #0:2(eng): Audio: dts (dca) (DTS), 48000 Hz, 5.1(side), fltp, 1536 kb/s
+2025-07-20 14:25:19,962 - ERROR - Metadata:
+2025-07-20 14:25:19,966 - ERROR - title           : Surround 5.1
+2025-07-20 14:25:20,042 - ERROR - BPS-eng         : 1509000
+2025-07-20 14:25:20,057 - ERROR - DURATION-eng    : 01:46:38.229333333
+2025-07-20 14:25:20,065 - ERROR - NUMBER_OF_FRAMES-eng: 599834
+2025-07-20 14:25:20,128 - ERROR - NUMBER_OF_BYTES-eng: 1206866008
+2025-07-20 14:25:20,203 - ERROR - SOURCE_ID-eng   : 001100
+2025-07-20 14:25:20,220 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-20 14:25:20,280 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-20 14:25:20,294 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-20 14:25:20,298 - ERROR - Stream #0:3(eng): Audio: ac3, 48000 Hz, 5.1(side), fltp, 448 kb/s
+2025-07-20 14:25:20,362 - ERROR - Metadata:
+2025-07-20 14:25:20,406 - ERROR - title           : Surround 5.1
+2025-07-20 14:25:20,410 - ERROR - BPS-eng         : 448000
+2025-07-20 14:25:20,413 - ERROR - DURATION-eng    : 01:46:38.240000000
+2025-07-20 14:25:20,435 - ERROR - NUMBER_OF_FRAMES-eng: 199945
+2025-07-20 14:25:20,473 - ERROR - NUMBER_OF_BYTES-eng: 358301440
+2025-07-20 14:25:20,481 - ERROR - SOURCE_ID-eng   : 001102
+2025-07-20 14:25:20,556 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-20 14:25:20,601 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-20 14:25:20,605 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-20 14:25:20,618 - ERROR - Stream #0:4(eng): Subtitle: hdmv_pgs_subtitle (pgssub)
+2025-07-20 14:25:20,641 - ERROR - Metadata:
+2025-07-20 14:25:20,666 - ERROR - BPS-eng         : 18904
+2025-07-20 14:25:20,669 - ERROR - DURATION-eng    : 01:45:25.464979166
+2025-07-20 14:25:20,672 - ERROR - NUMBER_OF_FRAMES-eng: 1718
+2025-07-20 14:25:20,688 - ERROR - NUMBER_OF_BYTES-eng: 14947201
+2025-07-20 14:25:20,711 - ERROR - SOURCE_ID-eng   : 0012A1
+2025-07-20 14:25:20,731 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-20 14:25:20,732 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-20 14:25:20,735 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-20 14:25:20,739 - ERROR - Stream mapping:
+2025-07-20 14:25:20,756 - ERROR - Stream #0:0 -> #0:0 (hevc (native) -> hevc (libx265))
+2025-07-20 14:25:20,787 - ERROR - Stream #0:1 -> #0:1 (copy)
+2025-07-20 14:25:20,790 - ERROR - Stream #0:2 -> #0:2 (copy)
+2025-07-20 14:25:20,809 - ERROR - Stream #0:3 -> #0:3 (copy)
+2025-07-20 14:25:20,851 - ERROR - Stream #0:4 -> #0:4 (copy)
+2025-07-20 14:25:20,854 - ERROR - Press [q] to stop, [?] for help
+2025-07-20 14:25:20,890 - ERROR - x265 [info]: HEVC encoder version 4.1+110-0e0eee580
+2025-07-20 14:25:20,933 - ERROR - x265 [info]: build info [Windows][GCC 14.2.0][64 bit] 10bit
+2025-07-20 14:25:20,940 - ERROR - x265 [info]: using cpu capabilities: MMX2 SSE2Fast LZCNT SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+2025-07-20 14:25:20,983 - ERROR - x265 [warning]: Turning on repeat-headers for HDR compatibility
+2025-07-20 14:25:21,003 - ERROR - x265 [info]: Main 10 profile, Level-5 (Main tier)
+2025-07-20 14:25:21,007 - ERROR - x265 [info]: Thread pool created using 10 threads
+2025-07-20 14:25:21,079 - ERROR - x265 [info]: Slices                              : 1
+2025-07-20 14:25:21,092 - ERROR - x265 [info]: frame threads / pool features       : 10 / wpp(34 rows)
+2025-07-20 14:25:21,095 - ERROR - x265 [info]: Coding QT: max CU size, min CU size : 64 / 8
+2025-07-20 14:25:21,157 - ERROR - x265 [info]: Residual QT: max TU size, max depth : 32 / 1 inter / 1 intra
+2025-07-20 14:25:21,160 - ERROR - x265 [info]: ME / range / subpel / merge         : hex / 57 / 2 / 3
+2025-07-20 14:25:21,242 - ERROR - x265 [info]: Keyframe min / max / scenecut / bias  : 23 / 250 / 40 / 5.00
+2025-07-20 14:25:21,256 - ERROR - x265 [info]: Lookahead / bframes / badapt        : 20 / 4 / 2
+2025-07-20 14:25:21,262 - ERROR - x265 [info]: b-pyramid / weightp / weightb       : 1 / 1 / 0
+2025-07-20 14:25:21,319 - ERROR - x265 [info]: References / ref-limit  cu / depth  : 3 / off / on
+2025-07-20 14:25:21,326 - ERROR - x265 [info]: AQ: mode / str / qg-size / cu-tree  : 2 / 1.0 / 32 / 1
+2025-07-20 14:25:21,333 - ERROR - x265 [info]: Rate Control / qCompress            : CRF-18.0 / 0.60
+2025-07-20 14:25:21,368 - ERROR - x265 [info]: tools: rd=3 psy-rd=2.00 early-skip rskip mode=1 signhide tmvp
+2025-07-20 14:25:21,392 - ERROR - x265 [info]: tools: b-intra strong-intra-smoothing lslices=8 deblock
+2025-07-20 14:25:21,396 - ERROR - x265 [info]: tools: dhdr10-info
+2025-07-20 14:25:21,457 - ERROR - Output #0, matroska, to 'H:\staging\4aff19df-ab54-4107-a057-e6be856cb241\Dunkirk_t00_x265.mkv':
+2025-07-20 14:25:21,480 - ERROR - Metadata:
+2025-07-20 14:25:21,488 - ERROR - title           : Dunkirk
+2025-07-20 14:25:21,549 - ERROR - encoder         : Lavf61.7.100
+2025-07-20 14:25:21,556 - ERROR - Chapters:
+2025-07-20 14:25:21,673 - ERROR - Chapter #0:0: start 0.000000, end 531.364167
+2025-07-20 14:25:21,725 - ERROR - Metadata:
+2025-07-20 14:25:21,749 - ERROR - title           : Chapter 01
+2025-07-20 14:25:21,752 - ERROR - Chapter #0:1: start 531.364167, end 1213.629083
+2025-07-20 14:25:21,835 - ERROR - Metadata:
+2025-07-20 14:25:21,843 - ERROR - title           : Chapter 02
+2025-07-20 14:25:21,847 - ERROR - Chapter #0:2: start 1213.629083, end 1747.620875
+2025-07-20 14:25:21,897 - ERROR - Metadata:
+2025-07-20 14:25:21,915 - ERROR - title           : Chapter 03
+2025-07-20 14:25:21,923 - ERROR - Chapter #0:3: start 1747.620875, end 2555.261042
+2025-07-20 14:25:21,981 - ERROR - Metadata:
+2025-07-20 14:25:21,991 - ERROR - title           : Chapter 04
+2025-07-20 14:25:22,051 - ERROR - Chapter #0:4: start 2555.261042, end 3168.206708
+2025-07-20 14:25:22,108 - ERROR - Metadata:
+2025-07-20 14:25:22,129 - ERROR - title           : Chapter 05
+2025-07-20 14:25:22,172 - ERROR - Chapter #0:5: start 3168.206708, end 3872.827292
+2025-07-20 14:25:22,185 - ERROR - Metadata:
+2025-07-20 14:25:22,190 - ERROR - title           : Chapter 06
+2025-07-20 14:25:22,284 - ERROR - Chapter #0:6: start 3872.827292, end 4370.699667
+2025-07-20 14:25:22,300 - ERROR - Metadata:
+2025-07-20 14:25:22,305 - ERROR - title           : Chapter 07
+2025-07-20 14:25:22,405 - ERROR - Chapter #0:7: start 4370.699667, end 5154.941458
+2025-07-20 14:25:22,412 - ERROR - Metadata:
+2025-07-20 14:25:22,472 - ERROR - title           : Chapter 08
+2025-07-20 14:25:22,479 - ERROR - Chapter #0:8: start 5154.941458, end 5603.347750
+2025-07-20 14:25:22,496 - ERROR - Metadata:
+2025-07-20 14:25:22,541 - ERROR - title           : Chapter 09
+2025-07-20 14:25:22,551 - ERROR - Chapter #0:9: start 5603.347750, end 5953.906292
+2025-07-20 14:25:22,554 - ERROR - Metadata:
+2025-07-20 14:25:22,636 - ERROR - title           : Chapter 10
+2025-07-20 14:25:22,639 - ERROR - Chapter #0:10: start 5953.906292, end 6398.225167
+2025-07-20 14:25:22,720 - ERROR - Metadata:
+2025-07-20 14:25:22,729 - ERROR - title           : Chapter 11
+2025-07-20 14:25:22,731 - ERROR - Stream #0:0(eng): Video: hevc, yuv420p10le(tv, bt2020nc/bt2020/smpte2084, progressive), 3840x2160 [SAR 1:1 DAR 16:9], q=2-31, 23.98 fps, 1k tbn
+2025-07-20 14:25:22,775 - ERROR - Metadata:
+2025-07-20 14:25:22,828 - ERROR - BPS-eng         : 58220125
+2025-07-20 14:25:22,877 - ERROR - DURATION-eng    : 01:46:38.225166666
+2025-07-20 14:25:22,896 - ERROR - NUMBER_OF_FRAMES-eng: 153404
+2025-07-20 14:25:22,898 - ERROR - NUMBER_OF_BYTES-eng: 46563182469
+2025-07-20 14:25:22,956 - ERROR - SOURCE_ID-eng   : 001011
+2025-07-20 14:25:23,002 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-20 14:25:23,007 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-20 14:25:23,062 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-20 14:25:23,073 - ERROR - encoder         : Lavc61.19.101 libx265
+2025-07-20 14:25:23,078 - ERROR - Side data:
+2025-07-20 14:25:23,178 - ERROR - Mastering Display Metadata, has_primaries:1 has_luminance:1 r(0.6800,0.3200) g(0.2650,0.6900) b(0.1500 0.0600) wp(0.3127, 0.3290) min_luminance=0.005000, max_luminance=4000.000000
+2025-07-20 14:25:23,182 - ERROR - Content Light Level Metadata, MaxCLL=323, MaxFALL=144
+2025-07-20 14:25:23,239 - ERROR - cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+2025-07-20 14:25:23,246 - ERROR - Stream #0:1(eng): Audio: dts (DTS-HD MA) ([1] [0][0] / 0x2001), 48000 Hz, 5.1(side), s16p (default)
+2025-07-20 14:25:23,252 - ERROR - Metadata:
+2025-07-20 14:25:23,304 - ERROR - title           : Surround 5.1
+2025-07-20 14:25:23,313 - ERROR - BPS-eng         : 2411460
+2025-07-20 14:25:23,318 - ERROR - DURATION-eng    : 01:46:38.229333333
+2025-07-20 14:25:23,394 - ERROR - NUMBER_OF_FRAMES-eng: 599834
+2025-07-20 14:25:23,448 - ERROR - NUMBER_OF_BYTES-eng: 1928634924
+2025-07-20 14:25:23,459 - ERROR - SOURCE_ID-eng   : 001100
+2025-07-20 14:25:23,463 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-20 14:25:23,529 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-20 14:25:23,543 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-20 14:25:23,545 - ERROR - Stream #0:2(eng): Audio: dts (DTS) ([1] [0][0] / 0x2001), 48000 Hz, 5.1(side), fltp, 1536 kb/s
+2025-07-20 14:25:23,559 - ERROR - Metadata:
+2025-07-20 14:25:23,606 - ERROR - title           : Surround 5.1
+2025-07-20 14:25:23,607 - ERROR - BPS-eng         : 1509000
+2025-07-20 14:25:23,607 - ERROR - DURATION-eng    : 01:46:38.229333333
+2025-07-20 14:25:23,609 - ERROR - NUMBER_OF_FRAMES-eng: 599834
+2025-07-20 14:25:23,613 - ERROR - NUMBER_OF_BYTES-eng: 1206866008
+2025-07-20 14:25:23,618 - ERROR - SOURCE_ID-eng   : 001100
+2025-07-20 14:25:23,633 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-20 14:25:23,647 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-20 14:25:23,661 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-20 14:25:23,666 - ERROR - Stream #0:3(eng): Audio: ac3 ([0] [0][0] / 0x2000), 48000 Hz, 5.1(side), fltp, 448 kb/s
+2025-07-20 14:25:23,671 - ERROR - Metadata:
+2025-07-20 14:25:23,674 - ERROR - title           : Surround 5.1
+2025-07-20 14:25:23,693 - ERROR - BPS-eng         : 448000
+2025-07-20 14:25:23,717 - ERROR - DURATION-eng    : 01:46:38.240000000
+2025-07-20 14:25:23,725 - ERROR - NUMBER_OF_FRAMES-eng: 199945
+2025-07-20 14:25:23,725 - ERROR - NUMBER_OF_BYTES-eng: 358301440
+2025-07-20 14:25:23,727 - ERROR - SOURCE_ID-eng   : 001102
+2025-07-20 14:25:23,736 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-20 14:25:23,743 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-20 14:25:23,749 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-20 14:25:23,761 - ERROR - Stream #0:4(eng): Subtitle: hdmv_pgs_subtitle ([255][255][255][255] / 0xFFFFFFFF)
+2025-07-20 14:25:23,779 - ERROR - Metadata:
+2025-07-20 14:25:23,799 - ERROR - BPS-eng         : 18904
+2025-07-20 14:25:23,802 - ERROR - DURATION-eng    : 01:45:25.464979166
+2025-07-20 14:25:23,811 - ERROR - NUMBER_OF_FRAMES-eng: 1718
+2025-07-20 14:25:23,830 - ERROR - NUMBER_OF_BYTES-eng: 14947201
+2025-07-20 14:25:23,841 - ERROR - SOURCE_ID-eng   : 0012A1
+2025-07-20 14:25:23,853 - ERROR - _STATISTICS_WRITING_APP-eng: MakeMKV v1.18.1 win(x64-release)
+2025-07-20 14:25:23,856 - ERROR - _STATISTICS_WRITING_DATE_UTC-eng: 2025-06-02 00:27:55
+2025-07-20 14:25:23,859 - ERROR - _STATISTICS_TAGS-eng: BPS DURATION NUMBER_OF_FRAMES NUMBER_OF_BYTES SOURCE_ID
+2025-07-20 19:11:13,409 - ERROR - [matroska,webm @ 000001710cc189c0] Length 5 indicated by an EBML number's first byte 0x0a at pos 49629487652 (0xb8e25e224) exceeds max length 4.
+2025-07-20 19:11:13,459 - ERROR - [hevc @ 000001710cc49e40] The cu_qp_delta 46 is outside the valid range [-32, 31].
+2025-07-20 19:11:13,461 - ERROR - [hevc @ 000001710cc49e40] Skipping invalid undecodable NALU: 1
+2025-07-20 19:12:42,448 - ERROR - [out#0/matroska @ 000001710cc1b800] video:8511391KiB audio:3411570KiB subtitle:14597KiB other streams:0KiB global headers:3KiB muxing overhead: 0.091262%
+2025-07-20 19:12:42,450 - ERROR - x265 [info]: frame I:   1289, Avg QP:17.30  kb/s: 38747.42
+2025-07-20 19:12:42,451 - ERROR - x265 [info]: frame P:  36947, Avg QP:18.99  kb/s: 20980.21
+2025-07-20 19:12:42,451 - ERROR - x265 [info]: frame B: 115151, Avg QP:22.30  kb/s: 7346.18
+2025-07-20 19:12:42,452 - ERROR - x265 [info]: Weighted P-Frames: Y:5.2% UV:3.6%
+2025-07-20 19:12:42,452 - ERROR - encoded 153387 frames in 17244.64s (8.89 fps), 10894.16 kb/s, Avg QP:21.46
+2025-07-20 19:12:42,764 - INFO - Successfully completed: Re-encoding to x265
+2025-07-20 19:12:42,830 - INFO - Starting step: move_final - Moving final file to destination
+2025-07-20 19:12:42,839 - INFO - Moving final file from H:\staging\4aff19df-ab54-4107-a057-e6be856cb241\Dunkirk_t00_x265.mkv to Z:\landing_point\Video\Dunkirk\Dunkirk_t00_x265.mkv
+2025-07-20 19:15:52,008 - INFO - Move successful.
+2025-07-20 19:15:52,208 - INFO - === transcode() completed successfully for job 4aff19df-ab54-4107-a057-e6be856cb241 ===
+2025-07-20 19:15:52,380 - INFO - Cleaning up job staging directory: H:\staging\4aff19df-ab54-4107-a057-e6be856cb241

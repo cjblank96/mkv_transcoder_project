@@ -27,11 +27,11 @@
             "id": "836d9319-92e6-4425-8db5-2c5d60c8cb93",
             "input_path": "Z:\\landing_point\\Video\\Eternal Sunshine of the Spotless Mind\\Eternal Sunshine of the Spotless Mind_t00.mkv",
             "job_type": "dolby_vision",
-            "status": "failed",
+            "status": "completed",
             "worker_id": "CJBLANK",
             "output_path": null,
             "added_at": 1752847765.879076,
-            "retries": 0,
+            "retries": 1,
             "steps": {
                 "copy_source": "completed",
                 "get_metadata": "completed",
@@ -43,7 +43,1008 @@
                 "remux_final": "completed",
                 "move_final": "completed"
             },
-            "claimed_at": 1752873535.7826993
+            "claimed_at": 1752956681.8429427,
+            "completed_at": 1752956682.0276685
+        },
+        {
+            "id": "282a1566-3128-4033-bf24-e19ed5455a39",
+            "input_path": "Z:\\landing_point\\Video\\American Gangster\\American Gangster_t01.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\American Gangster\\American Gangster_t01_x265.mkv",
+            "added_at": 1752956656.8856857,
+            "retries": 3,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "pending",
+                "move_final": "pending"
+            },
+            "claimed_at": 1753041874.9039125,
+            "completed_at": 1753051208.8625262
+        },
+        {
+            "id": "4aff19df-ab54-4107-a057-e6be856cb241",
+            "input_path": "Z:\\landing_point\\Video\\Dunkirk\\Dunkirk_t00.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Dunkirk\\Dunkirk_t00_x265.mkv",
+            "added_at": 1752956657.1870825,
+            "retries": 3,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753041888.2250676,
+            "completed_at": 1753060552.2469625
+        },
+        {
+            "id": "c8522ea6-e25d-482b-ace0-1bb930c07f63",
+            "input_path": "Z:\\landing_point\\Video\\Field of Dreams\\Field of Dreams-SEG_MainFeature_t01.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Field of Dreams\\Field of Dreams-SEG_MainFeature_t01_x265.mkv",
+            "added_at": 1752956657.5013425,
+            "retries": 2,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753051226.108205,
+            "completed_at": 1753081281.542961
+        },
+        {
+            "id": "ed8dfc89-4a98-4524-be3c-0b89c6f54add",
+            "input_path": "Z:\\landing_point\\Video\\Harry Potter and the Deathly Hallows - Part 1\\Harry Potter and the Deathly Hallows - Part 1_t02.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Harry Potter and the Deathly Hallows - Part 1\\Harry Potter and the Deathly Hallows - Part 1_t02_x265.mkv",
+            "added_at": 1752956657.8238554,
+            "retries": 2,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753060552.5620556,
+            "completed_at": 1753083653.698292
+        },
+        {
+            "id": "147b9b8a-8476-43fe-a7e8-7a5dba538766",
+            "input_path": "Z:\\landing_point\\Video\\Harry Potter and the Deathly Hallows - Part 2\\Harry Potter and the Deathly Hallows - Part 2_t01.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Harry Potter and the Deathly Hallows - Part 2\\Harry Potter and the Deathly Hallows - Part 2_t01_x265.mkv",
+            "added_at": 1752956658.0849633,
+            "retries": 2,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753081281.6217988,
+            "completed_at": 1753105478.4015157
+        },
+        {
+            "id": "b1d11de6-7606-48e2-90a3-37f46c2f208a",
+            "input_path": "Z:\\landing_point\\Video\\Harry Potter and the Goblet of Fire\\Harry Potter and the Goblet of Fire_t00.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Harry Potter and the Goblet of Fire\\Harry Potter and the Goblet of Fire_t00_x265.mkv",
+            "added_at": 1752956658.3350143,
+            "retries": 3,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753083653.769328,
+            "completed_at": 1753107676.2952123
+        },
+        {
+            "id": "4c69025e-16c3-463c-b6ec-bbba40f44681",
+            "input_path": "Z:\\landing_point\\Video\\Harry Potter and the Half-Blood Prince\\Harry Potter and the Half-Blood Prince_t02.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Harry Potter and the Half-Blood Prince\\Harry Potter and the Half-Blood Prince_t02_x265.mkv",
+            "added_at": 1752956658.6437702,
+            "retries": 3,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753105478.753425,
+            "completed_at": 1753127890.1643856
+        },
+        {
+            "id": "942671d1-34c0-4537-a25c-73d106862f42",
+            "input_path": "Z:\\landing_point\\Video\\Harry Potter and the Prisoner of Azkaban\\Harry Potter and the Prisoner of Azkaban_t01.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Harry Potter and the Prisoner of Azkaban\\Harry Potter and the Prisoner of Azkaban_t01_x265.mkv",
+            "added_at": 1752956658.9168005,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753107676.4764915,
+            "completed_at": 1753133124.475259
+        },
+        {
+            "id": "468843d7-c5d0-4926-bc7e-49532445da81",
+            "input_path": "Z:\\landing_point\\Video\\Harry Potter and the Sorcerer's Stone\\Harry Potter and the Sorcerer's Stone_t00.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Harry Potter and the Sorcerer's Stone\\Harry Potter and the Sorcerer's Stone_t00_x265.mkv",
+            "added_at": 1752956659.2360363,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753127890.652289,
+            "completed_at": 1753153041.0366008
+        },
+        {
+            "id": "642bfe62-62a8-4539-8525-f4cb42665793",
+            "input_path": "Z:\\landing_point\\Video\\Inception\\Inception_t01.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Inception\\Inception_t01_x265.mkv",
+            "added_at": 1752956659.5314922,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753133124.547647,
+            "completed_at": 1753157614.307086
+        },
+        {
+            "id": "49a835e4-3c73-4c1a-8417-414ac5010d99",
+            "input_path": "Z:\\landing_point\\Video\\Inglourious Basterds\\Inglourious Basterds_t02.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Inglourious Basterds\\Inglourious Basterds_t02_x265.mkv",
+            "added_at": 1752956659.827368,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753153041.116869,
+            "completed_at": 1753181783.288627
+        },
+        {
+            "id": "505b89c4-b2bf-43fe-afd4-441ae3f31061",
+            "input_path": "Z:\\landing_point\\Video\\Kill Bill- Vol. 2\\Kill Bill- Vol. 2_t03.mkv",
+            "job_type": "dolby_vision",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Kill Bill- Vol. 2\\Kill Bill- Vol. 2_t03_DV_P8.mkv",
+            "added_at": 1752956660.109368,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "extract_p7": "completed",
+                "convert_p8": "completed",
+                "extract_rpu": "completed",
+                "reencode_x265": "completed",
+                "inject_rpu": "completed",
+                "remux_final": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753157614.3760061,
+            "completed_at": 1753196442.5476727
+        },
+        {
+            "id": "094ea3fc-951f-4e50-81b0-46e435018178",
+            "input_path": "Z:\\landing_point\\Video\\Once Upon a Time in the West\\Once Upon a Time in the West_t00.mkv",
+            "job_type": "dolby_vision",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Once Upon a Time in the West\\Once Upon a Time in the West_t00_DV_P8.mkv",
+            "added_at": 1752956660.4715126,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "extract_p7": "completed",
+                "convert_p8": "completed",
+                "extract_rpu": "completed",
+                "reencode_x265": "completed",
+                "inject_rpu": "completed",
+                "remux_final": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753181783.3819733,
+            "completed_at": 1753221653.056175
+        },
+        {
+            "id": "ebfd2eb5-c72f-4f24-8c70-a41fbbf1b654",
+            "input_path": "Z:\\landing_point\\Video\\Once Upon a Time... in Hollywood\\Once Upon a Time... in Hollywood_t00.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Once Upon a Time... in Hollywood\\Once Upon a Time... in Hollywood_t00_x265.mkv",
+            "added_at": 1752956660.7118237,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753196442.6897175,
+            "completed_at": 1753222498.5525815
+        },
+        {
+            "id": "ba2ed18e-baa8-4366-a179-1bc443b95ae5",
+            "input_path": "Z:\\landing_point\\Video\\Oppenheimer\\Oppenheimer-SEG_MainFeature_t02.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Oppenheimer\\Oppenheimer-SEG_MainFeature_t02_x265.mkv",
+            "added_at": 1752956661.0266156,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753221653.2161896,
+            "completed_at": 1753249427.2538126
+        },
+        {
+            "id": "288c19ad-6fc5-41f6-85ad-00cc833a0795",
+            "input_path": "Z:\\landing_point\\Video\\Parasite\\Parasite_t00.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Parasite\\Parasite_t00_x265.mkv",
+            "added_at": 1752956661.369663,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753222499.2986345,
+            "completed_at": 1753245622.1047528
+        },
+        {
+            "id": "7e6ecde2-80c6-4f3f-a432-56a61c93b831",
+            "input_path": "Z:\\landing_point\\Video\\Pulp Fiction\\Pulp Fiction-FPL_MainFeature_t03.mkv",
+            "job_type": "dolby_vision",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Pulp Fiction\\Pulp Fiction-FPL_MainFeature_t03_DV_P8.mkv",
+            "added_at": 1752956661.7061832,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "extract_p7": "completed",
+                "convert_p8": "completed",
+                "extract_rpu": "completed",
+                "reencode_x265": "completed",
+                "inject_rpu": "completed",
+                "remux_final": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753245622.2256198,
+            "completed_at": 1753283820.9699533
+        },
+        {
+            "id": "31ea3756-8ff5-49e0-bdd7-b51d74d6de41",
+            "input_path": "Z:\\landing_point\\Video\\SANJURO\\SANJURO_t00.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\SANJURO\\SANJURO_t00_x265.mkv",
+            "added_at": 1752956661.997851,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753249427.3700926,
+            "completed_at": 1753268500.278464
+        },
+        {
+            "id": "b2622412-1050-496a-859f-95b264b47fb0",
+            "input_path": "Z:\\landing_point\\Video\\Schindler's List\\Schindler's List-SEG_MainFeature_t00.mkv",
+            "job_type": "dolby_vision",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Schindler's List\\Schindler's List-SEG_MainFeature_t00_DV_P8.mkv",
+            "added_at": 1752956662.3187425,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "extract_p7": "completed",
+                "convert_p8": "completed",
+                "extract_rpu": "completed",
+                "reencode_x265": "completed",
+                "inject_rpu": "completed",
+                "remux_final": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753268500.357284,
+            "completed_at": 1753364988.699605
+        },
+        {
+            "id": "26806149-d899-4786-a9fe-3464ac7e185b",
+            "input_path": "Z:\\landing_point\\Video\\Sicario\\Sicario-FPL_MainFeature_HDR_t00.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Sicario\\Sicario-FPL_MainFeature_HDR_t00_x265.mkv",
+            "added_at": 1752956662.5808778,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753283821.165282,
+            "completed_at": 1753298850.383352
+        },
+        {
+            "id": "8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4",
+            "input_path": "Z:\\landing_point\\Video\\Smile 2\\Smile 2-SEG_MainFeature_t00.mkv",
+            "job_type": "dolby_vision",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Smile 2\\Smile 2-SEG_MainFeature_t00_DV_P8.mkv",
+            "added_at": 1752956662.942474,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "extract_p7": "completed",
+                "convert_p8": "completed",
+                "extract_rpu": "completed",
+                "reencode_x265": "completed",
+                "inject_rpu": "completed",
+                "remux_final": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753298850.7491884,
+            "completed_at": 1753338647.7704155
+        },
+        {
+            "id": "4add1334-4228-44f8-a155-d2070748a555",
+            "input_path": "Z:\\landing_point\\Video\\Tenet\\Tenet-SEG FPL_MainFeature_t01.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\Tenet\\Tenet-SEG FPL_MainFeature_t01_x265.mkv",
+            "added_at": 1752956663.2594082,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753338647.9163833,
+            "completed_at": 1753363050.1863043
+        },
+        {
+            "id": "edc817e4-db64-45cb-b543-f3f7b5a9c8e2",
+            "input_path": "Z:\\landing_point\\Video\\The Brutalist\\The Brutalist-FPL_MainFeature_t01.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\The Brutalist\\The Brutalist-FPL_MainFeature_t01_x265.mkv",
+            "added_at": 1752956663.5612197,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753363050.3310554,
+            "completed_at": 1753415573.172435
+        },
+        {
+            "id": "318deeb9-d95b-45ec-951f-4f8e6d7a636b",
+            "input_path": "Z:\\landing_point\\Video\\The Exorcist- Extended Director's Cut\\The Exorcist- Extended Director's Cut-SEG FPL_MainFeature_t02.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\The Exorcist- Extended Director's Cut\\The Exorcist- Extended Director's Cut-SEG FPL_MainFeature_t02_x265.mkv",
+            "added_at": 1752956663.805528,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753364988.88852,
+            "completed_at": 1753402453.331812
+        },
+        {
+            "id": "d51dce2e-c187-4dde-b977-eb165778b38c",
+            "input_path": "Z:\\landing_point\\Video\\The Good the Bad and the Ugly\\The Good the Bad and the Ugly_t00.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\The Good the Bad and the Ugly\\The Good the Bad and the Ugly_t00_x265.mkv",
+            "added_at": 1752956664.2147577,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753402453.415084,
+            "completed_at": 1753447523.8870099
+        },
+        {
+            "id": "49d16acd-76d1-493e-b7a4-b4112a87f58a",
+            "input_path": "Z:\\landing_point\\Video\\The Green Knight\\The Green Knight-FPL_MainFeature_t00.mkv",
+            "job_type": "dolby_vision",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\The Green Knight\\The Green Knight-FPL_MainFeature_t00_DV_P8.mkv",
+            "added_at": 1752956664.5436444,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "extract_p7": "completed",
+                "convert_p8": "completed",
+                "extract_rpu": "completed",
+                "reencode_x265": "completed",
+                "inject_rpu": "completed",
+                "remux_final": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753415573.2683675,
+            "completed_at": 1753438751.1974566
+        },
+        {
+            "id": "48f9c1d2-0d68-4fdd-bfdd-b3ed5541a683",
+            "input_path": "Z:\\landing_point\\Video\\YOJIMBO\\YOJIMBO_t01.mkv",
+            "job_type": "standard",
+            "status": "done",
+            "worker_id": "CJBLANK",
+            "output_path": "Z:\\landing_point\\Video\\YOJIMBO\\YOJIMBO_t01_x265.mkv",
+            "added_at": 1752956664.8596232,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "completed",
+                "move_final": "completed"
+            },
+            "claimed_at": 1753438752.0234842,
+            "completed_at": 1753459415.7920542
+        },
+        {
+            "id": "83446685-7ab8-49ff-b1ec-457a25d89de8",
+            "input_path": "Z:\\landing_point\\Video\\2001- A Space Odyssey\\2001- A Space Odyssey_t01.mkv",
+            "job_type": "dolby_vision",
+            "status": "failed",
+            "worker_id": "CJBLANK",
+            "output_path": null,
+            "added_at": 1753468385.7509596,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "extract_p7": "completed",
+                "convert_p8": "completed",
+                "extract_rpu": "completed",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            },
+            "claimed_at": 1753468416.9768162,
+            "completed_at": 1753474939.9571092
+        },
+        {
+            "id": "1fdc2030-325b-419f-9fe1-653953de77b6",
+            "input_path": "Z:\\landing_point\\Video\\8 1_2\\8 1_2_t00.mkv",
+            "job_type": "standard",
+            "status": "failed",
+            "worker_id": "CJBLANK",
+            "output_path": null,
+            "added_at": 1753468385.8757832,
+            "retries": 1,
+            "steps": {
+                "copy_source": "completed",
+                "get_metadata": "completed",
+                "reencode_x265": "pending",
+                "move_final": "pending"
+            },
+            "claimed_at": 1753468421.2542582,
+            "completed_at": 1753474937.8634663
+        },
+        {
+            "id": "a4b063e5-ad7e-408e-b9df-8e7c8c4f359a",
+            "input_path": "Z:\\landing_point\\Video\\Akira\\Akira_t00.mkv",
+            "job_type": "standard",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496226.7567015,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "reencode_x265": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "b332380d-fc76-4803-9c42-8c4da539a153",
+            "input_path": "Z:\\landing_point\\Video\\ALIENS\\ALIENS_t01.mkv",
+            "job_type": "dolby_vision",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496227.0547025,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "9254d49b-6d7a-44ec-9ccf-5042d5398bab",
+            "input_path": "Z:\\landing_point\\Video\\Annihilation\\Annihilation_t00.mkv",
+            "job_type": "dolby_vision",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496227.2865067,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "5a16f194-115f-48aa-9187-1f3024826be5",
+            "input_path": "Z:\\landing_point\\Video\\Batman Begins\\Batman Begins_t01.mkv",
+            "job_type": "standard",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496227.5208023,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "reencode_x265": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "7dacaf81-0ac6-449c-867b-65f8f85fd850",
+            "input_path": "Z:\\landing_point\\Video\\Chernobyl Disc 1\\Chernobyl Disc 1_t00.mkv",
+            "job_type": "dolby_vision",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496227.7534282,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "b4da6aa0-a0ad-48f2-90cc-b568867ad942",
+            "input_path": "Z:\\landing_point\\Video\\Chernobyl Disc 1\\Chernobyl Disc 1_t03.mkv",
+            "job_type": "dolby_vision",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496227.9674807,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "c5a2d302-0a4e-4047-aa88-1ed0c8de5fa8",
+            "input_path": "Z:\\landing_point\\Video\\Chernobyl Disc 1\\Chernobyl Disc 1_t04.mkv",
+            "job_type": "dolby_vision",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496228.2039855,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "a7f18e4d-eee5-4577-b04e-935bde026a99",
+            "input_path": "Z:\\landing_point\\Video\\Chernobyl Disc 2\\Chernobyl Disc 2_t01.mkv",
+            "job_type": "dolby_vision",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496228.41628,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "779b4315-4d13-449a-9eee-e525f5edd877",
+            "input_path": "Z:\\landing_point\\Video\\Chernobyl Disc 2\\Chernobyl Disc 2_t03.mkv",
+            "job_type": "dolby_vision",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496228.6187944,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "66f62272-8b82-4cb1-bcf6-f844cca8931f",
+            "input_path": "Z:\\landing_point\\Video\\Dark Knight Rises\\Dark Knight Rises_t01.mkv",
+            "job_type": "standard",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496228.8321035,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "reencode_x265": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "2fce0856-0615-45e7-a76b-9d6fb2e41f1a",
+            "input_path": "Z:\\landing_point\\Video\\Dune- Part Two\\Dune- Part Two-FPL_MainFeature_t02.mkv",
+            "job_type": "dolby_vision",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496229.020151,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "a53ae05b-2605-4395-9527-c6dd733ec13e",
+            "input_path": "Z:\\landing_point\\Video\\Fargo\\Fargo_t00.mkv",
+            "job_type": "dolby_vision",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496229.569511,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "0069a833-ebb8-42b0-8006-077a704ec819",
+            "input_path": "Z:\\landing_point\\Video\\Furiosa- A Mad Max Saga\\Furiosa- A Mad Max Saga-FPL_MainFeature_t02.mkv",
+            "job_type": "dolby_vision",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496230.5349476,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "6d0914e5-6b6a-4457-96c9-c85852dfc449",
+            "input_path": "Z:\\landing_point\\Video\\NO COUNTRY FOR OLD MEN\\NO COUNTRY FOR OLD MEN_t01.mkv",
+            "job_type": "dolby_vision",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496233.695931,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "17b8f570-8523-46cf-a973-b011c6d2da5f",
+            "input_path": "Z:\\landing_point\\Video\\PARIS, TEXAS\\PARIS, TEXAS_t01.mkv",
+            "job_type": "dolby_vision",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496235.220405,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "ffd9de69-5091-4ab8-b62c-24638f0339e4",
+            "input_path": "Z:\\landing_point\\Video\\SEVENTH SEAL\\SEVENTH SEAL_t00.mkv",
+            "job_type": "standard",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496236.4880147,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "reencode_x265": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "375d5ab1-1d9e-4f5e-89fc-ef47a1cbd9d0",
+            "input_path": "Z:\\landing_point\\Video\\STALKER\\STALKER_t00.mkv",
+            "job_type": "standard",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496237.4058745,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "reencode_x265": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "cea14db5-01c8-4de6-84a2-12d38d4aef35",
+            "input_path": "Z:\\landing_point\\Video\\The Big Lebowski\\The Big Lebowski-SEG Main Feature_t01.mkv",
+            "job_type": "standard",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496238.0043807,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "reencode_x265": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "8e1bd14f-cf1c-48a8-af85-31d84bbe587a",
+            "input_path": "Z:\\landing_point\\Video\\The Dark Knight\\The Dark Knight_t01.mkv",
+            "job_type": "standard",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496238.6127894,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "reencode_x265": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "b1f4e038-5bc6-4d54-8116-a5fea3f7cbcf",
+            "input_path": "Z:\\landing_point\\Video\\The Northman\\The Northman_t06.mkv",
+            "job_type": "dolby_vision",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496239.490283,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "750f9dba-51c2-47b1-b8ae-0e6c37b6c53b",
+            "input_path": "Z:\\landing_point\\Video\\The Prestige\\The Prestige_t01.mkv",
+            "job_type": "standard",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496239.7983825,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "reencode_x265": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "d5c0a7c6-91a9-43b3-8072-64290a71a1bc",
+            "input_path": "Z:\\landing_point\\Video\\THE PRINCESS BRIDE\\THE PRINCESS BRIDE_t00.mkv",
+            "job_type": "dolby_vision",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496240.075584,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            }
+        },
+        {
+            "id": "0bd543b9-f91b-4bea-9171-78038e58040e",
+            "input_path": "Z:\\landing_point\\Video\\The Shining\\The Shining_t00.mkv",
+            "job_type": "dolby_vision",
+            "status": "pending",
+            "worker_id": null,
+            "output_path": null,
+            "added_at": 1753496240.39057,
+            "retries": 0,
+            "steps": {
+                "copy_source": "pending",
+                "get_metadata": "pending",
+                "extract_p7": "pending",
+                "convert_p8": "pending",
+                "extract_rpu": "pending",
+                "reencode_x265": "pending",
+                "inject_rpu": "pending",
+                "remux_final": "pending",
+                "move_final": "pending"
+            }
         }
     ]
 }

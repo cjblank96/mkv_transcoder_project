@@ -1,0 +1,122 @@
+2025-07-23 13:27:30,878 - INFO - Job 8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4 initialized.
+2025-07-23 13:27:30,884 - INFO - Original input file: Z:\landing_point\Video\Smile 2\Smile 2-SEG_MainFeature_t00.mkv
+2025-07-23 13:27:30,887 - INFO - Final output file: Z:\landing_point\Video\Smile 2\Smile 2-SEG_MainFeature_t00_DV_P8.mkv
+2025-07-23 13:27:30,905 - INFO - Local job staging directory: H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4
+2025-07-23 13:27:30,908 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-23 13:27:30,915 - INFO -   - Total: 3726.01 GB
+2025-07-23 13:27:30,918 - INFO -   - Used: 2271.02 GB
+2025-07-23 13:27:30,925 - INFO -   - Free: 1454.98 GB
+2025-07-23 13:27:30,927 - INFO - === Entering transcode() for job 8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4 ===
+2025-07-23 13:27:30,935 - INFO - Job dict: {
+  "id": "8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4",
+  "input_path": "\"Z:\\landing_point\\Video\\Smile 2\\Smile 2-SEG_MainFeature_t00.mkv\"",
+  "job_type": "dolby_vision",
+  "status": "running",
+  "worker_id": "CJBLANK",
+  "output_path": null,
+  "added_at": 1752956662.942474,
+  "retries": 1,
+  "steps": {
+    "copy_source": "pending",
+    "get_metadata": "pending",
+    "extract_p7": "pending",
+    "convert_p8": "pending",
+    "extract_rpu": "pending",
+    "reencode_x265": "pending",
+    "inject_rpu": "pending",
+    "remux_final": "pending",
+    "move_final": "pending"
+  },
+  "claimed_at": 1753298850.7491884
+}
+2025-07-23 13:27:30,959 - INFO - === Starting transcode pipeline for job 8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4 ===
+2025-07-23 13:27:30,966 - INFO - Job dict: {'id': '8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4', 'input_path': '"Z:\\landing_point\\Video\\Smile 2\\Smile 2-SEG_MainFeature_t00.mkv"', 'job_type': 'dolby_vision', 'status': 'running', 'worker_id': 'CJBLANK', 'output_path': None, 'added_at': 1752956662.942474, 'retries': 1, 'steps': {'copy_source': 'pending', 'get_metadata': 'pending', 'extract_p7': 'pending', 'convert_p8': 'pending', 'extract_rpu': 'pending', 'reencode_x265': 'pending', 'inject_rpu': 'pending', 'remux_final': 'pending', 'move_final': 'pending'}, 'claimed_at': 1753298850.7491884}
+2025-07-23 13:27:30,969 - INFO - Starting step: copy_source - Copying source file locally
+2025-07-23 13:27:30,993 - INFO - Copying source file locally: from Z:\landing_point\Video\Smile 2\Smile 2-SEG_MainFeature_t00.mkv to H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\Smile 2-SEG_MainFeature_t00.mkv
+2025-07-23 13:43:53,623 - INFO - Copy successful.
+2025-07-23 13:43:53,692 - INFO - Starting step: get_metadata - Getting video metadata
+2025-07-23 13:43:53,699 - INFO - Attempting to get video metadata from H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\Smile 2-SEG_MainFeature_t00.mkv
+2025-07-23 13:43:53,935 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-23 13:43:54,015 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 183504 frames.
+2025-07-23 13:44:02,233 - INFO - Probing for main video stream in: H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\Smile 2-SEG_MainFeature_t00.mkv
+2025-07-23 13:44:02,336 - INFO - Found main video stream at index: 0
+2025-07-23 13:44:02,337 - INFO - Using map specifier '0:v:0' for ffmpeg.
+2025-07-23 13:44:02,338 - INFO - Starting step: extract_p7 - Extracting Profile 7 HEVC stream
+2025-07-23 13:44:02,339 - INFO - Executing ffmpeg stream copy: ffmpeg -i "H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\Smile 2-SEG_MainFeature_t00.mkv" -map 0:v:0 -c copy -y "H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\video_p7.hevc"
+2025-07-23 13:48:55,526 - INFO - Successfully completed: Extracting P7 stream
+2025-07-23 13:48:55,587 - INFO - Starting step: convert_p8 - Converting P7 to P8.1
+2025-07-23 13:48:55,595 - INFO - Converting to P8.1...
+2025-07-23 13:48:55,602 - INFO - Executing command: dovi_tool -m 2 convert --discard -i "H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\video_p7.hevc" -o "H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\video_p8.hevc"
+2025-07-23 13:53:42,046 - INFO - Converting to P8.1 successful.
+2025-07-23 13:53:42,107 - INFO - Starting step: extract_rpu - Extracting RPU
+2025-07-23 13:53:42,115 - INFO - Extracting RPU...
+2025-07-23 13:53:42,118 - INFO - Executing command: dovi_tool extract-rpu -i "H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\video_p8.hevc" -o "H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\rpu.bin"
+2025-07-23 13:56:13,503 - INFO - Extracting RPU successful.
+2025-07-23 13:56:13,563 - INFO - Starting step: reencode_x265 - Re-encoding to x265
+2025-07-23 13:56:13,571 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i "H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\video_p8.hevc" -an -sn -dn -c:v libx265 -preset slow -crf 20.5 -threads 10 -x265-params pools=10:no-sao=1:early-skip=1:rd=3:me=hex -y "H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\video_reencoded.hevc"
+2025-07-23 13:56:13,659 - ERROR - ffmpeg version 7.1.1-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+2025-07-23 13:56:13,660 - ERROR - built with gcc 14.2.0 (Rev1, Built by MSYS2 project)
+2025-07-23 13:56:13,660 - ERROR - configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+2025-07-23 13:56:13,661 - ERROR - libavutil      59. 39.100 / 59. 39.100
+2025-07-23 13:56:13,662 - ERROR - libavcodec     61. 19.101 / 61. 19.101
+2025-07-23 13:56:13,663 - ERROR - libavformat    61.  7.100 / 61.  7.100
+2025-07-23 13:56:13,663 - ERROR - libavdevice    61.  3.100 / 61.  3.100
+2025-07-23 13:56:13,664 - ERROR - libavfilter    10.  4.100 / 10.  4.100
+2025-07-23 13:56:13,664 - ERROR - libswscale      8.  3.100 /  8.  3.100
+2025-07-23 13:56:13,665 - ERROR - libswresample   5.  3.100 /  5.  3.100
+2025-07-23 13:56:13,666 - ERROR - libpostproc    58.  3.100 / 58.  3.100
+2025-07-23 13:56:13,685 - ERROR - Input #0, hevc, from 'H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\video_p8.hevc':
+2025-07-23 13:56:13,686 - ERROR - Duration: N/A, bitrate: N/A
+2025-07-23 13:56:13,687 - ERROR - Stream #0:0: Video: hevc (Main 10), yuv420p10le(tv, bt2020nc/bt2020/smpte2084), 3840x2160 [SAR 1:1 DAR 16:9], 25 fps, 23.98 tbr, 1200k tbn
+2025-07-23 13:56:13,688 - ERROR - Stream mapping:
+2025-07-23 13:56:13,689 - ERROR - Stream #0:0 -> #0:0 (hevc (native) -> hevc (libx265))
+2025-07-23 13:56:13,690 - ERROR - Press [q] to stop, [?] for help
+2025-07-23 13:56:13,800 - ERROR - x265 [info]: HEVC encoder version 4.1+110-0e0eee580
+2025-07-23 13:56:13,801 - ERROR - x265 [info]: build info [Windows][GCC 14.2.0][64 bit] 10bit
+2025-07-23 13:56:13,802 - ERROR - x265 [info]: using cpu capabilities: MMX2 SSE2Fast LZCNT SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+2025-07-23 13:56:13,803 - ERROR - x265 [info]: Main 10 profile, Level-5 (Main tier)
+2025-07-23 13:56:13,804 - ERROR - x265 [info]: Thread pool created using 10 threads
+2025-07-23 13:56:13,805 - ERROR - x265 [info]: Slices                              : 1
+2025-07-23 13:56:13,805 - ERROR - x265 [info]: frame threads / pool features       : 10 / wpp(34 rows)
+2025-07-23 13:56:13,830 - ERROR - x265 [info]: Coding QT: max CU size, min CU size : 64 / 8
+2025-07-23 13:56:13,832 - ERROR - x265 [info]: Residual QT: max TU size, max depth : 32 / 1 inter / 1 intra
+2025-07-23 13:56:13,832 - ERROR - x265 [info]: ME / range / subpel / merge         : hex / 57 / 3 / 3
+2025-07-23 13:56:13,833 - ERROR - x265 [info]: Keyframe min / max / scenecut / bias  : 23 / 250 / 40 / 5.00
+2025-07-23 13:56:13,834 - ERROR - x265 [info]: Lookahead / bframes / badapt        : 25 / 4 / 2
+2025-07-23 13:56:13,834 - ERROR - x265 [info]: b-pyramid / weightp / weightb       : 1 / 1 / 0
+2025-07-23 13:56:13,835 - ERROR - x265 [info]: References / ref-limit  cu / depth  : 4 / on / on
+2025-07-23 13:56:13,836 - ERROR - x265 [info]: AQ: mode / str / qg-size / cu-tree  : 2 / 1.0 / 32 / 1
+2025-07-23 13:56:13,836 - ERROR - x265 [info]: Rate Control / qCompress            : CRF-20.5 / 0.60
+2025-07-23 13:56:13,837 - ERROR - x265 [info]: tools: rect limit-modes rd=3 psy-rd=2.00 rdoq=2 psy-rdoq=1.00
+2025-07-23 13:56:13,838 - ERROR - x265 [info]: tools: early-skip rskip mode=1 signhide tmvp
+2025-07-23 13:56:13,838 - ERROR - x265 [info]: tools: strong-intra-smoothing lslices=4 deblock dhdr10-info
+2025-07-23 13:56:13,839 - ERROR - Output #0, hevc, to 'H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\video_reencoded.hevc':
+2025-07-23 13:56:13,839 - ERROR - Metadata:
+2025-07-23 13:56:13,840 - ERROR - encoder         : Lavf61.7.100
+2025-07-23 13:56:13,841 - ERROR - Stream #0:0: Video: hevc, yuv420p10le(tv, bt2020nc/bt2020/smpte2084, progressive), 3840x2160 [SAR 1:1 DAR 16:9], q=2-31, 23.98 fps, 23.98 tbn
+2025-07-23 13:56:13,841 - ERROR - Metadata:
+2025-07-23 13:56:13,842 - ERROR - encoder         : Lavc61.19.101 libx265
+2025-07-23 13:56:13,843 - ERROR - Side data:
+2025-07-23 13:56:13,843 - ERROR - Mastering Display Metadata, has_primaries:1 has_luminance:1 r(0.6800,0.3200) g(0.2650,0.6900) b(0.1500 0.0600) wp(0.3127, 0.3290) min_luminance=0.005000, max_luminance=4000.000000
+2025-07-23 13:56:13,844 - ERROR - Content Light Level Metadata, MaxCLL=1605, MaxFALL=325
+2025-07-23 13:56:13,844 - ERROR - cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+2025-07-24 00:22:29,137 - ERROR - [out#0/hevc @ 000002406e91b040] video:11298545KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000000%
+2025-07-24 00:22:29,139 - ERROR - x265 [info]: frame I:   1368, Avg QP:19.89  kb/s: 33079.58
+2025-07-24 00:22:29,140 - ERROR - x265 [info]: frame P:  39700, Avg QP:21.96  kb/s: 22787.50
+2025-07-24 00:22:29,141 - ERROR - x265 [info]: frame B: 142436, Avg QP:24.78  kb/s: 8905.68
+2025-07-24 00:22:29,141 - ERROR - x265 [info]: Weighted P-Frames: Y:1.9% UV:1.4%
+2025-07-24 00:22:29,142 - ERROR - encoded 183504 frames in 37575.31s (4.88 fps), 12089.14 kb/s, Avg QP:24.13
+2025-07-24 00:22:29,542 - INFO - Successfully completed: Re-encoding to x265
+2025-07-24 00:22:29,603 - INFO - Starting step: inject_rpu - Injecting RPU
+2025-07-24 00:22:29,605 - INFO - Injecting RPU...
+2025-07-24 00:22:29,609 - INFO - Executing command: dovi_tool inject-rpu -i "H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\video_reencoded.hevc" --rpu-in "H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\rpu.bin" -o "H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\video_final_with_rpu.hevc"
+2025-07-24 00:23:55,924 - INFO - Injecting RPU successful.
+2025-07-24 00:23:55,985 - INFO - Starting step: remux_final - Remuxing final MKV
+2025-07-24 00:23:55,993 - INFO - Remuxing final MKV...
+2025-07-24 00:23:55,995 - INFO - Executing command: mkvmerge -o "H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\Smile 2-SEG_MainFeature_t00_DV_P8.mkv" --language 0:eng "H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\video_final_with_rpu.hevc" --no-video "H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\Smile 2-SEG_MainFeature_t00.mkv"
+2025-07-24 00:28:26,818 - INFO - Remuxing final MKV successful.
+2025-07-24 00:28:26,878 - INFO - Starting step: move_final - Moving final file to destination
+2025-07-24 00:28:26,886 - INFO - Moving final file from H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4\Smile 2-SEG_MainFeature_t00_DV_P8.mkv to Z:\landing_point\Video\Smile 2\Smile 2-SEG_MainFeature_t00_DV_P8.mkv
+2025-07-24 00:30:47,670 - INFO - Move successful.
+2025-07-24 00:30:47,728 - INFO - === transcode() completed successfully for job 8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4 ===
+2025-07-24 00:30:47,803 - INFO - Cleaning up job staging directory: H:\staging\8d9fb1a5-bf78-48c3-bb3f-3e1cd2f6d3a4

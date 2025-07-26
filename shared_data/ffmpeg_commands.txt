@@ -1,0 +1,3 @@
+ffmpeg -fflags +genpts -i "H:\staging\48f9c1d2-0d68-4fdd-bfdd-b3ed5541a683\YOJIMBO_t01.mkv" -map 0 -c:v libx265 -preset medium -crf 18 -threads 10 -x265-params pools=10:no-sao=1:early-skip=1:rd=3:me=hex -c:a copy -c:s copy -y "H:\staging\48f9c1d2-0d68-4fdd-bfdd-b3ed5541a683\YOJIMBO_t01_x265.mkv"
+
+ffmpeg -fflags +genpts -i "H:\staging\49d16acd-76d1-493e-b7a4-b4112a87f58a\video_p8.hevc" -an -sn -dn -c:v libx265 -preset slow -crf 20.5 -threads 10 -x265-params pools=10:no-sao=1:early-skip=1:rd=3:me=hex -y "H:\staging\49d16acd-76d1-493e-b7a4-b4112a87f58a\video_reencoded.hevc"

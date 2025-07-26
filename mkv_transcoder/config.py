@@ -21,7 +21,10 @@ UNRAID_MOUNT_PATH = os.getenv("UNRAID_MOUNT_PATH", "/mnt/unraid")
 SHARED_DIR = os.getenv("MKV_SHARED_DIR", os.path.join(PROJECT_ROOT, "shared_data"))
 
 # Directories for video files on the Unraid share, accessed via the mount point
-VIDEO_LANDING_POINT = os.path.join(UNRAID_MOUNT_PATH, "landing_point/Video")
+if os.name == 'nt':
+    VIDEO_LANDING_POINT = r"Z:\landing_point\Video"
+else:
+    VIDEO_LANDING_POINT = os.path.join(UNRAID_MOUNT_PATH, "landing_point/Video")
 TEST_FILE_PATH = os.path.join(UNRAID_MOUNT_PATH, "landing_point/Test/test_file_dune.mkv")
 
 # --- Job Queue and Worker Settings ---

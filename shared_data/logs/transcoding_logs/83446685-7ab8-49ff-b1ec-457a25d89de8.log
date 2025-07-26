@@ -1,0 +1,102 @@
+2025-07-25 12:33:37,132 - INFO - Job 83446685-7ab8-49ff-b1ec-457a25d89de8 initialized.
+2025-07-25 12:33:37,142 - INFO - Original input file: H:\Video\2001- A Space Odyssey\2001- A Space Odyssey_t01.mkv
+2025-07-25 12:33:37,152 - INFO - Final output file: H:\Video\2001- A Space Odyssey\2001- A Space Odyssey_t01_DV_P8.mkv
+2025-07-25 12:33:37,161 - INFO - Local job staging directory: H:\staging\83446685-7ab8-49ff-b1ec-457a25d89de8
+2025-07-25 12:33:37,163 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-25 12:33:37,178 - INFO -   - Total: 3726.01 GB
+2025-07-25 12:33:37,179 - INFO -   - Used: 2023.60 GB
+2025-07-25 12:33:37,180 - INFO -   - Free: 1702.41 GB
+2025-07-25 12:33:37,180 - INFO - === Entering transcode() for job 83446685-7ab8-49ff-b1ec-457a25d89de8 ===
+2025-07-25 12:33:37,180 - INFO - Job dict: {
+  "id": "83446685-7ab8-49ff-b1ec-457a25d89de8",
+  "input_path": "\"H:\\Video\\2001- A Space Odyssey\\2001- A Space Odyssey_t01.mkv\"",
+  "job_type": "dolby_vision",
+  "status": "running",
+  "worker_id": "CJBLANK",
+  "output_path": null,
+  "added_at": 1753468385.7509596,
+  "retries": 1,
+  "steps": {
+    "copy_source": "pending",
+    "get_metadata": "pending",
+    "extract_p7": "pending",
+    "convert_p8": "pending",
+    "extract_rpu": "pending",
+    "reencode_x265": "pending",
+    "inject_rpu": "pending",
+    "remux_final": "pending",
+    "move_final": "pending"
+  },
+  "claimed_at": 1753468416.9768162
+}
+2025-07-25 12:33:37,181 - INFO - === Starting transcode pipeline for job 83446685-7ab8-49ff-b1ec-457a25d89de8 ===
+2025-07-25 12:33:37,183 - INFO - Job dict: {'id': '83446685-7ab8-49ff-b1ec-457a25d89de8', 'input_path': '"H:\\Video\\2001- A Space Odyssey\\2001- A Space Odyssey_t01.mkv"', 'job_type': 'dolby_vision', 'status': 'running', 'worker_id': 'CJBLANK', 'output_path': None, 'added_at': 1753468385.7509596, 'retries': 1, 'steps': {'copy_source': 'pending', 'get_metadata': 'pending', 'extract_p7': 'pending', 'convert_p8': 'pending', 'extract_rpu': 'pending', 'reencode_x265': 'pending', 'inject_rpu': 'pending', 'remux_final': 'pending', 'move_final': 'pending'}, 'claimed_at': 1753468416.9768162}
+2025-07-25 12:33:37,184 - INFO - Starting step: copy_source - Copying source file locally
+2025-07-25 12:33:37,185 - INFO - Copying source file locally: from H:\Video\2001- A Space Odyssey\2001- A Space Odyssey_t01.mkv to H:\staging\83446685-7ab8-49ff-b1ec-457a25d89de8\2001- A Space Odyssey_t01.mkv
+2025-07-25 12:43:02,522 - INFO - Copy successful.
+2025-07-25 12:43:02,588 - INFO - Starting step: get_metadata - Getting video metadata
+2025-07-25 12:43:02,590 - INFO - Attempting to get video metadata from H:\staging\83446685-7ab8-49ff-b1ec-457a25d89de8\2001- A Space Odyssey_t01.mkv
+2025-07-25 12:43:03,193 - INFO - Successfully got frame rate: 23.976 fps.
+2025-07-25 12:43:03,298 - INFO - Successfully got frame count from tag 'NUMBER_OF_FRAMES-eng': 214088 frames.
+2025-07-25 12:43:03,339 - INFO - Probing for main video stream in: H:\staging\83446685-7ab8-49ff-b1ec-457a25d89de8\2001- A Space Odyssey_t01.mkv
+2025-07-25 12:43:03,523 - INFO - Found main video stream at index: 0
+2025-07-25 12:43:03,525 - INFO - Using map specifier '0:v:0' for ffmpeg.
+2025-07-25 12:43:03,526 - INFO - Starting step: extract_p7 - Extracting Profile 7 HEVC stream
+2025-07-25 12:43:03,526 - INFO - Executing ffmpeg stream copy: ffmpeg -i "H:\staging\83446685-7ab8-49ff-b1ec-457a25d89de8\2001- A Space Odyssey_t01.mkv" -map 0:v:0 -c copy -y "H:\staging\83446685-7ab8-49ff-b1ec-457a25d89de8\video_p7.hevc"
+2025-07-25 12:49:13,133 - INFO - Successfully completed: Extracting P7 stream
+2025-07-25 12:49:13,199 - INFO - Starting step: convert_p8 - Converting P7 to P8.1
+2025-07-25 12:49:13,201 - INFO - Converting to P8.1...
+2025-07-25 12:49:13,204 - INFO - Executing command: dovi_tool -m 2 convert --discard -i "H:\staging\83446685-7ab8-49ff-b1ec-457a25d89de8\video_p7.hevc" -o "H:\staging\83446685-7ab8-49ff-b1ec-457a25d89de8\video_p8.hevc"
+2025-07-25 12:54:06,497 - INFO - Converting to P8.1 successful.
+2025-07-25 12:54:06,561 - INFO - Starting step: extract_rpu - Extracting RPU
+2025-07-25 12:54:06,564 - INFO - Extracting RPU...
+2025-07-25 12:54:06,571 - INFO - Executing command: dovi_tool extract-rpu -i "H:\staging\83446685-7ab8-49ff-b1ec-457a25d89de8\video_p8.hevc" -o "H:\staging\83446685-7ab8-49ff-b1ec-457a25d89de8\rpu.bin"
+2025-07-25 12:56:49,613 - INFO - Extracting RPU successful.
+2025-07-25 12:56:49,681 - INFO - Starting step: reencode_x265 - Re-encoding to x265
+2025-07-25 12:56:49,683 - INFO - Executing ffmpeg command: ffmpeg -fflags +genpts -i "H:\staging\83446685-7ab8-49ff-b1ec-457a25d89de8\video_p8.hevc" -an -sn -dn -c:v libx265 -preset slow -crf 20.5 -threads 10 -x265-params pools=10:no-sao=1:early-skip=1:rd=3:me=hex -y "H:\staging\83446685-7ab8-49ff-b1ec-457a25d89de8\video_reencoded.hevc"
+2025-07-25 12:56:49,773 - ERROR - ffmpeg version 7.1.1-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+2025-07-25 12:56:49,774 - ERROR - built with gcc 14.2.0 (Rev1, Built by MSYS2 project)
+2025-07-25 12:56:49,775 - ERROR - configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+2025-07-25 12:56:49,776 - ERROR - libavutil      59. 39.100 / 59. 39.100
+2025-07-25 12:56:49,776 - ERROR - libavcodec     61. 19.101 / 61. 19.101
+2025-07-25 12:56:49,777 - ERROR - libavformat    61.  7.100 / 61.  7.100
+2025-07-25 12:56:49,778 - ERROR - libavdevice    61.  3.100 / 61.  3.100
+2025-07-25 12:56:49,778 - ERROR - libavfilter    10.  4.100 / 10.  4.100
+2025-07-25 12:56:49,779 - ERROR - libswscale      8.  3.100 /  8.  3.100
+2025-07-25 12:56:49,780 - ERROR - libswresample   5.  3.100 /  5.  3.100
+2025-07-25 12:56:49,780 - ERROR - libpostproc    58.  3.100 / 58.  3.100
+2025-07-25 12:56:49,795 - ERROR - Input #0, hevc, from 'H:\staging\83446685-7ab8-49ff-b1ec-457a25d89de8\video_p8.hevc':
+2025-07-25 12:56:49,797 - ERROR - Duration: N/A, bitrate: N/A
+2025-07-25 12:56:49,797 - ERROR - Stream #0:0: Video: hevc (Main 10), yuv420p10le(tv, bt2020nc/bt2020/smpte2084), 3840x2160 [SAR 1:1 DAR 16:9], 25 fps, 23.98 tbr, 1200k tbn
+2025-07-25 12:56:49,799 - ERROR - Stream mapping:
+2025-07-25 12:56:49,800 - ERROR - Stream #0:0 -> #0:0 (hevc (native) -> hevc (libx265))
+2025-07-25 12:56:49,801 - ERROR - Press [q] to stop, [?] for help
+2025-07-25 12:56:49,911 - ERROR - x265 [info]: HEVC encoder version 4.1+110-0e0eee580
+2025-07-25 12:56:49,912 - ERROR - x265 [info]: build info [Windows][GCC 14.2.0][64 bit] 10bit
+2025-07-25 12:56:49,913 - ERROR - x265 [info]: using cpu capabilities: MMX2 SSE2Fast LZCNT SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+2025-07-25 12:56:49,914 - ERROR - x265 [info]: Main 10 profile, Level-5 (Main tier)
+2025-07-25 12:56:49,915 - ERROR - x265 [info]: Thread pool created using 10 threads
+2025-07-25 12:56:49,915 - ERROR - x265 [info]: Slices                              : 1
+2025-07-25 12:56:49,916 - ERROR - x265 [info]: frame threads / pool features       : 10 / wpp(34 rows)
+2025-07-25 12:56:49,943 - ERROR - x265 [info]: Coding QT: max CU size, min CU size : 64 / 8
+2025-07-25 12:56:49,945 - ERROR - x265 [info]: Residual QT: max TU size, max depth : 32 / 1 inter / 1 intra
+2025-07-25 12:56:49,946 - ERROR - x265 [info]: ME / range / subpel / merge         : hex / 57 / 3 / 3
+2025-07-25 12:56:49,947 - ERROR - x265 [info]: Keyframe min / max / scenecut / bias  : 23 / 250 / 40 / 5.00
+2025-07-25 12:56:49,947 - ERROR - x265 [info]: Lookahead / bframes / badapt        : 25 / 4 / 2
+2025-07-25 12:56:49,948 - ERROR - x265 [info]: b-pyramid / weightp / weightb       : 1 / 1 / 0
+2025-07-25 12:56:49,949 - ERROR - x265 [info]: References / ref-limit  cu / depth  : 4 / on / on
+2025-07-25 12:56:49,949 - ERROR - x265 [info]: AQ: mode / str / qg-size / cu-tree  : 2 / 1.0 / 32 / 1
+2025-07-25 12:56:49,950 - ERROR - x265 [info]: Rate Control / qCompress            : CRF-20.5 / 0.60
+2025-07-25 12:56:49,951 - ERROR - x265 [info]: tools: rect limit-modes rd=3 psy-rd=2.00 rdoq=2 psy-rdoq=1.00
+2025-07-25 12:56:49,951 - ERROR - x265 [info]: tools: early-skip rskip mode=1 signhide tmvp
+2025-07-25 12:56:49,952 - ERROR - x265 [info]: tools: strong-intra-smoothing lslices=4 deblock dhdr10-info
+2025-07-25 12:56:49,952 - ERROR - Output #0, hevc, to 'H:\staging\83446685-7ab8-49ff-b1ec-457a25d89de8\video_reencoded.hevc':
+2025-07-25 12:56:49,953 - ERROR - Metadata:
+2025-07-25 12:56:49,954 - ERROR - encoder         : Lavf61.7.100
+2025-07-25 12:56:49,955 - ERROR - Stream #0:0: Video: hevc, yuv420p10le(tv, bt2020nc/bt2020/smpte2084, progressive), 3840x2160 [SAR 1:1 DAR 16:9], q=2-31, 23.98 fps, 23.98 tbn
+2025-07-25 12:56:49,955 - ERROR - Metadata:
+2025-07-25 12:56:49,956 - ERROR - encoder         : Lavc61.19.101 libx265
+2025-07-25 12:56:49,957 - ERROR - Side data:
+2025-07-25 12:56:49,957 - ERROR - Mastering Display Metadata, has_primaries:1 has_luminance:1 r(0.7080,0.2920) g(0.1700,0.7970) b(0.1310 0.0460) wp(0.3127, 0.3290) min_luminance=0.005000, max_luminance=1000.000000
+2025-07-25 12:56:49,958 - ERROR - Content Light Level Metadata, MaxCLL=992, MaxFALL=282
+2025-07-25 12:56:49,959 - ERROR - cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A

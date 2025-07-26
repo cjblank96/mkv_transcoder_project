@@ -159,3 +159,35 @@
 2025-07-19 11:38:23,531 - INFO - Moving final file from H:\staging\836d9319-92e6-4425-8db5-2c5d60c8cb93\Eternal Sunshine of the Spotless Mind_t00_DV_P8.mkv to Z:\landing_point\Video\Eternal Sunshine of the Spotless Mind\Eternal Sunshine of the Spotless Mind_t00_DV_P8.mkv
 2025-07-19 11:41:24,674 - INFO - Move successful.
 2025-07-19 11:41:24,719 - INFO - === transcode() completed successfully for job 836d9319-92e6-4425-8db5-2c5d60c8cb93 ===
+2025-07-19 14:24:41,947 - INFO - Job 836d9319-92e6-4425-8db5-2c5d60c8cb93 initialized.
+2025-07-19 14:24:41,958 - INFO - Original input file: Z:\landing_point\Video\Eternal Sunshine of the Spotless Mind\Eternal Sunshine of the Spotless Mind_t00.mkv
+2025-07-19 14:24:41,972 - INFO - Final output file: Z:\landing_point\Video\Eternal Sunshine of the Spotless Mind\Eternal Sunshine of the Spotless Mind_t00_DV_P8.mkv
+2025-07-19 14:24:41,985 - INFO - Local job staging directory: H:\staging\836d9319-92e6-4425-8db5-2c5d60c8cb93
+2025-07-19 14:24:41,998 - INFO - Disk space for Local Staging SSD (H:\staging):
+2025-07-19 14:24:41,999 - INFO -   - Total: 3726.01 GB
+2025-07-19 14:24:41,999 - INFO -   - Used: 1940.37 GB
+2025-07-19 14:24:42,000 - INFO -   - Free: 1785.64 GB
+2025-07-19 14:24:42,001 - INFO - === Entering transcode() for job 836d9319-92e6-4425-8db5-2c5d60c8cb93 ===
+2025-07-19 14:24:42,003 - INFO - Job dict: {
+  "id": "836d9319-92e6-4425-8db5-2c5d60c8cb93",
+  "input_path": "\"Z:\\landing_point\\Video\\Eternal Sunshine of the Spotless Mind\\Eternal Sunshine of the Spotless Mind_t00.mkv\"",
+  "job_type": "dolby_vision",
+  "status": "running",
+  "worker_id": "CJBLANK",
+  "output_path": null,
+  "added_at": 1752847765.879076,
+  "retries": 1,
+  "steps": {
+    "copy_source": "completed",
+    "get_metadata": "completed",
+    "extract_p7": "completed",
+    "convert_p8": "completed",
+    "extract_rpu": "completed",
+    "reencode_x265": "completed",
+    "inject_rpu": "completed",
+    "remux_final": "completed",
+    "move_final": "completed"
+  },
+  "claimed_at": 1752956681.8429427
+}
+2025-07-19 14:24:42,006 - ERROR - Input file does not exist: Z:\landing_point\Video\Eternal Sunshine of the Spotless Mind\Eternal Sunshine of the Spotless Mind_t00.mkv

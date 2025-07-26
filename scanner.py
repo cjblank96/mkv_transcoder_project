@@ -5,14 +5,13 @@ import argparse
 import sys
 import subprocess
 import json
+from mkv_transcoder import config
 
 # Add project root to the Python path to allow importing 'mkv_transcoder'
 project_root = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, project_root)
 
 from mkv_transcoder.job_queue import JobQueue
-from mkv_transcoder import config
-
 
 def is_dolby_vision(file_path):
     """
@@ -65,26 +64,27 @@ def scan_and_add_jobs(directory_path, job_queue):
     
     print(f"\nScan complete. Added {added_count} new jobs.")
 
-def add_specific_files(file_paths, job_queue):
+def add_specific_files(paths, job_queue):
     """
     Adds a list of specific files to the job queue after determining their type.
     """
-    added_count = 0
-    for file_path in file_paths:
-        if not os.path.isfile(file_path):
-            print(f"Error: File not found: {file_path}")
-            continue
-
-        job_type = 'dolby_vision' if is_dolby_vision(file_path) else 'standard'
-        print(f"- Found: {os.path.basename(file_path)} (Type: {job_type})")
-        
-        if job_queue.add_job(file_path, job_type):
-            print(f"  -> Added job to queue.")
-            added_count += 1
+    print(f"Processing {len(paths)} specific path(s)...")
+    for path in paths:
+        if os.path.isfile(path) and path.endswith('.mkv'):
+            job_type = 'dolby_vision' if is_dolby_vision(path) else 'standard'
+            job_queue.add_job(path, job_type)
+            print(f"- Added file: {os.path.basename(path)} (Type: {job_type})")
+        elif os.path.isdir(path):
+            print(f"- Scanning directory: {path}")
+            for root, _, files in os.walk(path):
+                for file in files:
+                    if file.endswith('.mkv'):
+                        file_path = os.path.join(root, file)
+                        job_type = 'dolby_vision' if is_dolby_vision(file_path) else 'standard'
+                        job_queue.add_job(file_path, job_type)
+                        print(f"  - Added file: {os.path.basename(file_path)} (Type: {job_type})")
         else:
-            print(f"  -> Job already exists. Skipping.")
-
-    print(f"\nProcess complete. Added {added_count} new jobs.")
+            print(f"- Skipped (not a valid .mkv file or directory): {path}")
 
 def add_test_file(job_queue):
     """
